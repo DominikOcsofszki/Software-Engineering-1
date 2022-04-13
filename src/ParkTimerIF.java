@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public interface ParkTimerIF {
 
     void registerVehicle(String license, TimeIF t);   // register a vehicle upon entering
-    void registerVehicle(String license);             // unregister a vehicle
+    void unregisterVehicle(String license);             // unregister a vehicle
     float calculateTotal(String license, TimeIF t);   // calculate a total depending on parking time
 
     void setPrice(float price);                       // set a price per minute

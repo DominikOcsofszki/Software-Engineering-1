@@ -17,8 +17,13 @@ public class ParkTimer implements ParkTimerIF {
     }
 
     @Override
-    public void registerVehicle(String license) {
-
+    public void unregisterVehicle(String license) {
+        for(int i = 0; i < registered.size(); i++) {
+            if(registered.get(i)[0] == license) {
+                registered.remove(i);
+                break;
+            }
+        }
     }
 
     public float calculateTotal(String license, TimeIF t) {
