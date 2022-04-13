@@ -16,6 +16,11 @@ public class ParkTimer implements ParkTimerIF {
         registered.add(r);
     }
 
+    @Override
+    public void registerVehicle(String license) {
+
+    }
+
     public float calculateTotal(String license, TimeIF t) {
         TimeIF p = getTime(license);
         if (p == null) {
