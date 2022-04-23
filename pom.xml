@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>hbrs.inf.se1.team6</groupId>
-	<artifactId>mk_se1_ss22_Team_6</artifactId>
+	<artifactId>park_house</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Parkhaus</name>
@@ -14,8 +14,8 @@
 	</prerequisites>
 	
 	<properties>
-		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<!-- If there are no local customizations, this can also be "fetch" or "cdn" -->
@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -50,7 +50,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
-					<warName>Team_6-${project.version}</warName>
+					<warName>Team_2-${project.version}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
@@ -66,12 +66,31 @@
 				<version>2.22.2</version>
 			</plugin>
 			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>car_park/servlet/*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			
 			<!-- The Jetty plugin allows us to easily test the development build by
 			 running jetty:run on the command line. -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.plugin.version}</version>
+				<version>10.0.9</version>
 				<configuration>
 					<scanIntervalSeconds>2</scanIntervalSeconds>
 				</configuration>
