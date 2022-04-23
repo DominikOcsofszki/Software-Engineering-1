@@ -1,4 +1,4 @@
-package main.java.de.hbrs.team89.se1_starter_repo;
+package de.hbrs.team89.se1_starter_repo;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
