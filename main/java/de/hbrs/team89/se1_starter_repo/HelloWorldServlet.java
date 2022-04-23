@@ -1,4 +1,4 @@
-package de.hbrs.team89.se1_starter_repo;
+package main.java.de.hbrs.team89.se1_starter_repo;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
