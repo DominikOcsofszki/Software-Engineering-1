@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="se1-starter-repo" />
+          <element id="module-output" name="mk_se1_ss22_Team6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
