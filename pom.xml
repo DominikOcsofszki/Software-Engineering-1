@@ -50,7 +50,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
-					<warName>Team_2-${project.version}</warName>
+					<warName>Team_6-${project.version}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
