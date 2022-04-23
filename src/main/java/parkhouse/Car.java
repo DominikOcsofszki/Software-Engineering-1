@@ -1,3 +1,5 @@
+package parkhouse;
+
 import java.util.Arrays;
 
 // ToDo replace 0 by correct values read from this.params

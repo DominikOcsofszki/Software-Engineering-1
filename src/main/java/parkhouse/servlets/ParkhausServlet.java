@@ -1,3 +1,8 @@
+package parkhouse.servlets;
+
+import parkhouse.Car;
+import parkhouse.CarIF;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,13 +15,13 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * common superclass for all servlets
- * groups all auxiliary common methods used in all servlets
+ * common superclass for all parkhouse.servlets
+ * groups all auxiliary common methods used in all parkhouse.servlets
  */
 public abstract class ParkhausServlet extends HttpServlet {
 
     /* abstract methods, to be defined in subclasses */
-    abstract String NAME(); // each ParkhausServlet should have a name, e.g. "Level1"
+    abstract String NAME(); // each parkhouse.servlets.ParkhausServlet should have a name, e.g. "Level1"
     abstract int MAX(); // maximum number of parking slots of a single parking level
     abstract String config(); // configuration of a single parking level
 

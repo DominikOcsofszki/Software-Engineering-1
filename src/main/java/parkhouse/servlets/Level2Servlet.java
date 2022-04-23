@@ -1,3 +1,5 @@
+package parkhouse.servlets;
+
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "level2Servlet", value = "/level2-servlet")
