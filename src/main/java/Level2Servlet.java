@@ -1,14 +1,4 @@
-package de.hbrs.team89.se1_starter_repo;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "level2Servlet", value = "/level2-servlet")
 public class Level2Servlet extends ParkhausServlet {

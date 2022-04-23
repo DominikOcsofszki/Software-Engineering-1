@@ -1,6 +1,4 @@
-package de.hbrs.team89.se1_starter_repo;
-
- interface CarIF {
+interface CarIF {
     int nr();
     long begin();
     long end();
