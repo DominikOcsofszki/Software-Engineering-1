@@ -6,3 +6,9 @@ https://thedomaindrivendesign.io/developing-the-ubiquitous-language/
 
 Dazu erstellen wir ein Glossar über die 10 wichtigsten Begriffe aus der Geschäftslogik/Fachlogik unseres Projekts. </h1> 
 
+- Sum
+- Avg
+- Kunde
+- Vergünstigungen
+- Parkplatzbezeichnungen
+- 
