@@ -11,16 +11,12 @@ class CarTest {
     CarIF c1;
     CarIF c2;
 
-    String[] paramsKunde1e;
-    String[] paramsKunde6e;
-    String[] params6l;
+    String[] paramsKunde1e = {"enter","1","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"};;
+    String[] paramsKunde6e = {"enter","6","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};
+    String[] params6l = {"enter","6","1650969214950","8","8","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};;
 
     @BeforeEach
     void setUp() {
-        String[] paramsKunde1e = {"enter","1","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"};
-        String[] paramsKunde6e = {"6","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};
-        String[] params6l = {"6","1650969214950","8","8","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};
-
         c1 = new Car(paramsKunde1e);
         c2 = new Car(paramsKunde6e);
     }
@@ -28,7 +24,7 @@ class CarTest {
     @Test
     void nr() {
         assertEquals(1, c1.nr());
-        assertEquals(9, c2.nr());
+        assertEquals(6, c2.nr());
     }
 
 
