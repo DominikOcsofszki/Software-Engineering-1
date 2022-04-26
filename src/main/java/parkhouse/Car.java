@@ -10,17 +10,17 @@ public class Car implements CarIF {
 
     @Override
     public int nr() {
-        return Integer.parseInt(params[0]);
-    }
-
-    @Override
-    public long begin() {
         return Integer.parseInt(params[1]);
     }
 
     @Override
-    public long end() {
+    public long begin() {
         return Integer.parseInt(params[2]);
+    }
+
+    @Override
+    public long end() {
+        return this.begin() + this.duration();
     }
 
     @Override
