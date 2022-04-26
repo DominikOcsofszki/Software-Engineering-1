@@ -1,4 +1,4 @@
-package parkhouse; /**
+package parkhouse.servlets; /**
  * Created by mkaul2m on 16.04.19.
  */
 
