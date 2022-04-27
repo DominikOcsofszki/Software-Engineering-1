@@ -92,7 +92,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>10.0.9</version>
 				<configuration>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<scan>2</scan>
 				</configuration>
 			</plugin>
 		</plugins>
