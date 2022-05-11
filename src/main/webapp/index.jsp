@@ -58,6 +58,7 @@
                          license_min="5"
                          license_max="60"
                          extra_buttons='["sum","avg","min","max"]'
+                         extra_charts='["chart"]'
                          client_categories='["Standard","Frau","Business","SUV","Familie","Behinderung"]'
                          space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV"]'

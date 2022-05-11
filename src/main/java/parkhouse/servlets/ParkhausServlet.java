@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.json.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,14 +64,25 @@ public abstract class ParkhausServlet extends HttpServlet {
                 // For example:
                 // TODO replace by real list of cars
                 // out.println("1/1648465400000/_/_/Ticket1/#0d1e0a/2/any/PKW/1,2/1648465499999/_/_/Ticket2/#dd10aa/3/any/PKW/2");
+
+                for (CarIF c : cars()) {
+                    out.println(String.format("%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,", c.nr(), c.begin(), c.duration(), c.price(), "Ticket", "Color", 0, "Category", "Type", "License"));
+                }
                 break;
             case "chart":
-                // TODO send chart infos as JSON object to client
+                JsonObject root = Json.createObjectBuilder()
+                    .add("data", Json.createArrayBuilder()
+                        .add(Json.createObjectBuilder()
+                            .add("x", Car.getNrArray(cars()))
+                            .add("y", Car.getDurationArray(cars()))
+                            .add("type", "bar")
+                            .add("name", "Duration")
+                )).build();
+                out.println(root.toString());
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
         }
-
     }
 
     /**
@@ -98,6 +110,9 @@ public abstract class ParkhausServlet extends HttpServlet {
                 break;
             case "leave":
                 CarIF oldCar = cars().get(0);  // ToDo remove car from list
+
+                getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
+
                 double price = 0.0d;
                 if ( params.length > 4 ){
                     String priceString = params[4];
@@ -155,6 +170,15 @@ public abstract class ParkhausServlet extends HttpServlet {
             getContext().setAttribute( "cars"+NAME(), new ArrayList<Car>() );
         }
         return (List<CarIF>) getContext().getAttribute( "cars"+NAME() );
+    }
+
+    CarIF getCarByNr(int nr) {
+        for (CarIF c : cars()) {
+            if (c.nr() == nr) {
+                return c;
+            }
+        }
+        return null;
     }
 
     /**
