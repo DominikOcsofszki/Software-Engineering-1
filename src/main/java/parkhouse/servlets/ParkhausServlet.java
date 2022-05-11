@@ -66,7 +66,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                 // out.println("1/1648465400000/_/_/Ticket1/#0d1e0a/2/any/PKW/1,2/1648465499999/_/_/Ticket2/#dd10aa/3/any/PKW/2");
 
                 for (CarIF c : cars()) {
-                    out.println(String.format("%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,", c.nr(), c.begin(), c.duration(), c.price(), "Ticket", "Color", 0, "Category", "Type", "License"));
+                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,", c.nr(), c.begin(), c.duration(), c.price(), "Ticket", "Color", 0, "Category", "Type", "License"));
                 }
                 break;
             case "chart":
