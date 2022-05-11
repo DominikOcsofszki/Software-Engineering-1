@@ -41,38 +41,28 @@
 </head>
 <body>
 <div class="box center grey-background">
-    <h1>Parkhaus Team89</h1>
+    <h1>Parkhaus Team 6</h1>
     <p>Tomcat Version : <%= application.getServerInfo() %></p>
 </div>
 <div class="box lightblue">
     <h2><a href="kasse.jsp">Kasse</a></h2>
+    <h2><a href="">Management</a></h2>
+    <h2><a href="">Buchhaltung</a></h2>
+    <h2><a href="">Abonnements</a></h2>
 </div>
-<div class="box lightyellow">
-    <h1>Parkhaus Frauenparkplätze</h1>
+<div class="box grey">
+    <h1>Parkhaus</h1>
     <ccm-parkhaus-11-0-0 server_url="./level1-servlet"
                          debug="true"
-                         name="Etage1"
-                         license_max="15"
-                         extra_buttons='["sum","min"]'
-                         client_categories='["Frau"]'
-                         space_color='{"1":"pink"}'
+                         name="Parkhaus 1"
+                         license_min="5"
+                         license_max="60"
+                         extra_buttons='["sum","avg","min","max"]'
+                         client_categories='["Standard","Frau","Business","SUV","Familie","Behinderung"]'
+                         space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV"]'
-                         price_factor='{"SUV":2,"Family":0.5}'
-                         max="11">
-    </ccm-parkhaus-11-0-0>
-</div>
-<div class="box lightgreen">
-    <h1>Parkhaus Etage 2</h1>
-    <ccm-parkhaus-11-0-0 server_url="./level2-servlet"
-                         name="Etage2"
-                         license_min="16"
-                         license_max="30"
-                         client_categories='["any","Business"]'
-                         space_color='{"1":"yellow","6":"black"}'
-                         vehicle_types='["PKW","SUV"]'
-                         price_factor='{"SUV":2,"Business":1}'
-                         debug="true"
-                         hide_table="true"
+                         price_factor='{"SUV":2,"Familie":0.5}'
+                         max="54"
                          SALT="456">
     </ccm-parkhaus-11-0-0>
 </div>
