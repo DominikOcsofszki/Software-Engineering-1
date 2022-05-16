@@ -30,3 +30,27 @@ Das Preissystem enthält unterschiedliche Tarife.
 
 ### Panel
 Die Informationstafel enthält Daten, die dem Kunden angezeigt werden könne.
+
+[//]: # (@startuml)
+
+[//]: # (left to right direction)
+
+[//]: # (skinparam packageStyle rectangle)
+
+[//]: # (actor Customer)
+
+[//]: # (actor Manager)
+
+[//]: # (rectangle Parkhaus {)
+
+[//]: # (Customer -- &#40;checkout&#41;)
+
+[//]: # (&#40;checkout&#41; .> &#40;payment&#41; : <<include>>)
+
+[//]: # (&#40;help&#41; .> &#40;checkout&#41; : <<extend>>)
+
+[//]: # (&#40;checkout&#41; -- Manager)
+
+[//]: # (})
+
+[//]: # (@enduml)
