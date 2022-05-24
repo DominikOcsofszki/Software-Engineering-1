@@ -26,3 +26,4 @@ class PersonTest {
         assertEquals("53757", eva.getPLZ());
         assertEquals("Sankt Augustin", eva.getStadt());
     }
+}
