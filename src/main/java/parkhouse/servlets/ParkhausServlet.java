@@ -121,7 +121,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                         price /= 100.0d;  // just as Integer.parseInt( priceString ) / 100.0d;
                         // store new sum in ServletContext
                         // ToDo getContext().setAttribute("sum"+NAME(), getSum() + price );
-                    }
+                    }   //ToDo Sum setAttribute! Dominik
                 }
                 out.println( price );  // server calculated price
                 System.out.println( "leave," + oldCar + ", price = " + price );
@@ -155,7 +155,7 @@ public abstract class ParkhausServlet extends HttpServlet {
      * TODO: replace this by your own function
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
-    int locator( CarIF car ){
+    int locator( CarIF car ){       //ToDo Locator
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
         return 1 + (( cars().size() - 1 ) % this.MAX());
