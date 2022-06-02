@@ -52,9 +52,9 @@
 </div>
 <div class="box grey">
     <h1>Parkhaus</h1>
-    <ccm-parkhaus-11-0-0 server_url="./level1-servlet"
+    <ccm-parkhaus-11-0-0 server_url="./main-servlet"
                          debug="true"
-                         name="Parkhaus 1"
+                         name="Parkhaus"
                          license_min="5"
                          license_max="60"
                          extra_buttons='["sum","avg","min","max"]'

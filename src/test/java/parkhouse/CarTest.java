@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.json.JsonArray;
-import javax.json.JsonValue;
 import java.util.Arrays;
 import java.util.List;
 
