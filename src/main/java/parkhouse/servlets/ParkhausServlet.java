@@ -1,7 +1,8 @@
 package parkhouse.servlets;
 
-import parkhouse.Car;
-import parkhouse.CarIF;
+import parkhouse.car.Car;
+import parkhouse.car.CarIF;
+import parkhouse.util.Jsonify;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -57,24 +58,18 @@ public abstract class ParkhausServlet extends HttpServlet {
                 out.println( "max = server side calculated max" );
                 break;
             case "cars":
-                // TODO: Send list of cars stored on the server to the client.
-                // Cars are separated by comma.
-                // Values of a single car are separated by slash.
-                // Format: Nr, timer begin, duration, price, Ticket, color, space, client category, vehicle type, license (PKW Kennzeichen)
-                // For example:
-                // TODO replace by real list of cars
-                // out.println("1/1648465400000/_/_/Ticket1/#0d1e0a/2/any/PKW/1,2/1648465499999/_/_/Ticket2/#dd10aa/3/any/PKW/2");
-
                 for (CarIF c : cars()) {
-                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,", c.nr(), c.begin(), c.duration(), c.price(), "Ticket", "Color", 0, "Category", "Type", "License"));
+                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
+                            c.nr(), c.begin(), c.duration(), c.price(), c.ticket(),
+                            c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
             case "chart":
                 JsonObject root = Json.createObjectBuilder()
                     .add("data", Json.createArrayBuilder()
                         .add(Json.createObjectBuilder()
-                            .add("x", Car.getNrArray(cars()))
-                            .add("y", Car.getDurationArray(cars()))
+                            .add("x", Jsonify.carsAsNr(cars()))
+                            .add("y", Jsonify.carsAsDuration(cars()))
                             .add("type", "bar")
                             .add("name", "Duration")
                 )).build();
