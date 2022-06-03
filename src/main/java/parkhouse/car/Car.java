@@ -2,7 +2,7 @@ package parkhouse.car;
 
 import java.util.Arrays;
 
-public class Car implements CarIF {
+public class Car implements ICar {
 
     String[] params;
 

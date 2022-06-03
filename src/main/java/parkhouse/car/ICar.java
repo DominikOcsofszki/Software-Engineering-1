@@ -1,6 +1,6 @@
 package parkhouse.car;
 
-public interface CarIF {
+public interface ICar {
     int nr();
     int space();
     long begin();

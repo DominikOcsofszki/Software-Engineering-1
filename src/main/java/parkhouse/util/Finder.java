@@ -1,14 +1,14 @@
 package parkhouse.util;
 
-import parkhouse.car.CarIF;
+import parkhouse.car.ICar;
 
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 public class Finder {
 
-    public static CarIF findCar(Iterable<CarIF> iter, Function<CarIF,Object> loc, Object id) {
-        for (CarIF c : iter) {
+    public static ICar findCar(Iterable<ICar> iter, Function<ICar,Object> loc, Object id) {
+        for (ICar c : iter) {
             if (loc.apply(c).equals(id)) {
                 return c;
             }

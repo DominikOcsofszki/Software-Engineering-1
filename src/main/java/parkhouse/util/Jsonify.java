@@ -1,6 +1,6 @@
 package parkhouse.util;
 
-import parkhouse.car.CarIF;
+import parkhouse.car.ICar;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -10,17 +10,17 @@ import java.util.List;
 
 public class Jsonify {
 
-    public static JsonArray carsAsNr(List<CarIF> cars) {
+    public static JsonArray carsAsNr(List<ICar> cars) {
         JsonArrayBuilder nrArray = Json.createArrayBuilder();
-        for (CarIF c : cars) {
+        for (ICar c : cars) {
             nrArray.add(Json.createValue(c.nr()));
         }
         return nrArray.build();
     }
 
-    public static JsonArray carsAsDuration(List<CarIF> cars) {
+    public static JsonArray carsAsDuration(List<ICar> cars) {
         JsonArrayBuilder durationArray = Json.createArrayBuilder();
-        for (CarIF c : cars) {
+        for (ICar c : cars) {
             durationArray.add(Json.createValue(c.duration()));
         }
         return durationArray.build();

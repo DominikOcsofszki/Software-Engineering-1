@@ -3,15 +3,13 @@ package parkhouse.car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.json.JsonArray;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-    CarIF c1;
-    CarIF c2;
+    ICar c1;
+    ICar c2;
 
     String[] params1 = {"1","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"};
     String[] params2 = {"6","1650969215214","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};

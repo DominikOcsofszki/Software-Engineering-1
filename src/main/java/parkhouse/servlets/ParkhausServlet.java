@@ -1,8 +1,7 @@
 package parkhouse.servlets;
 
 import parkhouse.car.Car;
-import parkhouse.car.CarIF;
-import parkhouse.util.Finder;
+import parkhouse.car.ICar;
 import parkhouse.util.Jsonify;
 
 import javax.servlet.ServletContext;
@@ -10,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.json.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,7 +57,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                 out.println( "max = server side calculated max" );
                 break;
             case "cars":
-                for (CarIF c : cars()) {
+                for (ICar c : cars()) {
                     out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
                             c.nr(), c.begin(), c.duration(), c.price(), c.ticket(),
                             c.color(), c.space(), c.category(), c.type(), c.license()));
@@ -94,7 +92,7 @@ public abstract class ParkhausServlet extends HttpServlet {
 
         switch( event ){
             case "enter":
-                CarIF newCar = new Car( restParams );
+                ICar newCar = new Car( restParams );
                 cars().add( newCar );
                 // System.out.println( "enter," + newCar );
 
@@ -102,7 +100,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                 out.println( locator( newCar ) );
                 break;
             case "leave":
-                CarIF oldCar = cars().get(0);  // ToDo remove car from list
+                ICar oldCar = cars().get(0);  // ToDo remove car from list
 
                 getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
 
@@ -148,7 +146,7 @@ public abstract class ParkhausServlet extends HttpServlet {
      * TODO: replace this by your own function
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
-    int locator( CarIF car ){
+    int locator( ICar car ){
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
         return 1 + (( cars().size() - 1 ) % this.MAX());
@@ -158,15 +156,15 @@ public abstract class ParkhausServlet extends HttpServlet {
      * @return the list of all cars stored in the servlet context so far
      */
     @SuppressWarnings("unchecked")
-    List<CarIF> cars(){
+    List<ICar> cars(){
         if ( getContext().getAttribute( "cars"+NAME() ) == null ){
             getContext().setAttribute( "cars"+NAME(), new ArrayList<Car>() );
         }
-        return (List<CarIF>) getContext().getAttribute( "cars"+NAME() );
+        return (List<ICar>) getContext().getAttribute( "cars"+NAME() );
     }
 
-    CarIF getCarByNr(int nr) {
-        for (CarIF c : cars()) {
+    ICar getCarByNr(int nr) {
+        for (ICar c : cars()) {
             if (c.nr() == nr) {
                 return c;
             }

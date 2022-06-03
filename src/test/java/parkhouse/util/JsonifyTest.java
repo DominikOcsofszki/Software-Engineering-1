@@ -2,7 +2,7 @@ package parkhouse.util;
 
 import org.junit.jupiter.api.Test;
 import parkhouse.car.Car;
-import parkhouse.car.CarIF;
+import parkhouse.car.ICar;
 
 import javax.json.JsonArray;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class JsonifyTest {
 
     @Test
     void asNrArrayTest() {
-        List<CarIF> cars = Arrays.asList(c1, c2);
+        List<ICar> cars = Arrays.asList(c1, c2);
         JsonArray nr = Jsonify.carsAsNr(cars);
         assertEquals("1", nr.get(0).toString());
         assertEquals("6", nr.get(1).toString());
@@ -25,7 +25,7 @@ public class JsonifyTest {
 
     @Test
     void asDurationArrayTest() {
-        List<CarIF> cars = Arrays.asList(c1, c2);
+        List<ICar> cars = Arrays.asList(c1, c2);
         JsonArray nr = Jsonify.carsAsDuration(cars);
         assertEquals("5", nr.get(0).toString());
         assertEquals("8", nr.get(1).toString());
