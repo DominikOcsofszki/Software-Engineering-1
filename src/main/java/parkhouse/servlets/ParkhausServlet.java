@@ -71,6 +71,13 @@ public abstract class ParkhausServlet extends HttpServlet {
                                 "bar", "Duration")
                 );
                 break;
+            case "table":
+                out.println(
+                        Jsonify.table(
+                                Jsonify.carsAsNr(cars()),
+                                Jsonify.carsAsDuration(cars()))
+                );
+                break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
         }

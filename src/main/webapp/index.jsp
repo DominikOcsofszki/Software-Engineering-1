@@ -55,16 +55,21 @@
     <ccm-parkhaus-11-0-0 server_url="./main-servlet"
                          debug="true"
                          name="Parkhaus"
-                         license_min="5"
-                         license_max="60"
+                         license_min="1"
+                         license_max="100"
+                         open_from="4"
+                         open_to="23"
+                         delay="100"
+                         simulation_speed="1000"
                          extra_buttons='["sum","avg","min","max"]'
-                         extra_charts='["chart"]'
+                         extra_charts='["chart","table"]'
                          client_categories='["Standard","Frau","Business","SUV","Familie","Behinderung"]'
                          space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV"]'
                          price_factor='{"SUV":2,"Familie":0.5}'
-                         max="54"
-                         SALT="456">
+                         max="32"
+                         SALT="456"
+                         hide_table>
     </ccm-parkhaus-11-0-0>
 </div>
 </body>

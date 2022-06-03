@@ -36,4 +36,58 @@ public class Jsonify {
                                 .add("name", name)
                         )).build();
     }
+
+    public static JsonObject table(JsonArray headers, JsonArray data) {
+        JsonArrayBuilder width = Json.createArrayBuilder();
+        JsonArrayBuilder order = Json.createArrayBuilder();
+        for (int i = 0; i < headers.size(); i++) {
+            width.add(200);
+            order.add(i);
+        }
+        return Json.createObjectBuilder()
+                .add("columnwidth", width.build())
+                .add("columnorder", order.build())
+                .add("header", Json.createObjectBuilder()
+                        .add("values", headers)
+                        .add("align", "center")
+                        .add("line", Json.createObjectBuilder()
+                                .add("width", 1)
+                                .add("color", "black")
+                                .build()
+                        )
+                        .add("fill", Json.createObjectBuilder()
+                                .add("color", "white")
+                                .build()
+                        )
+                        .add("font", Json.createObjectBuilder()
+                                .add("family", "Arial")
+                                .add("size", 12)
+                                .add("color", "black")
+                                .build()
+                        )
+                        .build()
+                )
+                .add("cells", Json.createObjectBuilder()
+                                .add("values", data)
+                                .add("align", "center")
+                                .add("line", Json.createObjectBuilder()
+                                        .add("width", 1)
+                                        .add("color", "black")
+                                        .build()
+                                )
+                                .add("fill", Json.createObjectBuilder()
+                                        .add("color", "white")
+                                        .build()
+                                )
+                                .add("font", Json.createObjectBuilder()
+                                        .add("family", "Arial")
+                                        .add("size", 10)
+                                        .add("color", "black")
+                                        .build()
+                                )
+                                .build()
+                        )
+                .build();
+    }
+
 }
