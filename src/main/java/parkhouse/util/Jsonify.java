@@ -5,6 +5,7 @@ import parkhouse.car.CarIF;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import java.util.List;
 
 public class Jsonify {
@@ -23,5 +24,16 @@ public class Jsonify {
             durationArray.add(Json.createValue(c.duration()));
         }
         return durationArray.build();
+    }
+
+    public static JsonObject plot(JsonArray x, JsonArray y, String type, String name) {
+        return Json.createObjectBuilder()
+                .add("data", Json.createArrayBuilder()
+                        .add(Json.createObjectBuilder()
+                                .add("x", x)
+                                .add("y", y)
+                                .add("type", type)
+                                .add("name", name)
+                        )).build();
     }
 }

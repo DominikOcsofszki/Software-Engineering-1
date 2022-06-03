@@ -66,15 +66,12 @@ public abstract class ParkhausServlet extends HttpServlet {
                 }
                 break;
             case "chart":
-                JsonObject root = Json.createObjectBuilder()
-                    .add("data", Json.createArrayBuilder()
-                        .add(Json.createObjectBuilder()
-                            .add("x", Jsonify.carsAsNr(cars()))
-                            .add("y", Jsonify.carsAsDuration(cars()))
-                            .add("type", "bar")
-                            .add("name", "Duration")
-                )).build();
-                out.println(root.toString());
+                out.println(
+                        Jsonify.plot(
+                                Jsonify.carsAsNr(cars()),
+                                Jsonify.carsAsDuration(cars()),
+                                "bar", "Duration")
+                );
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
