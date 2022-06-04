@@ -3,11 +3,11 @@ package parkhouse.servlets;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "MainServlet", value = "/main-servlet")
-public class MainServlet extends ParkhausServlet {
+public class MainServlet extends ParkhouseServlet {
 
     @Override
     String NAME(){
-        return "Level1";
+        return "Park house";
     }
 
     @Override

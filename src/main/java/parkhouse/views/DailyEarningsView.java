@@ -17,7 +17,7 @@ public class DailyEarningsView implements IObserver {
 
     }
 
-    public double dailyEarnings() {
-        return this.dailyEarnings;
+    public String show() {
+        return "";
     }
 }

@@ -37,6 +37,7 @@ public class Jsonify {
                         )).build();
     }
 
+    // does not work at the moment
     public static JsonObject table(JsonArray headers, JsonArray data) {
         JsonArrayBuilder width = Json.createArrayBuilder();
         JsonArrayBuilder order = Json.createArrayBuilder();
@@ -45,6 +46,7 @@ public class Jsonify {
             order.add(i);
         }
         return Json.createObjectBuilder()
+                .add("type", "table")
                 .add("columnwidth", width.build())
                 .add("columnorder", order.build())
                 .add("header", Json.createObjectBuilder()

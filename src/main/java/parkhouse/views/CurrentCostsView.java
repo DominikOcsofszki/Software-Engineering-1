@@ -3,7 +3,6 @@ package parkhouse.views;
 import parkhouse.models.IParkingModel;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 public class CurrentCostsView implements IObserver {
@@ -22,13 +21,7 @@ public class CurrentCostsView implements IObserver {
 
     }
 
-    public void showCurrentCosts() {
-        for (Map.Entry<String,Double> entry : currentCosts.entrySet()) {
-            System.out.println(
-                    "License: " + entry.getKey() +
-                    "\nPrice: " + entry.getValue() +
-                    "\n======="
-            );
-        }
+    public String show() {
+        return "";
     }
 }

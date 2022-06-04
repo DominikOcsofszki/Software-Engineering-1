@@ -17,7 +17,7 @@ public class WeeklyEarningsView implements IObserver{
 
     }
 
-    public double weeklyEarnings() {
-        return this.weeklyEarnings;
+    public String show() {
+        return "";
     }
 }

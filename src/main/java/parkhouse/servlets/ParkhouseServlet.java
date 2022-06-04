@@ -2,7 +2,11 @@ package parkhouse.servlets;
 
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.controller.IParkingController;
+import parkhouse.controller.ParkingController;
+import parkhouse.parking.IParking;
 import parkhouse.util.Jsonify;
+import parkhouse.util.Tabelize;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,7 +23,7 @@ import java.util.Scanner;
  * common superclass for all parkhouse.servlets
  * groups all auxiliary common methods used in all parkhouse.servlets
  */
-public abstract class ParkhausServlet extends HttpServlet {
+public abstract class ParkhouseServlet extends HttpServlet {
 
     /* abstract methods, to be defined in subclasses */
     abstract String NAME(); // each parkhouse.servlets.ParkhausServlet should have a name, e.g. "Level1"
@@ -41,18 +45,18 @@ public abstract class ParkhausServlet extends HttpServlet {
                 // Max, open_from, open_to, delay, simulation_speed
                 out.println( config() );
                 break;
-            case "sum":
+            case "Sum":
                 // ToDo: insert algorithm for calculating sum here
                 out.println( "sum = server side calculated sum" );
                 break;
-            case "avg":
+            case "Avg":
                 // ToDo
                 break;
-            case "min":
+            case "Min":
                 // ToDo: insert algorithm for calculating min here
                 out.println( "min = server side calculated min" );
                 break;
-            case "max":
+            case "Max":
                 // ToDo: insert algorithm for calculating max here
                 out.println( "max = server side calculated max" );
                 break;
@@ -63,7 +67,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                             c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
-            case "chart":
+            case "Chart":
                 out.println(
                         Jsonify.plot(
                                 Jsonify.carsAsNr(cars()),
@@ -71,11 +75,30 @@ public abstract class ParkhausServlet extends HttpServlet {
                                 "bar", "Duration")
                 );
                 break;
-            case "table":
+            case "Table":
                 out.println(
-                        Jsonify.table(
-                                Jsonify.carsAsNr(cars()),
-                                Jsonify.carsAsDuration(cars()))
+                        Tabelize.table(
+                                new String[] {"Header 1", "Header 2"},
+                                new String[][] {
+                                        {"Data 1.1", "Data 1.2"},
+                                        {"Data 2.1", "Data 2.2"}
+                                }
+                        )
+                        );
+                break;
+            case "Daily-Earnings":
+                out.println(
+                    parkingController().dailyEarningsView().show()
+                );
+                break;
+            case "Weekly-Earnings":
+                out.println(
+                        parkingController().weeklyEarningsView().show()
+                );
+                break;
+            case "Current-Cost":
+                out.println(
+                        parkingController().currentCostView().show()
                 );
                 break;
             default:
@@ -168,6 +191,13 @@ public abstract class ParkhausServlet extends HttpServlet {
             getContext().setAttribute( "cars"+NAME(), new ArrayList<Car>() );
         }
         return (List<ICar>) getContext().getAttribute( "cars"+NAME() );
+    }
+
+    IParkingController parkingController() {
+        if ( getContext().getAttribute( "parkingController"+NAME() ) == null ){
+            getContext().setAttribute( "parkingController"+NAME(), new ParkingController());
+        }
+        return (IParkingController) getContext().getAttribute( "parkingController"+NAME() );
     }
 
     ICar getCarByNr(int nr) {
