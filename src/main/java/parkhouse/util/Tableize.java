@@ -1,6 +1,6 @@
 package parkhouse.util;
 
-public class Tabelize {
+public class Tableize {
 
     public static String table(String[] headers, String[][] rows) {
         StringBuilder sb = new StringBuilder("<table>");

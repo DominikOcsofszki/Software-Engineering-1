@@ -17,7 +17,8 @@ public class WeeklyEarningsView implements IObserver{
 
     }
 
-    public String show() {
+    @Override
+    public String toString() {
         return "";
     }
 }

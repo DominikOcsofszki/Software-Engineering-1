@@ -17,7 +17,8 @@ public class DailyEarningsView implements IObserver {
 
     }
 
-    public String show() {
+    @Override
+    public String toString() {
         return "";
     }
 }

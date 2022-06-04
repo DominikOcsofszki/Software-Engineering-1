@@ -4,9 +4,8 @@ import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
-import parkhouse.parking.IParking;
 import parkhouse.util.Jsonify;
-import parkhouse.util.Tabelize;
+import parkhouse.util.Tableize;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -77,7 +76,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Table":
                 out.println(
-                        Tabelize.table(
+                        Tableize.table(
                                 new String[] {"Header 1", "Header 2"},
                                 new String[][] {
                                         {"Data 1.1", "Data 1.2"},
@@ -88,17 +87,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Daily-Earnings":
                 out.println(
-                    parkingController().dailyEarningsView().show()
+                    parkingController().dailyEarningsView()
                 );
                 break;
             case "Weekly-Earnings":
                 out.println(
-                        parkingController().weeklyEarningsView().show()
+                        parkingController().weeklyEarningsView()
                 );
                 break;
             case "Current-Cost":
                 out.println(
-                        parkingController().currentCostView().show()
+                        parkingController().currentCostView()
                 );
                 break;
             default:
@@ -126,6 +125,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 cars().add( newCar );
                 // System.out.println( "enter," + newCar );
 
+                parkingController().addCar(restParams);
+
                 // re-direct car to another parking lot
                 out.println( locator( newCar ) );
                 break;
@@ -133,6 +134,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 ICar oldCar = cars().get(0);  // ToDo remove car from list
 
                 getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
+
+                parkingController().removeCar(restParams);
 
                 double price = 0.0d;
                 if ( params.length > 4 ){
