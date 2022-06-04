@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * common superclass for all parkhouse.servlets
@@ -105,6 +102,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         }
     }
 
+
     /**
      * HTTP POST
      */
@@ -165,6 +163,34 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     }
 
+    //------------------------------------------------------
+    public double sumCars() {
+        return cars().stream().map(ICar::price).
+                filter(price -> (price > 0))
+                .reduce(0d, Double::sum);
+    }
+
+    public double avgCars() {
+        long count = cars().stream().filter(x -> (x.price() > 0)).count();
+        return sumCars() / count; // Hier unsicher ob sumCars verwendet werden sollte,
+        // da sich sum verändern könnte, während count zuvor
+        //nicht ganz sicher. Sollte copy erstellt werden?
+    }
+    public double minCars() {
+        return cars().stream().mapToDouble(ICar::price).min().orElseThrow(NoSuchElementException::new);
+    }
+    public ICar maxCars() {
+//        return cars().stream().mapToDouble(x -> x.price()).max().orElseThrow(NoSuchElementException::new);
+//        Optional<CarIF> MAX = cars().stream().max(Comparator.comparing( CarIF::price, (x , y) -> (x.compareTo(y))));
+        return cars().stream().max(Comparator.comparing( ICar::price, Double::compareTo)).orElseThrow(NoSuchElementException::new);
+//        return MAX.isPresent() ? (CarIF) MAX : null ;
+//        return cars().stream().filter(x -> (x -> mapToDouble(y -> x.price()).max())).orElseThrow(NoSuchElementException::new);
+    }
+    public long plateParkingTime(String plateSearching) {
+        return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
+    }
+
+    //-------------------------------------------------------
 
     // auxiliary methods used in HTTP request processing
 
