@@ -41,29 +41,33 @@
 </head>
 <body>
 <div class="box center grey-background">
-    <h1>Parkhaus Team 6</h1>
+    <h1>Park house Team 6</h1>
     <p>Tomcat Version : <%= application.getServerInfo() %></p>
 </div>
 <div class="box lightblue">
-    <h2><a href="kasse.jsp">Kasse</a></h2>
+    <h2><a href="checkout.jsp">Checkout</a></h2>
     <h2><a href="">Management</a></h2>
-    <h2><a href="">Buchhaltung</a></h2>
-    <h2><a href="">Abonnements</a></h2>
+    <h2><a href="">Accounting</a></h2>
+    <h2><a href="">Subscriptions</a></h2>
 </div>
 <div class="box grey">
-    <h1>Parkhaus</h1>
-    <ccm-parkhaus-11-0-0 server_url="./level1-servlet"
+    <h1>Park house</h1>
+    <ccm-parkhaus-11-0-0 server_url="./main-servlet"
                          debug="true"
-                         name="Parkhaus 1"
-                         license_min="5"
-                         license_max="60"
-                         extra_buttons='["sum","avg","min","max"]'
-                         extra_charts='["chart"]'
-                         client_categories='["Standard","Frau","Business","SUV","Familie","Behinderung"]'
+                         name="Park house"
+                         license_min="1"
+                         license_max="100"
+                         open_from="4"
+                         open_to="23"
+                         delay="100"
+                         simulation_speed="1000"
+                         extra_buttons='["Sum","Avg","Min","Max","Table","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
+                         extra_charts='["Chart"]'
+                         client_categories='["Default","Women","Business","SUV","Family","Disability"]'
                          space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV"]'
-                         price_factor='{"SUV":2,"Familie":0.5}'
-                         max="54"
+                         price_factor='{"SUV":2,"Family":0.5}'
+                         max="32"
                          SALT="456">
     </ccm-parkhaus-11-0-0>
 </div>

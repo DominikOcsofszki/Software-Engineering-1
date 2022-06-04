@@ -1,14 +1,17 @@
 package parkhouse.servlets;
 
-import parkhouse.Car;
-import parkhouse.CarIF;
+import parkhouse.car.Car;
+import parkhouse.car.ICar;
+import parkhouse.controller.IParkingController;
+import parkhouse.controller.ParkingController;
+import parkhouse.util.Jsonify;
+import parkhouse.util.Tableize;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.json.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +22,7 @@ import java.util.Scanner;
  * common superclass for all parkhouse.servlets
  * groups all auxiliary common methods used in all parkhouse.servlets
  */
-public abstract class ParkhausServlet extends HttpServlet {
+public abstract class ParkhouseServlet extends HttpServlet {
 
     /* abstract methods, to be defined in subclasses */
     abstract String NAME(); // each parkhouse.servlets.ParkhausServlet should have a name, e.g. "Level1"
@@ -41,44 +44,61 @@ public abstract class ParkhausServlet extends HttpServlet {
                 // Max, open_from, open_to, delay, simulation_speed
                 out.println( config() );
                 break;
-            case "sum":
+            case "Sum":
                 // ToDo: insert algorithm for calculating sum here
                 out.println( "sum = server side calculated sum" );
                 break;
-            case "avg":
+            case "Avg":
                 // ToDo
                 break;
-            case "min":
+            case "Min":
                 // ToDo: insert algorithm for calculating min here
                 out.println( "min = server side calculated min" );
                 break;
-            case "max":
+            case "Max":
                 // ToDo: insert algorithm for calculating max here
                 out.println( "max = server side calculated max" );
                 break;
             case "cars":
-                // TODO: Send list of cars stored on the server to the client.
-                // Cars are separated by comma.
-                // Values of a single car are separated by slash.
-                // Format: Nr, timer begin, duration, price, Ticket, color, space, client category, vehicle type, license (PKW Kennzeichen)
-                // For example:
-                // TODO replace by real list of cars
-                // out.println("1/1648465400000/_/_/Ticket1/#0d1e0a/2/any/PKW/1,2/1648465499999/_/_/Ticket2/#dd10aa/3/any/PKW/2");
-
-                for (CarIF c : cars()) {
-                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,", c.nr(), c.begin(), c.duration(), c.price(), "Ticket", "Color", 0, "Category", "Type", "License"));
+                for (ICar c : cars()) {
+                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
+                            c.nr(), c.begin(), c.duration(), c.price(), c.ticket(),
+                            c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
-            case "chart":
-                JsonObject root = Json.createObjectBuilder()
-                    .add("data", Json.createArrayBuilder()
-                        .add(Json.createObjectBuilder()
-                            .add("x", Car.getNrArray(cars()))
-                            .add("y", Car.getDurationArray(cars()))
-                            .add("type", "bar")
-                            .add("name", "Duration")
-                )).build();
-                out.println(root.toString());
+            case "Chart":
+                out.println(
+                        Jsonify.plot(
+                                Jsonify.carsAsNr(cars()),
+                                Jsonify.carsAsDuration(cars()),
+                                "bar", "Duration")
+                );
+                break;
+            case "Table":
+                out.println(
+                        Tableize.table(
+                                new String[] {"Header 1", "Header 2"},
+                                new String[][] {
+                                        {"Data 1.1", "Data 1.2"},
+                                        {"Data 2.1", "Data 2.2"}
+                                }
+                        )
+                        );
+                break;
+            case "Daily-Earnings":
+                out.println(
+                    parkingController().dailyEarningsView()
+                );
+                break;
+            case "Weekly-Earnings":
+                out.println(
+                        parkingController().weeklyEarningsView()
+                );
+                break;
+            case "Current-Cost":
+                out.println(
+                        parkingController().currentCostView()
+                );
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
@@ -101,17 +121,21 @@ public abstract class ParkhausServlet extends HttpServlet {
 
         switch( event ){
             case "enter":
-                CarIF newCar = new Car( restParams );
+                ICar newCar = new Car( restParams );
                 cars().add( newCar );
                 // System.out.println( "enter," + newCar );
+
+                parkingController().addCar(restParams);
 
                 // re-direct car to another parking lot
                 out.println( locator( newCar ) );
                 break;
             case "leave":
-                CarIF oldCar = cars().get(0);  // ToDo remove car from list
+                ICar oldCar = cars().get(0);  // ToDo remove car from list
 
                 getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
+
+                parkingController().removeCar(restParams);
 
                 double price = 0.0d;
                 if ( params.length > 4 ){
@@ -121,7 +145,7 @@ public abstract class ParkhausServlet extends HttpServlet {
                         price /= 100.0d;  // just as Integer.parseInt( priceString ) / 100.0d;
                         // store new sum in ServletContext
                         // ToDo getContext().setAttribute("sum"+NAME(), getSum() + price );
-                    }   //ToDo Sum setAttribute! Dominik
+                    }
                 }
                 out.println( price );  // server calculated price
                 System.out.println( "leave," + oldCar + ", price = " + price );
@@ -155,7 +179,7 @@ public abstract class ParkhausServlet extends HttpServlet {
      * TODO: replace this by your own function
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
-    int locator( CarIF car ){       //ToDo Locator
+    int locator( ICar car ){
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
         return 1 + (( cars().size() - 1 ) % this.MAX());
@@ -165,15 +189,22 @@ public abstract class ParkhausServlet extends HttpServlet {
      * @return the list of all cars stored in the servlet context so far
      */
     @SuppressWarnings("unchecked")
-    List<CarIF> cars(){
+    List<ICar> cars(){
         if ( getContext().getAttribute( "cars"+NAME() ) == null ){
             getContext().setAttribute( "cars"+NAME(), new ArrayList<Car>() );
         }
-        return (List<CarIF>) getContext().getAttribute( "cars"+NAME() );
+        return (List<ICar>) getContext().getAttribute( "cars"+NAME() );
     }
 
-    CarIF getCarByNr(int nr) {
-        for (CarIF c : cars()) {
+    IParkingController parkingController() {
+        if ( getContext().getAttribute( "parkingController"+NAME() ) == null ){
+            getContext().setAttribute( "parkingController"+NAME(), new ParkingController());
+        }
+        return (IParkingController) getContext().getAttribute( "parkingController"+NAME() );
+    }
+
+    ICar getCarByNr(int nr) {
+        for (ICar c : cars()) {
             if (c.nr() == nr) {
                 return c;
             }
