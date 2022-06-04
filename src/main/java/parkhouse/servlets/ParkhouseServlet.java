@@ -53,12 +53,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Min":
                 // ToDo: insert algorithm for calculating min here
-                out.println("min = server side calculated min");
+//                out.println("min = server side calculated min");
                 out.println("min = " + minCars());
                 break;
             case "Max":
                 // ToDo: insert algorithm for calculating max here
-                out.println("max = server side calculated max");
+//                out.println("max = server side calculated max");
                 out.println("max = "+ maxCars());
                 break;
             case "cars":
