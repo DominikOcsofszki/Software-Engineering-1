@@ -13,10 +13,14 @@ public class ParkingModel implements IParkingModel {
 
     private final List<ICar> cars;
     private final List<IObserver> observers;
+    private final List<ICar> removedCars;
+    public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+    public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
 
     public ParkingModel() {
-        this.cars = new ArrayList<>();
-        this.observers = new ArrayList<>();
+        cars = new ArrayList<>();
+        observers = new ArrayList<>();
+        removedCars = new ArrayList<>();
     }
 
     @Override
@@ -38,26 +42,34 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public void addCar(String[] params) {
-        ICar car = new Car(params);
-        cars.add(car);
+        cars.add(new Car(params));
         notifyObservers();
     }
 
     @Override
     public void removeCar(String[] params) {
-        ICar car = new Car(params);
-        cars.removeIf(c -> c.license().equals(car.license()));
+        removedCars.add(new Car(params));
+        cars.removeIf(c -> c.license().equals(new Car(params).license()));
         notifyObservers();
     }
 
     @Override
     public Double dailyEarnings() {
-        return 0.0;
+        double sum = 0D;
+        for(ICar car : removedCars) {
+            if(car.end() - Instant.now().getEpochSecond() < MILLISECONDS_PER_DAY) sum += car.price();
+        }
+        return sum;
     }
 
     @Override
     public Double weeklyEarnings() {
-        return 0.0;
+        double sum = 0D;
+        for(ICar car : removedCars) {
+            if(car.end() - Instant.now().getEpochSecond() < MILLISECONDS_PER_WEEK) sum += car.price();
+            else removedCars.remove(car);
+        }
+        return sum;
     }
 
     @Override

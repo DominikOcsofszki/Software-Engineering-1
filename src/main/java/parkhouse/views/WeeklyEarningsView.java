@@ -4,7 +4,7 @@ import parkhouse.models.IParkingModel;
 
 public class WeeklyEarningsView implements IObserver{
 
-    private IParkingModel model;
+    private final IParkingModel model;
     private double weeklyEarnings;
 
     public WeeklyEarningsView(IParkingModel model) {
@@ -14,7 +14,7 @@ public class WeeklyEarningsView implements IObserver{
 
     @Override
     public void update() {
-
+        weeklyEarnings = model.weeklyEarnings();
     }
 
     @Override
