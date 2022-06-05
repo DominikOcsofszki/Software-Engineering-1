@@ -50,7 +50,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Avg":
                 out.println("avg = " + avgCars());
-                // ToDo done
                 break;
             case "Min":
                 out.println("min = " + minCars());

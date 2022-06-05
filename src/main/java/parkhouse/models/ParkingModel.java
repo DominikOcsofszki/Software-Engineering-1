@@ -48,6 +48,11 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public void removeCar(String[] params) {
+        // remove double code? _do
+        /*Car tmp = new Car(params);
+        removedCars.add(tmp);
+        cars.removeIf(c -> c.license().equals(tmp.license()));*/
+        //----
         removedCars.add(new Car(params));
         cars.removeIf(c -> c.license().equals(new Car(params).license()));
         notifyObservers();
@@ -56,6 +61,13 @@ public class ParkingModel implements IParkingModel {
     @Override
     public Double dailyEarnings() {
         double sum = 0D;
+        // functional way _do
+        /*sum = removedCars.stream()
+                .filter(x -> (Instant.now().getEpochSecond() - x.end() < MILLISECONDS_PER_DAY))
+                .mapToDouble(ICar::price)
+                .sum();*/
+        //return sum;
+        sum = 0;
         for(ICar car : removedCars) {
             //TODO: get the correct sim time
             if(Instant.now().getEpochSecond() - car.end() < MILLISECONDS_PER_DAY) sum += car.price();
