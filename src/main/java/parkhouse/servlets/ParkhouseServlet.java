@@ -2,6 +2,7 @@ package parkhouse.servlets;
 
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 import parkhouse.util.Jsonify;
@@ -23,7 +24,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     /* abstract methods, to be defined in subclasses */
     abstract String NAME(); // each parkhouse.servlets.ParkhausServlet should have a name, e.g. "Level1"
+
     abstract int MAX(); // maximum number of parking slots of a single parking level
+
     abstract String config(); // configuration of a single parking level
 
     /**
@@ -34,12 +37,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String cmd = request.getParameter("cmd");
-        System.out.println( cmd + " requested: " + request.getQueryString());
-        switch ( cmd ){
+        System.out.println(cmd + " requested: " + request.getQueryString());
+        switch (cmd) {
             case "config":
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
-                out.println( config() );
+                out.println(config());
                 break;
             case "Sum":
                 // ToDo: insert algorithm for calculating sum here
@@ -59,7 +62,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Max":
                 // ToDo: insert algorithm for calculating max here
 //                out.println("max = server side calculated max");
-                out.println("max = "+ maxCars());
+                out.println("max = " + maxCars());
                 break;
             case "cars":
                 for (ICar c : cars()) {
@@ -79,17 +82,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Table":
                 out.println(
                         Tableize.table(
-                                new String[] {"Header 1", "Header 2"},
-                                new String[][] {
+                                new String[]{"Header 1", "Header 2"},
+                                new String[][]{
                                         {"Data 1.1", "Data 1.2"},
                                         {"Data 2.1", "Data 2.2"}
                                 }
                         )
-                        );
+                );
                 break;
             case "Daily-Earnings":
                 out.println(
-                    parkingController().dailyEarningsView()
+                        parkingController().dailyEarningsView()
                 );
                 break;
             case "Weekly-Earnings":
@@ -113,25 +116,25 @@ public abstract class ParkhouseServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String body = getBody( request );
+        String body = getBody(request);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        System.out.println( body );
+        System.out.println(body);
         String[] params = body.split(",");
         String event = params[0];
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
 
-        switch( event ){
+        switch (event) {
             case "enter":
-                ICar newCar = new Car( restParams );
-                cars().add( newCar );
+                ICar newCar = new Car(restParams);
+                cars().add(newCar);
                 // System.out.println( "enter," + newCar );
 
                 parkingController().addCar(restParams);
 
                 // re-direct car to another parking lot
-                out.println( locator( newCar ) );
+                out.println(locator(newCar));
                 break;
             case "leave":
                 ICar oldCar = cars().get(0);  // ToDo remove car from list
@@ -141,28 +144,29 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 parkingController().removeCar(restParams);
 
                 double price = 0.0d;
-                if ( params.length > 4 ){
+                if (params.length > 4) {
                     String priceString = params[4];
-                    if ( ! "_".equals( priceString ) ){
-                        price = (double)new Scanner( priceString ).useDelimiter("\\D+").nextInt();
+                    if (!"_".equals(priceString)) {
+                        price = (double) new Scanner(priceString).useDelimiter("\\D+").nextInt();
                         price /= 100.0d;  // just as Integer.parseInt( priceString ) / 100.0d;
                         // store new sum in ServletContext
                         // ToDo getContext().setAttribute("sum"+NAME(), getSum() + price );
                     }
                 }
-                out.println( price );  // server calculated price
-                System.out.println( "leave," + oldCar + ", price = " + price );
+                out.println(price);  // server calculated price
+                System.out.println("leave," + oldCar + ", price = " + price);
                 break;
-            case "invalid": case "occupied":
-                System.out.println( body );
+            case "invalid":
+            case "occupied":
+                System.out.println(body);
                 break;
             case "tomcat":
-                out.println( getServletConfig().getServletContext().getServerInfo()
+                out.println(getServletConfig().getServletContext().getServerInfo()
                         + getServletConfig().getServletContext().getMajorVersion()
-                        + getServletConfig().getServletContext().getMinorVersion() );
+                        + getServletConfig().getServletContext().getMinorVersion());
                 break;
             default:
-                System.out.println( body );
+                System.out.println(body);
                 // System.out.println( "Invalid Command: " + body );
         }
 
@@ -170,9 +174,14 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     //------------------------------------------------------
     public double sumCars() {
-        return cars().stream().map(ICar::price).
+        double ret = cars().stream().map(ICar::price).
                 filter(price -> (price > 0))
                 .reduce(0d, Double::sum);
+        return calcInCent(ret);
+    }
+
+    public double calcInCent(double x) { // calc price to 0.01 Euro
+        return x / Config.FACTOR_PRICE_VIEW;
     }
 
     public double avgCars() {
@@ -181,16 +190,18 @@ public abstract class ParkhouseServlet extends HttpServlet {
         // da sich sum verändern könnte, während count zuvor
         //nicht ganz sicher. Sollte copy erstellt werden?
     }
+
     public double minCars() {
-        return cars().stream().mapToDouble(ICar::price).min().orElseThrow(NoSuchElementException::new);
+        double ret = cars().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElseThrow(NoSuchElementException::new);
+        return calcInCent(ret);
     }
-    public ICar maxCars() {
-//        return cars().stream().mapToDouble(x -> x.price()).max().orElseThrow(NoSuchElementException::new);
-//        Optional<CarIF> MAX = cars().stream().max(Comparator.comparing( CarIF::price, (x , y) -> (x.compareTo(y))));
-        return cars().stream().max(Comparator.comparing( ICar::price, Double::compareTo)).orElseThrow(NoSuchElementException::new);
-//        return MAX.isPresent() ? (CarIF) MAX : null ;
-//        return cars().stream().filter(x -> (x -> mapToDouble(y -> x.price()).max())).orElseThrow(NoSuchElementException::new);
+
+    public double maxCars() {
+        double ret = cars().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
+//        return cars().stream().max(Comparator.comparing( ICar::price, Double::compareTo)).orElseThrow(NoSuchElementException::new); // returns the car
+        return calcInCent(ret);
     }
+
     public long plateParkingTime(String plateSearching) {
         return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
     }
@@ -202,36 +213,37 @@ public abstract class ParkhouseServlet extends HttpServlet {
     /**
      * @return the servlet context
      */
-    ServletContext getContext(){
+    ServletContext getContext() {
         return getServletConfig().getServletContext();
     }
 
     /**
      * TODO: replace this by your own function
+     *
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
-    int locator( ICar car ){
+    int locator(ICar car) {
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
-        return 1 + (( cars().size() - 1 ) % this.MAX());
+        return 1 + ((cars().size() - 1) % this.MAX());
     }
 
     /**
      * @return the list of all cars stored in the servlet context so far
      */
     @SuppressWarnings("unchecked")
-    List<ICar> cars(){
-        if ( getContext().getAttribute( "cars"+NAME() ) == null ){
-            getContext().setAttribute( "cars"+NAME(), new ArrayList<Car>() );
+    List<ICar> cars() {
+        if (getContext().getAttribute("cars" + NAME()) == null) {
+            getContext().setAttribute("cars" + NAME(), new ArrayList<Car>());
         }
-        return (List<ICar>) getContext().getAttribute( "cars"+NAME() );
+        return (List<ICar>) getContext().getAttribute("cars" + NAME());
     }
 
     IParkingController parkingController() {
-        if ( getContext().getAttribute( "parkingController"+NAME() ) == null ){
-            getContext().setAttribute( "parkingController"+NAME(), new ParkingController());
+        if (getContext().getAttribute("parkingController" + NAME()) == null) {
+            getContext().setAttribute("parkingController" + NAME(), new ParkingController());
         }
-        return (IParkingController) getContext().getAttribute( "parkingController"+NAME() );
+        return (IParkingController) getContext().getAttribute("parkingController" + NAME());
     }
 
     ICar getCarByNr(int nr) {
@@ -244,17 +256,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
     }
 
     /**
-    * @param request the HTTP POST request
-    * @return the body of the request
-    */
-    String getBody( HttpServletRequest request ) throws IOException {
+     * @param request the HTTP POST request
+     * @return the body of the request
+     */
+    String getBody(HttpServletRequest request) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
 
         try {
             InputStream inputStream = request.getInputStream();
-            if ( inputStream != null ) {
+            if (inputStream != null) {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 char[] charBuffer = new char[128];
                 int bytesRead = -1;

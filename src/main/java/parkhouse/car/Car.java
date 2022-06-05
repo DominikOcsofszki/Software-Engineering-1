@@ -40,6 +40,7 @@ public class Car implements ICar {
 
     @Override
     public double price() {
+        if(duration() == 0) return 0;  // if the car did not leave yet, return as price = 0
         return Double.parseDouble(params[3]);
     }
 
