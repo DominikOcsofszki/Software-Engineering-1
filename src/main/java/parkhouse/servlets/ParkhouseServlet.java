@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * common superclass for all parkhouse.servlets
@@ -121,13 +122,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (event) {
             case "enter":
                 ICar newCar = new Car(restParams);
-                cars().add(newCar);
+                cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
                 // System.out.println( "enter," + newCar );
 
                 parkingController().addCar(restParams);
 
                 // re-direct car to another parking lot
-                out.println(locator(newCar));
+                out.println(locator(newCar));       //ToDo Understand -> gives Nr to JS, thereby pics correct?
                 break;
             case "leave":
                 ICar oldCar = cars().get(0);  // ToDo remove car from list
@@ -218,9 +219,14 @@ public abstract class ParkhouseServlet extends HttpServlet {
     int locator(ICar car) {
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
-        System.out.println(cars().size()); //ToDo adds the car to cars() -everytime! - even if not free spot.
+        /*IntStream intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
+                        filter(x -> x.duration() == 0)
+                                        .mapToInt(ICar::space).sorted();
+        int[] retint = intStream.toArray();*/
+        //ToDo find non existing Nr in that stream;
         return 1 + ((cars().size() - 1) % this.MAX());
     }
+
 
     /**
      * @return the list of all cars stored in the servlet context so far
