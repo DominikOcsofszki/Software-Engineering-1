@@ -57,7 +57,8 @@ public class ParkingModel implements IParkingModel {
     public Double dailyEarnings() {
         double sum = 0D;
         for(ICar car : removedCars) {
-            if(car.end() - Instant.now().getEpochSecond() < MILLISECONDS_PER_DAY) sum += car.price();
+            //TODO: get the correct sim time
+            if(Instant.now().getEpochSecond() - car.end() < MILLISECONDS_PER_DAY) sum += car.price();
         }
         return sum;
     }
@@ -66,7 +67,8 @@ public class ParkingModel implements IParkingModel {
     public Double weeklyEarnings() {
         double sum = 0D;
         for(ICar car : removedCars) {
-            if(car.end() - Instant.now().getEpochSecond() < MILLISECONDS_PER_WEEK) sum += car.price();
+            //TODO: get the correct sim time
+            if(Instant.now().getEpochSecond() - car.end() < MILLISECONDS_PER_WEEK) sum += car.price();
             else removedCars.remove(car);
         }
         return sum;
