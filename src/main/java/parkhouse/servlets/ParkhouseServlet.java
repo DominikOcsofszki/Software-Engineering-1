@@ -45,8 +45,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(config());
                 break;
             case "Sum":
-                // ToDo: insert algorithm for calculating sum here
-//                out.println( "sum = server side calculated sum" );
                 out.println("sum =" + sumCars());
 
                 break;
@@ -55,13 +53,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 // ToDo done
                 break;
             case "Min":
-                // ToDo: insert algorithm for calculating min here
-//                out.println("min = server side calculated min");
                 out.println("min = " + minCars());
                 break;
             case "Max":
-                // ToDo: insert algorithm for calculating max here
-//                out.println("max = server side calculated max");
                 out.println("max = " + maxCars());
                 break;
             case "cars":
@@ -225,6 +219,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
     int locator(ICar car) {
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
+        System.out.println(cars().size()); //ToDo adds the car to cars() -everytime! - even if not free spot.
         return 1 + ((cars().size() - 1) % this.MAX());
     }
 
