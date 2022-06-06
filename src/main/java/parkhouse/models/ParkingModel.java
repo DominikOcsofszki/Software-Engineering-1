@@ -64,6 +64,11 @@ public class ParkingModel implements IParkingModel {
          */
 
     }
+    @Override
+    public void addCar(ICar car) {  //added car with ICar _do
+        cars.add(car);
+        notifyObservers();
+    }
 
     @Override
     public void removeCar(String[] params) {
@@ -74,6 +79,13 @@ public class ParkingModel implements IParkingModel {
         //----
         removedCars.add(new Car(params));
         cars.removeIf(c -> c.license().equals(new Car(params).license()));
+        notifyObservers();
+    }
+
+    @Override
+    public void removeCar(ICar car) {   //_do
+        removedCars.add(car);
+        cars.remove(car);
         notifyObservers();
     }
 

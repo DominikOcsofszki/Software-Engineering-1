@@ -168,7 +168,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "leave":
 //                ICar oldCar = cars().get(0);  // ToDo remove car from list
-//                ICar oldCar = cars().remove(0);
+                ICar oldCar = cars().remove(0);
 //                System.out.println("remove:"+oldCar);
 
                 Finder.findCar(cars(), ICar::ticket, restParams[4]).updateParams(restParams);
