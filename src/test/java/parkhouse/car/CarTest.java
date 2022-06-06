@@ -1,66 +1,154 @@
 package parkhouse.car;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import parkhouse.Data;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
-    ICar c1;
-    ICar c2;
 
-    String[] params1 = {"1","1650969214942","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"};
-    String[] params2 = {"6","1650969215214","_","_","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};
-    String[] update1 = {"1","1650969214942","5","6","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"};
-    String[] update2 = {"6","1650969215214","8","9","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"};
+    List<String[]> params = Data.params();
 
-    @BeforeEach
-    void setUp() {
-        c1 = new Car(params1);
-        c2 = new Car(params2);
+    @Test
+    @DisplayName("Test if 'nr' is set correctly")
+    void car_nr_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(Integer.parseInt(p[0]), car.nr());
+        }
     }
 
     @Test
-    void nr() {
-        assertEquals(1, c1.nr());
-        assertEquals(6, c2.nr());
-    }
-
-
-    @Test
-    void begin() {
-        assertEquals(1650969214942L, c1.begin());
-        assertEquals(1650969215214L, c2.begin());
+    @DisplayName("Test if 'begin' is set correctly")
+    void car_begin_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(Long.parseLong(p[1]), car.begin());
+        }
     }
 
     @Test
-    void end() {
-        c2.updateParams(update2);
-        assertEquals(1650969215214L + 8, c2.end());
+    @DisplayName("Test if 'duration' is set correctly")
+    void car_duration_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            if (p[2].equals("_")) {
+                assertEquals(0, car.duration());
+            } else {
+                assertEquals(Integer.parseInt(p[2]), car.duration());
+            }
+        }
     }
 
     @Test
-    void duration() {
-        c2.updateParams(update2);
-        assertEquals(8, c2.duration());
+    @DisplayName("Test if 'price' is set correctly")
+    void car_price_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            if (p[3].equals("_")) {
+                assertEquals(0, car.duration());
+            } else {
+                assertEquals(Double.parseDouble(p[3]), car.price());
+            }
+        }
     }
 
     @Test
-    void price() {
-        c2.updateParams(update2);
-        assertEquals(9, c2.price());
+    @DisplayName("Test if 'ticket' is set correctly")
+    void car_ticket_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(p[4], car.ticket());
+        }
     }
 
     @Test
-    void updateParams() {
-        c2.updateParams(update2);
-        assertEquals(8, c2.duration());
+    @DisplayName("Test if 'color' is set correctly")
+    void car_color_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(p[5], car.color());
+        }
     }
 
     @Test
-    void testToString() {
-        assertEquals(Arrays.toString(params1), c1.toString());
+    @DisplayName("Test if 'space' is set correctly")
+    void car_space_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(Integer.parseInt(p[6]), car.space());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if 'category' is set correctly")
+    void car_category_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(p[7], car.category());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if 'type' is set correctly")
+    void car_type_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(p[8], car.type());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if 'license' is set correctly")
+    void car_license_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(p[9], car.license());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if 'end' is calculated correctly")
+    void car_end_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(car.begin() + car.duration(), car.end());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if parameters are updated correctly")
+    void car_toString_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(Arrays.toString(p), car.toString());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if parameters are updated correctly")
+    void car_updateParams_test() {
+        ICar car = new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"});
+        for (String[] p : params) {
+            car.updateParams(p);
+            assertEquals(Arrays.toString(p), car.toString());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if space is set correctly")
+    void car_setSpace_test() {
+        Random rand = new Random();
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            int space = rand.nextInt();
+            car.setSpace(space);
+            assertEquals(space, car.space());
+        }
     }
 }

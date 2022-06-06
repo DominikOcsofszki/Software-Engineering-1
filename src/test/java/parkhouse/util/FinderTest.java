@@ -1,6 +1,8 @@
 package parkhouse.util;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import parkhouse.Data;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 
@@ -12,22 +14,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FinderTest {
 
-    Car c1 = new Car(new String[]{"1","1650969214942","5","6","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","1","Frau","PKW","SU-S 8","16509697749492"});
-    Car c2 = new Car(new String[]{"6","1650969215214","8","9","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-A 3","16509697749492"});
-    List<ICar> cars = Arrays.asList(c1, c2);
+    List<ICar> cars = Data.cars();
 
     @Test
-    public void findCarByNrTest() {
-        assertEquals(c1, Finder.findCar(cars, ICar::nr, 1));
+    @DisplayName("Test if correct car is found by nr")
+    public void finder_findCarByNr_test() {
+        for (ICar c : cars) {
+            assertEquals(c, Finder.findCar(cars, ICar::nr, c.nr()));
+        }
     }
 
     @Test
-    public void findCarByLicenseTest() {
-        assertEquals(c2, Finder.findCar(cars, ICar::license, "SU-A 3"));
+    @DisplayName("Test if correct car is found by license")
+    public void finder_findCarByLicense_test() {
+        for (ICar c : cars) {
+            assertEquals(c, Finder.findCar(cars, ICar::license, c.license()));
+        }
     }
 
     @Test
-    public void findExceptionTest() {
-        assertThrows(NoSuchElementException.class, () -> Finder.findCar(cars, ICar::nr, 2));
+    @DisplayName("Test if method throws the expected exception")
+    public void finder_findException_test() {
+        assertThrows(NoSuchElementException.class, () -> Finder.findCar(cars, ICar::nr, -1));
     }
 }

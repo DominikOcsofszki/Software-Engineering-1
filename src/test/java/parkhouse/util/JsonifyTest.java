@@ -1,59 +1,50 @@
 package parkhouse.util;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import parkhouse.car.Car;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import parkhouse.Data;
 import parkhouse.car.ICar;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JsonifyTest {
 
-    Car c1 = new Car(new String[]{"1", "1650969214942", "5", "6", "9fbb53684b77f16f9e88faa9e7d63d2b", "#0c0f15", "1", "Frau", "PKW", "SU-S 8", "16509697749492"});
-    Car c2 = new Car(new String[]{"6","1650969215214","8","9","9fbb53684b77f16f9e88faa9e7d63d2b","#0c0f15","9","Frau","PKW","SU-S 8","16509697749492"});
-
-    List<ICar> cars;
-
-    @BeforeEach
-    void setup() {
-        cars = Arrays.asList(c1, c2);
-    }
+    List<ICar> cars = Data.cars();
 
     @Test
-    void asNrArrayTest() {
+    @DisplayName("Test if json array contains the correct nr")
+    void jsonify_asNrArray_test() {
         JsonArray nr = Jsonify.carsAsNr(cars);
-        assertEquals("1", nr.get(0).toString());
-        assertEquals("6", nr.get(1).toString());
+        for (int i = 0; i < cars.size(); i++) {
+            assertEquals(cars.get(i).nr(), nr.getInt(i));
+        }
     }
 
     @Test
-    void asDurationArrayTest() {
+    @DisplayName("Test if json array contains the correct duration")
+    void jsonify_asDurationArray_test() {
         JsonArray dr = Jsonify.carsAsDuration(cars);
-        assertEquals("5", dr.get(0).toString());
-        assertEquals("8", dr.get(1).toString());
+        for (int i = 0; i < cars.size(); i++) {
+            assertEquals(cars.get(i).duration(), dr.getInt(i));
+        }
     }
 
-    @Test
-    void plotTest() {
-        JsonObject plot = Jsonify.plot(Jsonify.carsAsNr(cars), Jsonify.carsAsDuration(cars), "bar", "Test");
+    @ParameterizedTest
+    @DisplayName("Test if correct plot object is build")
+    @CsvSource({"bar,BarPlot","line,LinePlot","pie,PiePlot"})
+    void jsonify_plot_test(String type, String name) {
+        JsonObject plot = Jsonify.plot(Jsonify.carsAsNr(cars), Jsonify.carsAsDuration(cars), type, name);
         JsonObject data = (JsonObject) plot.getJsonArray("data").get(0);
         assertEquals(Jsonify.carsAsNr(cars), data.getJsonArray("x"));
         assertEquals(Jsonify.carsAsDuration(cars), data.getJsonArray("y"));
-        assertEquals("bar", data.getString("type"));
-        assertEquals("Test", data.getString("name"));
+        assertEquals(type, data.getString("type"));
+        assertEquals(name, data.getString("name"));
     }
 
-    @Test
-    public void privateConstructorTest() throws NoSuchMethodException {
-        Constructor<Finder> constructor = Finder.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-    }
 }
