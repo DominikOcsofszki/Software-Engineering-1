@@ -5,7 +5,11 @@ import parkhouse.car.ICar;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
-public abstract class Finder {
+public class Finder {
+
+    private Finder() {
+        throw new IllegalStateException();
+    }
 
     public static ICar findCar(Iterable<ICar> iter, Function<ICar,Object> loc, Object id) {
         for (ICar c : iter) {

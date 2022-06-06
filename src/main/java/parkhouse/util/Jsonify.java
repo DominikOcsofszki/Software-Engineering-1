@@ -8,7 +8,11 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import java.util.List;
 
-public abstract class Jsonify {
+public class Jsonify {
+
+    private Jsonify() {
+        throw new IllegalStateException();
+    }
 
     public static JsonArray carsAsNr(List<ICar> cars) {
         JsonArrayBuilder nrArray = Json.createArrayBuilder();

@@ -1,6 +1,10 @@
 package parkhouse.config;
 
-public abstract class Config {
+public class Config {
+
+    private Config() {
+        throw new IllegalStateException();
+    }
 
     public static final Double PRICE = 0.5;
     public static final Double FACTOR_PRICE_VIEW = 10000.;       //price factor for showing on the website _do

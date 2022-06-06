@@ -1,6 +1,10 @@
 package parkhouse.util;
 
-public abstract class Tableize {
+public class Tableize {
+
+    private Tableize() {
+        throw new IllegalStateException();
+    }
 
     public static String table(String[] headers, String[][] rows) {
         StringBuilder sb = new StringBuilder("<table><tr>");
