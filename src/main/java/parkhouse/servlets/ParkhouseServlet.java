@@ -131,6 +131,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
                 // re-direct car to another parking lot
                 out.println(locator(newCar));       //ToDo Understand -> gives Nr to JS, thereby pics correct?
+                                                    //ToDo locator finds empty spot, but the old number is still saved.
                 break;
             case "leave":
                 ICar oldCar = cars().get(0);  // ToDo remove car from list
@@ -232,6 +233,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
         for (int i = 0; i < MAX(); i++) {
             if(!set.contains(i)) return i;
         }
+        System.out.println(set);
+        System.out.println(set.size());
         //ToDo find non existing Nr in that stream;
         return 1 + ((cars().size() - 1) % this.MAX());
     }

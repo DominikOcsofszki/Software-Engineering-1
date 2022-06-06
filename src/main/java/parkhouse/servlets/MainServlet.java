@@ -1,5 +1,7 @@
 package parkhouse.servlets;
 
+import parkhouse.config.Config;
+
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "MainServlet", value = "/main-servlet")
@@ -20,7 +22,8 @@ public class MainServlet extends ParkhouseServlet {
 //        return ""; // use default config
         // Config Format is "Max, open_from, open_to, delay, simulation_speed"
         // e.g. return this.MAX() + ",5,23,100,10";  // TODO -Done->delete? replace by your own parameters
-        return this.MAX() + ",0,24,100,10";     //use MAX() for calculating parking spots _do
+//        return this.MAX() + ",0,24,100,10";     //use MAX() for calculating parking spots _do
+        return this.MAX() + ",0,24,"+ Config.SIMULATION_SPEED+",10";     //use MAX() for calculating parking spots _do
     }
 
 
