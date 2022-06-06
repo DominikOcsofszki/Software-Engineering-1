@@ -3,6 +3,7 @@ package parkhouse.car;
 public interface ICar {
     int nr();
     int space();
+    void setSpace(int x); // add new spaceNr for car, after locator
     long begin();
     long end();
     long duration();

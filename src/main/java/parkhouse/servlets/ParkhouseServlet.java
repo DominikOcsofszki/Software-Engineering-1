@@ -8,6 +8,7 @@ import parkhouse.controller.ParkingController;
 import parkhouse.util.Finder;
 import parkhouse.util.Jsonify;
 import parkhouse.util.Tableize;
+import parkhouse.util.Time;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -41,6 +42,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String cmd = request.getParameter("cmd");
         System.out.println(cmd + " requested: " + request.getQueryString());
         switch (cmd) {
+            case "start":
+                System.out.println("Time.asDate()");
             case "config":
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
@@ -125,6 +128,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (event) {
             case "enter":
                 ICar newCar = new Car(restParams);
+                locator(newCar);
                 cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
                 // System.out.println( "enter," + newCar );
 
@@ -135,12 +139,14 @@ public abstract class ParkhouseServlet extends HttpServlet {
                                                     //ToDo locator finds empty spot, but the old number is still saved.
                 break;
             case "leave":
-                ICar oldCar = cars().get(0);  // ToDo remove car from list
-
+//                ICar oldCar = cars().get(0);  // ToDo remove car from list
+                ICar oldCar = cars().remove(0);
+                System.out.println("remove:"+oldCar);
+                //ToDo this leave case is not used in the Simulation. Find a new way!!!
                 //getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
-                Finder.findCar(cars(), ICar::ticket, restParams[4]);
+//                Finder.findCar(cars(), ICar::ticket, restParams[4]);
 
-                parkingController().removeCar(restParams);
+//                parkingController().removeCar(restParams);
 
                 double price = 0.0d;
                 if (params.length > 4) {
@@ -222,6 +228,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
     int locator(ICar car) {
+        int nr = -1;
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
         int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
@@ -233,12 +240,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
             set.add(x);
         }
         for (int i = 0; i < MAX(); i++) {
-            if(!set.contains(i)) return i;
+            if(!set.contains(i)) {
+//                car.setSpace(i);
+                nr = i;
+            }
         }
         System.out.println(set);
         System.out.println(set.size());
         //ToDo find non existing Nr in that stream;
-        return 1 + ((cars().size() - 1) % this.MAX());
+//        nr = 1 + ((cars().size() - 1) % this.MAX());
+        car.setSpace(nr);
+        return nr;
     }
 
 

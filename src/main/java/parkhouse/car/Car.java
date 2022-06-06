@@ -21,6 +21,11 @@ public class Car implements ICar {
     }
 
     @Override
+    public void setSpace(int x) { // add new spaceNr for car, after locator
+        params[6] = x+"";
+    }
+
+    @Override
     public long begin() {
         return Long.parseLong(params[1]);
     }
