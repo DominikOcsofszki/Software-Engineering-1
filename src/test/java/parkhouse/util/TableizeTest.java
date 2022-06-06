@@ -2,7 +2,11 @@ package parkhouse.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TableizeTest {
 
@@ -23,5 +27,11 @@ public class TableizeTest {
     @Test
     public void tableTest() {
         assertEquals(table, Tableize.table(headers, rows));
+    }
+
+    @Test
+    public void privateConstructorTest() throws NoSuchMethodException {
+        Constructor<Finder> constructor = Finder.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
     }
 }

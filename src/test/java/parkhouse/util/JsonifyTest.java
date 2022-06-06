@@ -7,10 +7,13 @@ import parkhouse.car.ICar;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JsonifyTest {
 
@@ -46,5 +49,11 @@ public class JsonifyTest {
         assertEquals(Jsonify.carsAsDuration(cars), data.getJsonArray("y"));
         assertEquals("bar", data.getString("type"));
         assertEquals("Test", data.getString("name"));
+    }
+
+    @Test
+    public void privateConstructorTest() throws NoSuchMethodException {
+        Constructor<Finder> constructor = Finder.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
     }
 }
