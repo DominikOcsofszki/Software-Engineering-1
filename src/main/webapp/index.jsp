@@ -61,7 +61,7 @@
                          open_to="23"
                          delay="100"
                          simulation_speed="1000"
-                         extra_buttons='["Sum","Avg","Min","Max","Table","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
+                         extra_buttons='["Sum","Avg","Min","Max","Table","Daily-Earnings","Weekly-Earnings","Current-Cost","Reset","Time"]'
                          extra_charts='["Chart"]'
                          client_categories='["Default","Women","Business","SUV","Family","Disability"]'
                          space_color='{"1":"black"}'

@@ -109,6 +109,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Time":
                 out.println(Time.getTime());
+            case "Reset":
+                getServletContext().setAttribute("Sum", 0);
+                getServletContext().setAttribute("Avg", 0);
+                getServletContext().setAttribute("Min", 0);
+                getServletContext().setAttribute("Max", 0);
+                break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
         }
@@ -176,6 +182,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         + getServletConfig().getServletContext().getMajorVersion()
                         + getServletConfig().getServletContext().getMinorVersion());
                 break;
+
             default:
                 System.out.println(body);
                 // System.out.println( "Invalid Command: " + body );
