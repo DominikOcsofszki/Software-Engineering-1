@@ -51,7 +51,7 @@ public class CarTest {
     void car_price_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            if (p[3].equals("_")) {
+            if (car.duration() == 0) {
                 assertEquals(0, car.duration());
             } else {
                 assertEquals(Double.parseDouble(p[3]), car.price());
