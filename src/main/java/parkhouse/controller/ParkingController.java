@@ -1,5 +1,6 @@
 package parkhouse.controller;
 
+import parkhouse.car.ICar;
 import parkhouse.models.IParkingModel;
 import parkhouse.models.ParkingModel;
 import parkhouse.views.CurrentCostsView;
@@ -21,13 +22,23 @@ public class ParkingController implements IParkingController {
     }
 
     @Override
-    public void addCar(String[] params) {
+    public void addCar(String[] params) {       //ToDo Dominik: addCar with CarIf instead of Params
         model.addCar(params);
     }
 
     @Override
-    public void removeCar(String[] params) {
+    public void removeCar(String[] params) {    //ToDo Dominik: removeCar with CarIf instead of Params
         model.removeCar(params);
+    }
+
+    @Override
+    public void addCar(ICar car) {
+
+    }
+
+    @Override
+    public void removeCar(ICar car) {
+
     }
 
     @Override

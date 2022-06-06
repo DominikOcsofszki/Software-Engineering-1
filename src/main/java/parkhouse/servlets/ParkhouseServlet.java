@@ -129,21 +129,22 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (event) {
             case "enter":
                 ICar newCar = new Car(restParams);
-                locator(newCar);
-                cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
-                // System.out.println( "enter," + newCar );
+                int spaceNr = locator(newCar);      //ToDO Not working fully yet
+                if(spaceNr != -1) {
+                    cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
+                    // System.out.println( "enter," + newCar );
 
-                parkingController().addCar(restParams);
+                    parkingController().addCar(restParams);
 
-                // re-direct car to another parking lot
-                out.println(locator(newCar));       //ToDo Understand -> gives Nr to JS, thereby pics correct?
-                                                    //ToDo locator finds empty spot, but the old number is still saved.
+                    // re-direct car to another parking lot
+                    out.println(spaceNr);       //only do sth if space
+                }
+//                out.println(spaceNr);
                 break;
             case "leave":
 //                ICar oldCar = cars().get(0);  // ToDo remove car from list
                 ICar oldCar = cars().remove(0);
                 System.out.println("remove:"+oldCar);
-                //ToDo this leave case is not used in the Simulation. Find a new way!!!
                 //getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
 //                Finder.findCar(cars(), ICar::ticket, restParams[4]);
 
@@ -157,6 +158,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         price /= 100.0d;  // just as Integer.parseInt( priceString ) / 100.0d;
                         // store new sum in ServletContext
                         // ToDo getContext().setAttribute("sum"+NAME(), getSum() + price );
+//                        getContext().setAttribute("sum"+NAME(), getSum() + price );
                     }
                 }
                 out.println(price);  // server calculated price
@@ -240,7 +242,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
              ) {
             set.add(x);
         }
-        for (int i = 0; i < MAX(); i++) {
+        for (int i = 0; i <= MAX(); i++) {
             if(!set.contains(i)) {
 //                car.setSpace(i);
                 nr = i;
@@ -248,6 +250,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         }
         System.out.println(set);
         System.out.println(set.size());
+        System.out.println(nr);
         //ToDo find non existing Nr in that stream;
 //        nr = 1 + ((cars().size() - 1) % this.MAX());
         car.setSpace(nr);
