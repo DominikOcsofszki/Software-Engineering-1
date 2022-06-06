@@ -46,7 +46,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(config());
                 break;
             case "Sum":
-                out.println("sum =" + sumCars());
+                double sum = sumCars();
+                out.println("sum =" + sum);
+                getContext().setAttribute("sum"+NAME(), sum);
 
                 break;
             case "Avg":
