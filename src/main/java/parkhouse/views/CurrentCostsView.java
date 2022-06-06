@@ -25,6 +25,18 @@ public class CurrentCostsView implements IObserver {
         this.licensePlates = model.licensePlates();
     }
 
+    public double getCurrentCosts() {
+        double sum = 0;
+        for(String s : currentCosts) {
+            sum += Double.parseDouble(s);
+        }
+        return sum;
+    }
+
+    public List<String> getLicensePlates() {
+        return licensePlates;
+    }
+
     @Override
     public String toString() {
         String[][] data = new String[1][currentCosts.size()];
