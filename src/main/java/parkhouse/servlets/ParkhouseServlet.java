@@ -42,11 +42,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String cmd = request.getParameter("cmd");
         System.out.println(cmd + " requested: " + request.getQueryString());
         switch (cmd) {
-            case "start":
-                System.out.println("Time.asDate()");
+//            case "start":
+//                System.out.println("Time.asDate()");
             case "config":
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
+                System.out.println("Time.asDate()"); //ToDo Tobi
                 out.println(config());
                 break;
             case "Sum":
