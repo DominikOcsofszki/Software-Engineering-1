@@ -41,10 +41,6 @@ public class Time {
         return SIMULATION_START + getMillisecondsSinceStart();
     }
 
-    public static long differenceSinceStart(long time) {
-        return getSystemTime() - SIMULATION_START;
-    }
-
     public static long difference(long time1, long time2) {
         return Math.abs(time1 - time2);
     }
@@ -53,8 +49,6 @@ public class Time {
         return System.nanoTime() / 1000000;
     }
 
-    public static Date asDate(long timestamp) {
-        return new Date(timestamp);
-    }
+
 
 }
