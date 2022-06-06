@@ -146,6 +146,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
 
         switch (event) {
+            //_do
+            case "change_max":
+                int x = Integer.parseInt(restParams[0]);
+                Config.setMaxCars(x);
+                System.out.println("change_max to:"+x);
+            //
             case "enter":
                 ICar newCar = new Car(restParams);
                 int spaceNr = locator(newCar);      //ToDO Not working fully yet

@@ -14,7 +14,7 @@ public class MainServlet extends ParkhouseServlet {
 
     @Override
     int MAX(){ // maximum number of parking slots on level 1
-        return 11;      //ToDo read from JS into this. getAttributes from JS? Needed for calc parking spot _do
+        return Config.getMaxCars();      //ToDo read from JS into this. getAttributes from JS? Needed for calc parking spot _do
     }
 
     @Override
