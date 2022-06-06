@@ -5,6 +5,7 @@ import parkhouse.car.ICar;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
+import parkhouse.util.Finder;
 import parkhouse.util.Jsonify;
 import parkhouse.util.Tableize;
 
@@ -136,7 +137,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "leave":
                 ICar oldCar = cars().get(0);  // ToDo remove car from list
 
-                getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
+                //getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
+                Finder.findCar(cars(), ICar::ticket, restParams[4]);
 
                 parkingController().removeCar(restParams);
 
