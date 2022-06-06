@@ -3,6 +3,7 @@ package parkhouse.models;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
+import parkhouse.util.Time;
 import parkhouse.views.IObserver;
 
 import java.time.Instant;
@@ -14,8 +15,13 @@ public class ParkingModel implements IParkingModel {
     private final List<ICar> cars;
     private final List<IObserver> observers;
     private final List<ICar> removedCars;
-    public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
-    public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
+    /*
+    Sim Speed test
+    private long[] systemzeit = new long[2];
+    private long[] autoenter = new long[2];
+    int countersystem = 0;
+    int counterauto = 0;
+     */
 
     public ParkingModel() {
         cars = new ArrayList<>();
@@ -44,6 +50,18 @@ public class ParkingModel implements IParkingModel {
     public void addCar(String[] params) {
         cars.add(new Car(params));
         notifyObservers();
+        /*
+        Sim speed test
+        systemzeit[countersystem++] = System.nanoTime() / 1000000;
+        autoenter[counterauto++] = Long.parseLong(params[1]);
+        if(counterauto == 2) {
+            System.out.println("diff simulation: " + Math.abs(autoenter[0] - autoenter[1]));
+            System.out.println("diff system: " + Math.abs(systemzeit[0] - systemzeit[1]));
+            counterauto = 0;
+            countersystem = 0;
+        }
+         */
+
     }
 
     @Override
@@ -60,6 +78,7 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double dailyEarnings() {
+        notifyObservers();
         double sum = 0D;
         // functional way _do
         /*sum = removedCars.stream()
@@ -67,20 +86,18 @@ public class ParkingModel implements IParkingModel {
                 .mapToDouble(ICar::price)
                 .sum();*/
         //return sum;
-        sum = 0;
         for(ICar car : removedCars) {
-            //TODO: get the correct sim time
-            if(Instant.now().getEpochSecond() - car.end() < MILLISECONDS_PER_DAY) sum += car.price();
+            if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY) sum += car.price();
         }
         return sum;
     }
 
     @Override
     public Double weeklyEarnings() {
+        notifyObservers();
         double sum = 0D;
         for(ICar car : removedCars) {
-            //TODO: get the correct sim time
-            if(Instant.now().getEpochSecond() - car.end() < MILLISECONDS_PER_WEEK) sum += car.price();
+            if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
             else removedCars.remove(car);
         }
         return sum;
@@ -88,8 +105,9 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public List<String> currentCost() {
+        notifyObservers();
         List<String> cost = new ArrayList<>();
-        long now = Instant.now().getEpochSecond() * 1000; // TODO Get the correct sim time
+        long now = Time.now();
         for (ICar c : cars) {
             cost.add(String.valueOf(((now - c.begin()) / 60000d) * Config.PRICE));
         }

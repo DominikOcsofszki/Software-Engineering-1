@@ -93,19 +93,21 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Daily-Earnings":
                 out.println(
-                        parkingController().dailyEarningsView()
+                        parkingController().dailyEarningsView().getDailyEarnings()
                 );
                 break;
             case "Weekly-Earnings":
                 out.println(
-                        parkingController().weeklyEarningsView()
+                        parkingController().weeklyEarningsView().getWeeklyEarnings()
                 );
                 break;
             case "Current-Cost":
                 out.println(
-                        parkingController().currentCostView()
+                        parkingController().currentCostView().getCurrentCosts()
                 );
                 break;
+            case "Time":
+                out.println(Time.getTime());
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
         }
