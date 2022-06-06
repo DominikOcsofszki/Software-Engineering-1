@@ -10,6 +10,7 @@ import parkhouse.util.Jsonify;
 import parkhouse.util.Tableize;
 import parkhouse.util.Time;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,12 +73,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
                             c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
-            case "Chart":
+            case "Types":
+                JsonObject count = Jsonify.carsCount(cars(), ICar::type);
                 out.println(
                         Jsonify.plot(
-                                Jsonify.carsAsNr(cars()),
-                                Jsonify.carsAsDuration(cars()),
-                                "bar", "Duration")
+                                Jsonify.getKeys(count),
+                                Jsonify.getValues(count),
+                                "bar", "Types")
                 );
                 break;
             case "Table":

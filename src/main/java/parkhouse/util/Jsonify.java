@@ -2,11 +2,8 @@ package parkhouse.util;
 
 import parkhouse.car.ICar;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import java.util.List;
+import javax.json.*;
+import java.util.*;
 import java.util.function.Function;
 
 public class Jsonify {
@@ -39,6 +36,22 @@ public class Jsonify {
         return arr.build();
     }
 
+    public static JsonObject carsCount(List<ICar> cars, Function<ICar,Object> func) {
+        JsonObjectBuilder obj = Json.createObjectBuilder();
+        HashMap<Object,Integer> count = new HashMap<>();
+        for (ICar c : cars) {
+            if (!count.containsKey(func.apply(c))) {
+                count.put(func.apply(c), 1);
+            } else {
+                count.put(func.apply(c), count.get(func.apply(c)) + 1);
+            }
+        }
+        for (Map.Entry<Object,Integer> e : count.entrySet()) {
+            obj.add(e.getKey().toString(), e.getValue());
+        }
+        return obj.build();
+    }
+
     public static JsonObject plot(JsonArray x, JsonArray y, String type, String name) {
         return Json.createObjectBuilder()
                 .add("data", Json.createArrayBuilder()
@@ -48,6 +61,22 @@ public class Jsonify {
                                 .add("type", type)
                                 .add("name", name)
                         )).build();
+    }
+
+    public static JsonArray getKeys(JsonObject obj) {
+        JsonArrayBuilder arr = Json.createArrayBuilder();
+        for (String k : obj.keySet()) {
+            arr.add(k);
+        }
+        return arr.build();
+    }
+
+    public static JsonArray getValues(JsonObject obj) {
+        JsonArrayBuilder arr = Json.createArrayBuilder();
+        for (Map.Entry<String,JsonValue> v : obj.entrySet()) {
+            arr.add(v.getValue());
+        }
+        return arr.build();
     }
 
 }
