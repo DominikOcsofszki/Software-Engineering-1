@@ -10,9 +10,7 @@ import java.util.List;
 
 public class Jsonify {
 
-    private Jsonify() {
-        throw new IllegalStateException();
-    }
+    private Jsonify() {}
 
     public static JsonArray carsAsNr(List<ICar> cars) {
         JsonArrayBuilder nrArray = Json.createArrayBuilder();

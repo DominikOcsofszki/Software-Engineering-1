@@ -7,9 +7,7 @@ import java.util.function.Function;
 
 public class Finder {
 
-    private Finder() {
-        throw new IllegalStateException();
-    }
+    private Finder() {}
 
     public static ICar findCar(Iterable<ICar> iter, Function<ICar,Object> loc, Object id) {
         for (ICar c : iter) {

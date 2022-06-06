@@ -2,9 +2,7 @@ package parkhouse.util;
 
 public class Tableize {
 
-    private Tableize() {
-        throw new IllegalStateException();
-    }
+    private Tableize() {}
 
     public static String table(String[] headers, String[][] rows) {
         StringBuilder sb = new StringBuilder("<table><tr>");

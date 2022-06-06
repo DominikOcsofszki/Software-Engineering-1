@@ -5,6 +5,7 @@ import parkhouse.car.Car;
 import parkhouse.car.ICar;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +35,10 @@ public class FinderTest {
     }
 
     @Test
-    public void privateConstructorTest() throws NoSuchMethodException {
+    public void privateConstructorTest() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Constructor<Finder> constructor = Finder.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        assertNotNull(constructor.newInstance());
     }
 }
