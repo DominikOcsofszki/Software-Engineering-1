@@ -221,10 +221,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
     int locator(ICar car) {
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
-        /*IntStream intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
+        int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
                         filter(x -> x.duration() == 0)
-                                        .mapToInt(ICar::space).sorted();
-        int[] retint = intStream.toArray();*/
+                                        .mapToInt(ICar::space).sorted().toArray();
+        Set<Integer> set = new HashSet<>();
+        for (int x : intStream
+             ) {
+            set.add(x);
+        }
+        for (int i = 0; i < MAX(); i++) {
+            if(!set.contains(i)) return i;
+        }
         //ToDo find non existing Nr in that stream;
         return 1 + ((cars().size() - 1) % this.MAX());
     }
