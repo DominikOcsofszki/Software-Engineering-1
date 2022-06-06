@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
 
     List<String[]> params = Data.params();
+    Random rand = new Random();
 
     @Test
     @DisplayName("Test if 'nr' is set correctly")
@@ -143,7 +144,6 @@ public class CarTest {
     @Test
     @DisplayName("Test if space is set correctly")
     void car_setSpace_test() {
-        Random rand = new Random();
         for (String[] p : params) {
             ICar car = new Car(p);
             int space = rand.nextInt();
