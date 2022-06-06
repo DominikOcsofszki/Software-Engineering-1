@@ -38,16 +38,17 @@ public class Jsonify {
 
     public static JsonObject carsCount(List<ICar> cars, Function<ICar,Object> func) {
         JsonObjectBuilder obj = Json.createObjectBuilder();
-        HashMap<Object,Integer> count = new HashMap<>();
+        HashMap<String,Integer> count = new HashMap<>();
         for (ICar c : cars) {
-            if (!count.containsKey(func.apply(c))) {
-                count.put(func.apply(c), 1);
+            String key = func.apply(c).toString();
+            if (!count.containsKey(key)) {
+                count.put(key, 1);
             } else {
-                count.put(func.apply(c), count.get(func.apply(c)) + 1);
+                count.put(key, count.get(key) + 1);
             }
         }
-        for (Map.Entry<Object,Integer> e : count.entrySet()) {
-            obj.add(e.getKey().toString(), e.getValue());
+        for (Map.Entry<String,Integer> e : count.entrySet()) {
+            obj.add(e.getKey(), e.getValue());
         }
         return obj.build();
     }

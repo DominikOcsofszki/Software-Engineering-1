@@ -53,18 +53,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Sum":
                 double sum = sumCars();
-                out.println("Total income = " + sum);
+                out.println(String.format("Total income = %.2f€", sum));
                 getContext().setAttribute("sum"+NAME(), sum);
-
                 break;
             case "Avg":
-                out.println("Average income per customer = " + avgCars());
+                out.println(String.format("Average income per customer = %.2f€", avgCars()));
                 break;
             case "Min":
-                out.println("Lowest income by any customer = " + minCars());
+                out.println(String.format("Lowest income from a customer = %.2f€", minCars()));
                 break;
             case "Max":
-                out.println("Highest income by any customer = " + maxCars());
+                out.println(String.format("Highest income from a customer = %.2f€", maxCars()));
                 break;
             case "cars":
                 for (ICar c : cars()) {
@@ -74,12 +73,21 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 }
                 break;
             case "Types":
-                JsonObject count = Jsonify.carsCount(cars(), ICar::type);
+                JsonObject types = Jsonify.carsCount(cars(), ICar::type);
                 out.println(
                         Jsonify.plot(
-                                Jsonify.getKeys(count),
-                                Jsonify.getValues(count),
+                                Jsonify.getKeys(types),
+                                Jsonify.getValues(types),
                                 "bar", "Types")
+                );
+                break;
+            case "Categories":
+                JsonObject categories = Jsonify.carsCount(cars(), ICar::category);
+                out.println(
+                        Jsonify.plot(
+                                Jsonify.getKeys(categories),
+                                Jsonify.getValues(categories),
+                                "bar", "Categories")
                 );
                 break;
             case "Table":
@@ -145,12 +153,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "leave":
 //                ICar oldCar = cars().get(0);  // ToDo remove car from list
-                ICar oldCar = cars().remove(0);
-                System.out.println("remove:"+oldCar);
-                //getCarByNr(Integer.parseInt(restParams[0])).updateParams(restParams);
-//                Finder.findCar(cars(), ICar::ticket, restParams[4]);
+//                ICar oldCar = cars().remove(0);
+//                System.out.println("remove:"+oldCar);
 
-//                parkingController().removeCar(restParams);
+                Finder.findCar(cars(), ICar::ticket, restParams[4]).updateParams(restParams);
+
+                parkingController().removeCar(restParams);
 
                 double price = 0.0d;
                 if (params.length > 4) {
@@ -164,7 +172,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     }
                 }
                 out.println(price);  // server calculated price
-                System.out.println("leave," + oldCar + ", price = " + price);
+//                System.out.println("leave," + oldCar + ", price = " + price);
                 break;
             case "invalid":
             case "occupied":
@@ -276,15 +284,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
             getContext().setAttribute("parkingController" + NAME(), new ParkingController());
         }
         return (IParkingController) getContext().getAttribute("parkingController" + NAME());
-    }
-
-    ICar getCarByNr(int nr) {
-        for (ICar c : cars()) {
-            if (c.nr() == nr) {
-                return c;
-            }
-        }
-        return null;
     }
 
     /**
