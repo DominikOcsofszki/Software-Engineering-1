@@ -7,6 +7,8 @@ import parkhouse.views.CurrentCostsView;
 import parkhouse.views.DailyEarningsView;
 import parkhouse.views.WeeklyEarningsView;
 
+import java.util.List;
+
 public class ParkingController implements IParkingController {
 
     private final IParkingModel model;
@@ -21,23 +23,36 @@ public class ParkingController implements IParkingController {
         this.currentCostsView = new CurrentCostsView(model);
     }
 
+    // _do
+    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
+    public List<ICar> getCars() {
+        return model.getCars();
+    }
+
+    public List<ICar> getRemovedCars() {
+        return model.getRemovedCars();
+    }
+    //_do
+
     @Override
-    public void addCar(String[] params) {       //ToDo Dominik: addCar with CarIf instead of Params
+    public void addCar(String[] params) {
         model.addCar(params);
     }
 
     @Override
-    public void removeCar(String[] params) {    //ToDo Dominik: removeCar with CarIf instead of Params
+    public void removeCar(String[] params) {
         model.removeCar(params);
     }
 
     @Override
-    public void addCar(ICar car) {
+    public void addCar(ICar car) {      //_do
+        model.addCar(car);
 
     }
 
     @Override
-    public void removeCar(ICar car) {
+    public void removeCar(ICar car) {   // _do
+        model.removeCar(car);
 
     }
 

@@ -55,6 +55,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Sum":
                 double sum = sumCars();
                 out.println(String.format("Total income = %.2f€", sum));
+//                out.println(sum);
                 getContext().setAttribute("sum"+NAME(), sum);
                 break;
             case "Avg":
@@ -154,28 +155,46 @@ public abstract class ParkhouseServlet extends HttpServlet {
             //
             case "enter":
                 ICar newCar = new Car(restParams);
+//                cars().add(newCar); //ToDo this one is needed since
                 int spaceNr = locator(newCar);      //ToDO Not working fully yet
                 if(spaceNr != -1) {
-                    cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
+//                    cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
                     // System.out.println( "enter," + newCar );
-
-                    parkingController().addCar(restParams);
+                    parkingController().addCar(newCar); // adding the car
+//                    parkingController().addCar(restParams); // with params
 
                     // re-direct car to another parking lot
                     out.println(spaceNr);       //only do sth if space
+                    System.out.println(newCar);
                 }
 //                out.println(spaceNr);
                 break;
             case "leave":
 //                ICar oldCar = cars().get(0);  // ToDo remove car from list
-                ICar oldCar = cars().remove(0);
+//                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
+//                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
 //                System.out.println("remove:"+oldCar);
-
-                Finder.findCar(cars(), ICar::ticket, restParams[4]).updateParams(restParams);
-
-                parkingController().removeCar(restParams);
+                System.out.println(restParams[4]);
+//                ICar oldCar = Finder.findCar(getRemovedCarsController(), ICar::ticket, restParams[4]);
+//                ICar oldCar = Finder.findCarByTicket(getRemovedCarsController(), ICar::ticket, restParams[4]);
+                System.out.println(getCarsController());
+                ICar streamOldCar = getCarsController().stream().
+                        filter(car -> (car.ticket().equals(restParams[4])))
+                                .findFirst().orElseThrow();
+                System.out.println(streamOldCar);
+//                parkingController().removeCar(restParams);
+                // _do
+//                oldCar.updateParams(restParams);
+//                parkingController().removeCar(oldCar);
+                streamOldCar.updateParams(restParams);
+//                double price = streamOldCar.price();
+                parkingController().removeCar(streamOldCar);
+                //_do
+//                price = calcInCent(100);
+//                price = 100;
 
                 double price = 0.0d;
+        //ToDo how to get rid of this? Tried with price() and calcinCent but does not work!
                 if (params.length > 4) {
                     String priceString = params[4];
                     if (!"_".equals(priceString)) {
@@ -208,8 +227,11 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     //------------------------------------------------------
     public double sumCars() {
-        double ret = cars().stream().map(ICar::price).
+        /*double ret = cars().stream().map(ICar::price). //Now working on ParkingModel
                 filter(price -> (price > 0))
+                .reduce(0d, Double::sum); */
+        double ret = getRemovedCarsController().stream().map(ICar::price)
+                .filter(price -> (price > 0))
                 .reduce(0d, Double::sum);
         return calcInCent(ret);
     }
@@ -219,25 +241,33 @@ public abstract class ParkhouseServlet extends HttpServlet {
     }
 
     public double avgCars() {
-        long count = cars().stream().filter(x -> (x.price() > 0)).count();
+        long count = getRemovedCarsController().stream().filter(x -> (x.price() > 0)).count();
+        if(count == 0) return 0;
         return sumCars() / count; // Hier unsicher ob sumCars verwendet werden sollte,
         // da sich sum verändern könnte, während count zuvor
         //nicht ganz sicher. Sollte copy erstellt werden?
     }
 
     public double minCars() {
-        double ret = cars().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElseThrow(NoSuchElementException::new);
+        double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElseThrow(NoSuchElementException::new);
         return calcInCent(ret);
     }
 
     public double maxCars() {
-        double ret = cars().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
+        double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
 //        return cars().stream().max(Comparator.comparing( ICar::price, Double::compareTo)).orElseThrow(NoSuchElementException::new); // returns the car
         return calcInCent(ret);
     }
 
     public long plateParkingTime(String plateSearching) {
         return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
+    }
+    public List<ICar> getCarsController() {
+        return parkingController().getCars();
+    }
+
+    public List<ICar> getRemovedCarsController() {
+        return parkingController().getRemovedCars();
     }
 
     //-------------------------------------------------------
@@ -260,9 +290,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
         int nr = -1;
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space
-        int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
-                        filter(x -> x.duration() == 0)
-                                        .mapToInt(ICar::space).sorted().toArray();
+//        int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
+//                        filter(x -> x.duration() == 0)
+//                                        .mapToInt(ICar::space).sorted().toArray();
+        int[] intStream = getCarsController().stream().    // Gives all Nr. Spots used. Search for free one
+                filter(x -> x.duration() == 0)
+                .mapToInt(ICar::space).sorted().toArray();
         Set<Integer> set = new HashSet<>();
         for (int x : intStream
              ) {

@@ -29,6 +29,17 @@ public class ParkingModel implements IParkingModel {
         observers = new ArrayList<>();
         removedCars = new ArrayList<>();
     }
+    // _do
+    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
+    public List<ICar> getCars() {
+        return cars;
+    }
+
+    public List<ICar> getRemovedCars() {
+        return removedCars;
+    }
+    //_do
+
 
     @Override
     public void registerObserver(IObserver o) {
@@ -93,24 +104,30 @@ public class ParkingModel implements IParkingModel {
     public Double dailyEarnings() {
         double sum = 0D;
         // functional way _do
-        /*sum = removedCars.stream()
-                .filter(x -> (Instant.now().getEpochSecond() - x.end() < MILLISECONDS_PER_DAY))
+        sum = removedCars.stream()
+                .filter(car -> Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY)
                 .mapToDouble(ICar::price)
-                .sum();*/
+                .sum();
         //return sum;
-        for(ICar car : removedCars) {
+        /*for(ICar car : removedCars) {
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY) sum += car.price();
-        }
+        }*/
         return sum;
     }
 
     @Override
     public Double weeklyEarnings() {
         double sum = 0D;
-        for(ICar car : removedCars) {
+        // functional way _do
+        sum = removedCars.stream()
+                .filter(car -> ((Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK)))
+                .mapToDouble(ICar::price)
+                .sum();
+        //return sum; _do
+        /*for(ICar car : removedCars) {     //ToDO check if new sum-function also works
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
-            else removedCars.remove(car);
-        }
+            else removedCars.remove(car);   // ToDo why is this needed?
+        }*/
         return sum;
     }
 
