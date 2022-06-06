@@ -7,9 +7,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import parkhouse.Data;
 import parkhouse.car.ICar;
 
+import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,6 +35,18 @@ public class JsonifyTest {
         JsonArray dr = Jsonify.carsAsDuration(cars);
         for (int i = 0; i < cars.size(); i++) {
             assertEquals(cars.get(i).duration(), dr.getInt(i));
+        }
+    }
+
+    @Test
+    @DisplayName("Test if json array contains the correct values")
+    void jsonify_carsAsJsonArray_test() {
+        List<Function<ICar,Object>> func = Arrays.asList(ICar::nr, ICar::duration, ICar::price, ICar::license);
+        for (Function<ICar,Object> f : func) {
+            JsonArray arr = Jsonify.carsAsJsonArray(cars, f);
+            for (int i = 0; i < cars.size(); i++) {
+                assertEquals(f.apply(cars.get(i)).toString(), arr.getString(i));
+            }
         }
     }
 

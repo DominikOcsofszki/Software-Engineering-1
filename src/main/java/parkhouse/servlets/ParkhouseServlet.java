@@ -52,18 +52,18 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Sum":
                 double sum = sumCars();
-                out.println("sum =" + sum);
+                out.println("Total income = " + sum);
                 getContext().setAttribute("sum"+NAME(), sum);
 
                 break;
             case "Avg":
-                out.println("avg = " + avgCars());
+                out.println("Average income per customer = " + avgCars());
                 break;
             case "Min":
-                out.println("min = " + minCars());
+                out.println("Lowest income by any customer = " + minCars());
                 break;
             case "Max":
-                out.println("max = " + maxCars());
+                out.println("Highest income by any customer = " + maxCars());
                 break;
             case "cars":
                 for (ICar c : cars()) {
