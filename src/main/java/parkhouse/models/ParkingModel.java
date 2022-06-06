@@ -8,6 +8,7 @@ import parkhouse.views.IObserver;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ParkingModel implements IParkingModel {
@@ -102,21 +103,12 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public List<String> currentCost() {
-        List<String> cost = new ArrayList<>();
+    public HashMap<String,Double> currentCost() {
+        HashMap<String,Double> cost = new HashMap<>();
         long now = Time.now();
         for (ICar c : cars) {
-            cost.add(String.valueOf(((now - c.begin()) / 60000d) * Config.PRICE));
+            cost.put(c.license(), ((now - c.begin()) / 60000d) * Config.PRICE);
         }
         return cost;
-    }
-
-    @Override
-    public List<String> licensePlates() {
-        List<String> licenses = new ArrayList<>();
-        for (ICar c : cars) {
-            licenses.add(c.license());
-        }
-        return licenses;
     }
 }

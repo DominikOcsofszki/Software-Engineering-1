@@ -1,5 +1,6 @@
 package parkhouse.models;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IParkingModel extends IObservable {
@@ -9,7 +10,6 @@ public interface IParkingModel extends IObservable {
 
     Double dailyEarnings();
     Double weeklyEarnings();
-    List<String> currentCost();
-    List<String> licensePlates();
+    HashMap<String,Double> currentCost();
 
 }

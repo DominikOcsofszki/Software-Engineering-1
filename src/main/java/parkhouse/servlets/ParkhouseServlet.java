@@ -114,7 +114,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Current-Cost":
                 out.println(
-                        parkingController().currentCostView().getCurrentCosts()
+                        parkingController().currentCostView()
                 );
                 break;
             case "Time":
