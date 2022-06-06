@@ -2,6 +2,8 @@ package parkhouse.ticket;
 
 public class Ticket implements ITicket {
 
+    // not necessary at the moment
+
     private final String id;
     private final long begin;
 
