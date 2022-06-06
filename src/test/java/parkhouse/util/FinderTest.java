@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,13 +29,5 @@ public class FinderTest {
     @Test
     public void findExceptionTest() {
         assertThrows(NoSuchElementException.class, () -> Finder.findCar(cars, ICar::nr, 2));
-    }
-
-    @Test
-    public void privateConstructorTest() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Constructor<Finder> constructor = Finder.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        assertNotNull(constructor.newInstance());
     }
 }
