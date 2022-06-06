@@ -48,6 +48,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
                 System.out.println("Time.asDate()"); //ToDo Tobi
+                Time.getTime();
                 out.println(config());
                 break;
             case "Sum":

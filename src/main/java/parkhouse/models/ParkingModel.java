@@ -78,7 +78,6 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double dailyEarnings() {
-        notifyObservers();
         double sum = 0D;
         // functional way _do
         /*sum = removedCars.stream()
@@ -94,7 +93,6 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double weeklyEarnings() {
-        notifyObservers();
         double sum = 0D;
         for(ICar car : removedCars) {
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
@@ -105,7 +103,6 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public List<String> currentCost() {
-        notifyObservers();
         List<String> cost = new ArrayList<>();
         long now = Time.now();
         for (ICar c : cars) {
