@@ -156,6 +156,9 @@ public class ParkingModel implements IParkingModel {
 
         return Calc.calcInCent(sum);
     }
+    public long currentTimeByLastCar() {
+
+    }
 
     @Override
     public HashMap<String, Double> currentCost() {

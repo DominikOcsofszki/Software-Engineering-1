@@ -4,6 +4,7 @@ import parkhouse.car.ICar;
 import parkhouse.models.IParkingModel;
 import parkhouse.models.ParkingModel;
 import parkhouse.views.CurrentCostsView;
+import parkhouse.views.CurrentElementsView; //_do
 import parkhouse.views.DailyEarningsView;
 import parkhouse.views.WeeklyEarningsView;
 
@@ -15,12 +16,14 @@ public class ParkingController implements IParkingController {
     private final DailyEarningsView dailyEarningsView;
     private final WeeklyEarningsView weeklyEarningsView;
     private final CurrentCostsView currentCostsView;
+    private final CurrentElementsView currentElementsView; //_do
 
     public ParkingController() {
         this.model = new ParkingModel();
         this.dailyEarningsView = new DailyEarningsView(model);
         this.weeklyEarningsView = new WeeklyEarningsView(model);
         this.currentCostsView = new CurrentCostsView(model);
+        this.currentElementsView = new CurrentElementsView(model); //_do
     }
 
     // _do
@@ -55,6 +58,10 @@ public class ParkingController implements IParkingController {
 
     }
 
+    @Override
+    public CurrentElementsView currentElementsView() {
+        return this.currentElementsView;
+    }
     @Override
     public DailyEarningsView dailyEarningsView() {
         return this.dailyEarningsView;

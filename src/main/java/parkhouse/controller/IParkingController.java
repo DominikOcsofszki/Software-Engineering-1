@@ -2,6 +2,7 @@ package parkhouse.controller;
 
 import parkhouse.car.ICar;
 import parkhouse.views.CurrentCostsView;
+import parkhouse.views.CurrentElementsView;
 import parkhouse.views.DailyEarningsView;
 import parkhouse.views.WeeklyEarningsView;
 
@@ -21,5 +22,6 @@ public interface IParkingController {
     DailyEarningsView dailyEarningsView();
     WeeklyEarningsView weeklyEarningsView();
     CurrentCostsView currentCostView();
+    CurrentElementsView currentElementsView();
 
 }
