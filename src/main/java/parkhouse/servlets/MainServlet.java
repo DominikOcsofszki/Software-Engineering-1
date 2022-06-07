@@ -14,7 +14,7 @@ public class MainServlet extends ParkhouseServlet {
 
     @Override
     int MAX(){ // maximum number of parking slots on level 1
-        return Config.getMaxCars();
+        return Config.MAX_CARS;
     }
 
     @Override

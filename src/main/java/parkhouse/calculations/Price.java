@@ -10,6 +10,10 @@ public class Price {
 
     private Price() {}
 
+    public static String formaterDoubleToString2f(double d) {
+        return String.format("%.2f€", d);
+    }
+
     public static double out(double price) {
         return price / 1000d;
     }

@@ -46,6 +46,7 @@ public class Car implements ICar {
     @Override
     public double price() {
         if(duration() == 0) return 0;  // if the car did not leave yet, return as price = 0
+        //ToDo _do: Jakob? use this methode for price changes? Input factors here?
         return Double.parseDouble(params[3]);
     }
 

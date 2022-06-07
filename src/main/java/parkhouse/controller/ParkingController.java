@@ -37,12 +37,12 @@ public class ParkingController implements IParkingController {
     //_do
 
     @Override
-    public void addCar(String[] params) {
+    public void addCar(String[] params) {           //ToDo delete?
         model.addCar(params);
     }
 
     @Override
-    public void removeCar(String[] params) {
+    public void removeCar(String[] params) {        //ToDo delete?
         model.removeCar(params);
     }
 

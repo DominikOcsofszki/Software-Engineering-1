@@ -61,7 +61,7 @@ public class Time {
 
     public static long getTimeFromLastEnteredCarCheckBoth(List<ICar> cars, List<ICar> carsRem) {
         if (cars.size() != 0) {
-            int lastItem = cars.size() - 1;
+            int lastItem = cars.size() -1;
             return cars.get(lastItem).begin();
         } else {
             int lastItem = carsRem.size() - 1;

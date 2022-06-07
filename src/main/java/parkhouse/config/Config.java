@@ -12,10 +12,6 @@ public class Config {
 
     public static int MAX_CARS = 11; // Maxmale Autos with getter/setter NOT final
 
-    //_do
-    public static int getMaxCars() {
-        return MAX_CARS;
-    }
 
     public static void setMaxCars(int maxCars) {
         MAX_CARS = maxCars;
