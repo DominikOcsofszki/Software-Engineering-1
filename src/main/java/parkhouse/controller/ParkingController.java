@@ -24,7 +24,6 @@ public class ParkingController implements IParkingController {
     }
 
     // _do
-    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
     public List<ICar> getCars() {
         return model.getCars();
     }

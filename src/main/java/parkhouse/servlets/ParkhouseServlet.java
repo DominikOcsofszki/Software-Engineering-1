@@ -45,14 +45,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "config":
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
-                System.out.println("getSystemTime():"+Time.getTime()); //ToDo Tobi
-                Time.getTime();
                 out.println(config());
                 break;
             case "Sum":
                 double sum = sumCars();
                 out.println(String.format("Total income = %.2f€", sum));
-                getContext().setAttribute("sum"+NAME(), sum);
+                getContext().setAttribute("sum" + NAME(), sum);
                 break;
             case "Avg":
                 out.println(String.format("Average income per customer = %.2f€", avgCars()));
@@ -147,13 +145,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "change_max":
                 int x = Integer.parseInt(restParams[0]);
                 Config.setMaxCars(x);
-                System.out.println("change_max to:"+x);
+                System.out.println("change_max to:" + x);
                 break;
             //
             case "enter":
                 ICar newCar = new Car(restParams);
-                int spaceNr = locator(newCar);      //ToDO Not working fully yet
-                if(spaceNr != -1) {
+                int spaceNr = locator(newCar);
+                if (spaceNr != -1) {
                     parkingController().addCar(newCar); // adding the car
                     out.println(spaceNr);       //only do sth if space
                 }
@@ -166,7 +164,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
 
                 double price = 0.0d;
-        //ToDo how to get rid of this? Tried with price() and calcinCent but does not work!
+                //ToDo how to get rid of this? Tried with price() and calcinCent but does not work!
                 if (params.length > 4) {
                     String priceString = params[4];
                     if (!"_".equals(priceString)) {
@@ -212,7 +210,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     public double avgCars() {
         long count = getRemovedCarsController().stream().filter(x -> (x.price() > 0)).count();
-        if(count == 0) return 0; //ToDo count != sumCars().count? Da unterschiedlich zur Berechnung?
+        if (count == 0) return 0; //ToDo count != sumCars().count? Da unterschiedlich zur Berechnung?
         return sumCars() / count; // Hier unsicher ob sumCars verwendet werden sollte,
         // da sich sum verändern könnte, während count zuvor
         //nicht ganz sicher. Sollte copy erstellt werden?
@@ -230,12 +228,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     public ICar findICarForTicket(String plateSearching) {
 
-    ICar carTicket = getCarsController().stream().
-            filter(car -> (car.ticket().equals(plateSearching)))
-            .findFirst().orElseThrow();
+        ICar carTicket = getCarsController().stream().
+                filter(car -> (car.ticket().equals(plateSearching)))
+                .findFirst().orElseThrow();
 
         return carTicket;
     }
+
     public List<ICar> getCarsController() {
         return parkingController().getCars();
     }
@@ -256,36 +255,25 @@ public abstract class ParkhouseServlet extends HttpServlet {
     }
 
     /**
-     * TODO: replace this by your own function
+     * TODO: Refactor: need more efficent! replace this by your own function
      *
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
     int locator(ICar car) {
         int nr = -1;
-        // numbers of parking lots start at 1, not zero
-        // return 1;  // always use the first space
-//        int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
-//                        filter(x -> x.duration() == 0)
-//                                        .mapToInt(ICar::space).sorted().toArray();
         int[] intStream = getCarsController().stream().    // Gives all Nr. Spots used. Search for free one
                 filter(x -> x.duration() == 0)
                 .mapToInt(ICar::space).sorted().toArray();
         Set<Integer> set = new HashSet<>();
         for (int x : intStream
-             ) {
+        ) {
             set.add(x);
         }
         for (int i = 0; i <= MAX(); i++) {
-            if(!set.contains(i)) {
-//                car.setSpace(i);
+            if (!set.contains(i)) {
                 nr = i;
             }
         }
-//        System.out.println(set);
-//        System.out.println(set.size());
-//        System.out.println(nr);
-        //ToDo find non existing Nr in that stream;
-//        nr = 1 + ((cars().size() - 1) % this.MAX());
         car.setSpace(nr);
         return nr;
     }
