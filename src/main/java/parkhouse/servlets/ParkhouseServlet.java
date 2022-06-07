@@ -5,7 +5,6 @@ import parkhouse.car.ICar;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
-import parkhouse.util.Finder;
 import parkhouse.util.Jsonify;
 import parkhouse.util.Tableize;
 import parkhouse.util.Time;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.*;
-import java.util.stream.IntStream;
 
 /**
  * common superclass for all parkhouse.servlets
@@ -43,19 +41,16 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String cmd = request.getParameter("cmd");
         System.out.println(cmd + " requested: " + request.getQueryString());
         switch (cmd) {
-//            case "start":
-//                System.out.println("Time.asDate()");
             case "config":
                 // Overwrite Parkhaus config parameters
                 // Max, open_from, open_to, delay, simulation_speed
-                System.out.println("Time.asDate()"); //ToDo Tobi
+                System.out.println("getSystemTime():"+Time.getTime()); //ToDo Tobi
                 Time.getTime();
                 out.println(config());
                 break;
             case "Sum":
                 double sum = sumCars();
                 out.println(String.format("Total income = %.2f€", sum));
-//                out.println(sum);
                 getContext().setAttribute("sum"+NAME(), sum);
                 break;
             case "Avg":
@@ -152,43 +147,20 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 int x = Integer.parseInt(restParams[0]);
                 Config.setMaxCars(x);
                 System.out.println("change_max to:"+x);
+                break;
             //
             case "enter":
                 ICar newCar = new Car(restParams);
-//                cars().add(newCar); //ToDo this one is needed since
                 int spaceNr = locator(newCar);      //ToDO Not working fully yet
                 if(spaceNr != -1) {
-//                    cars().add(newCar); //ToDo Do not always add a Car, check first if enough space - Spot
-                    // System.out.println( "enter," + newCar );
                     parkingController().addCar(newCar); // adding the car
-//                    parkingController().addCar(restParams); // with params
-
-                    // re-direct car to another parking lot
                     out.println(spaceNr);       //only do sth if space
-                    System.out.println(newCar);
                 }
-//                out.println(spaceNr);
                 break;
             case "leave":
-//                ICar oldCar = cars().get(0);  // ToDo remove car from list
-//                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
-//                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
-//                System.out.println("remove:"+oldCar);
-//                System.out.println(restParams[4]);
-//                ICar oldCar = Finder.findCar(getRemovedCarsController(), ICar::ticket, restParams[4]);
-//                ICar oldCar = Finder.findCarByTicket(getRemovedCarsController(), ICar::ticket, restParams[4]);
-//                System.out.println(getCarsController());
-//                ICar streamOldCar = getCarsController().stream().
-//                        filter(car -> (car.ticket().equals(restParams[4])))
-//                                .findFirst().orElseThrow();
-                ICar OldCar = ICarForTicket(restParams[4]);
-//                System.out.println(streamOldCar);
-//                parkingController().removeCar(restParams);
-                // _do
-//                oldCar.updateParams(restParams);
-//                parkingController().removeCar(oldCar);
+
+                ICar OldCar = findICarForTicket(restParams[4]);
                 OldCar.updateParams(restParams);
-//                double price = streamOldCar.price();
                 parkingController().removeCar(OldCar);
 
 
@@ -226,9 +198,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     //--------------------CALCULATIONS----------------------------------
     public double sumCars() {
-        /*double ret = cars().stream().map(ICar::price). //Now working on ParkingModel
-                filter(price -> (price > 0))
-                .reduce(0d, Double::sum); */
         double ret = getRemovedCarsController().stream().map(ICar::price)
                 .filter(price -> (price > 0))
                 .reduce(0d, Double::sum);
@@ -241,7 +210,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     public double avgCars() {
         long count = getRemovedCarsController().stream().filter(x -> (x.price() > 0)).count();
-        if(count == 0) return 0;
+        if(count == 0) return 0; //ToDo count != sumCars().count? Da unterschiedlich zur Berechnung?
         return sumCars() / count; // Hier unsicher ob sumCars verwendet werden sollte,
         // da sich sum verändern könnte, während count zuvor
         //nicht ganz sicher. Sollte copy erstellt werden?
@@ -254,14 +223,10 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     public double maxCars() {
         double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
-//        return cars().stream().max(Comparator.comparing( ICar::price, Double::compareTo)).orElseThrow(NoSuchElementException::new); // returns the car
         return calcInCent(ret);
     }
 
-//    public long plateParkingTime(String plateSearching) {
-//        return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
-//    }
-    public ICar ICarForTicket(String plateSearching) {
+    public ICar findICarForTicket(String plateSearching) {
 
     ICar carTicket = getCarsController().stream().
             filter(car -> (car.ticket().equals(plateSearching)))
@@ -314,9 +279,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 nr = i;
             }
         }
-        System.out.println(set);
-        System.out.println(set.size());
-        System.out.println(nr);
+//        System.out.println(set);
+//        System.out.println(set.size());
+//        System.out.println(nr);
         //ToDo find non existing Nr in that stream;
 //        nr = 1 + ((cars().size() - 1) % this.MAX());
         car.setSpace(nr);

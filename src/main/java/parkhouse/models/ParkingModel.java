@@ -38,6 +38,16 @@ public class ParkingModel implements IParkingModel {
     public List<ICar> getRemovedCars() {
         return removedCars;
     }
+
+    @Override
+    public List<ICar> getCarsAndRemovedCars() {     // produces a new List, might change the order of elements in List.
+        final List<ICar> carsAndremovedCars; //_do
+
+        carsAndremovedCars = new ArrayList<>(cars); //_do
+        carsAndremovedCars.addAll(removedCars);
+
+        return carsAndremovedCars;      //ToDo _do: ohters: decide if it makes sense to always produce a new List?
+    }
     //_do
 
 
