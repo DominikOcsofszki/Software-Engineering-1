@@ -8,7 +8,7 @@ public class Time {
 
     private Time() {}
 
-    public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+    public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000L;
     public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
     public static final long SIMULATION_START = getSystemTime();
 

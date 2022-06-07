@@ -174,24 +174,23 @@ public abstract class ParkhouseServlet extends HttpServlet {
 //                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
 //                ICar oldCar = cars().remove(0); // Could rewove directly but is done in removeCar;
 //                System.out.println("remove:"+oldCar);
-                System.out.println(restParams[4]);
+//                System.out.println(restParams[4]);
 //                ICar oldCar = Finder.findCar(getRemovedCarsController(), ICar::ticket, restParams[4]);
 //                ICar oldCar = Finder.findCarByTicket(getRemovedCarsController(), ICar::ticket, restParams[4]);
-                System.out.println(getCarsController());
-                ICar streamOldCar = getCarsController().stream().
-                        filter(car -> (car.ticket().equals(restParams[4])))
-                                .findFirst().orElseThrow();
-                System.out.println(streamOldCar);
+//                System.out.println(getCarsController());
+//                ICar streamOldCar = getCarsController().stream().
+//                        filter(car -> (car.ticket().equals(restParams[4])))
+//                                .findFirst().orElseThrow();
+                ICar OldCar = ICarForTicket(restParams[4]);
+//                System.out.println(streamOldCar);
 //                parkingController().removeCar(restParams);
                 // _do
 //                oldCar.updateParams(restParams);
 //                parkingController().removeCar(oldCar);
-                streamOldCar.updateParams(restParams);
+                OldCar.updateParams(restParams);
 //                double price = streamOldCar.price();
-                parkingController().removeCar(streamOldCar);
-                //_do
-//                price = calcInCent(100);
-//                price = 100;
+                parkingController().removeCar(OldCar);
+
 
                 double price = 0.0d;
         //ToDo how to get rid of this? Tried with price() and calcinCent but does not work!
@@ -225,7 +224,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     }
 
-    //------------------------------------------------------
+    //--------------------CALCULATIONS----------------------------------
     public double sumCars() {
         /*double ret = cars().stream().map(ICar::price). //Now working on ParkingModel
                 filter(price -> (price > 0))
@@ -259,8 +258,16 @@ public abstract class ParkhouseServlet extends HttpServlet {
         return calcInCent(ret);
     }
 
-    public long plateParkingTime(String plateSearching) {
-        return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
+//    public long plateParkingTime(String plateSearching) {
+//        return cars().stream().filter(x -> (x.toString().equals(plateSearching))).map(ICar::duration).reduce(0L, Long::sum);
+//    }
+    public ICar ICarForTicket(String plateSearching) {
+
+    ICar carTicket = getCarsController().stream().
+            filter(car -> (car.ticket().equals(plateSearching)))
+            .findFirst().orElseThrow();
+
+        return carTicket;
     }
     public List<ICar> getCarsController() {
         return parkingController().getCars();

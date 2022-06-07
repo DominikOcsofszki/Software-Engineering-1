@@ -101,7 +101,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public Double dailyEarnings() {
+    public Double dailyEarnings() { //ToDo _
         double sum = 0D;
         // functional way _do
         sum = removedCars.stream()
@@ -116,7 +116,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public Double weeklyEarnings() {
+    public Double weeklyEarnings() {    //ToDo _
         double sum = 0D;
         // functional way _do
         sum = removedCars.stream()
