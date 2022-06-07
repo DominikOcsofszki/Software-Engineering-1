@@ -115,7 +115,7 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double dailyEarnings() { //ToDo _
-        double sum = 0D;
+        double sum = 100D;
         // functional way _do
         sum = removedCars.stream()
                 .filter(car -> Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY)
@@ -161,12 +161,14 @@ public class ParkingModel implements IParkingModel {
         }
         //...
 //        long now = Time.now();
-        long now = Time.getTimeFromLastEnteredCar(getCars());
-        for (ICar c : getCars()) {
-            System.out.println("now: " +now + " c.begin(): "+c.begin());
-            double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
-            cost.put(c.license(), priceCalc);
+        if(getCars().size() > 0) {
+            long now = Time.getTimeFromLastEnteredCar(getCars());
+            for (ICar c : getCars()) {
+                System.out.println("now: " + now + " c.begin(): " + c.begin());
+                double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
+                cost.put(c.license(), priceCalc);
 
+            }
         }
         return cost;
 

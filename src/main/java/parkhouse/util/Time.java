@@ -54,7 +54,8 @@ public class Time {
         return System.nanoTime() / 1000000;
     }
     public static long getTimeFromLastEnteredCar(List<ICar> cars) {
-        return cars.get(cars.size() - 1).begin();
+        int lastItem = cars.size() != 0 ? cars.size() - 1 : 0;
+        return cars.get(lastItem).begin();
     }
 
     //_do
