@@ -1,6 +1,7 @@
 package parkhouse.models;
 
 import parkhouse.calculations.Calc;
+import parkhouse.calculations.Price;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -164,7 +165,7 @@ public class ParkingModel implements IParkingModel {
         long now = Time.getTimeFromLastEnteredCar(getCars());
         for (ICar c : getCars()) {
             System.out.println("now: " +now + " c.begin(): "+c.begin());
-            double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
+            double priceCalc = Price.price(c);
             cost.put(c.license(), priceCalc);
 
         }
