@@ -11,6 +11,8 @@ public class Config {
     public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Women:0.5"};
 
     public static int MAX_CARS = 11; // Maxmale Autos with getter/setter NOT final
+    public static final String TIME_SHIFT = "0";        //ToDo needed? //time_shift (Verschiebung der Simulationszeit in die Vergangenheit um 1234567890 Millisekunden)
+    public static final String WAIT_REDLIGHT_SHIFT = "10";        //ToDo needed? //
 
 
     public static void setMaxCars(int maxCars) {

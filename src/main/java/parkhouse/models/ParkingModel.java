@@ -111,23 +111,21 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public Double dailyEarnings() { //ToDo _
-//        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-        /*long now = lastTimeExixtOrEnterCar();
+    public Double dailyEarnings() {
+        return testingEarnings();
+//        return Price.out(earningsByTimeHelper(Time.MILLISECONDS_PER_DAY));
+    }
 
-        double sum = 0;
-        // functional way _do
-        sum = removedCars.stream()
-                .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
-                .mapToDouble(ICar::price)
-                .sum();
-        return Price.out(sum);*/
-        long testing = 60 * 1000L;                              //testing
-        return Price.out(earningsByTimeHelper(testing));        //testing
-//        return Price.out(earningsByTimeHelper(Time.MILLISECONDS_PER_DAY)); <- correct one for daily
+    private Double testingEarnings() {
+        long testing1min = 60 * 1000L;// = 1min                     //testing 1
+        return Price.out(   earningsByTimeHelper(testing1min)   );        //testing
+    }
+    @Override
+    public Double weeklyEarnings() {
+        return Price.out(   earningsByTimeHelper(Time.MILLISECONDS_PER_WEEK)    );
     }
     private Double earningsByTimeHelper(long time_border) {
-        double sum = 0D;
+        double sum = 0;
         long now = lastTimeExixtOrEnterCar();
         sum = removedCars.stream()
                 .filter(car -> ((Time.difference(now, car.end()) < time_border)))
@@ -135,36 +133,6 @@ public class ParkingModel implements IParkingModel {
                 .sum();
         return sum;
     }
-
-
-    @Override
-    public Double weeklyEarnings() {    //ToDo _
-        /*long now = lastTimeExixtOrEnterCar();
-        double sum = 0D;
-        // functional way _do
-        sum = removedCars.stream()
-                .filter(car -> ((Time.difference(now, car.end()) < Time.MILLISECONDS_PER_WEEK)))
-                .mapToDouble(ICar::price)
-                .sum();
-        /*sum = removedCars.stream()
-                .filter(car -> ((Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK)))
-                .mapToDouble(ICar::price)
-                .sum();*/
-        //return sum; _do
-        /*for(ICar car : removedCars) {     //ToDO check if new sum-function also works
-            if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
-            else removedCars.remove(car);   // ToDo why is this needed?
-        }*/
-//        System.out.println("weekly: "+sum);
-
-//        return Price.out(sum);*/
-        return Price.out(earningsByTimeHelper(Time.MILLISECONDS_PER_WEEK));
-
-    }
-//    public long currentTimeByLastCar() {        //ToDo Delete
-//        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-//        return now;
-//    }
 
     @Override
     public long lastTimeExixtOrEnterCar() {

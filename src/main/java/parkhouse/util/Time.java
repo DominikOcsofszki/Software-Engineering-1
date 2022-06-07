@@ -10,6 +10,7 @@ public class Time {
 
     private Time() {
     }
+    //ToDo enums for min,hour,day,week and so on could be done.
 
     public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000L;
     public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
