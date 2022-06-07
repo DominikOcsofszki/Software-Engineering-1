@@ -53,15 +53,27 @@ public class Time {
     private static long getSystemTime() {
         return System.nanoTime() / 1000000;
     }
+
     public static long getTimeFromLastEnteredCar(List<ICar> cars) {
         int lastItem = cars.size() != 0 ? cars.size() - 1 : 0;
         return cars.get(lastItem).begin();
     }
 
+    public static long getTimeFromLastEnteredCarCheckBoth(List<ICar> cars, List<ICar> carsRem) {
+        if (cars.size() != 0) {
+            int lastItem = cars.size() - 1;
+            return cars.get(lastItem).begin();
+        } else {
+            int lastItem = carsRem.size() - 1;
+            return carsRem.get(lastItem).begin();
+        }
+    }
+
+
     //_do
 //    private static long getSystemTime() {
 //        long startTime = System.nanoTime();
 //        return startTime;
-        //
+    //
 //    }
 }

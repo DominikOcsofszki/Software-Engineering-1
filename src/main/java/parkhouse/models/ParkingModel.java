@@ -115,33 +115,46 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double dailyEarnings() { //ToDo _
+        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
         double sum = 100D;
         // functional way _do
         sum = removedCars.stream()
-                .filter(car -> Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY)
+                .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
                 .mapToDouble(ICar::price)
                 .sum();
+        /*sum = removedCars.stream()
+                .filter(car -> Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY)
+                .mapToDouble(ICar::price)
+                .sum();*/
         //return sum;
         /*for(ICar car : removedCars) {
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY) sum += car.price();
         }*/
-        return sum;
+        System.out.println("daily: "+sum);
+        return Calc.calcInCent(sum);
     }
 
     @Override
     public Double weeklyEarnings() {    //ToDo _
+        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
         double sum = 0D;
         // functional way _do
         sum = removedCars.stream()
-                .filter(car -> ((Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK)))
+                .filter(car -> ((Time.difference(now, car.end()) < Time.MILLISECONDS_PER_WEEK)))
                 .mapToDouble(ICar::price)
                 .sum();
+        /*sum = removedCars.stream()
+                .filter(car -> ((Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK)))
+                .mapToDouble(ICar::price)
+                .sum();*/
         //return sum; _do
         /*for(ICar car : removedCars) {     //ToDO check if new sum-function also works
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
             else removedCars.remove(car);   // ToDo why is this needed?
         }*/
-        return sum;
+        System.out.println("weekly: "+sum);
+
+        return Calc.calcInCent(sum);
     }
 
     @Override
@@ -162,7 +175,8 @@ public class ParkingModel implements IParkingModel {
         //...
 //        long now = Time.now();
         if(getCars().size() > 0) {
-            long now = Time.getTimeFromLastEnteredCar(getCars());
+            long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
+//            long now = Time.getTimeFromLastEnteredCar(getCars());
             for (ICar c : getCars()) {
                 System.out.println("now: " + now + " c.begin(): " + c.begin());
                 double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
