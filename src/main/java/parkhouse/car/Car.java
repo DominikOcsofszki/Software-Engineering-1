@@ -32,7 +32,7 @@ public class Car implements ICar {
 
     @Override
     public long end() {
-        return this.begin() + this.duration();
+        return this.begin() + this.duration();      //ToDo duration() => Zeit*Sim_Fact ->Somit keine echte Zeit
     }
 
     @Override

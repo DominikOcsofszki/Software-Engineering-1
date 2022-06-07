@@ -106,7 +106,7 @@ public class ParkingModel implements IParkingModel {
     public void removeCar(ICar car) {   //_do
         removedCars.add(car);
         cars.remove(car);           //ToDo remove update of time in remove since calc not accurate?
-        lastTimeExixtOrEnterCar = car.begin() + (car.duration() / (Integer.parseInt(Config.SIMULATION_SPEED)));     //For Time
+//        lastTimeExixtOrEnterCar = car.begin() + (car.duration() / (Integer.parseInt(Config.SIMULATION_SPEED)));     //For Time
         notifyObservers();
     }
 
