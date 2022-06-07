@@ -68,14 +68,14 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(String.format("Highest income from a customer = %.2f€", maxCars()));
                 break;
             case "cars":
-                for (ICar c : cars()) {
+                for (ICar c : parkingController().getCars()) {
                     out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
                             c.nr(), c.begin(), c.duration(), c.price(), c.ticket(),
                             c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
             case "Types":
-                JsonObject types = Jsonify.carsCount(cars(), ICar::type);
+                JsonObject types = Jsonify.carsCount(parkingController().getCars(), ICar::type);
                 out.println(
                         Jsonify.plot(
                                 Jsonify.getKeys(types),
@@ -84,7 +84,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
                 break;
             case "Categories":
-                JsonObject categories = Jsonify.carsCount(cars(), ICar::category);
+                JsonObject categories = Jsonify.carsCount(parkingController().getCars(), ICar::category);
                 out.println(
                         Jsonify.plot(
                                 Jsonify.getKeys(categories),
