@@ -8,7 +8,6 @@ public class Config {
     public static final String SIMULATION_SPEED = "100";
     public static int MAX_CARS = 11; // Maxmale Autos with getter/setter NOT final
 
-
     //_do
     public static int getMaxCars() {
         return MAX_CARS;

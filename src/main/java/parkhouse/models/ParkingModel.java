@@ -1,5 +1,6 @@
 package parkhouse.models;
 
+import parkhouse.calculations.Calc;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -25,10 +26,11 @@ public class ParkingModel implements IParkingModel {
      */
 
     public ParkingModel() {
-        cars = new ArrayList<>();
+        cars = new ArrayList<>();       //cars still in the Parkhouse
         observers = new ArrayList<>();
-        removedCars = new ArrayList<>();
+        removedCars = new ArrayList<>();    //cars that have been in the Parkhouse -> paid
     }
+
     // _do
     // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
     public List<ICar> getCars() {
@@ -85,6 +87,7 @@ public class ParkingModel implements IParkingModel {
          */
 
     }
+
     @Override
     public void addCar(ICar car) {  //added car with ICar _do
         cars.add(car);
@@ -142,12 +145,30 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public HashMap<String,Double> currentCost() {
+    public HashMap<String, Double> currentCost() {
+        /* Jakob
         HashMap<String,Double> cost = new HashMap<>();
         long now = Time.now();
         for (ICar c : cars) {
             cost.put(c.license(), ((now - c.begin()) / 60000d) * Config.PRICE);
         }
+        return cost;*/
+
+        //Hashmap for already paid and exited Cars
+        HashMap<String, Double> cost = new HashMap<>();
+        for (ICar c : getRemovedCars()) {
+            cost.put(c.license(), Calc.calcInCent(c.price()));
+        }
+        //...
+//        long now = Time.now();
+        long now = Time.getTimeFromLastEnteredCar(getCars());
+        for (ICar c : getCars()) {
+            System.out.println("now: " +now + " c.begin(): "+c.begin());
+            double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
+            cost.put(c.license(), priceCalc);
+
+        }
         return cost;
+
     }
 }

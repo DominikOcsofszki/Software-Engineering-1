@@ -1,5 +1,6 @@
 package parkhouse.servlets;
 
+import parkhouse.calculations.Calc;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -205,7 +206,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
     }
 
     public double calcInCent(double x) { // calc price to 0.01 Euro
-        return x / Config.FACTOR_PRICE_VIEW;
+//        return x / Config.FACTOR_PRICE_VIEW;
+        return Calc.calcInCent(x);
     }
 
     public double avgCars() {

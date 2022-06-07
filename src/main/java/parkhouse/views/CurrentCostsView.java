@@ -41,7 +41,8 @@ public class CurrentCostsView implements IObserver {
         int i = 0;
         for (Map.Entry<String,Double> e : currentCosts.entrySet()) {
             headers[i] = e.getKey();
-            data[0][i++] = e.getValue().toString();
+//            data[0][i++] = e.getValue().toString(); //jakob
+            data[0][i++] = String.format("%.2f€", e.getValue());    //adding format rounding -Problem:"," instead "."
         }
         return Tableize.table(headers, data);
     }
