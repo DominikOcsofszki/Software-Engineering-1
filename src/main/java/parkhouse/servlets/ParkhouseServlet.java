@@ -164,14 +164,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 OldCar.updateParams(restParams);
                 parkingController().removeCar(OldCar);
 
-                /*
-                double price;
-                if (OldCar.price() != 0) {
-                    price = OldCar.price();
-                } else {
-                    price = Price.price(OldCar);
-                }
-                */
                 out.println(Price.price(OldCar));  // server calculated price
 //                System.out.println("leave," + oldCar + ", price = " + price);
                 break;

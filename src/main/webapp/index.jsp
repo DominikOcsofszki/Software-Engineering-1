@@ -60,7 +60,7 @@
                          open_from="4"
                          open_to="23"
                          delay="100"
-                         simulation_speed="100"
+                         simulation_speed="1000"
                          extra_buttons='["Sum","Avg","Min","Max","Table","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
                          extra_charts='["Types","Categories"]'
                          client_categories='["Default","Women","Business","Family","Disability"]'

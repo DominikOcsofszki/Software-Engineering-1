@@ -1,6 +1,7 @@
 package parkhouse.models;
 
 import parkhouse.calculations.Calc;
+import parkhouse.calculations.Price;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -131,7 +132,7 @@ public class ParkingModel implements IParkingModel {
             if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_DAY) sum += car.price();
         }*/
         System.out.println("daily: "+sum);
-        return Calc.calcInCent(sum);
+        return Price.out(sum);
     }
 
     @Override
@@ -154,10 +155,10 @@ public class ParkingModel implements IParkingModel {
         }*/
         System.out.println("weekly: "+sum);
 
-        return Calc.calcInCent(sum);
+        return Price.out(sum);
     }
     public long currentTimeByLastCar() {
-
+        return 0L;
     }
 
     @Override
@@ -171,18 +172,20 @@ public class ParkingModel implements IParkingModel {
         return cost;*/
 
         //Hashmap for already paid and exited Cars
+        /*
         HashMap<String, Double> cost = new HashMap<>();
         for (ICar c : getRemovedCars()) {
             cost.put(c.license(), Calc.calcInCent(c.price()));
         }
-        //...
+        */
+        HashMap<String, Double> cost = new HashMap<>();
 //        long now = Time.now();
         if(getCars().size() > 0) {
             long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
 //            long now = Time.getTimeFromLastEnteredCar(getCars());
             for (ICar c : getCars()) {
                 System.out.println("now: " + now + " c.begin(): " + c.begin());
-                double priceCalc = ((now - c.begin()) / 60000d) * Config.PRICE;
+                double priceCalc = Price.price(c, now);
                 cost.put(c.license(), priceCalc);
 
             }
