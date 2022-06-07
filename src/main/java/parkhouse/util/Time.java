@@ -14,6 +14,7 @@ public class Time {
     public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000L;
     public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
     public static final long SIMULATION_START = getSystemTime();
+    public static long lastCarTime = SIMULATION_START;
 
     public static long getMillisecondsSinceStart() {
         return (getSystemTime() - SIMULATION_START) * 10;
@@ -41,8 +42,8 @@ public class Time {
     }
 
     public static long now() {
-        System.out.println("SIMULATION_START: " + SIMULATION_START);
-        System.out.println("getSystemTime(): " + getSystemTime());
+        //System.out.println("SIMULATION_START: " + SIMULATION_START);
+        //System.out.println("getSystemTime(): " + getSystemTime());
         return SIMULATION_START + getMillisecondsSinceStart();
     }
 
@@ -54,7 +55,11 @@ public class Time {
         return System.nanoTime() / 1000000;
     }
     public static long getTimeFromLastEnteredCar(List<ICar> cars) {
-        return cars.get(cars.size() - 1).begin();
+        if (cars.size() > 0) {
+            lastCarTime = cars.get(cars.size() - 1).begin();
+            return lastCarTime;
+        }
+        return lastCarTime;
     }
 
     //_do

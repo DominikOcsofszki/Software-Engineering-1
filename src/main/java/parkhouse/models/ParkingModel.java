@@ -155,17 +155,18 @@ public class ParkingModel implements IParkingModel {
         }
         return cost;*/
 
-        //Hashmap for already paid and exited Cars
         HashMap<String, Double> cost = new HashMap<>();
+        /*Hashmap for already paid and exited Cars <- we only need the currently parked cars
         for (ICar c : getRemovedCars()) {
             cost.put(c.license(), Calc.calcInCent(c.price()));
         }
+        */
         //...
 //        long now = Time.now();
         long now = Time.getTimeFromLastEnteredCar(getCars());
         for (ICar c : getCars()) {
-            System.out.println("now: " +now + " c.begin(): "+c.begin());
-            double priceCalc = Price.price(c);
+            //System.out.println("now: " +now + " c.begin(): "+c.begin());
+            double priceCalc = Price.price(c, now);
             cost.put(c.license(), priceCalc);
 
         }

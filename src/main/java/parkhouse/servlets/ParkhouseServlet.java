@@ -1,6 +1,6 @@
 package parkhouse.servlets;
 
-import parkhouse.calculations.Calc;
+import parkhouse.calculations.Price;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -51,17 +51,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Sum":
                 double sum = sumCars();
-                out.println(String.format("Total income = %.2f€", sum));
+                out.println(String.format("Total income = %.2f€", Price.out(sum)));
                 getContext().setAttribute("sum"+NAME(), sum);
                 break;
             case "Avg":
-                out.println(String.format("Average income per customer = %.2f€", avgCars()));
+                out.println(String.format("Average income per customer = %.2f€", Price.out(avgCars())));
                 break;
             case "Min":
-                out.println(String.format("Lowest income from a customer = %.2f€", minCars()));
+                out.println(String.format("Lowest income from a customer = %.2f€", Price.out(minCars())));
                 break;
             case "Max":
-                out.println(String.format("Highest income from a customer = %.2f€", maxCars()));
+                out.println(String.format("Highest income from a customer = %.2f€", Price.out(maxCars())));
                 break;
             case "cars":
                 for (ICar c : parkingController().getCars()) {
@@ -164,20 +164,15 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 OldCar.updateParams(restParams);
                 parkingController().removeCar(OldCar);
 
-
-                double price = 0.0d;
-        //ToDo how to get rid of this? Tried with price() and calcinCent but does not work!
-                if (params.length > 4) {
-                    String priceString = params[4];
-                    if (!"_".equals(priceString)) {
-                        price = (double) new Scanner(priceString).useDelimiter("\\D+").nextInt();
-                        price /= 100.0d;  // just as Integer.parseInt( priceString ) / 100.0d;
-                        // store new sum in ServletContext
-                        // ToDo getContext().setAttribute("sum"+NAME(), getSum() + price );
-//                        getContext().setAttribute("sum"+NAME(), getSum() + price );
-                    }
+                /*
+                double price;
+                if (OldCar.price() != 0) {
+                    price = OldCar.price();
+                } else {
+                    price = Price.price(OldCar);
                 }
-                out.println(price);  // server calculated price
+                */
+                out.println(Price.price(OldCar));  // server calculated price
 //                System.out.println("leave," + oldCar + ", price = " + price);
                 break;
             case "invalid":
@@ -202,12 +197,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         double ret = getRemovedCarsController().stream().map(ICar::price)
                 .filter(price -> (price > 0))
                 .reduce(0d, Double::sum);
-        return calcInCent(ret);
-    }
-
-    public double calcInCent(double x) { // calc price to 0.01 Euro
-//        return x / Config.FACTOR_PRICE_VIEW;
-        return Calc.calcInCent(x);
+        return ret;
     }
 
     public double avgCars() {
@@ -220,12 +210,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     public double minCars() {
         double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElseThrow(NoSuchElementException::new);
-        return calcInCent(ret);
+        return ret;
     }
 
     public double maxCars() {
         double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
-        return calcInCent(ret);
+        return ret;
     }
 
     public ICar findICarForTicket(String plateSearching) {

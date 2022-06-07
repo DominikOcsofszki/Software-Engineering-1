@@ -10,11 +10,19 @@ public class Price {
 
     private Price() {}
 
-    public static Double price(ICar car) {
+    public static double out(double price) {
+        return price / 1000d;
+    }
+
+    public static double price(ICar car) {
         return priceFactor(car) * car.duration() / Integer.parseInt(Config.SIMULATION_SPEED);
     }
 
-    public static Double priceFactor(ICar car) {
+    public static double price(ICar car, long now) {
+        return priceFactor(car) * (now - car.begin()) / Integer.parseInt(Config.SIMULATION_SPEED);
+    }
+
+    public static double priceFactor(ICar car) {
         List<Double> factors = new ArrayList<>();
         for (String PF : Config.PRICE_FACTOR) {
             String[] f = PF.split(":");
@@ -31,6 +39,6 @@ public class Price {
                 factors.add(factor);
             }
         }
-        return factors.stream().reduce(0d, (x, y) -> x * y);
+        return factors.stream().reduce(1d, (x, y) -> x * y);
     }
 }
