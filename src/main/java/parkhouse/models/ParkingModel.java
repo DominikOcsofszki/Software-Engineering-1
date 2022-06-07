@@ -113,7 +113,7 @@ public class ParkingModel implements IParkingModel {
     @Override
     public Double dailyEarnings() { //ToDo _
 //        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-        long now = lastTimeExixtOrEnterCar();
+        /*long now = lastTimeExixtOrEnterCar();
 
         double sum = 0;
         // functional way _do
@@ -121,12 +121,25 @@ public class ParkingModel implements IParkingModel {
                 .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
                 .mapToDouble(ICar::price)
                 .sum();
-        return Price.out(sum);
+        return Price.out(sum);*/
+        long testing = 60 * 1000L;                              //testing
+        return Price.out(earningsByTimeHelper(testing));        //testing
+//        return Price.out(earningsByTimeHelper(Time.MILLISECONDS_PER_DAY)); <- correct one for daily
     }
+    private Double earningsByTimeHelper(long time_border) {
+        double sum = 0D;
+        long now = lastTimeExixtOrEnterCar();
+        sum = removedCars.stream()
+                .filter(car -> ((Time.difference(now, car.end()) < time_border)))
+                .mapToDouble(ICar::price)
+                .sum();
+        return sum;
+    }
+
 
     @Override
     public Double weeklyEarnings() {    //ToDo _
-        long now = lastTimeExixtOrEnterCar();
+        /*long now = lastTimeExixtOrEnterCar();
         double sum = 0D;
         // functional way _do
         sum = removedCars.stream()
@@ -144,7 +157,9 @@ public class ParkingModel implements IParkingModel {
         }*/
 //        System.out.println("weekly: "+sum);
 
-        return Price.out(sum);
+//        return Price.out(sum);*/
+        return Price.out(earningsByTimeHelper(Time.MILLISECONDS_PER_WEEK));
+
     }
 //    public long currentTimeByLastCar() {        //ToDo Delete
 //        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
