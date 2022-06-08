@@ -51,43 +51,46 @@ public class ParkingModel implements IParkingModel {
         notifyObservers();
     }
 
+
+    private Double earningHelper(long periodWall) {
+        long now = Time.simNow();
+        double sum = removedCars.stream()
+                .filter(car -> ((Time.difference(now, car.end()) < periodWall)))
+                .mapToDouble(ICar::price)
+                .sum();
+        return sum;
+    }
+
     @Override
     public Double dailyEarnings() { //ToDo _
-        long now = Time.simNow();
+/*        long now = Time.simNow();
         // functional way _do
         double sum = removedCars.stream()
                 .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
                 .mapToDouble(ICar::price)
                 .sum();
-        return Price.out(sum);
+        return Price.out(sum);*/
+        return Price.out(earningHelper(Time.MILLISECONDS_PER_DAY));
+
     }
 
     @Override
     public Double weeklyEarnings() {    //ToDo _
-        long now = Time.simNow();
-        // functional way _do
+/*        long now = Time.simNow();
         double sum = removedCars.stream()
                 .filter(car -> ((Time.difference(now, car.end()) < Time.MILLISECONDS_PER_WEEK)))
                 .mapToDouble(ICar::price)
                 .sum();
-        /*sum = removedCars.stream()
-                .filter(car -> ((Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK)))
-                .mapToDouble(ICar::price)
-                .sum();*/
-        //return sum; _do
-        /*for(ICar car : removedCars) {     //ToDO check if new sum-function also works
-            if(Time.difference(Time.now(), car.end()) < Time.MILLISECONDS_PER_WEEK) sum += car.price();
-            else removedCars.remove(car);   // ToDo why is this needed?
-        }*/
-//        System.out.println("weekly: "+sum);
-
-        return Price.out(sum);
+                return Price.out(sum);
+                */
+        return Price.out(earningHelper(Time.MILLISECONDS_PER_WEEK));
     }
+
 
     @Override
     public HashMap<String, Double> currentCost() {
         HashMap<String, Double> cost = new HashMap<>();
-        if(getCars().size() > 0) {
+        if (getCars().size() > 0) {
             for (ICar c : getCars()) {
                 cost.put(c.license(), Price.price(c));
             }
@@ -106,10 +109,11 @@ public class ParkingModel implements IParkingModel {
         return removedCars;
     }
 
-    @Override
-    public List<ICar> getCarsAndRemovedCars() {     // produces a new List, might change the order of elements in List.
-        final List<ICar> carsAndremovedCars; //_do
 
+    @Override
+    public List<ICar> getCarsAndRemovedCars() {     // ToDo _do I think we can delete it.
+        final List<ICar> carsAndremovedCars; //_do
+                //        produces a new List, might change the order of elements in List.
         carsAndremovedCars = new ArrayList<>(cars); //_do
         carsAndremovedCars.addAll(removedCars);
 
