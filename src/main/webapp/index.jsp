@@ -11,33 +11,9 @@
     <meta property="og:title" content="Software Engineering 1 Project(SE1)">
     <meta property="og:description" content="Bachelor Course Software Engineering 1 (SE1), Hochschule Bonn-Rhein-Sieg.">
     <link rel="shortcut icon" href="https://kaul.inf.h-brs.de/favicon.ico" />
+    <link rel="stylesheet" href="style.css">
     <title>Tomcat Parkhaus</title>
     <script src="https://kaul.inf.h-brs.de/ccmjs/mkaul-components/parkhaus/versions/ccm.parkhaus-11.0.0.js"></script>
-    <style>
-        * {
-            font-family: sans-serif, Helvetica, Arial;
-        }
-        .grey-background {
-            background-color: lightgrey;
-        }
-        .center {
-            text-align: center;
-        }
-        .box {
-            border: thin solid black;
-            margin: 0.5rem 0;
-            padding: 1rem;
-        }
-        .lightblue {
-            background-color: #d0ebf6;
-        }
-        .lightyellow {
-            background-color: lightgoldenrodyellow;
-        }
-        .lightgreen {
-            background-color: #ccfdcc;
-        }
-    </style>
 </head>
 <body>
 <div class="box center grey-background">
