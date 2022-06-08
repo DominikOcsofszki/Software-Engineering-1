@@ -20,7 +20,7 @@ public class Finder {
         throw new NoSuchElementException();
     }
 
-    public ICar findICarForTicket(IParkingController controller, String plateSearching) {
+    public static ICar findICarForTicket(IParkingController controller, String plateSearching) {
         return controller.getCars().stream().
                 filter(car -> (car.ticket().equals(plateSearching)))
                 .findFirst().orElseThrow();

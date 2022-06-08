@@ -1,6 +1,6 @@
 package parkhouse.views;
 
-import parkhouse.config.Config;
+import parkhouse.calculations.Price;
 import parkhouse.models.IParkingModel;
 import parkhouse.util.Tableize;
 
@@ -30,7 +30,7 @@ public class CurrentCostsView implements IObserver {
         int i = 0;
         for (Map.Entry<String,Double> e : currentCosts.entrySet()) {
             headers[i] = e.getKey();
-            data[0][i++] = String.format("%.2f€", e.getValue() / Config.SIMULATION_SPEED);
+            data[0][i++] = Price.format(Price.out(e.getValue()));
         }
         return Tableize.table(headers, data);
     }

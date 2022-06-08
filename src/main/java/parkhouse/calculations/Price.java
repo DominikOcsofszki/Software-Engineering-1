@@ -15,15 +15,11 @@ public class Price {
     }
 
     public static double out(double price) {
-        return price / 1000d;
+        return price / 100;
     }
 
     public static double price(ICar car) {
         return priceFactor(car) * car.duration() / Config.SIMULATION_SPEED;
-    }
-
-    public static double price(ICar car, long now) {
-        return priceFactor(car) * (now - car.begin()) / Config.SIMULATION_SPEED;
     }
 
     public static double priceFactor(ICar car) {

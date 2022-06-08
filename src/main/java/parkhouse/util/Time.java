@@ -3,18 +3,21 @@ package parkhouse.util;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
 
-import java.util.Date;
 import java.util.List;
 
 public class Time {
 
     private Time() {
     }
-    //ToDo enums for min,hour,day,week and so on could be done.
+
+    public static final long INSTANCE_START_DATE = System.currentTimeMillis();
 
     public static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000L;
     public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
+
+    /*
     public static final long SIMULATION_START = getSystemTime();
+
 
     public static long getMillisecondsSinceStart() {
         return (getSystemTime() - SIMULATION_START) * 10;
@@ -45,12 +48,13 @@ public class Time {
         return SIMULATION_START + getMillisecondsSinceStart();
     }
 
-    public static long difference(long time1, long time2) {
-        return Math.abs(time1 - time2);
-    }
-
     private static long getSystemTime() {
         return System.nanoTime() / 1000000;
+    }
+    */
+
+    public static long difference(long time1, long time2) {
+        return Math.abs(time1 - time2);
     }
 
     public static long getTimeFromLastEnteredCar(List<ICar> cars) {
@@ -66,5 +70,21 @@ public class Time {
             int lastItem = carsRem.size() - 1;
             return carsRem.get(lastItem).begin();
         }
+    }
+
+    public static long now() {
+        return System.currentTimeMillis();
+    }
+
+    public static long simTime(long realTime) {
+        return INSTANCE_START_DATE + (Config.SIMULATION_SPEED * (realTime - INSTANCE_START_DATE));
+    }
+
+    public static long realTime(long simTime) {
+        return (simTime - INSTANCE_START_DATE) / Config.SIMULATION_SPEED + INSTANCE_START_DATE;
+    }
+
+    public static long simNow() {
+        return simTime(System.currentTimeMillis());
     }
 }

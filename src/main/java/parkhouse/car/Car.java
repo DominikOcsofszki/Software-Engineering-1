@@ -1,5 +1,8 @@
 package parkhouse.car;
 
+import parkhouse.config.Config;
+import parkhouse.util.Time;
+
 import java.util.Arrays;
 
 public class Car implements ICar {
@@ -27,13 +30,13 @@ public class Car implements ICar {
 
     @Override
     public long end() {
-        return this.begin() + this.duration();      //ToDo duration() => Zeit*Sim_Fact ->Somit keine echte Zeit
+        return this.begin() + this.duration();
     }
 
     @Override
     public long duration() {
         if (params[2].equals("_")) {
-            return 0;
+            return Config.SIMULATION_SPEED * (Time.now() - Time.realTime(begin()));
         }
         return Long.parseLong(params[2]);
     }
@@ -68,6 +71,12 @@ public class Car implements ICar {
     @Override
     public String license() {
         return params[9];
+    }
+
+    @Override
+    public void leave(String price) {
+        this.params[2] = duration()+"";
+        this.params[3] = price;
     }
 
     @Override

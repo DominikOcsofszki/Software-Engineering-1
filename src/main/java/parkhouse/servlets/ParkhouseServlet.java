@@ -1,5 +1,6 @@
 package parkhouse.servlets;
 
+import parkhouse.calculations.Locator;
 import parkhouse.calculations.Price;
 import parkhouse.calculations.Stats;
 import parkhouse.car.Car;
@@ -64,7 +65,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Max":
                 out.println(String.format(
                         "Highest income from a customer = %.2f€",
-                        Price.out(Stats.minCars(parkingController())))
+                        Price.out(Stats.maxCars(parkingController())))
                 );
                 break;
             case "cars":
@@ -108,7 +109,11 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
                 break;
             case "Time":
-                out.println(Time.getTime());
+                out.println(String.format(
+                        "Real time: %d / Sim time: %d / Diff: %d",
+                        Time.now(), Time.simNow(),
+                        Time.simNow() - Time.now())
+                );
             case "Reset":
                 getServletContext().setAttribute("Sum", 0);
                 getServletContext().setAttribute("Avg", 0);
@@ -147,18 +152,20 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "enter":
                 ICar newCar = new Car(restParams);
-                int spaceNr = locator(newCar);      //ToDO Not working fully yet
+                int spaceNr = Locator.locate(parkingController());
                 if (spaceNr != -1) {
+                    newCar.setSpace(spaceNr);
                     parkingController().addCar(newCar); // adding the car
                     out.println(spaceNr);       //only do sth if space
                 }
                 break;
             case "leave":
-                ICar oldCar = Finder.findCar(parkingController().getCars(), ICar::ticket, restParams[4]);
-                oldCar.updateParams(restParams);
+                ICar oldCar = Finder.findICarForTicket(parkingController(), restParams[4]);
+                double price = Price.price(oldCar);
+                oldCar.leave(String.valueOf(price));
                 parkingController().removeCar(oldCar);
 
-                out.println(Price.price(oldCar) / Config.SIMULATION_SPEED);
+                out.println(Price.price(oldCar));
                 break;
             case "invalid":
             case "occupied":

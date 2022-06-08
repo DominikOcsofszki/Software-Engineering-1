@@ -25,9 +25,9 @@ public class MainServlet extends ParkhouseServlet {
                 Config.MAX_CARS,
                 Config.OPEN_FROM,
                 Config.OPEN_TO,
-                Config.TIME_SHIFT,
+                Config.SIMULATION_SPEED,
                 Config.WAIT_REDLIGHT_SHIFT,
-                Config.SIMULATION_SPEED
+                Config.TIME_SHIFT
         );
 
     }                   //20,6,24,100,1234567890, 10

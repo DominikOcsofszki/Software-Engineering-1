@@ -13,5 +13,6 @@ public interface ICar {
     String type();
     String license();
     void setSpace(int x);
+    void leave(String price);
     void updateParams(String[] params);
 }

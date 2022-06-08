@@ -9,7 +9,7 @@ public class CurrentElementsView implements IObserver {
     // ToDo Still needed? Seems unnecessary!
 
     private final IParkingModel model;
-    private long currentTimeByLastCar;
+    //private long currentTimeByLastCar;
     private int[] usedParkingSpots;
     private int maxParking;
 
@@ -28,12 +28,14 @@ public class CurrentElementsView implements IObserver {
             tmp = Arrays.copyOfRange(usedParkingSpots, 0, maxParking);
             usedParkingSpots = tmp;
         }
-        currentTimeByLastCar = model.lastTimeExixtOrEnterCar();
+        //currentTimeByLastCar = model.lastTimeExixtOrEnterCar();
     }
 
+    /*
     public double currentTimeByLastCar() {
         return currentTimeByLastCar;
     }
+    */
     public int[] usedParkingSpots() {
         return usedParkingSpots;
     }

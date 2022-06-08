@@ -1,7 +1,6 @@
 package parkhouse.models;
 
 import parkhouse.calculations.Price;
-import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
@@ -16,14 +15,6 @@ public class ParkingModel implements IParkingModel {
     private final List<ICar> cars;
     private final List<IObserver> observers;
     private final List<ICar> removedCars;
-    private long lastTimeExixtOrEnterCar;
-    /*
-    Sim Speed test
-    private long[] systemzeit = new long[2];
-    private long[] autoenter = new long[2];
-    int countersystem = 0;
-    int counterauto = 0;
-     */
 
     public ParkingModel() {
         cars = new ArrayList<>();       //cars still in the Parkhouse
@@ -69,51 +60,23 @@ public class ParkingModel implements IParkingModel {
             o.update();
         }
     }
-    /*
-            Sim speed test
-            systemzeit[countersystem++] = System.nanoTime() / 1000000;
-            autoenter[counterauto++] = Long.parseLong(params[1]);
-            if(counterauto == 2) {
-                System.out.println("diff simulation: " + Math.abs(autoenter[0] - autoenter[1]));
-                System.out.println("diff system: " + Math.abs(systemzeit[0] - systemzeit[1]));
-                counterauto = 0;
-                countersystem = 0;
-            }
-             */
-    @Override
-    public void addCar(String[] params) {       //ToDo delete? ->Jakob
-        cars.add(new Car(params));
-        notifyObservers();
-
-
-    }
 
     @Override
-    public void addCar(ICar car) {  //added car with ICar _do
+    public void addCar(ICar car) {
         cars.add(car);
-        lastTimeExixtOrEnterCar = car.begin();         //For Time
-        notifyObservers();
-    }
-
-    @Override
-    public void removeCar(String[] params) {        //ToDo delete? ->Jakob
-        removedCars.add(new Car(params));
-        cars.removeIf(c -> c.license().equals(new Car(params).license()));
         notifyObservers();
     }
 
     @Override
     public void removeCar(ICar car) {   //_do
         removedCars.add(car);
-        cars.remove(car);           //ToDo remove update of time in remove since calc not accurate?
-        lastTimeExixtOrEnterCar = car.begin() + (car.duration() / Config.SIMULATION_SPEED);     //For Time
+        cars.remove(car);
         notifyObservers();
     }
 
     @Override
     public Double dailyEarnings() { //ToDo _
-//        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-        long now = lastTimeExixtOrEnterCar();
+        long now = Time.simNow();
 
         double sum = 0;
         // functional way _do
@@ -126,7 +89,7 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double weeklyEarnings() {    //ToDo _
-        long now = lastTimeExixtOrEnterCar();
+        long now = Time.simNow();
         double sum = 0D;
         // functional way _do
         sum = removedCars.stream()
@@ -146,26 +109,13 @@ public class ParkingModel implements IParkingModel {
 
         return Price.out(sum);
     }
-//    public long currentTimeByLastCar() {        //ToDo Delete
-//        long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-//        return now;
-//    }
-
-    @Override
-    public long lastTimeExixtOrEnterCar() {
-        return lastTimeExixtOrEnterCar;
-    }
 
     @Override
     public HashMap<String, Double> currentCost() {
         HashMap<String, Double> cost = new HashMap<>();
-//        long now = Time.now();
         if(getCars().size() > 0) {
-//            long now = Time.getTimeFromLastEnteredCarCheckBoth(getCars(), getRemovedCars());
-            long now = lastTimeExixtOrEnterCar();
             for (ICar c : getCars()) {
-                double priceCalc = Price.price(c, now);
-                cost.put(c.license(), priceCalc);
+                cost.put(c.license(), Price.price(c));
             }
         }
         return cost;

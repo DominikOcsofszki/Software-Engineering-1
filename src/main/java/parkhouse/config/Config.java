@@ -4,7 +4,7 @@ public class Config {
 
     private Config() {}
     public static final int SIMULATION_SPEED = 100;
-    public static final int TIME_SHIFT = 0; //(Verschiebung der Simulationszeit in die Vergangenheit um 1234567890 Millisekunden)
+    public static final int TIME_SHIFT = 0;
     public static final int WAIT_REDLIGHT_SHIFT = 10;
 
     public static final String[] CLIENT_CATEGORIES = new String[] {"Default", "Women", "Business", "Family", "Disability"};
