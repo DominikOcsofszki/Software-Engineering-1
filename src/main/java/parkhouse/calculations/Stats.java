@@ -17,19 +17,17 @@ public class Stats {
     public static double avgCars(IParkingController controller) {
         long count = controller.getRemovedCars().stream().filter(x -> (x.price() > 0)).count();
         if (count == 0) return 0; //ToDo count != sumCars().count? Da unterschiedlich zur Berechnung?
-        return sumCars(controller) / count; // Hier unsicher ob sumCars verwendet werden sollte,
-        // da sich sum verändern könnte, während count zuvor
-        //nicht ganz sicher. Sollte copy erstellt werden?
+        return sumCars(controller) / count;
     }
 
     public static double minCars(IParkingController controller) {
-//        double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElseThrow(NoSuchElementException::new);
         return controller.getRemovedCars().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElse(0D);
+        // .orElseThrow(NoSuchElementException::new);
     }
 
     public static double maxCars(IParkingController controller) {
-//        double ret = getRemovedCarsController().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElseThrow(NoSuchElementException::new); //return the max price
         return controller.getRemovedCars().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElse(0D);
+        // .orElseThrow(NoSuchElementException::new);
     }
 
 }

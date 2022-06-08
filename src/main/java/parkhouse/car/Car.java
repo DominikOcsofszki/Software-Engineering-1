@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Car implements ICar {
 
-    String[] params;
+    private String[] params;
 
-    public Car( String[] params ){
+    public Car(String[] params){
         this.params = params;
     }
 
@@ -18,11 +18,6 @@ public class Car implements ICar {
     @Override
     public int space() {
         return Integer.parseInt(params[6]);
-    }
-
-    @Override
-    public void setSpace(int x) { // add new spaceNr for car, after locator
-        params[6] = x+"";
     }
 
     @Override
@@ -78,6 +73,11 @@ public class Car implements ICar {
     @Override
     public void updateParams(String[] params) {
         this.params = params;
+    }
+
+    @Override
+    public void setSpace(int x) { // add new spaceNr for car, after locator
+        params[6] = x+"";
     }
 
     @Override

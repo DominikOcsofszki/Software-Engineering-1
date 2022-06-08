@@ -1,13 +1,10 @@
 package parkhouse.views;
 
-import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.models.IParkingModel;
 import parkhouse.util.Tableize;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CurrentCostsView implements IObserver {
@@ -25,16 +22,6 @@ public class CurrentCostsView implements IObserver {
     public void update() {
         this.currentCosts = model.currentCost();
     }
-
-    /**
-    public double getCurrentCosts() {
-        double sum = 0;
-        for(String s : currentCosts) {
-            sum += Double.parseDouble(s);
-        }
-        return sum;
-    }
-     **/
 
     @Override
     public String toString() {

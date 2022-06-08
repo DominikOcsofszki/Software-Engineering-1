@@ -42,8 +42,6 @@ public class Time {
     }
 
     public static long now() {
-        System.out.println("SIMULATION_START: " + SIMULATION_START);
-        System.out.println("getSystemTime(): " + getSystemTime());
         return SIMULATION_START + getMillisecondsSinceStart();
     }
 
@@ -69,12 +67,4 @@ public class Time {
             return carsRem.get(lastItem).begin();
         }
     }
-
-
-    //_do
-//    private static long getSystemTime() {
-//        long startTime = System.nanoTime();
-//        return startTime;
-    //
-//    }
 }

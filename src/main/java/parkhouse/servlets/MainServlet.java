@@ -13,13 +13,12 @@ public class MainServlet extends ParkhouseServlet {
     }
 
     @Override
-    int MAX(){ // maximum number of parking slots on level 1
+    int MAX(){
         return Config.MAX_CARS;
     }
 
     @Override
     String config(){
-//        return ""; // use default config
 //        return this.MAX() + ",0,24,"+ Config.SIMULATION_SPEED+",10";     //use MAX() for calculating parking spots _do ToDo Laut API anders als hier! Eione Zahl fehlt.
         return String.format(
                 "%d,%d,%d,%d,%d,%d",

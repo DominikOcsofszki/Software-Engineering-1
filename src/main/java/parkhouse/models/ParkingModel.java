@@ -158,13 +158,6 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public HashMap<String, Double> currentCost() {
-        //Hashmap for already paid and exited Cars
-        /*
-        HashMap<String, Double> cost = new HashMap<>();
-        for (ICar c : getRemovedCars()) {
-            cost.put(c.license(), Calc.calcInCent(c.price()));
-        }
-        */
         HashMap<String, Double> cost = new HashMap<>();
 //        long now = Time.now();
         if(getCars().size() > 0) {
