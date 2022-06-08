@@ -18,10 +18,6 @@ public class DailyEarningsView implements IObserver {
         dailyEarnings = model.dailyEarnings();
     }
 
-    public double getDailyEarnings() {
-        return dailyEarnings;
-    }
-
     @Override
     public String toString() {
         return Price.format(dailyEarnings);

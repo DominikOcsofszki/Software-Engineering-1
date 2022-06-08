@@ -2,7 +2,6 @@ package parkhouse.models;
 
 import parkhouse.calculations.Price;
 import parkhouse.car.ICar;
-import parkhouse.config.Config;
 import parkhouse.util.Time;
 import parkhouse.views.IObserver;
 

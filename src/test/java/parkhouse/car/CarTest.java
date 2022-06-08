@@ -33,6 +33,7 @@ public class CarTest {
         }
     }
 
+    //TODO rewrite this test
     @Test
     @DisplayName("Test if 'duration' is set correctly")
     void car_duration_test() {
@@ -46,6 +47,7 @@ public class CarTest {
         }
     }
 
+    //TODO rewrite this test
     @Test
     @DisplayName("Test if 'price' is set correctly")
     void car_price_test() {
