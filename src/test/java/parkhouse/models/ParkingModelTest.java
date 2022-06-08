@@ -61,9 +61,8 @@ public class ParkingModelTest {
 
     @Test
     void parkingModel_currentCost_test() {
-        Car c = new Car(leave);
-        parkingModel.addCar(c);
-        assertEquals(Price.price(c), parkingModel.currentCost().get(c.license()));
+        parkingModel.addCar(leaveCar);
+        assertEquals(Price.price(leaveCar), parkingModel.currentCost().get(leaveCar.license()));
     }
 
     @Test
