@@ -21,7 +21,15 @@ public class MainServlet extends ParkhouseServlet {
     String config(){
 //        return ""; // use default config
 //        return this.MAX() + ",0,24,"+ Config.SIMULATION_SPEED+",10";     //use MAX() for calculating parking spots _do ToDo Laut API anders als hier! Eione Zahl fehlt.
-        return this.MAX() + ",0,24,"+Config.WAIT_REDLIGHT_SHIFT+","+Config.TIME_SHIFT+","+ Config.SIMULATION_SPEED;     //use MAX() for calculating parking spots _do
+        return String.format(
+                "%d,%d,%d,%d,%d,%d",
+                Config.MAX_CARS,
+                Config.OPEN_FROM,
+                Config.OPEN_TO,
+                Config.TIME_SHIFT,
+                Config.WAIT_REDLIGHT_SHIFT,
+                Config.SIMULATION_SPEED
+        );
 
     }                   //20,6,24,100,1234567890, 10
     /*
