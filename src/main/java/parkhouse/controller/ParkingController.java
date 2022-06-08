@@ -66,4 +66,8 @@ public class ParkingController implements IParkingController {
     public CurrentCostsView currentCostView() {
         return this.currentCostsView;
     }
+
+    public IParkingModel parkingModel(){
+        return model;
+    }
 }
