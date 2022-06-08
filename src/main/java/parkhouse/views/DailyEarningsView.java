@@ -13,6 +13,10 @@ public class DailyEarningsView implements IObserver {
         model.registerObserver(this);
     }
 
+    public double getDailyEarnings() {
+        return dailyEarnings;
+    }
+
     @Override
     public void update() {
         dailyEarnings = model.dailyEarnings();

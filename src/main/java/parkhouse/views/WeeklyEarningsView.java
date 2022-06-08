@@ -13,6 +13,10 @@ public class WeeklyEarningsView implements IObserver{
         model.registerObserver(this);
     }
 
+    public double getWeeklyEarnings() {
+        return weeklyEarnings;
+    }
+
     @Override
     public void update() {
         weeklyEarnings = model.weeklyEarnings();
