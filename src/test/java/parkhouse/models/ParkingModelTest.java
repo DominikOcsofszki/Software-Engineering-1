@@ -88,7 +88,7 @@ public class ParkingModelTest {
         parkingModel.registerObserver(observer);
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-//        assertEquals(10, observer.getDailyEarnings());
+        assertEquals(10, observer.getDailyEarnings());      //ToDo Tobi?
     }
 
     @Test
@@ -97,7 +97,7 @@ public class ParkingModelTest {
         parkingModel.removeObserver(observer);
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-        assertEquals(0, observer.getDailyEarnings());
+        assertEquals(0, observer.getDailyEarnings());       //ToDo Tobi?
     }
 
     @Test
