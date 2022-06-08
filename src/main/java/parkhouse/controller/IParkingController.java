@@ -2,7 +2,7 @@ package parkhouse.controller;
 
 import parkhouse.car.ICar;
 import parkhouse.views.CurrentCostsView;
-import parkhouse.views.CurrentElementsView;
+//import parkhouse.views.CurrentElementsView;     // ToDo Still needed? Seems unnecessary!
 import parkhouse.views.DailyEarningsView;
 import parkhouse.views.WeeklyEarningsView;
 
@@ -21,6 +21,7 @@ public interface IParkingController {
     DailyEarningsView dailyEarningsView();
     WeeklyEarningsView weeklyEarningsView();
     CurrentCostsView currentCostView();
-    CurrentElementsView currentElementsView();
+//    CurrentElementsView currentElementsView();    // ToDo Still needed? Seems unnecessary!
+
 
 }

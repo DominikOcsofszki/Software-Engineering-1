@@ -1,3 +1,4 @@
+/*
 package parkhouse.views;
 
 import parkhouse.config.Config;
@@ -31,11 +32,13 @@ public class CurrentElementsView implements IObserver {
         //currentTimeByLastCar = model.lastTimeExixtOrEnterCar();
     }
 
-    /*
+    */
+/*
     public double currentTimeByLastCar() {
         return currentTimeByLastCar;
     }
-    */
+    *//*
+
     public int[] usedParkingSpots() {
         return usedParkingSpots;
     }
@@ -49,3 +52,4 @@ public class CurrentElementsView implements IObserver {
         return "";
     }
 }
+*/

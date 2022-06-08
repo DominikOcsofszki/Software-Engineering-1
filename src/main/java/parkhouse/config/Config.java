@@ -3,6 +3,9 @@ package parkhouse.config;
 public class Config {
 
     private Config() {}
+    //New for debuging Ausgabe
+    public static boolean DEBUG_MODE = true;
+
     public static final int SIMULATION_SPEED = 100;
     public static final int TIME_SHIFT = 0;
     public static final int WAIT_REDLIGHT_SHIFT = 10;
