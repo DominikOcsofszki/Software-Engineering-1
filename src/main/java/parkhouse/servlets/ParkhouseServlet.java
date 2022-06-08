@@ -1,8 +1,6 @@
 package parkhouse.servlets;
 
-import parkhouse.calculations.Locator;
-import parkhouse.calculations.Price;
-import parkhouse.calculations.Stats;
+import parkhouse.calculations.*;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
@@ -47,13 +45,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Sum":
                 out.println(String.format(
                         "Total income = %.2f€",
-                        Price.out(Stats.sumCars(parkingController())))
+                        Price.out(new StatsSum().template1(parkingController())))
                 );
                 break;
             case "Avg":
                 out.println(String.format(
                         "Average income per customer = %.2f€",
-                        Price.out(Stats.avgCars(parkingController())))
+                        Price.out(new StatsAvg().template1(parkingController())))
                 );
                 break;
             case "Min":
