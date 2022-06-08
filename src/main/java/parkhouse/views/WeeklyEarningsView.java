@@ -18,6 +18,10 @@ public class WeeklyEarningsView implements IObserver{
         weeklyEarnings = model.weeklyEarnings();
     }
 
+    public double getWeeklyEarnings() {
+        return weeklyEarnings;
+    }
+
     @Override
     public String toString() {
         return Price.format(weeklyEarnings);

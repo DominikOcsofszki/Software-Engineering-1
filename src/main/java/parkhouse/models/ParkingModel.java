@@ -22,28 +22,6 @@ public class ParkingModel implements IParkingModel {
         removedCars = new ArrayList<>();    //cars that have been in the Parkhouse -> paid
     }
 
-    // _do
-    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
-    public List<ICar> getCars() {
-        return cars;
-    }
-
-    public List<ICar> getRemovedCars() {
-        return removedCars;
-    }
-
-    @Override
-    public List<ICar> getCarsAndRemovedCars() {     // produces a new List, might change the order of elements in List.
-        final List<ICar> carsAndremovedCars; //_do
-
-        carsAndremovedCars = new ArrayList<>(cars); //_do
-        carsAndremovedCars.addAll(removedCars);
-
-        return carsAndremovedCars;      //ToDo _do: ohters: decide if it makes sense to always produce a new List?
-    }
-    //_do
-
-
     @Override
     public void registerObserver(IObserver o) {
         observers.add(o);
@@ -77,10 +55,8 @@ public class ParkingModel implements IParkingModel {
     @Override
     public Double dailyEarnings() { //ToDo _
         long now = Time.simNow();
-
-        double sum = 0;
         // functional way _do
-        sum = removedCars.stream()
+        double sum = removedCars.stream()
                 .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
                 .mapToDouble(ICar::price)
                 .sum();
@@ -90,9 +66,8 @@ public class ParkingModel implements IParkingModel {
     @Override
     public Double weeklyEarnings() {    //ToDo _
         long now = Time.simNow();
-        double sum = 0D;
         // functional way _do
-        sum = removedCars.stream()
+        double sum = removedCars.stream()
                 .filter(car -> ((Time.difference(now, car.end()) < Time.MILLISECONDS_PER_WEEK)))
                 .mapToDouble(ICar::price)
                 .sum();
@@ -121,4 +96,25 @@ public class ParkingModel implements IParkingModel {
         return cost;
 
     }
+
+    // _do
+    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
+    public List<ICar> getCars() {
+        return cars;
+    }
+
+    public List<ICar> getRemovedCars() {
+        return removedCars;
+    }
+
+    @Override
+    public List<ICar> getCarsAndRemovedCars() {     // produces a new List, might change the order of elements in List.
+        final List<ICar> carsAndremovedCars; //_do
+
+        carsAndremovedCars = new ArrayList<>(cars); //_do
+        carsAndremovedCars.addAll(removedCars);
+
+        return carsAndremovedCars;      //ToDo _do: ohters: decide if it makes sense to always produce a new List?
+    }
+    //_do
 }
