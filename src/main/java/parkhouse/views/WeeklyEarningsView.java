@@ -1,5 +1,6 @@
 package parkhouse.views;
 
+import parkhouse.calculations.Price;
 import parkhouse.models.IParkingModel;
 
 public class WeeklyEarningsView implements IObserver{
@@ -17,12 +18,8 @@ public class WeeklyEarningsView implements IObserver{
         weeklyEarnings = model.weeklyEarnings();
     }
 
-    public double getWeeklyEarnings() {
-        return weeklyEarnings;
-    }
-
     @Override
     public String toString() {
-        return "";
+        return Price.format(weeklyEarnings);
     }
 }

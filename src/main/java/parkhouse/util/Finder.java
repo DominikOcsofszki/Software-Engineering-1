@@ -1,6 +1,7 @@
 package parkhouse.util;
 
 import parkhouse.car.ICar;
+import parkhouse.controller.IParkingController;
 
 import java.util.NoSuchElementException;
 import java.util.function.Function;
@@ -17,6 +18,12 @@ public class Finder {
             }
         }
         throw new NoSuchElementException();
+    }
+
+    public ICar findICarForTicket(IParkingController controller, String plateSearching) {
+        return controller.getCars().stream().
+                filter(car -> (car.ticket().equals(plateSearching)))
+                .findFirst().orElseThrow();
     }
 
 }

@@ -10,8 +10,8 @@ public class Price {
 
     private Price() {}
 
-    public static String formaterDoubleToString2f(double d) {
-        return String.format("%.2f€", d);
+    public static String format(double price) {
+        return String.format("%.2f€", price);
     }
 
     public static double out(double price) {
@@ -19,11 +19,11 @@ public class Price {
     }
 
     public static double price(ICar car) {
-        return priceFactor(car) * car.duration() / Integer.parseInt(Config.SIMULATION_SPEED);
+        return priceFactor(car) * car.duration() / Config.SIMULATION_SPEED;
     }
 
     public static double price(ICar car, long now) {
-        return priceFactor(car) * (now - car.begin()) / Integer.parseInt(Config.SIMULATION_SPEED);
+        return priceFactor(car) * (now - car.begin()) / Config.SIMULATION_SPEED;
     }
 
     public static double priceFactor(ICar car) {
