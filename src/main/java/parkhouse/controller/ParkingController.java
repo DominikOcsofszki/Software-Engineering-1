@@ -19,11 +19,11 @@ public class ParkingController implements IParkingController {
     private final CurrentElementsView currentElementsView; //_do
 
     public ParkingController() {
-        this.model = new ParkingModel();
-        this.dailyEarningsView = new DailyEarningsView(model);
-        this.weeklyEarningsView = new WeeklyEarningsView(model);
-        this.currentCostsView = new CurrentCostsView(model);
-        this.currentElementsView = new CurrentElementsView(model); //_do
+        model = new ParkingModel();
+        dailyEarningsView = new DailyEarningsView(model);
+        weeklyEarningsView = new WeeklyEarningsView(model);
+        currentCostsView = new CurrentCostsView(model);
+        currentElementsView = new CurrentElementsView(model); //_do
     }
 
     // _do
