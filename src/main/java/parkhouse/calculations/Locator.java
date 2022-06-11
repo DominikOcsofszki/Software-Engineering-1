@@ -14,7 +14,7 @@ public class Locator {
                 .stream().mapToInt(ICar::space)
                 .boxed().collect(Collectors.toList());
 
-        for (int s = 1; s <= Config.MAX_CARS; s++) {
+        for (int s = 1; s <= Config.maxCars; s++) {
             if (!occupied.contains(s)) {
                 return s;
             }

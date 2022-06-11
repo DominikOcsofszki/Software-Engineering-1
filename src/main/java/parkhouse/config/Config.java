@@ -4,7 +4,7 @@ public class Config {
 
     private Config() {}
     //New for debuging Ausgabe
-    public static boolean DEBUG_MODE = true;
+    public static ConfigMode configMode = ConfigMode.DEBUG_MODE;
 
     public static final int SIMULATION_SPEED = 100;
     public static final int TIME_SHIFT = 0;
@@ -14,18 +14,22 @@ public class Config {
     public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV"};
     public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Women:0.5"};
 
-    public static int MAX_CARS = 11;
-    public static int OPEN_FROM = 0;
-    public static int OPEN_TO = 0;
+    public static int maxCars = 11;
+    public static int openFrom = 0;
+    public static int openTo = 0;
 
     public static void setMaxCars(int maxCars) {
-        MAX_CARS = maxCars;
+        Config.maxCars = maxCars;
     }
     public static void setOpenFrom(int openFrom) {
-        OPEN_FROM = openFrom;
+        Config.openFrom = openFrom;
     }
     public static void setOpenTo(int openTo) {
-        OPEN_TO = openTo;
+        Config.openTo = openTo;
+    }
+
+    public static boolean isConfigDebugMode() {
+        return configMode == ConfigMode.DEBUG_MODE;
     }
 
 }

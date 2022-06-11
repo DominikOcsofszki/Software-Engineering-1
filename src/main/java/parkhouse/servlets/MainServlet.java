@@ -14,7 +14,7 @@ public class MainServlet extends ParkhouseServlet {
 
     @Override
     int MAX(){
-        return Config.MAX_CARS;
+        return Config.maxCars;
     }
 
     @Override
@@ -22,9 +22,9 @@ public class MainServlet extends ParkhouseServlet {
 //        return this.MAX() + ",0,24,"+ Config.SIMULATION_SPEED+",10";     //use MAX() for calculating parking spots _do ToDo Laut API anders als hier! Eione Zahl fehlt.
         return String.format(
                 "%d,%d,%d,%d,%d,%d",
-                Config.MAX_CARS,
-                Config.OPEN_FROM,
-                Config.OPEN_TO,
+                Config.maxCars,
+                Config.openFrom,
+                Config.openTo,
                 Config.SIMULATION_SPEED,
                 Config.WAIT_REDLIGHT_SHIFT,
                 Config.TIME_SHIFT

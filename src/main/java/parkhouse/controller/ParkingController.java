@@ -47,7 +47,6 @@ public class ParkingController implements IParkingController {
     @Override
     public void removeCar(ICar car) {   // _do
         model.removeCar(car);
-
     }
 
 //    @Override    // ToDo Still needed? Seems unnecessary!

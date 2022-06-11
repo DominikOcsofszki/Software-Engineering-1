@@ -2,6 +2,7 @@ package parkhouse.calculations;
 
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
+import parkhouse.config.ConfigMode;
 import parkhouse.controller.IParkingController;
 
 public abstract class AbstractStats {
@@ -10,7 +11,7 @@ public abstract class AbstractStats {
     public double template1(IParkingController controller) {
         double sum = sum(controller);
         double d = calcExtra(controller, sum);
-        if (Config.DEBUG_MODE) {
+        if (Config.isConfigDebugMode()) {
             debugPrint(d);
         }
         optionalPrintSthOrSo(controller, d);   //Can be empty
@@ -29,10 +30,9 @@ public abstract class AbstractStats {
     }
 
     public double sum(IParkingController controller) {
-        double sum = controller.getRemovedCars().stream().map(ICar::price)
+        return controller.getRemovedCars().stream().map(ICar::price)
                 .filter(price -> (price > 0))
                 .reduce(0d, Double::sum);
-        return sum;
     }
 }
 
