@@ -2,6 +2,10 @@ package parkhouse.config;
 
 public class Config {
 
+    private enum ConfigMode {
+        DEBUG_MODE, NORMAL_MODE
+    }
+
     private Config() {}
     //New for debuging Ausgabe
     public static ConfigMode configMode = ConfigMode.DEBUG_MODE;
@@ -31,5 +35,9 @@ public class Config {
     public static boolean isConfigDebugMode() {
         return configMode == ConfigMode.DEBUG_MODE;
     }
+    public static boolean isConfigNormalMode() {
+        return configMode == ConfigMode.NORMAL_MODE;
+    }
+
 
 }

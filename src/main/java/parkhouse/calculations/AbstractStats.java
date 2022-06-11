@@ -2,11 +2,9 @@ package parkhouse.calculations;
 
 import parkhouse.car.ICar;
 import parkhouse.config.Config;
-import parkhouse.config.ConfigMode;
 import parkhouse.controller.IParkingController;
 
 public abstract class AbstractStats {
-
 
     public double template1(IParkingController controller) {
         double sum = sum(controller);
