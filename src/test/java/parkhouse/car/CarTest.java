@@ -3,6 +3,8 @@ package parkhouse.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
+import parkhouse.config.Config;
+import parkhouse.util.Time;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,28 +35,27 @@ public class CarTest {
         }
     }
 
-    //TODO rewrite this test
     @Test
     @DisplayName("Test if 'duration' is set correctly")
     void car_duration_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (p[2].equals("_")) {
-                assertEquals(0, car.duration());        //ToDo change test since duration() was changed to actual time.
+                long duration = Config.SIMULATION_SPEED * (Time.now() - Time.realTime(car.begin()));
+                assertEquals(duration, car.duration(), 500);
             } else {
                 assertEquals(Integer.parseInt(p[2]), car.duration());
             }
         }
     }
 
-    //TODO rewrite this test
     @Test
     @DisplayName("Test if 'price' is set correctly")
     void car_price_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            if (car.duration() == 0) {      //ToDo change test since duration() was changed to actual time.
-                assertEquals(0, car.duration());
+            if (p[2].equals("_")) {
+                assertEquals(0, car.price());
             } else {
                 assertEquals(Double.parseDouble(p[3]), car.price());
             }

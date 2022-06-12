@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import parkhouse.Data;
 import parkhouse.car.ICar;
 
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import java.util.Arrays;
@@ -34,14 +33,14 @@ public class JsonifyTest {
     void jsonify_asDurationArray_test() {
         JsonArray dr = Jsonify.carsAsDuration(cars);
         for (int i = 0; i < cars.size(); i++) {
-            assertEquals(cars.get(i).duration(), dr.getInt(i));
+            assertEquals(cars.get(i).duration(), dr.getInt(i), 2500);
         }
     }
 
     @Test
     @DisplayName("Test if json array contains the correct values")
     void jsonify_carsAsJsonArray_test() {
-        List<Function<ICar,Object>> func = Arrays.asList(ICar::nr, ICar::duration, ICar::price, ICar::license);
+        List<Function<ICar,Object>> func = Arrays.asList(ICar::nr, ICar::price, ICar::license);
         for (Function<ICar,Object> f : func) {
             JsonArray arr = Jsonify.carsAsJsonArray(cars, f);
             for (int i = 0; i < cars.size(); i++) {
@@ -54,10 +53,11 @@ public class JsonifyTest {
     @DisplayName("Test if correct plot object is build")
     @CsvSource({"bar,BarPlot","line,LinePlot","pie,PiePlot"})
     void jsonify_plot_test(String type, String name) {
-        JsonObject plot = Jsonify.plot(Jsonify.carsAsNr(cars), Jsonify.carsAsDuration(cars), type, name);
+        JsonArray duration = Jsonify.carsAsDuration(cars);
+        JsonObject plot = Jsonify.plot(Jsonify.carsAsNr(cars), duration, type, name);
         JsonObject data = (JsonObject) plot.getJsonArray("data").get(0);
         assertEquals(Jsonify.carsAsNr(cars), data.getJsonArray("x"));
-        assertEquals(Jsonify.carsAsDuration(cars), data.getJsonArray("y"));
+        assertEquals(duration, data.getJsonArray("y"));
         assertEquals(type, data.getString("type"));
         assertEquals(name, data.getString("name"));
     }
