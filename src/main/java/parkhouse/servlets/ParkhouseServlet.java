@@ -43,25 +43,25 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(config());
                 break;
             case "Sum":
-                out.println(String.format(
+                out.println(String.format(Locale.US,
                         "Total income = %.2f€",
                         Price.out(new StatsSum().template1(parkingController())))
                 );
                 break;
             case "Avg":
-                out.println(String.format(
+                out.println(String.format(Locale.US,
                         "Average income per customer = %.2f€",
                         Price.out(new StatsAvg().template1(parkingController())))
                 );
                 break;
             case "Min":
-                out.println(String.format(
+                out.println(String.format(Locale.US,
                         "Lowest income from a customer = %.2f€",
                         Price.out(Stats.minCars(parkingController())))
                 );
                 break;
             case "Max":
-                out.println(String.format(
+                out.println(String.format(Locale.US,
                         "Highest income from a customer = %.2f€",
                         Price.out(Stats.maxCars(parkingController())))
                 );

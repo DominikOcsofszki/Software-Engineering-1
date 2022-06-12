@@ -5,13 +5,14 @@ import parkhouse.config.Config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Price {
 
     private Price() {}
 
     public static String format(double price) {
-        return String.format("%.2f€", price);
+        return String.format(Locale.US, "%.2f€", price);
     }
 
     public static double out(double price) {
