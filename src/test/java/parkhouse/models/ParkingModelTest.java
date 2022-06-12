@@ -70,7 +70,13 @@ public class ParkingModelTest {
 //    @Test
     void parkingModel_currentCost_test_1() {
         parkingModel.addCar(leaveCar);
-//        System.out.println(Price.price(leaveCar));
+//        System.out.println(Price.price(leaveCar));    //ToDo the fail seems to be in the calculationTime.
+//ToDo assertEquals: Current and expected are both calculated depending on the actual time. Thereby not so accurate
+//ToDo also the values seem to be wrong.
+        /* org.opentest4j.AssertionFailedError:
+Expected :1.6533885005E10   //ToDo Why is this number so high???
+Actual   :1.6533885006E10
+<Click to see difference>*/
         assertEquals(Price.price(leaveCar), parkingModel.currentCost().get(leaveCar.license()),1.);
     }
 

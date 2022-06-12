@@ -40,7 +40,7 @@ public class CarTest {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (p[2].equals("_")) {
-                assertEquals(0, car.duration());
+                assertEquals(0, car.duration());        //ToDo change test since duration() was changed to actual time.
             } else {
                 assertEquals(Integer.parseInt(p[2]), car.duration());
             }
@@ -53,7 +53,7 @@ public class CarTest {
     void car_price_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            if (car.duration() == 0) {
+            if (car.duration() == 0) {      //ToDo change test since duration() was changed to actual time.
                 assertEquals(0, car.duration());
             } else {
                 assertEquals(Double.parseDouble(p[3]), car.price());

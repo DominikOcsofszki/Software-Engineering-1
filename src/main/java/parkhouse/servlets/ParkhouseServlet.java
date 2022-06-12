@@ -66,13 +66,17 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.out(Stats.maxCars(parkingController())))
                 );
                 break;
-            case "cars":
-                for (ICar c : parkingController().getCars()) {
+            case "cars":        /*ToDo Reloading the page asks for the cars a specific format. After changes it was not accepted anymore
+                                 ToDo: Adjust the output to the expected js-format            */
+                                //Commenting this lines fixed the reload problem.
+                /*for (ICar c : parkingController().getCars()) {
                     out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
                             c.nr(), c.begin(), c.duration(), c.price(), c.ticket(),
                             c.color(), c.space(), c.category(), c.type(), c.license()));
-                }
+                }*/
                 break;
+
+
             case "Types":
                 JsonObject types = Jsonify.carsCount(parkingController().getCars(), ICar::type);
                 out.println(

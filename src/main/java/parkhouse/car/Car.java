@@ -38,12 +38,13 @@ public class Car implements ICar {
         if (params[2].equals("_")) {
             return Config.SIMULATION_SPEED * (Time.now() - Time.realTime(begin()));
         }
+//        if (params[2].equals("_")) return 0;
         return Long.parseLong(params[2]);
     }
 
     @Override
-    public double price() {
-        if(duration() == 0) return 0;  // if the car did not leave yet, return as price = 0
+    public double price() {     //Since duration changed, old methode duration() == 0 did not work.
+        if (params[2].equals("_")) return 0;  // if the car did not leave yet, return as price = 0, Problem in tests!
         //ToDo _do: Jakob? use this methode for price changes? Input factors here?
         return Double.parseDouble(params[3]);
     }

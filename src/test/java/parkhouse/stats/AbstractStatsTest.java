@@ -13,7 +13,7 @@ public class AbstractStatsTest {
     void statsSumtest() {
         ParkingController controller = new ParkingController();
         Car leaveCar = new Car(new String[]{"0", "" + System.nanoTime() / 1000000, "", "1000", "", "", "", "", "", "", "", "", ""});
-        controller.parkingModel().addCar(leaveCar);
+        controller.parkingModel().addCar(leaveCar);     //ToDo use real cars from the csv?
         controller.parkingModel().removeCar(leaveCar);
         assertEquals(10, new StatsSum().template1(controller));
     }
@@ -22,7 +22,7 @@ public class AbstractStatsTest {
     void statsAvgtest() {
         ParkingController controller = new ParkingController();
         Car leaveCar = new Car(new String[]{"0", "" + System.nanoTime() / 1000000, "", "1000", "", "", "", "", "", "", "", "", ""});
-        controller.parkingModel().addCar(leaveCar);
+        controller.parkingModel().addCar(leaveCar);     //ToDo use real cars from the csv?
         controller.parkingModel().removeCar(leaveCar);
         assertEquals(10, new StatsAvg().template1(controller));
     }
