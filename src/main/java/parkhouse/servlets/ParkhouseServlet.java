@@ -8,6 +8,7 @@ import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 import parkhouse.util.Finder;
 import parkhouse.util.Jsonify;
+import parkhouse.util.Saver;
 import parkhouse.util.Time;
 
 import javax.json.JsonObject;
@@ -26,7 +27,9 @@ import java.util.*;
 public abstract class ParkhouseServlet extends HttpServlet {
 
     abstract String NAME();
+
     abstract int MAX();
+
     abstract String config();
 
     /**
@@ -41,6 +44,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (cmd) {
             case "config":
                 out.println(config());
+//                Saver.outPutAfterReload(out);     //should be in the cars case
+                Runtime.getRuntime().addShutdownHook(new Thread(() -> { //ToDo sometimes happen two or more times -> Synchronizing?
+                    System.out.println("saving cars on 'server' or CSV data in java after shutdown.");
+                    //ToDo add all cars from 'case: "cars"' into a txt or json.
+                    Saver.shutdown(parkingController());    //Saves all cars into carsInHouse.txt and carsRemoved.txt
+
+                }));
                 break;
             case "Sum":
                 out.println(String.format(Locale.US,
@@ -67,15 +77,21 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
                 break;
             case "cars":
-                for (ICar c : parkingController().getCars()) {
-                    out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
-                            c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
-                            c.color(), c.space(), c.category(), c.type(), c.license()));
-                }
-                for (ICar c : parkingController().getRemovedCars()) {
-                    out.println(String.format(Locale.US,"%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
-                            c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
-                            c.color(), c.space(), c.category(), c.type(), c.license()));
+                if (Saver.outPutAfterReloadBool) {
+                    Saver.outPutAfterReload(out);
+                    Saver.outPutAfterReloadBool = false;
+                } else {
+
+                    for (ICar c : parkingController().getCars()) {
+                        out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
+                                c.color(), c.space(), c.category(), c.type(), c.license()));
+                    }
+                    for (ICar c : parkingController().getRemovedCars()) {
+                        out.println(String.format(Locale.US, "%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
+                                c.color(), c.space(), c.category(), c.type(), c.license()));
+                    }
                 }
                 break;
 

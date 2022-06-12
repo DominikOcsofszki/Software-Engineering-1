@@ -39,5 +39,4 @@ public class Config {
         return configMode == ConfigMode.NORMAL_MODE;
     }
 
-
 }
