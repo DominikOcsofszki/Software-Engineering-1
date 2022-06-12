@@ -15,10 +15,4 @@ public interface ICar {
     void setSpace(int x);
     void leave(String price);
     void updateParams(String[] params);
-
-    //__________
-    String duration(boolean output);
-    String price(boolean output);
-
-    //___
 }

@@ -41,22 +41,6 @@ public class Car implements ICar {
 //        if (params[2].equals("_")) return 0;
         return Long.parseLong(params[2]);
     }
-    //_______________
-    @Override
-    public String duration(boolean output) {
-        if (params[2].equals("_")) {
-            return "_";
-        }
-//        if (params[2].equals("_")) return 0;
-        return ""+Long.parseLong(params[2]);
-    }
-    @Override
-    public String price(boolean output) {     //Since duration changed, old methode duration() == 0 did not work.
-        if (params[3].equals("_")) return "_";  // if the car did not leave yet, return as price = 0, Problem in tests!
-        //ToDo _do: Jakob? use this methode for price changes? Input factors here?
-        return ""+Double.parseDouble(params[3]);
-    }
-    //__________________
 
     @Override
     public double price() {     //Since duration changed, old methode duration() == 0 did not work.

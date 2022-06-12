@@ -5,6 +5,7 @@ import parkhouse.Data;
 import parkhouse.calculations.Price;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.util.Time;
 import parkhouse.views.DailyEarningsView;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class ParkingModelTest {
 
     ParkingModel parkingModel;
     List<String[]> params = Data.params();
-    String[] leave= new String[]{"0", "" + System.nanoTime() / 1000000, "_", "1000", "", "", "", "", "", "", "", "", ""};
+    String[] leave= new String[]{"0", "" + Time.simNow(), "_", "1000", "", "", "", "", "", "", "", "", ""};
     Car c;
     Car leaveCar;
 
@@ -49,14 +50,14 @@ public class ParkingModelTest {
     void parkingModel_dailyEarnings_test() {
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-        assertEquals(10, parkingModel.dailyEarnings());
+        assertEquals(Price.price(leaveCar), parkingModel.dailyEarnings());
     }
 
     @Test
     void parkingModel_weeklyEarnings_test() {
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-        assertEquals(10, parkingModel.weeklyEarnings());
+        assertEquals(Price.price(leaveCar), parkingModel.weeklyEarnings());
     }
 
     @RepeatedTest(10)

@@ -66,13 +66,15 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.out(Stats.maxCars(parkingController())))
                 );
                 break;
-            case "cars":        //*ToDo Reloading the page asks for the cars a specific format. After changes it was not accepted anymore
-                                // ToDo: Adjust the output to the expected js-format            *//*
-                                //Commenting this lines fixed the reload problem.
+            case "cars":
                 for (ICar c : parkingController().getCars()) {
-                    out.println(String.format("enter,%d,%d,%s,%s,%s,%s,%d,%s,%s,%s",
-//                    out.println(String.format("%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",   //old with %d
-                            c.nr(), c.begin(), c.duration(true), c.price(true), c.ticket(),
+                    out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
+                            c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
+                            c.color(), c.space(), c.category(), c.type(), c.license()));
+                }
+                for (ICar c : parkingController().getRemovedCars()) {
+                    out.println(String.format(Locale.US,"%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
+                            c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
                             c.color(), c.space(), c.category(), c.type(), c.license()));
                 }
                 break;
