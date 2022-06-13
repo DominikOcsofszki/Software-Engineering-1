@@ -19,7 +19,7 @@ public class Price {
         return price / 100;
     }
 
-    public static double price(ICar car) {
+    public static double priceFactDurationSimSpeed(ICar car) {   //Changed name since always confusing what price() is.
         return priceFactor(car) * car.duration() / Config.SIMULATION_SPEED;
     }
 

@@ -51,24 +51,38 @@ public class ParkingModel implements IParkingModel {
         notifyObservers();
     }
 
+    //-----
 
-    private Double earningHelper(long periodWall) {
+    @Override
+    public void addCarRestartServer(ICar car) {
+        cars.add(car);
+//        notifyObservers();    //ToDo notify when all all cars entered for performance
+
+    }
+
+    @Override
+    public void removeCarRestartServer(ICar car) {
+        removedCars.add(car);
+//        notifyObservers();  //ToDo notify when all all cars entered for performance
+
+    }
+    //--
+
+    private Double earningHelper(long timeWall) {
         long now = Time.simNow();
-        double sum = removedCars.stream()
-                .filter(car -> ((Time.difference(now, car.end()) < periodWall)))
+        return removedCars.stream()
+                .filter(car -> ((Time.difference(now, car.end()) < timeWall)))
                 .mapToDouble(ICar::price)
                 .sum();
-        return sum;
     }
 
     @Override
-    public Double dailyEarnings() { //ToDo _
+    public Double dailyEarnings() {
         return Price.out(earningHelper(Time.MILLISECONDS_PER_DAY));
-
     }
 
     @Override
-    public Double weeklyEarnings() {    //ToDo _
+    public Double weeklyEarnings() {
         return Price.out(earningHelper(Time.MILLISECONDS_PER_WEEK));
     }
 
@@ -78,12 +92,13 @@ public class ParkingModel implements IParkingModel {
         HashMap<String, Double> cost = new HashMap<>();
         if (getCars().size() > 0) {
             for (ICar c : getCars()) {
-                cost.put(c.license(), Price.price(c));
+                cost.put(c.license(), Price.priceFactDurationSimSpeed(c));
             }
         }
         return cost;
 
     }
+
 
     public List<ICar> getCars() {
         return cars;
@@ -97,7 +112,7 @@ public class ParkingModel implements IParkingModel {
     @Override
     public List<ICar> getCarsAndRemovedCars() {     // ToDo _do I think we can delete it.
         final List<ICar> carsAndremovedCars; //_do
-                //        produces a new List, might change the order of elements in List.
+        //        produces a new List, might change the order of elements in List.
         carsAndremovedCars = new ArrayList<>(cars); //_do
         carsAndremovedCars.addAll(removedCars);
 

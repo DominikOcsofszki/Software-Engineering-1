@@ -75,7 +75,12 @@ public class Car implements ICar {
     }
 
     @Override
-    public void leave(String price) {
+    public String lastParameter() {
+        return params[10];
+    }
+
+    @Override
+    public void leaveUpdatePriceDuration(String price) {
         this.params[2] = duration()+"";
         this.params[3] = price;
     }
@@ -84,6 +89,8 @@ public class Car implements ICar {
     public void updateParams(String[] params) {
         this.params = params;
     }
+
+
 
     @Override
     public void setSpace(int x) { // add new spaceNr for car, after locator

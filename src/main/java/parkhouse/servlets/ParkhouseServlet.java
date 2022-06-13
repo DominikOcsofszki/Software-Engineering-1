@@ -44,6 +44,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (cmd) {
             case "config":
                 out.println(config());
+//                Saver.outPutAfterReloadBool = true;
                 if (Saver.outPutAfterReloadBool) {  //With if only happens one time
                     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                         System.out.println("saving cars on 'server' or CSV data in java after shutdown.");
@@ -77,9 +78,22 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
                 break;
             case "cars":
+//                Saver.outPutAfterReloadBool = true;
                 if (Saver.outPutAfterReloadBool) {
-                    Saver.outPutAfterReload(out);
+                    Saver.outPutAfterServerReload(out, parkingController());  //ToDo could be done earlier -static onbject methode?
                     Saver.outPutAfterReloadBool = false;    //ToDo: Könnte später auch in der Methode geschehen
+
+                    for (ICar c : parkingController().getCars()) {
+                        out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
+                                c.color(), c.space(), c.category(), c.type(), c.license()));
+                    }
+                    for (ICar c : parkingController().getRemovedCars()) {
+                        out.println(String.format(Locale.US, "%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
+                                c.color(), c.space(), c.category(), c.type(), c.license()));
+                    }
+
                 } else {
 
                     for (ICar c : parkingController().getCars()) {
@@ -173,7 +187,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "enter":
                 ICar newCar = new Car(restParams);
-                int spaceNr = Locator.locate(parkingController());
+                int spaceNr = Locator.locate(parkingController());      //ToDo delete old Locator
                 if (spaceNr != -1) {
                     newCar.setSpace(spaceNr);
                     parkingController().addCar(newCar); // adding the car
@@ -182,11 +196,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "leave":
                 ICar oldCar = Finder.findICarForTicket(parkingController(), restParams[4]);
-                double price = Price.price(oldCar);
-                oldCar.leave(String.valueOf(price));
+                double price = Price.priceFactDurationSimSpeed(oldCar);
+                oldCar.leaveUpdatePriceDuration(String.valueOf(price));
                 parkingController().removeCar(oldCar);
 
-                out.println(Price.price(oldCar));
+                out.println(Price.priceFactDurationSimSpeed(oldCar));
+//                out.println(price); //ToDo use Variable price instead?
                 break;
             case "invalid":
             case "occupied":
@@ -228,7 +243,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
      *
      * @return the number of the free parking lot to which the next incoming car will be directed
      */
-    int locator(ICar car) {
+    int locator(ICar car) {     //ToDo Delete since not used anymore!
         int nr = -1;
         // numbers of parking lots start at 1, not zero
         // return 1;  // always use the first space

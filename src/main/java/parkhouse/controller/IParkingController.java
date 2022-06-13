@@ -12,6 +12,10 @@ public interface IParkingController {
 
     void addCar(ICar car);
     void removeCar(ICar car);
+    //-----
+    void addCarRestartServer(ICar car); // _do
+    void addRemovedCarRestartServer(ICar car);// _do
+    //-----
 
     List<ICar> getCars();
     List<ICar> getRemovedCars();

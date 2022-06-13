@@ -13,6 +13,8 @@ public interface ICar {
     String type();
     String license();
     void setSpace(int x);
-    void leave(String price);
+    void leaveUpdatePriceDuration(String price);        //Changed name for better understanding.
     void updateParams(String[] params);
+    //--
+    String lastParameter();
 }
