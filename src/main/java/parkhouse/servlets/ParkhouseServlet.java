@@ -150,10 +150,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Time.simNow() - Time.now())
                 );
             case "Reset":
-                getServletContext().setAttribute("Sum", 0);
-                getServletContext().setAttribute("Avg", 0);
-                getServletContext().setAttribute("Min", 0);
-                getServletContext().setAttribute("Max", 0);
+                getServletContext().setAttribute("parkingController" + NAME(), null);
+                //TODO Saver.reset()
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
