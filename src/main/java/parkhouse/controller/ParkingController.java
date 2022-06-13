@@ -16,7 +16,6 @@ public class ParkingController implements IParkingController {
     private final DailyEarningsView dailyEarningsView;
     private final WeeklyEarningsView weeklyEarningsView;
     private final CurrentCostsView currentCostsView;
-//    private final CurrentElementsView currentElementsView; //_do    // ToDo Still needed? Seems unnecessary!
 
 
     public ParkingController() {
@@ -24,11 +23,9 @@ public class ParkingController implements IParkingController {
         dailyEarningsView = new DailyEarningsView(model);
         weeklyEarningsView = new WeeklyEarningsView(model);
         currentCostsView = new CurrentCostsView(model);
-//        currentElementsView = new CurrentElementsView(model); //_do    // ToDo Still needed? Seems unnecessary!
 
     }
 
-    // _do
     public List<ICar> getCars() {
         return model.getCars();
     }
@@ -36,10 +33,9 @@ public class ParkingController implements IParkingController {
     public List<ICar> getRemovedCars() {
         return model.getRemovedCars();
     }
-    //_do
 
     @Override
-    public void addCar(ICar car) {      //_do
+    public void addCar(ICar car) {
         model.addCar(car);
 
     }
@@ -49,10 +45,6 @@ public class ParkingController implements IParkingController {
         model.removeCar(car);
     }
 
-//    @Override    // ToDo Still needed? Seems unnecessary!
-//    public CurrentElementsView currentElementsView() {
-//        return this.currentElementsView;
-//    }
     @Override
     public DailyEarningsView dailyEarningsView() {
         return this.dailyEarningsView;
@@ -68,7 +60,7 @@ public class ParkingController implements IParkingController {
         return this.currentCostsView;
     }
 
-    public IParkingModel parkingModel(){
+    public IParkingModel parkingModel() {
         return model;
     }
 }

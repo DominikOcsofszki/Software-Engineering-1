@@ -12,7 +12,6 @@ public interface IParkingModel extends IObservable {
     List<ICar> getCars(); //_do
     List<ICar> getRemovedCars(); //_do
     List<ICar> getCarsAndRemovedCars(); //_do
-    //long lastTimeExixtOrEnterCar();
 
     Double dailyEarnings();
     Double weeklyEarnings();

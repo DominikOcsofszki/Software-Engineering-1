@@ -44,7 +44,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (cmd) {
             case "config":
                 out.println(config());
-//                Saver.outPutAfterReload(out);     //should be in the cars case
                 if (Saver.outPutAfterReloadBool) {  //With if only happens one time
                     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                         System.out.println("saving cars on 'server' or CSV data in java after shutdown.");

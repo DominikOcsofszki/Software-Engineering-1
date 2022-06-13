@@ -45,7 +45,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public void removeCar(ICar car) {   //_do
+    public void removeCar(ICar car) {
         removedCars.add(car);
         cars.remove(car);
         notifyObservers();
@@ -63,26 +63,12 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public Double dailyEarnings() { //ToDo _
-/*        long now = Time.simNow();
-        // functional way _do
-        double sum = removedCars.stream()
-                .filter(car -> Time.difference(now, car.end()) < Time.MILLISECONDS_PER_DAY)
-                .mapToDouble(ICar::price)
-                .sum();
-        return Price.out(sum);*/
         return Price.out(earningHelper(Time.MILLISECONDS_PER_DAY));
 
     }
 
     @Override
     public Double weeklyEarnings() {    //ToDo _
-/*        long now = Time.simNow();
-        double sum = removedCars.stream()
-                .filter(car -> ((Time.difference(now, car.end()) < Time.MILLISECONDS_PER_WEEK)))
-                .mapToDouble(ICar::price)
-                .sum();
-                return Price.out(sum);
-                */
         return Price.out(earningHelper(Time.MILLISECONDS_PER_WEEK));
     }
 
@@ -99,8 +85,6 @@ public class ParkingModel implements IParkingModel {
 
     }
 
-    // _do
-    // ToDo: does it make sense to work on these? Needed getter to get the cars for calc like in cars()?
     public List<ICar> getCars() {
         return cars;
     }

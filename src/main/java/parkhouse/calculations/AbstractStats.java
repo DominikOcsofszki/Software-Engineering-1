@@ -22,8 +22,7 @@ public abstract class AbstractStats {
 
     abstract double calcExtra(IParkingController controller, double sum);
 
-    //    abstract double optional(IParkingController controller, double sum);
-    void optionalPrintSthOrSo(IParkingController controller, double sum) { //Also possible as output to console out.print
+    void optionalPrintSthOrSo(IParkingController controller, double sum) {
     //Here nothing happends
     }
 
