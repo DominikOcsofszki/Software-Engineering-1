@@ -151,7 +151,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
             case "Reset":
                 getServletContext().setAttribute("parkingController" + NAME(), null);
-                //TODO Saver.reset()
+                out.println("Reset. Reload page");
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
