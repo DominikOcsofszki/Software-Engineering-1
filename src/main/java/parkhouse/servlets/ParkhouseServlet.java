@@ -45,12 +45,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "config":
                 out.println(config());
 //                Saver.outPutAfterReload(out);     //should be in the cars case
-                Runtime.getRuntime().addShutdownHook(new Thread(() -> { //ToDo sometimes happen two or more times -> Synchronizing?
-                    System.out.println("saving cars on 'server' or CSV data in java after shutdown.");
-                    //ToDo add all cars from 'case: "cars"' into a txt or json.
-                    Saver.shutdown(parkingController());    //Saves all cars into carsInHouse.txt and carsRemoved.txt
-
-                }));
+                if (Saver.outPutAfterReloadBool) {  //With if only happens one time
+                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                        System.out.println("saving cars on 'server' or CSV data in java after shutdown.");
+                        //ToDo add all cars from 'case: "cars"' into a txt or json.
+                        Saver.shutdown(parkingController());    //Saves all cars into carsInHouse.txt and carsRemoved.txt
+                    }));
+                }
                 break;
             case "Sum":
                 out.println(String.format(Locale.US,
@@ -79,7 +80,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "cars":
                 if (Saver.outPutAfterReloadBool) {
                     Saver.outPutAfterReload(out);
-                    Saver.outPutAfterReloadBool = false;
+                    Saver.outPutAfterReloadBool = false;    //ToDo: Könnte später auch in der Methode geschehen
                 } else {
 
                     for (ICar c : parkingController().getCars()) {

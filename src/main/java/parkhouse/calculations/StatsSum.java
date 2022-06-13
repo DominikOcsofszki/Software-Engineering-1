@@ -11,11 +11,6 @@ public class StatsSum extends AbstractStats {
         return sum;
     }
     void optionalPrintSthOrSo(IParkingController controller, double sum){
-        System.out.println("In Sum, yes in avg not used--I could print sth or give to out.println-<JS");
+//        System.out.println("In Sum, yes in avg not used--I could print sth or give to out.println-<JS");
     }
 }
-
-  /*  @Override
-    double optional(IParkingController controller, double sum) {
-        return sum;
-    }*/
