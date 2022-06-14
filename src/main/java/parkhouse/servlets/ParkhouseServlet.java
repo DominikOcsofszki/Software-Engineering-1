@@ -7,18 +7,20 @@ import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 import parkhouse.util.Finder;
-import parkhouse.util.Jsonify;
 import parkhouse.util.Saver;
 import parkhouse.util.Time;
 
-import javax.json.JsonObject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * common superclass for all parkhouse.servlets
@@ -44,69 +46,43 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (cmd) {
             case "config":
                 out.println(config());
-//                Saver.outPutAfterReloadBool = true;
-                if (Saver.outPutAfterReloadBool) {  //With if only happens one time
+                if (Saver.init()) {
+                    Saver.loadCars(parkingController());
                     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                        System.out.println("saving cars on 'server' or CSV data in java after shutdown.");
-                        //ToDo add all cars from 'case: "cars"' into a txt or json.
-                        Saver.shutdown(parkingController());    //Saves all cars into carsInHouse.txt and carsRemoved.txt
+                        Saver.saveCars(parkingController());
                     }));
                 }
                 break;
             case "Sum":
-                out.println(String.format(Locale.US,
+                out.println(String.format(
                         "Total income = %s",
                         Price.format(new StatsSum().template1(parkingController())))
                 );
                 break;
             case "Avg":
-                out.println(String.format(Locale.US,
+                out.println(String.format(
                         "Average income per customer = %s",
                         Price.format(new StatsAvg().template1(parkingController())))
                 );
                 break;
             case "Min":
-                out.println(String.format(Locale.US,
+                out.println(String.format(
                         "Lowest income from a customer = %s",
                         Price.format(Stats.minCars(parkingController())))
                 );
                 break;
             case "Max":
-                out.println(String.format(Locale.US,
+                out.println(String.format(
                         "Highest income from a customer = %s",
                         Price.format(Stats.maxCars(parkingController())))
                 );
                 break;
             case "cars":
-//                Saver.outPutAfterReloadBool = true;
-                if (Saver.outPutAfterReloadBool) {
-                    Saver.outPutAfterServerReload(out, parkingController());  //ToDo could be done earlier -static onbject methode?
-                    Saver.outPutAfterReloadBool = false;    //ToDo: Könnte später auch in der Methode geschehen
-
-                    for (ICar c : parkingController().getCars()) {
-                        out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), c.timer(), "_", "_", c.ticket(),
-                                c.color(), c.space(), c.category(), c.type(), c.license()));
-                    }
-                    for (ICar c : parkingController().getRemovedCars()) {
-                        out.println(String.format( "%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), c.timer(), c.duration(), c.price(), c.ticket(),
-                                c.color(), c.space(), c.category(), c.type(), c.license()));
-                    }
-
-                } else {
-
-                    for (ICar c : parkingController().getCars()) {
-                        out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), c.timer(), "_", "_", c.ticket(),
-                                c.color(), c.space(), c.category(), c.type(), c.license()));
-                    }
-                    for (ICar c : parkingController().getRemovedCars()) {
-                        out.println(String.format( "%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), c.timer(), c.duration(), c.price(), c.ticket(),
-                                c.color(), c.space(), c.category(), c.type(), c.license()));
-                    }
-                }
+                out.print(
+                        parkingController().getAllCars()
+                                .stream().map(ICar::toString)
+                                .collect(Collectors.joining(","))
+                );
                 break;
             case "Types":
                 out.println(

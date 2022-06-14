@@ -8,6 +8,8 @@ import parkhouse.views.IObserver;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ParkingModel implements IParkingModel {
 
@@ -108,13 +110,7 @@ public class ParkingModel implements IParkingModel {
 
 
     @Override
-    public List<ICar> getCarsAndRemovedCars() {     // ToDo _do I think we can delete it.
-        final List<ICar> carsAndremovedCars; //_do
-        //        produces a new List, might change the order of elements in List.
-        carsAndremovedCars = new ArrayList<>(cars); //_do
-        carsAndremovedCars.addAll(removedCars);
-
-        return carsAndremovedCars;      //ToDo _do: ohters: decide if it makes sense to always produce a new List?
+    public List<ICar> getAllCars() {
+        return Stream.concat(cars.stream(), removedCars.stream()).collect(Collectors.toList());
     }
-    //_do
 }

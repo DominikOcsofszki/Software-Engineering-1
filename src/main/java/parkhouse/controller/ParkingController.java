@@ -35,6 +35,10 @@ public class ParkingController implements IParkingController {
         return model.getRemovedCars();
     }
 
+    public List<ICar> getAllCars() {
+        return model.getAllCars();
+    }
+
     @Override
     public void addCar(ICar car) {
         model.addCar(car);

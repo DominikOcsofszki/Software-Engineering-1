@@ -17,6 +17,7 @@ public interface IParkingController {
 
     List<ICar> getCars();
     List<ICar> getRemovedCars();
+    List<ICar> getAllCars();
 
 
     DailyEarningsView dailyEarningsView();

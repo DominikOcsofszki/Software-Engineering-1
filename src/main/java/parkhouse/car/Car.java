@@ -4,8 +4,6 @@ import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
-import java.util.Arrays;
-
 public class Car implements ICar {
 
     private String[] params;
@@ -81,6 +79,11 @@ public class Car implements ICar {
     }
 
     @Override
+    public boolean gone() {
+        return !params[2].equals("_") || !params[3].equals("_");
+    }
+
+    @Override
     public void leaveUpdatePriceDuration(String price) {
         this.params[2] = duration()+"";
         this.params[3] = price;
@@ -98,6 +101,13 @@ public class Car implements ICar {
 
     @Override
     public String toString(){
-        return Arrays.toString( params );
+        if (gone()) {
+            return String.format("%d/%d/%d/%d/%s/%s/%d/%s/%s/%s/%d",
+                    nr(), timer(), duration(), price(), ticket(),
+                    color(), space(), category(), type(), license(), begin());
+        }
+        return String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s/%d",
+                nr(), timer(), "_", "_", ticket(), color(), space(),
+                category(), type(), license(), begin());
     }
 }

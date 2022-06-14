@@ -11,7 +11,7 @@ public interface IParkingModel extends IObservable {
     void removeCar(ICar car);// _do
     List<ICar> getCars(); //_do
     List<ICar> getRemovedCars(); //_do
-    List<ICar> getCarsAndRemovedCars(); //_do
+    List<ICar> getAllCars(); //_do
 
     long dailyEarnings();
     long weeklyEarnings();
