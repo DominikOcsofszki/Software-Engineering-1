@@ -3,14 +3,13 @@ package parkhouse.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
-import parkhouse.car.Car;
 import parkhouse.car.ICar;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FinderTest {
 

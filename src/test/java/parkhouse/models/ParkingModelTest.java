@@ -50,14 +50,14 @@ public class ParkingModelTest {
     void parkingModel_dailyEarnings_test() {
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-        assertEquals(Price.priceFactDurationSimSpeed(leaveCar), parkingModel.dailyEarnings());
+        assertEquals(leaveCar.price(), parkingModel.dailyEarnings());
     }
 
     @Test
     void parkingModel_weeklyEarnings_test() {
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-        assertEquals(Price.priceFactDurationSimSpeed(leaveCar), parkingModel.weeklyEarnings());
+        assertEquals(leaveCar.price(), parkingModel.weeklyEarnings());
     }
 
     @RepeatedTest(10)
@@ -65,7 +65,7 @@ public class ParkingModelTest {
     void parkingModel_currentCost_test() {
         parkingModel.addCar(leaveCar);
 //        System.out.println(Price.price(leaveCar));
-        assertEquals(Price.priceFactDurationSimSpeed(leaveCar), parkingModel.currentCost().get(leaveCar.license()),0.5);    //ToDo Why still so many fails?
+        assertEquals(leaveCar.price(), parkingModel.currentCost().get(leaveCar.license()),0.5);    //ToDo Why still so many fails?
     }
     @RepeatedTest(10)
 //    @Test
@@ -78,7 +78,7 @@ public class ParkingModelTest {
 Expected :1.6533885005E10   //ToDo Why is this number so high???
 Actual   :1.6533885006E10
 <Click to see difference>*/
-        assertEquals(Price.priceFactDurationSimSpeed(leaveCar), parkingModel.currentCost().get(leaveCar.license()),1.);
+        assertEquals(leaveCar.price(), parkingModel.currentCost().get(leaveCar.license()),1.);
     }
 
     @Test
