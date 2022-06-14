@@ -1,9 +1,7 @@
 package parkhouse.controller;
 
 import parkhouse.car.ICar;
-import parkhouse.views.CurrentCostsView;
-import parkhouse.views.DailyEarningsView;
-import parkhouse.views.WeeklyEarningsView;
+import parkhouse.views.*;
 
 import java.util.List;
 
@@ -24,6 +22,6 @@ public interface IParkingController {
     DailyEarningsView dailyEarningsView();
     WeeklyEarningsView weeklyEarningsView();
     CurrentCostsView currentCostView();
-
-
+    ClientCategoriesView clientCategoriesView();
+    VehicleTypesView vehicleTypeView();
 }

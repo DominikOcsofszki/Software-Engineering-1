@@ -109,21 +109,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 }
                 break;
             case "Types":
-                JsonObject types = Jsonify.carsCount(parkingController().getCars(), ICar::type);
                 out.println(
-                        Jsonify.plot(
-                                Jsonify.getKeys(types),
-                                Jsonify.getValues(types),
-                                "bar", "Types")
+                        parkingController().vehicleTypeView()
                 );
                 break;
             case "Categories":
-                JsonObject categories = Jsonify.carsCount(parkingController().getCars(), ICar::category);
                 out.println(
-                        Jsonify.plot(
-                                Jsonify.getKeys(categories),
-                                Jsonify.getValues(categories),
-                                "bar", "Categories")
+                        parkingController().clientCategoriesView()
                 );
                 break;
             case "Daily-Earnings":

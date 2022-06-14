@@ -3,10 +3,8 @@ package parkhouse.controller;
 import parkhouse.car.ICar;
 import parkhouse.models.IParkingModel;
 import parkhouse.models.ParkingModel;
-import parkhouse.views.CurrentCostsView;
+import parkhouse.views.*;
 //import parkhouse.views.CurrentElementsView; //_do    // ToDo Still needed? Seems unnecessary!
-import parkhouse.views.DailyEarningsView;
-import parkhouse.views.WeeklyEarningsView;
 
 import java.util.List;
 
@@ -16,6 +14,8 @@ public class ParkingController implements IParkingController {
     private final DailyEarningsView dailyEarningsView;
     private final WeeklyEarningsView weeklyEarningsView;
     private final CurrentCostsView currentCostsView;
+    private final ClientCategoriesView clientCategoriesView;
+    private final VehicleTypesView vehicleTypesView;
 
 
     public ParkingController() {
@@ -23,7 +23,8 @@ public class ParkingController implements IParkingController {
         dailyEarningsView = new DailyEarningsView(model);
         weeklyEarningsView = new WeeklyEarningsView(model);
         currentCostsView = new CurrentCostsView(model);
-
+        clientCategoriesView = new ClientCategoriesView(model);
+        vehicleTypesView = new VehicleTypesView(model);
     }
 
     public List<ICar> getCars() {
@@ -69,6 +70,16 @@ public class ParkingController implements IParkingController {
     @Override
     public CurrentCostsView currentCostView() {
         return this.currentCostsView;
+    }
+
+    @Override
+    public ClientCategoriesView clientCategoriesView() {
+        return this.clientCategoriesView;
+    }
+
+    @Override
+    public VehicleTypesView vehicleTypeView() {
+        return this.vehicleTypesView;
     }
 
     public IParkingModel parkingModel() {

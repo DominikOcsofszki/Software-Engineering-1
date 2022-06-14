@@ -27,7 +27,7 @@
 <div class="box grey">
     <h1>Park house</h1>
     <ccm-parkhaus-11-0-0 server_url="./main-servlet"
-                         debug="true"
+                         debug="false"
                          name="Park house"
                          license_min="1"
                          license_max="100"
