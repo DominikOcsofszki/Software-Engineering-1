@@ -40,7 +40,7 @@ public class JsonifyTest {
     @Test
     @DisplayName("Test if json array contains the correct values")
     void jsonify_carsAsJsonArray_test() {
-        List<Function<ICar,Object>> func = Arrays.asList(ICar::nr, ICar::price, ICar::license);
+        List<Function<ICar,Object>> func = Arrays.asList(ICar::ticket, ICar::license);
         for (Function<ICar,Object> f : func) {
             JsonArray arr = Jsonify.carsAsJsonArray(cars, f);
             for (int i = 0; i < cars.size(); i++) {
