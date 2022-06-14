@@ -1,5 +1,6 @@
 package parkhouse.car;
 
+import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
@@ -24,8 +25,13 @@ public class Car implements ICar {
     }
 
     @Override
-    public long begin() {
+    public long timer() {
         return Long.parseLong(params[1]);
+    }
+
+    @Override
+    public long begin() {
+        return Long.parseLong(params[10]);
     }
 
     @Override
@@ -36,17 +42,17 @@ public class Car implements ICar {
     @Override
     public long duration() {
         if (params[2].equals("_")) {
-            return Config.SIMULATION_SPEED * (Time.now() - Time.realTime(begin()));
+            return Math.max(Config.SIMULATION_SPEED, 1) * (Time.now() - timer());
         }
-//        if (params[2].equals("_")) return 0;
         return Long.parseLong(params[2]);
     }
 
     @Override
-    public double price() {     //Since duration changed, old methode duration() == 0 did not work.
-        if (params[2].equals("_")) return 0;  // if the car did not leave yet, return as price = 0, Problem in tests!
-        //ToDo _do: Jakob? use this methode for price changes? Input factors here?
-        return Double.parseDouble(params[3]);
+    public long price() {
+        if (params[3].equals("_")) {
+            return Math.round(Price.priceFactor(this) * this.duration() / Math.max(Config.SIMULATION_SPEED, 1));
+        }
+        return Long.parseLong(params[3]);
     }
 
     @Override
@@ -75,11 +81,6 @@ public class Car implements ICar {
     }
 
     @Override
-    public String lastParameter() {
-        return params[10];
-    }
-
-    @Override
     public void leaveUpdatePriceDuration(String price) {
         this.params[2] = duration()+"";
         this.params[3] = price;
@@ -89,8 +90,6 @@ public class Car implements ICar {
     public void updateParams(String[] params) {
         this.params = params;
     }
-
-
 
     @Override
     public void setSpace(int x) { // add new spaceNr for car, after locator

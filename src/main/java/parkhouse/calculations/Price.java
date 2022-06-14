@@ -11,16 +11,16 @@ public class Price {
 
     private Price() {}
 
-    public static String format(double price) {
-        return String.format(Locale.US, "%.2f€", price);
+    public static String format(long price) {
+        return String.format(Locale.US, "%.2f€", price / 100d);
     }
 
-    public static double out(double price) {
+    public static long out(long price) {
         return price / 100;
     }
 
-    public static double priceFactDurationSimSpeed(ICar car) {   //Changed name since always confusing what price() is.
-        return priceFactor(car) * car.duration() / Config.SIMULATION_SPEED;
+    public static long priceFactDurationSimSpeed(ICar car) {   //Changed name since always confusing what price() is.
+        return Math.round(priceFactor(car) * car.duration() / Config.SIMULATION_SPEED);
     }
 
     public static double priceFactor(ICar car) {

@@ -7,7 +7,7 @@ public class StatsAvg extends AbstractStats{
 
 
     @Override
-    double calcExtra(IParkingController controller, double sum) {
+    long calcExtra(IParkingController controller, long sum) {
         return sum / controller.getRemovedCars().size();
     }
 

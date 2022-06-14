@@ -3,6 +3,7 @@ package parkhouse.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
+import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
@@ -31,7 +32,7 @@ public class CarTest {
     void car_begin_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            assertEquals(Long.parseLong(p[1]), car.begin());
+            assertEquals(Long.parseLong(p[10]), car.begin());
         }
     }
 
@@ -41,7 +42,7 @@ public class CarTest {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (p[2].equals("_")) {
-                long duration = Config.SIMULATION_SPEED * (Time.now() - Time.realTime(car.begin()));
+                long duration = Math.max(Config.SIMULATION_SPEED, 1) * (Time.now() - car.timer());
                 assertEquals(duration, car.duration(), 500);
             } else {
                 assertEquals(Integer.parseInt(p[2]), car.duration());
@@ -54,8 +55,9 @@ public class CarTest {
     void car_price_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            if (p[2].equals("_")) {
-                assertEquals(0, car.price());
+            if (p[3].equals("_")) {
+                long price = Math.round(Price.priceFactor(car) * car.duration() / Math.max(Config.SIMULATION_SPEED, 1));
+                assertEquals(price, car.price(), 50);
             } else {
                 assertEquals(Double.parseDouble(p[3]), car.price());
             }
@@ -121,7 +123,7 @@ public class CarTest {
     void car_end_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            assertEquals(car.begin() + car.duration(), car.end());
+            assertEquals(car.begin() + car.duration(), car.end(), 500);
         }
     }
 

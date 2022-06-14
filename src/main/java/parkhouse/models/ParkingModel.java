@@ -56,43 +56,41 @@ public class ParkingModel implements IParkingModel {
     @Override
     public void addCarRestartServer(ICar car) {
         cars.add(car);
-//        notifyObservers();    //ToDo notify when all all cars entered for performance
-
+        notifyObservers();    //ToDo notify when all all cars entered for performance
     }
 
     @Override
     public void removeCarRestartServer(ICar car) {
         removedCars.add(car);
-//        notifyObservers();  //ToDo notify when all all cars entered for performance
-
+        notifyObservers();  //ToDo notify when all all cars entered for performance
     }
     //--
 
-    private Double earningHelper(long timeWall) {
+    private long earningHelper(long timeWall) {
         long now = Time.simNow();
         return removedCars.stream()
                 .filter(car -> ((Time.difference(now, car.end()) < timeWall)))
-                .mapToDouble(ICar::price)
+                .mapToLong(ICar::price)
                 .sum();
     }
 
     @Override
-    public Double dailyEarnings() {
-        return Price.out(earningHelper(Time.MILLISECONDS_PER_DAY));
+    public long dailyEarnings() {
+        return earningHelper(Time.MILLISECONDS_PER_DAY);
     }
 
     @Override
-    public Double weeklyEarnings() {
-        return Price.out(earningHelper(Time.MILLISECONDS_PER_WEEK));
+    public long weeklyEarnings() {
+        return earningHelper(Time.MILLISECONDS_PER_WEEK);
     }
 
 
     @Override
-    public HashMap<String, Double> currentCost() {
-        HashMap<String, Double> cost = new HashMap<>();
+    public HashMap<String, Long> currentCost() {
+        HashMap<String, Long> cost = new HashMap<>();
         if (getCars().size() > 0) {
             for (ICar c : getCars()) {
-                cost.put(c.license(), Price.priceFactDurationSimSpeed(c));
+                cost.put(c.license(), c.price());
             }
         }
         return cost;

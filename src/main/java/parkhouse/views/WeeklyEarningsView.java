@@ -6,14 +6,14 @@ import parkhouse.models.IParkingModel;
 public class WeeklyEarningsView implements IObserver{
 
     private final IParkingModel model;
-    private double weeklyEarnings;
+    private long weeklyEarnings;
 
     public WeeklyEarningsView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);
     }
 
-    public double getWeeklyEarnings() {
+    public long getWeeklyEarnings() {
         return weeklyEarnings;
     }
 

@@ -55,26 +55,26 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Sum":
                 out.println(String.format(Locale.US,
-                        "Total income = %.2f€",
-                        Price.out(new StatsSum().template1(parkingController())))
+                        "Total income = %s",
+                        Price.format(new StatsSum().template1(parkingController())))
                 );
                 break;
             case "Avg":
                 out.println(String.format(Locale.US,
-                        "Average income per customer = %.2f€",
-                        Price.out(new StatsAvg().template1(parkingController())))
+                        "Average income per customer = %s",
+                        Price.format(new StatsAvg().template1(parkingController())))
                 );
                 break;
             case "Min":
                 out.println(String.format(Locale.US,
-                        "Lowest income from a customer = %.2f€",
-                        Price.out(Stats.minCars(parkingController())))
+                        "Lowest income from a customer = %s",
+                        Price.format(Stats.minCars(parkingController())))
                 );
                 break;
             case "Max":
                 out.println(String.format(Locale.US,
-                        "Highest income from a customer = %.2f€",
-                        Price.out(Stats.maxCars(parkingController())))
+                        "Highest income from a customer = %s",
+                        Price.format(Stats.maxCars(parkingController())))
                 );
                 break;
             case "cars":
@@ -85,12 +85,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
                     for (ICar c : parkingController().getCars()) {
                         out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
+                                c.nr(), c.timer(), "_", "_", c.ticket(),
                                 c.color(), c.space(), c.category(), c.type(), c.license()));
                     }
                     for (ICar c : parkingController().getRemovedCars()) {
-                        out.println(String.format(Locale.US, "%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
+                        out.println(String.format( "%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), c.timer(), c.duration(), c.price(), c.ticket(),
                                 c.color(), c.space(), c.category(), c.type(), c.license()));
                     }
 
@@ -98,18 +98,16 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
                     for (ICar c : parkingController().getCars()) {
                         out.println(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
+                                c.nr(), c.timer(), "_", "_", c.ticket(),
                                 c.color(), c.space(), c.category(), c.type(), c.license()));
                     }
                     for (ICar c : parkingController().getRemovedCars()) {
-                        out.println(String.format(Locale.US, "%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,",
-                                c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
+                        out.println(String.format( "%d/%d/%d/%d/%s/%s/%d/%s/%s/%s,",
+                                c.nr(), c.timer(), c.duration(), c.price(), c.ticket(),
                                 c.color(), c.space(), c.category(), c.type(), c.license()));
                     }
                 }
                 break;
-
-
             case "Types":
                 JsonObject types = Jsonify.carsCount(parkingController().getCars(), ICar::type);
                 out.println(
@@ -149,6 +147,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Time.now(), Time.simNow(),
                         Time.simNow() - Time.now())
                 );
+                break;
             case "Reset":
                 getServletContext().setAttribute("parkingController" + NAME(), null);
                 out.println("Reset. Reload page");
@@ -194,11 +193,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "leave":
                 ICar oldCar = Finder.findICarForTicket(parkingController(), restParams[4]);
-                double price = Price.priceFactDurationSimSpeed(oldCar);
-                oldCar.leaveUpdatePriceDuration(String.valueOf(price));
+                //double price = Price.priceFactDurationSimSpeed(oldCar);
+                //oldCar.leaveUpdatePriceDuration(String.valueOf(price));
+                oldCar.updateParams(restParams);
                 parkingController().removeCar(oldCar);
+                out.println(restParams[3]);
 
-                out.println(Price.priceFactDurationSimSpeed(oldCar));
+                //out.println(Price.priceFactDurationSimSpeed(oldCar));
 //                out.println(price); //ToDo use Variable price instead?
                 break;
             case "invalid":

@@ -13,9 +13,9 @@ public interface IParkingModel extends IObservable {
     List<ICar> getRemovedCars(); //_do
     List<ICar> getCarsAndRemovedCars(); //_do
 
-    Double dailyEarnings();
-    Double weeklyEarnings();
-    HashMap<String,Double> currentCost();
+    long dailyEarnings();
+    long weeklyEarnings();
+    HashMap<String,Long> currentCost();
 
     //-----
     void addCarRestartServer(ICar car); // _do

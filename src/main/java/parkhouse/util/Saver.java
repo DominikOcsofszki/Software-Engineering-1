@@ -45,16 +45,16 @@ public class Saver {
 
     private static void formatOutPutShutdown(IParkingController parkingController, BufferedWriter bw, BufferedWriter bwRemoved) throws IOException {
         for (ICar c : parkingController.getCars()) {
-            bw.write(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s/%s\n",      // \n was added ","deleted
+            bw.write(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s/%d\n",      // \n was added ","deleted
 //            bw.write(String.format("%d/%d/%s/%s/%s/%s/%d/%s/%s/%s,\n",      // \n was added
-                    c.nr(), Time.realTime(c.begin()), "_", "_", c.ticket(),
-                    c.color(), c.space(), c.category(), c.type(), c.license(),c.lastParameter()));
+                    c.nr(), c.timer(), "_", "_", c.ticket(),
+                    c.color(), c.space(), c.category(), c.type(), c.license(), c.begin()));
         }
         for (ICar c : parkingController.getRemovedCars()) {
-            bwRemoved.write(String.format(Locale.US,"%d/%d/%d/%f/%s/%s/%d/%s/%s/%s/%s\n",  //\n was added "," deleted
+            bwRemoved.write(String.format("%d/%d/%d/%d/%s/%s/%d/%s/%s/%s/%d\n",  //\n was added "," deleted
 //            bwRemoved.write(String.format(Locale.US,"%d/%d/%d/%f/%s/%s/%d/%s/%s/%s,\n",  //\n was added
-                    c.nr(), Time.realTime(c.begin()), c.duration(), c.price(), c.ticket(),
-                    c.color(), c.space(), c.category(), c.type(), c.license(), c.lastParameter()));
+                    c.nr(), c.timer(), c.duration(), c.price(), c.ticket(),
+                    c.color(), c.space(), c.category(), c.type(), c.license(), c.begin()));
         }
     }
     public static void outPutAfterServerReload(PrintWriter out, IParkingController parkingController)  {        //ToDo in this way in JS - sometimes double -BUT not yet in java -> Cars: car.updateParams(Formating (scInside.nextLine()))

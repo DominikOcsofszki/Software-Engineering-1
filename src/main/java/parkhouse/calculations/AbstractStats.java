@@ -6,9 +6,9 @@ import parkhouse.controller.IParkingController;
 
 public abstract class AbstractStats {
 
-    public double template1(IParkingController controller) {
-        double sum = sum(controller);
-        double d = calcExtra(controller, sum);
+    public long template1(IParkingController controller) {
+        long sum = sum(controller);
+        long d = calcExtra(controller, sum);
         if (Config.isConfigDebugMode()) {
             debugPrint(d);
         }
@@ -16,20 +16,20 @@ public abstract class AbstractStats {
         return d;
     }
 
-    void debugPrint(double d) {
+    void debugPrint(long d) {
         System.out.println("DEBUG(AbstractStats):ON" + d);
     }
 
-    abstract double calcExtra(IParkingController controller, double sum);
+    abstract long calcExtra(IParkingController controller, long sum);
 
-    void optionalPrintSthOrSo(IParkingController controller, double sum) {
+    void optionalPrintSthOrSo(IParkingController controller, long sum) {
     //Here nothing happends
     }
 
-    public double sum(IParkingController controller) {
+    public long sum(IParkingController controller) {
         return controller.getRemovedCars().stream().map(ICar::price)
                 .filter(price -> (price > 0))
-                .reduce(0d, Double::sum);
+                .reduce(0L, Long::sum);
     }
 }
 

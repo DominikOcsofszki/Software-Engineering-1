@@ -8,12 +8,12 @@ public class Stats {
     private Stats() {
     }
 
-    public static double minCars(IParkingController controller) {
-        return controller.getRemovedCars().stream().mapToDouble(ICar::price).filter(x -> x > 0).min().orElse(0D);
+    public static long minCars(IParkingController controller) {
+        return controller.getRemovedCars().stream().mapToLong(ICar::price).filter(x -> x > 0).min().orElse(0L);
     }
 
-    public static double maxCars(IParkingController controller) {
-        return controller.getRemovedCars().stream().mapToDouble(ICar::price).filter(x -> x > 0).max().orElse(0D);
+    public static long maxCars(IParkingController controller) {
+        return controller.getRemovedCars().stream().mapToLong(ICar::price).filter(x -> x > 0).max().orElse(0L);
     }
 
 }

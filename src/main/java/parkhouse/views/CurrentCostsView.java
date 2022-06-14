@@ -10,7 +10,7 @@ import java.util.Map;
 public class CurrentCostsView implements IObserver {
 
     private final IParkingModel model;
-    private HashMap<String,Double> currentCosts;
+    private HashMap<String,Long> currentCosts;
 
     public CurrentCostsView(IParkingModel model) {
         this.model = model;
@@ -28,9 +28,9 @@ public class CurrentCostsView implements IObserver {
         String[] headers = new String[currentCosts.size()];
         String[][] data = new String[1][currentCosts.size()];
         int i = 0;
-        for (Map.Entry<String,Double> e : currentCosts.entrySet()) {
+        for (Map.Entry<String,Long> e : currentCosts.entrySet()) {
             headers[i] = e.getKey();
-            data[0][i++] = Price.format(Price.out(e.getValue()));
+            data[0][i++] = Price.format(e.getValue());
         }
         return Tableize.table(headers, data);
     }

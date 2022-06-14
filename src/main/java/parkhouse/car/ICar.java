@@ -3,10 +3,11 @@ package parkhouse.car;
 public interface ICar {
     int nr();
     int space();
+    long timer();
     long begin();
     long end();
     long duration();
-    double price();
+    long price();
     String ticket();
     String color();
     String category();
@@ -15,6 +16,4 @@ public interface ICar {
     void setSpace(int x);
     void leaveUpdatePriceDuration(String price);        //Changed name for better understanding.
     void updateParams(String[] params);
-    //--
-    String lastParameter();
 }
