@@ -1,6 +1,7 @@
 package parkhouse.controller;
 
 import parkhouse.car.ICar;
+import parkhouse.commands.ICommand;
 import parkhouse.views.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface IParkingController {
 
     void addCar(ICar car);
     void removeCar(ICar car);
+    void deleteCar(ICar car);
     //-----
     void addCarRestartServer(ICar car); // _do
     void addRemovedCarRestartServer(ICar car);// _do
@@ -25,4 +27,5 @@ public interface IParkingController {
     CurrentCostsView currentCostView();
     ClientCategoriesView clientCategoriesView();
     VehicleTypesView vehicleTypeView();
+    List<ICommand> commandList();
 }

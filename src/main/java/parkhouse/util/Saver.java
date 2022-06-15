@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 
 public class Saver {
 
-    private Saver() {}
+    private Saver() {
+    }
 
     private static boolean init = true;
 
@@ -34,27 +35,28 @@ public class Saver {
                 bw.write(c.toString() + "\n");
             }
             bw.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadCars(IParkingController controller)  {
-        Path path = Paths.get("saved_cars.save");
-            try {
-                BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
-                List<String> lines = new ArrayList<>();
-                br.lines().collect(Collectors.toCollection(() -> lines));
-                for (String l : lines) {
-                    ICar car = new Car(l.split("/"));
-                    if (!car.gone()) {
-                        controller.addCar(car);
-                    } else {
-                        controller.addRemovedCarRestartServer(car);
-                    }
+
+    public static void loadCars(IParkingController controller) {
+        Path path = Paths.get("//saved_cars.save");
+        try {
+            BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
+            List<String> lines = new ArrayList<>();
+            br.lines().collect(Collectors.toCollection(() -> lines));
+            for (String l : lines) {
+                ICar car = new Car(l.split("/"));
+                if (!car.gone()) {
+                    controller.addCar(car);
+                } else {
+                    controller.addRemovedCarRestartServer(car);
                 }
-                br.close();
-            } catch(IOException e) {
-                e.printStackTrace();
             }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

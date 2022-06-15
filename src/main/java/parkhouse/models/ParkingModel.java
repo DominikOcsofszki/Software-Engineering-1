@@ -53,6 +53,12 @@ public class ParkingModel implements IParkingModel {
         notifyObservers();
     }
 
+    @Override
+    public void deleteCar(ICar car) {
+        cars.remove(car);
+        notifyObservers();
+    }
+
     //-----
 
     @Override

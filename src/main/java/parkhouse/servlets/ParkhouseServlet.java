@@ -3,6 +3,8 @@ package parkhouse.servlets;
 import parkhouse.calculations.*;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.commands.CarEnterCommand;
+import parkhouse.commands.ICommand;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
@@ -16,10 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -120,6 +119,10 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 getServletContext().setAttribute("parkingController" + NAME(), null);
                 out.println("Reset. Reload page");
                 break;
+            case "Undo":
+                // removes last command and undo it
+                parkingController().commandList().remove(parkingController().commandList().size() - 1).undo();
+                break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
         }
@@ -151,24 +154,19 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 Config.setOpenTo(Integer.parseInt(restParams[0]));
                 break;
             case "enter":
-                ICar newCar = new Car(restParams);
                 int spaceNr = Locator.locate(parkingController());      //ToDo delete old Locator
                 if (spaceNr != -1) {
-                    newCar.setSpace(spaceNr);
-                    parkingController().addCar(newCar); // adding the car
+                    CarEnterCommand carEnterCommand = new CarEnterCommand(new Car(restParams), spaceNr, parkingController());
+                    carEnterCommand.execute();
+                    parkingController().commandList().add(carEnterCommand);
                     out.println(spaceNr);       //only do sth if space
                 }
                 break;
             case "leave":
                 ICar oldCar = Finder.findICarForTicket(parkingController(), restParams[4]);
-                //double price = Price.priceFactDurationSimSpeed(oldCar);
-                //oldCar.leaveUpdatePriceDuration(String.valueOf(price));
                 oldCar.updateParams(restParams);
                 parkingController().removeCar(oldCar);
                 out.println(restParams[3]);
-
-                //out.println(Price.priceFactDurationSimSpeed(oldCar));
-//                out.println(price); //ToDo use Variable price instead?
                 break;
             case "invalid":
             case "occupied":

@@ -36,7 +36,7 @@
                          delay="100"
                          simulation_speed="1000"
 <%--                         time_shift = "360000"--%>
-                         extra_buttons='["Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
+                         extra_buttons='["Undo","Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
                          extra_charts='["Types","Categories"]'
                          client_categories='["Default","Women","Business","Family","Disability"]'
                          space_color='{"1":"black"}'
