@@ -40,8 +40,8 @@
                          extra_charts='["Types","Categories"]'
                          client_categories='["Default","Women","Business","Family","Disability"]'
                          space_color='{"1":"black"}'
-                         vehicle_types='["PKW","SUV"]'
-                         price_factor='{"SUV":2,"Family":0.5}'
+                         vehicle_types='["PKW","SUV","QUAD","TRIKE","PICKUP"]'
+                         price_factor='{"SUV":2,"Family":0.5,"PICKUP":2}'
                          max="32"
                          SALT="456">
     </ccm-parkhaus-11-0-0>
