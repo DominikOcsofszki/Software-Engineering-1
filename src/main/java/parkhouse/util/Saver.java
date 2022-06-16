@@ -41,7 +41,7 @@ public class Saver {
     }
 
     public static void loadCars(IParkingController controller) {
-        Path path = Paths.get("//saved_cars.save");
+        Path path = Paths.get("saved_cars.save");
         try {
             BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
             List<String> lines = new ArrayList<>();
