@@ -59,13 +59,15 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Sum":
                 out.println(String.format(
                         "Total income = %s",
-                        Price.format(new StatsSum().template1(parkingController())))
+//                        Price.format(new StatsSum().template1(parkingController())))
+                        Price.format((new StatsRemovedAvg().template1(parkingController()))))
                 );
                 break;
             case "Avg":
                 out.println(String.format(
                         "Average income per customer = %s",
-                        Price.format(new StatsAvg().template1(parkingController())))
+//                        Price.format(new StatsAvg().template1(parkingController())))
+                        Price.format(new StatsRemovedAvg().template1(parkingController())))
                 );
                 break;
             case "Min":

@@ -1,3 +1,4 @@
+/*
 package parkhouse.calculations;
 
 import parkhouse.controller.IParkingController;
@@ -14,3 +15,4 @@ public class StatsSum extends AbstractStats {
 //        System.out.println("In Sum, yes in avg not used--I could print sth or give to out.println-<JS");
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package parkhouse.calculations;
 
 import parkhouse.car.ICar;
@@ -13,3 +14,4 @@ public class StatsAvg extends AbstractStats{
 
 }
 
+*/
