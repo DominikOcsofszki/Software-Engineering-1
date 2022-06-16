@@ -16,18 +16,6 @@ public class Price {
         return String.format(Locale.US, "%.2f€", price / 100d);
     }
 
-    /*
-    public static long out(long price) {
-        return price / 100;
-    }
-     */
-
-    /*
-    public static long priceFactDurationSimSpeed(ICar car) {   //Changed name since always confusing what price() is.
-        return Math.round(priceFactor(car) * car.duration() / Config.SIMULATION_SPEED);
-    }
-     */
-
     public static double priceFactor(ICar car) {
         List<String> price_factors = new ArrayList<>(Arrays.asList(Config.PRICE_FACTOR));
         for (String PF : price_factors) {
