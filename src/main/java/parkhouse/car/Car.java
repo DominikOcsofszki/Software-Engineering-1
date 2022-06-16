@@ -84,12 +84,6 @@ public class Car implements ICar {
     }
 
     @Override
-    public void leaveUpdatePriceDuration(String price) {
-        this.params[2] = duration()+"";
-        this.params[3] = price;
-    }
-
-    @Override
     public void updateParams(String[] params) {
         this.params = params;
     }

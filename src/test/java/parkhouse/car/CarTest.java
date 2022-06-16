@@ -7,7 +7,6 @@ import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -24,6 +23,15 @@ public class CarTest {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(Integer.parseInt(p[0]), car.nr());
+        }
+    }
+
+    @Test
+    @DisplayName("Test if 'timer' is set correctly")
+    void car_timer_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            assertEquals(Long.parseLong(p[1]), car.timer());
         }
     }
 
@@ -132,7 +140,25 @@ public class CarTest {
     void car_toString_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            assertEquals(Arrays.toString(p), car.toString());
+            assertEquals(
+                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                            p[0], p[1], p[2], p[3], p[4], p[5],
+                            p[6], p[7], p[8], p[9], p[10]
+                            ), car.toString()
+            );
+        }
+    }
+
+    @Test
+    @DisplayName("Test if car is recognized as 'gone' correctly")
+    void car_gone_test() {
+        for (String[] p : params) {
+            ICar car = new Car(p);
+            if (!p[2].equals("_") && !p[3].equals("_")) {
+                assertTrue(car.gone());
+            } else {
+                assertFalse(car.gone());
+            }
         }
     }
 
@@ -142,7 +168,12 @@ public class CarTest {
         ICar car = new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"});
         for (String[] p : params) {
             car.updateParams(p);
-            assertEquals(Arrays.toString(p), car.toString());
+            assertEquals(
+                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                            p[0], p[1], p[2], p[3], p[4], p[5],
+                            p[6], p[7], p[8], p[9], p[10]
+                    ), car.toString()
+            );
         }
     }
 

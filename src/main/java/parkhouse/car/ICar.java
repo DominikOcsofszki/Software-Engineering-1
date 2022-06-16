@@ -15,6 +15,5 @@ public interface ICar {
     String license();
     boolean gone();
     void setSpace(int x);
-    void leaveUpdatePriceDuration(String price);        //Changed name for better understanding.
     void updateParams(String[] params);
 }
