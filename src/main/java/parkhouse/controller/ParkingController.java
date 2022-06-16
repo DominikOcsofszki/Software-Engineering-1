@@ -1,6 +1,7 @@
 package parkhouse.controller;
 
 import parkhouse.car.ICar;
+import parkhouse.commands.Commander;
 import parkhouse.commands.ICommand;
 import parkhouse.models.IParkingModel;
 import parkhouse.models.ParkingModel;
@@ -18,7 +19,7 @@ public class ParkingController implements IParkingController {
     private final CurrentCostsView currentCostsView;
     private final ClientCategoriesView clientCategoriesView;
     private final VehicleTypesView vehicleTypesView;
-    private final List<ICommand> commandList;
+    private final Commander commander;
 
 
     public ParkingController() {
@@ -28,7 +29,7 @@ public class ParkingController implements IParkingController {
         currentCostsView = new CurrentCostsView(model);
         clientCategoriesView = new ClientCategoriesView(model);
         vehicleTypesView = new VehicleTypesView(model);
-        commandList = new ArrayList<>();
+        commander = new Commander();
     }
 
     public List<ICar> getCars() {
@@ -96,10 +97,10 @@ public class ParkingController implements IParkingController {
     }
 
     public IParkingModel parkingModel() {
-        return model;
+        return this.model;
     }
 
-    public List<ICommand> commandList() {
-        return commandList;
+    public Commander commander() {
+        return this.commander;
     }
 }

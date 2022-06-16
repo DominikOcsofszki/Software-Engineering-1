@@ -30,7 +30,7 @@ public class CarEnterCommandTest {
     @Test
     void carEnterCommand_executeAndUnexecute_test() {
         int spaceNr = Locator.locate(controller);
-        ICommand command = new CarEnterCommand(car, spaceNr, controller);
+        ICommand command = new CarEnterCommand(car, controller);
         command.execute();
         assertEquals(1, controller.getCars().size());
         command.undo();

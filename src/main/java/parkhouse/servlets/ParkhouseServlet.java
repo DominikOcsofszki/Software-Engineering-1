@@ -4,6 +4,7 @@ import parkhouse.calculations.*;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.commands.CarEnterCommand;
+import parkhouse.commands.CarLeaveCommand;
 import parkhouse.commands.ICommand;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
@@ -123,8 +124,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(RELOAD);
                 break;
             case "Undo":
-                // removes last command and undo it
-                parkingController().commandList().remove(parkingController().commandList().size() - 1).undo();
+                parkingController().commander().undo();
                 out.println(RELOAD);
                 break;
             default:
@@ -158,18 +158,22 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 Config.setOpenTo(Integer.parseInt(restParams[0]));
                 break;
             case "enter":
-                int spaceNr = Locator.locate(parkingController());      //ToDo delete old Locator
-                if (spaceNr != -1) {
-                    CarEnterCommand carEnterCommand = new CarEnterCommand(new Car(restParams), spaceNr, parkingController());
-                    carEnterCommand.execute();
-                    parkingController().commandList().add(carEnterCommand);
-                    out.println(spaceNr);       //only do sth if space
+                int space = Locator.locate(parkingController());
+                if (space != -1) {
+                    ICar car = new Car(restParams);
+                    car.setSpace(space);
+                    CarEnterCommand cmd = new CarEnterCommand(car, parkingController());
+                    parkingController().commander().queue(cmd);
+                    parkingController().commander().activate();
+                    out.println(space);
                 }
                 break;
             case "leave":
-                ICar oldCar = Finder.findICarForTicket(parkingController(), restParams[4]);
-                oldCar.updateParams(restParams);
-                parkingController().removeCar(oldCar);
+                ICar car = Finder.findICarForTicket(parkingController(), restParams[4]);
+                car.updateParams(restParams);
+                CarLeaveCommand cmd = new CarLeaveCommand(car, parkingController());
+                parkingController().commander().queue(cmd);
+                parkingController().commander().activate();
                 out.println(restParams[3]);
                 break;
             case "invalid":

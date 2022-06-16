@@ -1,6 +1,7 @@
 package parkhouse.controller;
 
 import parkhouse.car.ICar;
+import parkhouse.commands.Commander;
 import parkhouse.commands.ICommand;
 import parkhouse.views.*;
 
@@ -27,5 +28,5 @@ public interface IParkingController {
     CurrentCostsView currentCostView();
     ClientCategoriesView clientCategoriesView();
     VehicleTypesView vehicleTypeView();
-    List<ICommand> commandList();
+    Commander commander();
 }

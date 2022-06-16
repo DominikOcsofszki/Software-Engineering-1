@@ -6,6 +6,7 @@ import parkhouse.util.Time;
 import parkhouse.views.IObserver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,6 +57,7 @@ public class ParkingModel implements IParkingModel {
     @Override
     public void deleteCar(ICar car) {
         cars.remove(car);
+        removedCars.remove(car);
         notifyObservers();
     }
 
