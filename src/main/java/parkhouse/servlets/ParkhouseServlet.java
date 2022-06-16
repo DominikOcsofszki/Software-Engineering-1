@@ -33,6 +33,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     abstract String config();
 
+    private static final String RELOAD = "<img src='x' onerror=location.reload();>";
+
     /**
      * HTTP GET
      */
@@ -42,6 +44,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String cmd = request.getParameter("cmd");
         System.out.println(cmd + " requested: " + request.getQueryString());
+
         switch (cmd) {
             case "config":
                 out.println(config());
@@ -117,11 +120,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "Reset":
                 getServletContext().setAttribute("parkingController" + NAME(), null);
-                out.println("Reset. Reload page");
+                out.println(RELOAD);
                 break;
             case "Undo":
                 // removes last command and undo it
                 parkingController().commandList().remove(parkingController().commandList().size() - 1).undo();
+                out.println(RELOAD);
                 break;
             default:
                 System.out.println("Invalid Command: " + request.getQueryString());
@@ -184,14 +188,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     }
 
-    public List<ICar> getCarsController() {
-        return parkingController().getCars();
-    }
-
-    public List<ICar> getRemovedCarsController() {
-        return parkingController().getRemovedCars();
-    }
-
     //-------------------------------------------------------
 
     // auxiliary methods used in HTTP request processing
@@ -201,41 +197,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
      */
     ServletContext getContext() {
         return getServletConfig().getServletContext();
-    }
-
-    /**
-     * TODO: replace this by your own function
-     *
-     * @return the number of the free parking lot to which the next incoming car will be directed
-     */
-    int locator(ICar car) {     //ToDo Delete since not used anymore!
-        int nr = -1;
-        // numbers of parking lots start at 1, not zero
-        // return 1;  // always use the first space
-//        int[] intStream = cars().stream().    // Gives all Nr. Spots used. Search for free one
-//                        filter(x -> x.duration() == 0)
-//                                        .mapToInt(ICar::space).sorted().toArray();
-        int[] intStream = getCarsController().stream().    // Gives all Nr. Spots used. Search for free one
-                filter(x -> x.duration() == 0)
-                .mapToInt(ICar::space).sorted().toArray();
-        Set<Integer> set = new HashSet<>();
-        for (int x : intStream
-        ) {
-            set.add(x);
-        }
-        for (int i = 0; i <= MAX(); i++) {
-            if (!set.contains(i)) {
-//                car.setSpace(i);
-                nr = i;
-            }
-        }
-//        System.out.println(set);
-//        System.out.println(set.size());
-//        System.out.println(nr);
-        //ToDo find non existing Nr in that stream;
-//        nr = 1 + ((cars().size() - 1) % this.MAX());
-        car.setSpace(nr);
-        return nr;
     }
 
     IParkingController parkingController() {
