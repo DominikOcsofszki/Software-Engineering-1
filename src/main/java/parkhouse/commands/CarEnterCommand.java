@@ -19,12 +19,10 @@ public class CarEnterCommand implements ICommand {
     @Override
     public void execute() {
         controller.addCar(car);
-        Log.getLogger().log(Level.FINE, "Car entered: " + car.license());
     }
 
     @Override
     public void undo() {
         controller.deleteCar(car);
-        Log.getLogger().log(Level.FINE, "Car deleted: " + car.license());
     }
 }

@@ -1,16 +1,16 @@
 package parkhouse.car;
 
+import parkhouse.logging.Log;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class CarTypes {
 
-    private static final Map<String, CarTypes> instances = new HashMap<String, CarTypes>();
-
-
+    private static final Map<String, CarTypes> instances = new HashMap<>();
 
     private CarTypes(){
-
     }
 
     public static CarTypes getInstance(String key){
@@ -21,6 +21,7 @@ public class CarTypes {
             if(instance == null){
                 instance = new CarTypes();
                 instances.put(key, instance);
+                Log.getLogger().log(Level.INFO, "Created new Car instance: " + key);
             }
             return instance;
         }
