@@ -9,11 +9,11 @@ public class Stats {
     }
 
     public static long minCars(IParkingController controller) {
-        return controller.getRemovedCars().stream().mapToLong(ICar::price).filter(x -> x > 0).min().orElse(0L);
+        return controller.getRemovedCars().stream().mapToLong(ICar::price).min().orElse(0L);
     }
 
     public static long maxCars(IParkingController controller) {
-        return controller.getRemovedCars().stream().mapToLong(ICar::price).filter(x -> x > 0).max().orElse(0L);
+        return controller.getRemovedCars().stream().mapToLong(ICar::price).max().orElse(0L);
     }
 
 }
