@@ -18,23 +18,15 @@ public class Data {
     private Data() {}
 
     public static List<String[]> params() {
-        Path path = Paths.get("cars.csv");
-        List<String[]> params = new ArrayList<>();
-        try {
-            BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
-            List<String> lines = new ArrayList<>();
-            br.lines().collect(Collectors.toCollection(() -> lines));
-            for (String l : lines) {
-                params.add(l.split(","));
-            }
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-        return params;
+        return paramsHelper("cars.csv");
     }
 
     public static List<String[]> paramsDuration() {
-        Path path = Paths.get("cars_with_duration.csv");
+        return paramsHelper("cars_with_duration.csv");
+    }
+
+    private static List<String[]> paramsHelper(String p) {
+        Path path = Paths.get(p);
         List<String[]> params = new ArrayList<>();
         try {
             BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
