@@ -94,7 +94,6 @@ public class ParkingModel implements IParkingModel {
         return earningHelper(Time.MILLISECONDS_PER_WEEK);
     }
 
-
     @Override
     public HashMap<String, Long> currentCost() {
         HashMap<String, Long> cost = new HashMap<>();
@@ -107,7 +106,6 @@ public class ParkingModel implements IParkingModel {
 
     }
 
-
     public List<ICar> getCars() {
         return cars;
     }
@@ -115,7 +113,6 @@ public class ParkingModel implements IParkingModel {
     public List<ICar> getRemovedCars() {
         return removedCars;
     }
-
 
     @Override
     public List<ICar> getAllCars() {
