@@ -4,6 +4,9 @@ import org.junit.jupiter.api.*;
 import parkhouse.Data;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.util.Time;
+import parkhouse.views.DailyEarningsView;
+import parkhouse.views.IObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,13 +108,32 @@ public class ParkingModelTest {
     }
 
     @Test
+    @DisplayName("")
     void parkingModel_dailyEarnings_test() {
-        //TODO
+        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        parkingModel.addCar(x);
+        parkingModel.removeCar(x);
+        assertEquals(69, parkingModel.dailyEarnings());
+        x = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_DAY - 6011+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - Time.MILLISECONDS_PER_DAY - 6011+""});
+        parkingModel.addCar(x);
+        parkingModel.removeCar(x);
+        assertEquals(69, parkingModel.dailyEarnings());
     }
 
     @Test
     void parkingModel_weeklyEarnings_test() {
-        //TODO
+        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        parkingModel.addCar(x);
+        parkingModel.removeCar(x);
+        assertEquals(69, parkingModel.weeklyEarnings());
+        x = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+""});
+        parkingModel.addCar(x);
+        parkingModel.removeCar(x);
+        assertEquals(69, parkingModel.weeklyEarnings());
     }
 
     @RepeatedTest(10)
