@@ -6,7 +6,9 @@ import parkhouse.controller.IParkingController;
 import java.util.List;
 
 public abstract class AbstractStats {       //ToDo make a Multiton out ot the Stats Classes.
+
     private final IParkingController controller;
+
     public AbstractStats(IParkingController controller) {//ToDo does it make sense
         this.controller = controller;
     }
@@ -26,7 +28,6 @@ public abstract class AbstractStats {       //ToDo make a Multiton out ot the St
 
     public long sumCalcCars(List<ICar> getCarsBothPossible) {
         return getCarsBothPossible.stream().map(ICar::price)
-                .filter(price -> (price > 0))
                 .reduce(0L, Long::sum);
     }
 }
