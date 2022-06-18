@@ -56,7 +56,7 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public void deleteCar(ICar car) {
-        cars.remove(car);
+        if(!cars.remove(car)) throw new IllegalArgumentException();
         removedCars.remove(car);
         notifyObservers();
     }

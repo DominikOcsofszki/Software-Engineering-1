@@ -1,7 +1,10 @@
 package parkhouse.commands;
 
+import java.util.logging.Level;
+
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
+import parkhouse.logging.*;
 
 public class CarEnterCommand implements ICommand {
 

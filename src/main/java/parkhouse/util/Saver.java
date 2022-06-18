@@ -3,6 +3,7 @@ package parkhouse.util;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
+import parkhouse.logging.Log;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Saver {
@@ -36,12 +38,13 @@ public class Saver {
             }
             bw.close();
         } catch (IOException e) {
+            Log.getLogger().log(Level.WARNING, "Save Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     public static void loadCars(IParkingController controller) {
-        Path path = Paths.get("saved_cars.save");
+        Path path = Paths.get("//saved_cars.save");
         try {
             BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
             List<String> lines = new ArrayList<>();
@@ -56,6 +59,7 @@ public class Saver {
             }
             br.close();
         } catch (IOException e) {
+            Log.getLogger().log(Level.WARNING, "Load Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
