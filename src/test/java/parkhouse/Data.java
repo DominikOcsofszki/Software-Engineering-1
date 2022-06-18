@@ -33,6 +33,22 @@ public class Data {
         return params;
     }
 
+    public static List<String[]> paramsDuration() {
+        Path path = Paths.get("cars_with_duration.csv");
+        List<String[]> params = new ArrayList<>();
+        try {
+            BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
+            List<String> lines = new ArrayList<>();
+            br.lines().collect(Collectors.toCollection(() -> lines));
+            for (String l : lines) {
+                params.add(l.split(","));
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return params;
+    }
+
     public static List<ICar> cars() {
         List<String[]> params = params();
         List<ICar> cars = new ArrayList<>();

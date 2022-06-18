@@ -5,7 +5,6 @@ import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.commands.CarEnterCommand;
 import parkhouse.commands.CarLeaveCommand;
-import parkhouse.commands.ICommand;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
