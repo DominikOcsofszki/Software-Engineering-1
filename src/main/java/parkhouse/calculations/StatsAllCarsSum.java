@@ -14,8 +14,6 @@ public class StatsAllCarsSum extends AbstractStats {
 
     @Override
     List<ICar> whichCars(IParkingController controller) {
-        List<ICar> carsAll = new ArrayList<>(controller.getRemovedCars());
-        carsAll.addAll(controller.getCars());
-        return carsAll;
+        return controller.getAllCars();
     }
 }
