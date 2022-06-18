@@ -8,13 +8,12 @@ import java.util.List;
 public class StatsRemovedSum extends AbstractStats {
 
 
+    public StatsRemovedSum(IParkingController controller) {
+        super(controller);
+    }
+
     @Override
     List<ICar> whichCars(IParkingController controller) {
         return controller.getRemovedCars();
     }
-
-//    @Override
-//    double calcExtra(int sizeCarsList, double sum) {
-//        return sum;
-//    }
 }

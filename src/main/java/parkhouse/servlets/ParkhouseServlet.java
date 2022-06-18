@@ -60,14 +60,14 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(String.format(
                         "Total income = %s",
 //                        Price.format(new StatsSum().template1(parkingController())))
-                        Price.format((new StatsRemovedAvg().template1(parkingController()))))
+                        Price.format((new StatsRemovedAvg(parkingController()).template1())))   //ToDo use as Multiton?
                 );
                 break;
             case "Avg":
                 out.println(String.format(
                         "Average income per customer = %s",
 //                        Price.format(new StatsAvg().template1(parkingController())))
-                        Price.format(new StatsRemovedAvg().template1(parkingController())))
+                        Price.format(new StatsRemovedAvg(parkingController()).template1()))
                 );
                 break;
             case "Min":

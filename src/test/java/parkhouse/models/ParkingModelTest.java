@@ -15,12 +15,16 @@ public class ParkingModelTest {
 
     ParkingModel parkingModel;
     List<String[]> params = Data.params();
-    String[] leave= new String[]{"0", "" + Time.simNow(), "_", "1000", "", "", "", "", "", "", "", "", ""};
+//    String[] leave= new String[]{"0", "" + Time.simNow(), "_", "1000", "", "", "", "", "", "", "", "", ""};
+    String[] leave= Data.params().get(0);
+    //25,1655051934683,6010,1202,a7aa53882766f4bf361ca339fb843fa9,#42671f,2,Women,SUV,SU-K 41,1655051962646
+
     Car c;
     Car leaveCar;
 
     @BeforeEach
     void setUp() {
+        leave[2] = Time.simNow()+"";
         parkingModel = new ParkingModel();
         c = new Car(params.get(0));
         leaveCar = new Car(leave);
@@ -95,7 +99,7 @@ Actual   :1.6533885006E10
         parkingModel.registerObserver(observer);
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-//        assertEquals(10, observer.getDailyEarnings());      //ToDo Tobi?
+        assertEquals(10, observer.getDailyEarnings());      //ToDo Tobi?
     }
 
     @Test
@@ -104,10 +108,10 @@ Actual   :1.6533885006E10
         parkingModel.removeObserver(observer);
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
-//        assertEquals(0, observer.getDailyEarnings());       //ToDo Tobi?
+        assertEquals(0, observer.getDailyEarnings());       //ToDo Tobi?
     }
 
-    @Test
+  /*  @Test //ToDo
     void parkingModel_getCarsAndRemovedCars() {
         parkingModel.addCar(leaveCar);
         parkingModel.removeCar(leaveCar);
@@ -116,6 +120,6 @@ Actual   :1.6533885006E10
         assertEquals(2, list.size());
         assertEquals(leaveCar, list.get(1));
         assertEquals(c, list.get(0));
-    }
+    }*/
 
 }
