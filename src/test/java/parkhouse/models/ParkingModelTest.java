@@ -5,6 +5,7 @@ import parkhouse.Data;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.util.Time;
+import parkhouse.views.DailyEarningsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,25 @@ public class ParkingModelTest {
     @AfterEach
     void tearDown() {
         parkingModel = null;
+    }
+
+    @Test
+    @DisplayName("test if register")
+    void parkingModel_observer_test() {
+        DailyEarningsView dailyEarningsView = new DailyEarningsView(parkingModel);
+        parkingModel.removeObserver(dailyEarningsView);
+        parkingModel.registerObserver(dailyEarningsView);
+        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        parkingModel.addCar(x);
+        parkingModel.removeCar(x);
+        assertEquals(69, dailyEarningsView.getDailyEarnings());
+        parkingModel.removeObserver(dailyEarningsView);
+        ICar y = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        parkingModel.addCar(y);
+        parkingModel.removeCar(y);
+        assertEquals(69, dailyEarningsView.getDailyEarnings());
     }
 
     @Test
