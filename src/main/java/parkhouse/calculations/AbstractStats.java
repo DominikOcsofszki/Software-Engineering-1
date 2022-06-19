@@ -13,7 +13,7 @@ public abstract class AbstractStats {       //ToDo make a Multiton out ot the St
         this.controller = controller;
     }
 
-    abstract List<ICar> whichCars(IParkingController controller);
+    abstract List<ICar> whichCars(IParkingController controller);       //ToDo the controller could be deleted - Put into the function.
 
     public long template1() {
         List<ICar> carsList = whichCars(controller);

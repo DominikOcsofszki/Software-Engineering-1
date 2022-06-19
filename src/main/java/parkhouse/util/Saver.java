@@ -29,7 +29,7 @@ public class Saver {
         return false;
     }
 
-    public static void saveCars(IParkingController controller) {
+    public static void saveCars(IParkingController controller) {        //ToDo Save an extra List for testing?
         Path path = Paths.get("saved_cars.save");
         try {
             BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII);

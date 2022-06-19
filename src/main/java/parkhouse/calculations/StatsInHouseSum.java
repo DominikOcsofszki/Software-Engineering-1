@@ -5,8 +5,8 @@ import parkhouse.controller.IParkingController;
 
 import java.util.List;
 
-public class StatsInHouseSum extends AbstractStats{
-    public StatsInHouseSum(IParkingController controller) {
+public class StatsInHouseSum extends AbstractStats{     //ToDo delete since we do not calc stats of parking cars?
+    public StatsInHouseSum(IParkingController controller) { //ToDo Or we can copy it from the currentCost()?
         super(controller);
     }
 

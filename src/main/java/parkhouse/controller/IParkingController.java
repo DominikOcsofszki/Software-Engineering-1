@@ -14,7 +14,7 @@ public interface IParkingController {
     void removeCar(ICar car);
     void deleteCar(ICar car);
     //-----
-    void addCarRestartServer(ICar car); // _do
+    void addCarRestartServer(ICar car); // ToDo delete this function?
     void addRemovedCarRestartServer(ICar car);// _do
     //-----
 

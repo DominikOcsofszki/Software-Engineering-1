@@ -44,6 +44,7 @@ class StatsAllCarsAvgTest {
     @DisplayName("sum test = To be implemented")
     @Test
     void sum_test() {
+        //ToDO
 //        controller.addCar();
         assertTrue(false);
     }
