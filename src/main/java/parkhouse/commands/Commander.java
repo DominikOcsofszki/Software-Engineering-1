@@ -19,10 +19,9 @@ public class Commander {
     }
 
     public void undo() {
-        if (cursor > 0) {
-            cmd.get(--cursor).undo();
-            cmd.remove(cursor);
-        }
+        if(cursor == 0) throw new IllegalArgumentException();
+        cmd.get(--cursor).undo();
+        cmd.remove(cursor);
     }
 
 }
