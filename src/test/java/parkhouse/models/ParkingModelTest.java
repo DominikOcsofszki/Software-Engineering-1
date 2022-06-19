@@ -5,8 +5,6 @@ import parkhouse.Data;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.util.Time;
-import parkhouse.views.DailyEarningsView;
-import parkhouse.views.IObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +15,18 @@ public class ParkingModelTest {
 
     private ParkingModel parkingModel;
     private final List<String[]> params = Data.paramsDuration();
-    private final List<ICar> cars = new ArrayList<>();
+    private final List<String[]> params2 = Data.params();
+    private final List<ICar> carsList = new ArrayList<>();
+    private final List<ICar> carsNoDurationList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
         parkingModel = new ParkingModel();
         for(String[] s : params) {
-            cars.add(new Car(s));
+            carsList.add(new Car(s));
+        }
+        for(String[] s : params2) {
+            carsNoDurationList.add(new Car(s));
         }
     }
 
@@ -39,8 +42,8 @@ public class ParkingModelTest {
             parkingModel.addCar(new Car(s));
         }
         assertEquals(params.size(), parkingModel.getCars().size());
-        for(int i = 0; i < cars.size(); i++) {
-            assertEquals(cars.get(i).license(), parkingModel.getCars().get(i).license());
+        for(int i = 0; i < carsList.size(); i++) {
+            assertEquals(carsList.get(i).license(), parkingModel.getCars().get(i).license());
         }
     }
 
@@ -65,8 +68,8 @@ public class ParkingModelTest {
             parkingModel.removeCar(c);
         }
         assertEquals(params.size(), parkingModel.getRemovedCars().size());
-        for(int i = 0; i < cars.size(); i++) {
-            assertEquals(cars.get(i).license(), parkingModel.getRemovedCars().get(i).license());
+        for(int i = 0; i < carsList.size(); i++) {
+            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCars().get(i).license());
         }
     }
 
@@ -86,7 +89,7 @@ public class ParkingModelTest {
     @Test
     @DisplayName("test if the deleteCar method throws a IllegalArgumentException if the car is not in the list")
     void parkingModel_deleteCarThrow_test() {
-        assertThrows(IllegalArgumentException.class, () -> parkingModel.deleteCar(cars.get(0)));
+        assertThrows(IllegalArgumentException.class, () -> parkingModel.deleteCar(carsList.get(0)));
     }
 
     @Test
@@ -96,19 +99,25 @@ public class ParkingModelTest {
             parkingModel.addCarRestartServer(new Car(s));
         }
         assertEquals(params.size(), parkingModel.getCars().size());
-        for(int i = 0; i < cars.size(); i++) {
-            assertEquals(cars.get(i).license(), parkingModel.getCars().get(i).license());
+        for(int i = 0; i < carsList.size(); i++) {
+            assertEquals(carsList.get(i).license(), parkingModel.getCars().get(i).license());
         }
     }
 
     @Test
     @DisplayName("")
     void parkingModel_removeCarRestartServer_test() {
-        //TODO
+        for(String[] s : params) {
+            parkingModel.removeCarRestartServer(new Car(s));
+        }
+        assertEquals(params.size(), parkingModel.getRemovedCars().size());
+        for(int i = 0; i < carsList.size(); i++) {
+            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCars().get(i).license());
+        }
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("test if the dailyEarnings adds up the cars that left in the last 24h")
     void parkingModel_dailyEarnings_test() {
         ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
                 "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
@@ -123,6 +132,7 @@ public class ParkingModelTest {
     }
 
     @Test
+    @DisplayName("test if the weeklyEarnings adds up the cars that left in the last 7 days")
     void parkingModel_weeklyEarnings_test() {
         ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
                 "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
@@ -137,41 +147,14 @@ public class ParkingModelTest {
     }
 
     @RepeatedTest(10)
-//    @Test
+    @DisplayName("test if the dif between the price of the and the currentCost is less then 5 because of the delay")
     void parkingModel_currentCost_test() {
-        /*
-        parkingModel.addCar(leaveCar);
-//        System.out.println(Price.price(leaveCar));
-        assertEquals(leaveCar.price(), parkingModel.currentCost().get(leaveCar.license()), 0.5);    //ToDo Why still so many fails?
-
-         */
-    }
-
-    @RepeatedTest(10)
-//    @Test
-    void parkingModel_currentCost_test_1() {
-        //parkingModel.addCar(leaveCar);
-//        System.out.println(Price.price(leaveCar));    //ToDo the fail seems to be in the calculationTime.
-//ToDo assertEquals: Current and expected are both calculated depending on the actual time. Thereby not so accurate
-//ToDo also the values seem to be wrong.
-        /* org.opentest4j.AssertionFailedError:
-Expected :1.6533885005E10   //ToDo Why is this number so high???
-Actual   :1.6533885006E10
-<Click to see difference>*/
-        //assertEquals(leaveCar.price(), parkingModel.currentCost().get(leaveCar.license()),1.);
+        for(ICar car : carsNoDurationList) {
+            parkingModel.addCar(car);
+            assertTrue(Math.abs(car.price() - parkingModel.currentCost().get(car.license())) <= 4);
+        }
 
     }
-
-  /*  @Test //ToDo
-    void parkingModel_getCarsAndRemovedCars() {
-        parkingModel.addCar(leaveCar);
-        parkingModel.removeCar(leaveCar);
-        parkingModel.addCar(c);
-        List<ICar> list = parkingModel.getCarsAndRemovedCars();
-        assertEquals(2, list.size());
-        assertEquals(leaveCar, list.get(1));
-        assertEquals(c, list.get(0));
-    }*/
 
     @Test
     @DisplayName("test if getAllCars returns a list with added and removed cars")
