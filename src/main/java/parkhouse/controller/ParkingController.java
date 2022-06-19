@@ -2,13 +2,10 @@ package parkhouse.controller;
 
 import parkhouse.car.ICar;
 import parkhouse.commands.Commander;
-import parkhouse.commands.ICommand;
 import parkhouse.models.IParkingModel;
 import parkhouse.models.ParkingModel;
 import parkhouse.views.*;
-//import parkhouse.views.CurrentElementsView; //_do    // ToDo Still needed? Seems unnecessary!
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingController implements IParkingController {
@@ -73,34 +70,30 @@ public class ParkingController implements IParkingController {
 
     @Override
     public DailyEarningsView dailyEarningsView() {
-        return this.dailyEarningsView;
+        return dailyEarningsView;
     }
 
     @Override
     public WeeklyEarningsView weeklyEarningsView() {
-        return this.weeklyEarningsView;
+        return weeklyEarningsView;
     }
 
     @Override
     public CurrentCostsView currentCostView() {
-        return this.currentCostsView;
+        return currentCostsView;
     }
 
     @Override
     public ClientCategoriesView clientCategoriesView() {
-        return this.clientCategoriesView;
+        return clientCategoriesView;
     }
 
     @Override
     public VehicleTypesView vehicleTypeView() {
-        return this.vehicleTypesView;
-    }
-
-    public IParkingModel parkingModel() {
-        return this.model;
+        return vehicleTypesView;
     }
 
     public Commander commander() {
-        return this.commander;
+        return commander;
     }
 }

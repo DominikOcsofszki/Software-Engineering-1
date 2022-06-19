@@ -37,7 +37,7 @@ public class ParkingModelTest {
     }
 
     @Test
-    @DisplayName("test if register")
+    @DisplayName("test register and remove")
     void parkingModel_observer_test() {
         DailyEarningsView dailyEarningsView = new DailyEarningsView(parkingModel);
         parkingModel.removeObserver(dailyEarningsView);
