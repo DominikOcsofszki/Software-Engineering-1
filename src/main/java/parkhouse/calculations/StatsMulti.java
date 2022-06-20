@@ -1,6 +1,7 @@
 package parkhouse.calculations;
 
 import parkhouse.calculations.AbstractStats;
+import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 import parkhouse.logging.Log;
 
@@ -15,7 +16,7 @@ public class StatsMulti {
     private StatsMulti() {
     }
 
-    public static AbstractStats getInstance(String key, ParkingController pk) {
+    public static AbstractStats getInstance(String key, IParkingController pk) {
         synchronized (instances) {
 
             AbstractStats instance = instances.get(key);
@@ -29,11 +30,11 @@ public class StatsMulti {
         }
     }
 
-    public static AbstractStats chooseClass(String s, ParkingController pk) {
+    private static AbstractStats chooseClass(String s, IParkingController pk) {
         switch (s) {
             case "StatsAllCarsAvg":
                 return new StatsAllCarsAvg(pk);
-            case "StatsAllCarsSum":
+            case "Sum":
                 return new StatsAllCarsSum(pk);
             case "StatsInHouseAvg":
                 return new StatsInHouseAvg(pk);
