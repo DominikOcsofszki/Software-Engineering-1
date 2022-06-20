@@ -6,6 +6,7 @@ import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +55,16 @@ public class TimeTest {
 
     }
 
+    @Test
+    @DisplayName("Last entered time Both empty")
+    public void lastEnterTimeBothEmpty_test() {     //ToDo: test? Errors only possible by wrong Path
+        for (ICar c : cars) {
+            controller.addCar(c);
+        }
+        assertThrows(IndexOutOfBoundsException.class,() -> Time.getTimeFromLastEnteredCarCheckBoth(new ArrayList<ICar>(), controller.getRemovedCars()));
+        assertThrows(IndexOutOfBoundsException.class,() -> Time.getTimeFromLastEnteredCarCheckBoth(new ArrayList<ICar>(), new ArrayList<ICar>()));
+
+    }
     @Test
     @DisplayName("test real Realtime")
     public void realTimeTest() {
