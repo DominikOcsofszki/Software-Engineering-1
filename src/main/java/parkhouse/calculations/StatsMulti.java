@@ -1,8 +1,6 @@
 package parkhouse.calculations;
 
-import parkhouse.calculations.AbstractStats;
 import parkhouse.controller.IParkingController;
-import parkhouse.controller.ParkingController;
 import parkhouse.logging.Log;
 
 import java.util.HashMap;
@@ -11,19 +9,19 @@ import java.util.logging.Level;
 
 public class StatsMulti {
 
-    private static final Map<String, AbstractStats> instances = new HashMap<>();
+    private static final Map<String, AbstractStats> INSTANCE_MAP = new HashMap<>();
 
     private StatsMulti() {
     }
 
     public static AbstractStats getInstance(String key, IParkingController pk) {
-        synchronized (instances) {
+        synchronized (INSTANCE_MAP) {
 
-            AbstractStats instance = instances.get(key);
+            AbstractStats instance = INSTANCE_MAP.get(key);
 
             if (instance == null) {
                 instance = chooseClass(key, pk);
-                instances.put(key, instance);
+                INSTANCE_MAP.put(key, instance);
                 Log.getLogger().log(Level.INFO, "Created new Car instance: " + key);
             }
             return instance;
