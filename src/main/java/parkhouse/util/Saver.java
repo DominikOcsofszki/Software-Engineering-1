@@ -37,14 +37,15 @@ public class Saver {
                 bw.write(c.toString() + "\n");
             }
             bw.close();
-        } catch (IOException e) {
+        } catch (IOException e) {       //ToDo How to catch this Error in Testing?
             Log.getLogger().log(Level.WARNING, "Save Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     public static void loadCars(IParkingController controller) {
-        Path path = Paths.get("//saved_cars.save");
+//        Path path = Paths.get("//saved_cars.save");       //ToDo seems to make problems on diff Systems
+        Path path = Paths.get("saved_cars.save");       //ToDo seems to make problems on diff Systems
         try {
             BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
             List<String> lines = new ArrayList<>();

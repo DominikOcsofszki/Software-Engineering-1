@@ -9,7 +9,7 @@ import parkhouse.controller.ParkingController;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SaverTest {
 
@@ -18,7 +18,7 @@ public class SaverTest {
 
     @Test
     @DisplayName("Test if cars are saved and loaded correctly")
-    public void saver_saveLoadCars_test() {
+    public void saver_saveLoadCars_test() {     //ToDo: test? Errors only possible by wrong Path
         for (ICar c : cars) {
             controller.addCar(c);
         }
@@ -30,5 +30,19 @@ public class SaverTest {
                     Finder.findCar(controller.getAllCars(), ICar::ticket, c.ticket()).toString()
             );
         }
+    }
+    @Test
+    @DisplayName("Test init()")
+    public void init_Test() {
+        for (ICar c : cars) {
+            controller.addCar(c);
+        }
+        Saver.saveCars(controller);
+        controller = new ParkingController();
+        assertTrue(Saver.init());
+        if (Saver.init()) {
+            assertFalse(true);
+        }
+        assertFalse(Saver.init());
     }
 }
