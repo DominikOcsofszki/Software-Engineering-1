@@ -4,6 +4,7 @@ import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
 import parkhouse.logging.Log;
+import parkhouse.security.SanitizedCar;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -51,7 +52,7 @@ public class Saver {
             List<String> lines = new ArrayList<>();
             br.lines().collect(Collectors.toCollection(() -> lines));
             for (String l : lines) {
-                ICar car = new Car(l.split("/"));
+                ICar car = new SanitizedCar(new Car(l.split("/")));
                 if (!car.gone()) {
                     controller.addCar(car);
                 } else {

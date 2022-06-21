@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface IParkingController {
 
-
     void addCar(ICar car);
     void removeCar(ICar car);
     void deleteCar(ICar car);

@@ -89,8 +89,8 @@ public class Car implements ICar {
     }
 
     @Override
-    public void setSpace(int x) { // add new spaceNr for car, after locator
-        params[6] = x+"";
+    public void setSpace(int s) { // add new spaceNr for car, after locator
+        params[6] = s+"";
     }
 
     @Override

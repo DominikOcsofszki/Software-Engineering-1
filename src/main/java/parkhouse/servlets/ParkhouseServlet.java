@@ -2,13 +2,14 @@ package parkhouse.servlets;
 
 import parkhouse.calculations.*;
 import parkhouse.car.Car;
+import parkhouse.car.CarDecorator;
 import parkhouse.car.ICar;
 import parkhouse.commands.CarEnterCommand;
 import parkhouse.commands.CarLeaveCommand;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
-import parkhouse.security.Sanitize;
+import parkhouse.security.SanitizedCar;
 import parkhouse.util.Finder;
 import parkhouse.util.Saver;
 import parkhouse.util.Time;
@@ -156,7 +157,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String[] params = body.split(",");
         String event = params[0];
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
-        Sanitize.sanitizeParams(restParams);
 
         switch (event) {
             case "change_max":
@@ -171,7 +171,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "enter":
                 int space = Locator.locate(parkingController());
                 if (space != -1) {
-                    ICar car = new Car(restParams);
+                    ICar car = new SanitizedCar(new Car(restParams));
                     car.setSpace(space);
                     CarEnterCommand cmd = new CarEnterCommand(car, parkingController());
                     parkingController().commander().queue(cmd);

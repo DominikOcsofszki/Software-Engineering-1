@@ -14,6 +14,6 @@ public interface ICar {
     String type();
     String license();
     boolean gone();
-    void setSpace(int x);
+    void setSpace(int s);
     void updateParams(String[] params);
 }
