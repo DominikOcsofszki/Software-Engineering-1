@@ -8,6 +8,7 @@ import parkhouse.commands.CarLeaveCommand;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
+import parkhouse.security.Sanitize;
 import parkhouse.util.Finder;
 import parkhouse.util.Saver;
 import parkhouse.util.Time;
@@ -155,6 +156,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String[] params = body.split(",");
         String event = params[0];
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
+        Sanitize.sanitizeParams(restParams);
 
         switch (event) {
             case "change_max":

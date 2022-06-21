@@ -20,10 +20,6 @@
     <h1>Park house Team 6</h1>
     <p>Tomcat Version : <%= application.getServerInfo() %></p>
 </div>
-<div class="box lightblue">
-    <h2><a href="checkout.jsp">Checkout</a></h2>
-    <h2><a href="">Subscriptions</a></h2>
-</div>
 <div class="box grey">
     <h1>Park house</h1>
     <ccm-parkhaus-11-0-0 server_url="./main-servlet"

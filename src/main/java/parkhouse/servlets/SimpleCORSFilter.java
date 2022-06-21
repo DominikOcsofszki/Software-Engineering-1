@@ -27,4 +27,3 @@ public class SimpleCORSFilter implements Filter {
   public void init(FilterConfig arg0) throws ServletException {}
 
 }
-
