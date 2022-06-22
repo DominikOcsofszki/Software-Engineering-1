@@ -80,6 +80,7 @@ public class ParkingController implements IParkingController {
 
     @Override
     public CurrentCostsView currentCostView() {
+        model.notifyObservers();
         return currentCostsView;
     }
 
