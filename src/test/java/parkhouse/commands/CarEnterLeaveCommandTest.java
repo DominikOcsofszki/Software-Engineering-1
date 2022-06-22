@@ -60,12 +60,6 @@ public class CarEnterLeaveCommandTest {
     }
 
     @Test
-    @DisplayName("CarEnterCommand/Test if undo throws IllegalArgumentException if the car is not in the list")
-    void carEnterCommand_undoWithoutExecute_test() {
-        assertThrows(IllegalArgumentException.class, commander::undo);
-    }
-
-    @Test
     @DisplayName("CarLeaveCommand/Test if the car is in the list using activate()")
     void carLeaveCommand_executeCarIsInList_test() {
         for(ICar car : carsList) {
@@ -96,9 +90,4 @@ public class CarEnterLeaveCommandTest {
         }
     }
 
-    @Test
-    @DisplayName("CarLeaveCommand/Test if undo throws IllegalArgumentException if the car is not in the list")
-    void carLeaveCommand_undoWithoutExecute_test() {
-        assertThrows(IllegalArgumentException.class, commander::undo);
-    }
 }
