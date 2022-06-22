@@ -23,10 +23,6 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * common superclass for all parkhouse.servlets
- * groups all auxiliary common methods used in all parkhouse.servlets
- */
 public abstract class ParkhouseServlet extends HttpServlet {
 
     abstract String NAME();
@@ -67,28 +63,26 @@ public abstract class ParkhouseServlet extends HttpServlet {
 */
             case "Sum":
                 out.println(String.format(
-                                "Total income = %s",
-//                        Price.format(new StatsSum().template1(parkingController())))
-                                Price.format((StatsMulti.getInstance("Sum", parkingController()).template1())))   //ToDo use as Multiton?
+                        "Total income = %s",
+                        Price.format(Stats.sumCars(parkingController().getRemovedCars())))
                 );
                 break;
             case "Avg":
                 out.println(String.format(
                         "Average income per customer = %s",
-//                        Price.format(new StatsAvg().template1(parkingController())))
-                        Price.format(new StatsRemovedAvg(parkingController()).template1()))
+                        Price.format(Stats.avgCars(parkingController().getRemovedCars())))
                 );
                 break;
             case "Min":
                 out.println(String.format(
                         "Lowest income from a customer = %s",
-                        Price.format(Stats.minCars(parkingController())))
+                        Price.format(Stats.minCars(parkingController().getRemovedCars())))
                 );
                 break;
             case "Max":
                 out.println(String.format(
                         "Highest income from a customer = %s",
-                        Price.format(Stats.maxCars(parkingController())))
+                        Price.format(Stats.maxCars(parkingController().getRemovedCars())))
                 );
                 break;
             case "cars":
@@ -202,10 +196,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
         }
 
     }
-
-    //-------------------------------------------------------
-
-    // auxiliary methods used in HTTP request processing
 
     /**
      * @return the servlet context

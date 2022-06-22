@@ -4,16 +4,11 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import parkhouse.Data;
-import parkhouse.calculations.StatsRemovedSum;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
-import parkhouse.models.ParkingModel;
-import parkhouse.util.Time;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractStatsTest {
