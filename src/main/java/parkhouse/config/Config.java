@@ -2,13 +2,7 @@ package parkhouse.config;
 
 public class Config {
 
-    private enum ConfigMode {
-        DEBUG_MODE, NORMAL_MODE
-    }
-
     private Config() {}
-    //New for debuging Ausgabe
-    public static ConfigMode configMode = ConfigMode.DEBUG_MODE;
 
     public static final int SIMULATION_SPEED = 100;
     public static final int TIME_SHIFT = 0;
@@ -30,13 +24,6 @@ public class Config {
     }
     public static void setOpenTo(int openTo) {
         Config.openTo = openTo;
-    }
-
-    public static boolean isConfigDebugMode() {
-        return configMode == ConfigMode.DEBUG_MODE;
-    }
-    public static boolean isConfigNormalMode() {
-        return configMode == ConfigMode.NORMAL_MODE;
     }
 
 }
