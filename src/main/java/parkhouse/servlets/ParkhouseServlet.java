@@ -53,38 +53,37 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     }));
                 }
                 break;
-            /*case "Sum":       //correct
-                out.println(String.format(
-                        "Total income = %s",
-//                        Price.format(new StatsSum().template1(parkingController())))
-                        Price.format((new StatsRemovedSum(parkingController()).template1())))   //ToDo use as Multiton?
-                );
-                break;
-*/
             case "Sum":
                 out.println(String.format(
-                        "Total income = %s",
-                        Price.format(Stats.sumCars(parkingController().getRemovedCars())))
-                );
+                        "Total income: %s                   | (Live): %s",
+                        Price.format(Stats.sumCars(parkingController().getRemovedCars())),
+                        Price.format(Stats.sumCars(parkingController().getAllCars()))
+                ));
                 break;
             case "Avg":
                 out.println(String.format(
-                        "Average income per customer = %s",
-                        Price.format(Stats.avgCars(parkingController().getRemovedCars())))
-                );
+                        "Average income per customer: %s    | Average income per customer (Live): %s",
+                        Price.format(Stats.avgCars(parkingController().getRemovedCars())),
+                        Price.format(Stats.avgCars(parkingController().getAllCars()))
+                ));
                 break;
+
             case "Min":
                 out.println(String.format(
-                        "Lowest income from a customer = %s",
-                        Price.format(Stats.minCars(parkingController().getRemovedCars())))
-                );
+                        "Lowest income from a customer: %s  | Lowest income from a customer (Live): %s",
+                        Price.format(Stats.minCars(parkingController().getRemovedCars())),
+                        Price.format(Stats.minCars(parkingController().getAllCars()))
+                ));
                 break;
+
             case "Max":
                 out.println(String.format(
-                        "Highest income from a customer = %s",
-                        Price.format(Stats.maxCars(parkingController().getRemovedCars())))
-                );
+                        "Highest income from a customer: %s | Highest income from a customer (Live): %s",
+                        Price.format(Stats.maxCars(parkingController().getRemovedCars())),
+                        Price.format(Stats.maxCars(parkingController().getAllCars()))
+                ));
                 break;
+
             case "cars":
                 out.print(
                         parkingController().getAllCars()

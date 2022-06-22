@@ -22,7 +22,8 @@ public class Stats {
     }
 
     public static long avgCars(List<ICar> cars) {
-        return sumCars(cars) / cars.size();
+        int count = cars.size() == 0 ? 1 : cars.size();
+        return sumCars(cars) / count;
     }
 
 }
