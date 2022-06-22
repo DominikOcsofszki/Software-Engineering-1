@@ -30,23 +30,22 @@ public class Saver {
         return false;
     }
 
-    public static void saveCars(IParkingController controller) {        //ToDo Save an extra List for testing?
-        Path path = Paths.get("saved_cars.save");
+    public static void saveCars(IParkingController controller, String name) {
+        Path path = Paths.get(name + ".cars");
         try {
             BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII);
             for (ICar c : controller.getAllCars()) {
                 bw.write(c.toString() + "\n");
             }
             bw.close();
-        } catch (IOException e) {       //ToDo How to catch this Error in Testing?
+        } catch (IOException e) {
             Log.getLogger().log(Level.WARNING, "Save Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public static void loadCars(IParkingController controller) {
-//        Path path = Paths.get("//saved_cars.save");       //ToDo seems to make problems on diff Systems
-        Path path = Paths.get("saved_cars.save");       //ToDo seems to make problems on diff Systems
+    public static void loadCars(IParkingController controller, String name) {
+        Path path = Paths.get(name + ".cars");
         try {
             BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
             List<String> lines = new ArrayList<>();

@@ -22,9 +22,9 @@ public class SaverTest {
         for (ICar c : cars) {
             controller.addCar(c);
         }
-        Saver.saveCars(controller);
+        Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
-        Saver.loadCars(controller);
+        Saver.loadCars(controller, "MainServlet");
         for (ICar c : cars) {
             assertEquals(c.toString(),
                     Finder.findCar(controller.getAllCars(), ICar::ticket, c.ticket()).toString()
@@ -37,7 +37,7 @@ public class SaverTest {
         for (ICar c : cars) {
             controller.addCar(c);
         }
-        Saver.saveCars(controller);
+        Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         assertTrue(Saver.init());
         if (Saver.init()) {

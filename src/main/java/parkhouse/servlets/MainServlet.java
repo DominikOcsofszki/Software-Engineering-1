@@ -9,7 +9,7 @@ public class MainServlet extends ParkhouseServlet {
 
     @Override
     String NAME(){
-        return "Park house";
+        return "MainServlet";
     }
 
     @Override
