@@ -32,8 +32,8 @@
                          delay="100"
                          simulation_speed="1000"
 <%--                         time_shift = "360000"--%>
-                         extra_buttons='["Undo","Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Current-Cost"]'
-                         extra_charts='["Types","Categories"]'
+                         extra_buttons='["Undo","Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Earnings-Categories","Current-Cost"]'
+                         extra_charts='["Types","Categories","Durations"]'
                          client_categories='["Default","Women","Business","Family","Disability"]'
                          space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV","QUAD","TRIKE","PICKUP"]'

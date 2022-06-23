@@ -4,15 +4,14 @@ import parkhouse.car.ICar;
 import parkhouse.models.IParkingModel;
 import parkhouse.util.Jsonify;
 
-import javax.json.JsonObject;
 import java.util.List;
 
-public class VehicleTypesView implements IObserver {
+public class DurationView implements IObserver {
 
     private final IParkingModel model;
     private List<ICar> cars;
 
-    public VehicleTypesView(IParkingModel model) {
+    public DurationView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);
     }
@@ -24,10 +23,10 @@ public class VehicleTypesView implements IObserver {
 
     @Override
     public String toString() {
-        JsonObject types = Jsonify.carsCount(cars, ICar::type);
         return Jsonify.plot(
-                Jsonify.getKeys(types),
-                Jsonify.getValues(types),
-                "bar", "Types").toString();
+                Jsonify.carsAsJsonArray(cars, ICar::license),
+                Jsonify.carsAsJsonArray(cars, ICar::duration),
+                "bar", "Duration").toString();
     }
+
 }

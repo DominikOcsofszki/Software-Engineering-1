@@ -154,7 +154,7 @@ public class CarTest {
     void car_gone_test() {
         for (String[] p : params) {
             ICar car = new Car(p);
-            if (!p[2].equals("_") && !p[3].equals("_")) {
+            if (!p[2].equals("_") || !p[3].equals("_")) {
                 assertTrue(car.gone());
             } else {
                 assertFalse(car.gone());

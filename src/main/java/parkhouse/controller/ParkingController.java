@@ -16,6 +16,8 @@ public class ParkingController implements IParkingController {
     private final CurrentCostsView currentCostsView;
     private final ClientCategoriesView clientCategoriesView;
     private final VehicleTypesView vehicleTypesView;
+    private final EarningsByCategoriesView earningsByCategoriesView;
+    private final DurationView durationView;
     private final Commander commander;
 
 
@@ -26,6 +28,8 @@ public class ParkingController implements IParkingController {
         currentCostsView = new CurrentCostsView(model);
         clientCategoriesView = new ClientCategoriesView(model);
         vehicleTypesView = new VehicleTypesView(model);
+        earningsByCategoriesView = new EarningsByCategoriesView(model);
+        durationView = new DurationView(model);
         commander = new Commander();
     }
 
@@ -92,6 +96,16 @@ public class ParkingController implements IParkingController {
     @Override
     public VehicleTypesView vehicleTypeView() {
         return vehicleTypesView;
+    }
+
+    @Override
+    public EarningsByCategoriesView earningsByCategoriesView() {
+        return earningsByCategoriesView;
+    }
+
+    @Override
+    public DurationView durationView() {
+        return durationView;
     }
 
     public Commander commander() {

@@ -26,12 +26,12 @@ public class TimeTest {
     }
     @Test
     void time_difference_test() {
-        assertEquals(0, Time.difference(50, 50));
-        assertEquals(100, Time.difference(50, -50));
-        assertEquals(200, Time.difference(50, -150));
-        assertEquals(0, Time.difference(-50, -50));
-        assertEquals(100, Time.difference(-50, 50));
-        assertEquals(200, Time.difference(-150, 50));
+        assertEquals(0, Time.diff(50, 50));
+        assertEquals(100, Time.diff(50, -50));
+        assertEquals(200, Time.diff(50, -150));
+        assertEquals(0, Time.diff(-50, -50));
+        assertEquals(100, Time.diff(-50, 50));
+        assertEquals(200, Time.diff(-150, 50));
     }
 
 

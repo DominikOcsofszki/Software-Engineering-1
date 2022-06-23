@@ -1,12 +1,10 @@
 package parkhouse.models;
 
-import parkhouse.calculations.Price;
 import parkhouse.car.ICar;
 import parkhouse.util.Time;
 import parkhouse.views.IObserver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +17,9 @@ public class ParkingModel implements IParkingModel {
     private final List<ICar> removedCars;
 
     public ParkingModel() {
-        cars = new ArrayList<>();       //cars still in the Parkhouse
+        cars = new ArrayList<>();
         observers = new ArrayList<>();
-        removedCars = new ArrayList<>();    //cars that have been in the Parkhouse -> paid
+        removedCars = new ArrayList<>();
     }
 
     @Override
@@ -56,29 +54,27 @@ public class ParkingModel implements IParkingModel {
 
     @Override
     public void deleteCar(ICar car) {
-        if(!cars.remove(car) && !removedCars.remove(car)) throw new IllegalArgumentException();
+        cars.remove(car);
+        removedCars.remove(car);
         notifyObservers();
     }
-
-    //-----
 
     @Override
     public void addCarRestartServer(ICar car) {
         cars.add(car);
-        notifyObservers();    //ToDo notify when all all cars entered for performance
+        notifyObservers();
     }
 
     @Override
     public void removeCarRestartServer(ICar car) {
         removedCars.add(car);
-        notifyObservers();  //ToDo notify when all all cars entered for performance
+        notifyObservers();
     }
-    //--
 
     private long earningHelper(long timeWall) {
         long now = Time.simNow();
         return removedCars.stream()
-                .filter(car -> ((Time.difference(now, car.end()) < timeWall)))
+                .filter(car -> ((Time.diff(now, car.end()) < timeWall)))
                 .mapToLong(ICar::price)
                 .sum();
     }

@@ -101,6 +101,11 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         parkingController().clientCategoriesView()
                 );
                 break;
+            case "Durations":
+                out.println(
+                        parkingController().durationView()
+                );
+                break;
             case "Daily-Earnings":
                 out.println(
                         parkingController().dailyEarningsView()
@@ -114,6 +119,11 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "Current-Cost":
                 out.println(
                         parkingController().currentCostView()
+                );
+                break;
+            case "Earnings-Categories":
+                out.println(
+                        parkingController().earningsByCategoriesView()
                 );
                 break;
             case "Time":
@@ -173,7 +183,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 }
                 break;
             case "leave":
-                ICar car = Finder.findICarForTicket(parkingController(), restParams[4]);
+                ICar car = Finder.findCar(parkingController().getCars(), ICar::ticket, restParams[4]);
                 car.updateParams(restParams);
                 CarLeaveCommand cmd = new CarLeaveCommand(car, parkingController());
                 parkingController().commander().queue(cmd);
