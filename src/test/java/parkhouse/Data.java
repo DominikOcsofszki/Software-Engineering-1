@@ -2,6 +2,7 @@ package parkhouse;
 
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.util.Saver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,9 +12,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Data {
+
+    private final static Logger LOGGER = Logger.getLogger(Saver.class.getName());
 
     private Data() {}
 
@@ -28,15 +32,14 @@ public class Data {
     private static List<String[]> paramsHelper(String p) {
         Path path = Paths.get(p);
         List<String[]> params = new ArrayList<>();
-        try {
-            BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
+        try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
             List<String> lines = new ArrayList<>();
             br.lines().collect(Collectors.toCollection(() -> lines));
             for (String l : lines) {
                 params.add(l.split(","));
             }
         } catch(IOException e) {
-            e.printStackTrace();
+            LOGGER.warning("Load Data Failed: " + e.getMessage());
         }
         return params;
     }

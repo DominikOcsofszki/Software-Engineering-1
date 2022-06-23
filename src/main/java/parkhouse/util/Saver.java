@@ -34,22 +34,18 @@ public class Saver {
 
     public static void saveCars(IParkingController controller, String name) {
         Path path = Paths.get(name + ".cars");
-        try {
-            BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII);
+        try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII)) {
             for (ICar c : controller.getAllCars()) {
                 bw.write(c.toString() + "\n");
             }
-            bw.close();
         } catch (IOException e) {
             LOGGER.warning("Save Cars Failed: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
     public static void loadCars(IParkingController controller, String name) {
         Path path = Paths.get(name + ".cars");
-        try {
-            BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII);
+        try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
             List<String> lines = new ArrayList<>();
             br.lines().collect(Collectors.toCollection(() -> lines));
             for (String l : lines) {
@@ -60,10 +56,8 @@ public class Saver {
                     controller.addRemovedCarRestartServer(car);
                 }
             }
-            br.close();
         } catch (IOException e) {
             LOGGER.warning("Load Cars Failed: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 }

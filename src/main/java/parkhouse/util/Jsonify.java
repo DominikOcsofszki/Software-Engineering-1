@@ -10,24 +10,6 @@ public class Jsonify {
 
     private Jsonify() {}
 
-    // obsolete
-    public static JsonArray carsAsNr(List<ICar> cars) {
-        JsonArrayBuilder nrArray = Json.createArrayBuilder();
-        for (ICar c : cars) {
-            nrArray.add(Json.createValue(c.nr()));
-        }
-        return nrArray.build();
-    }
-
-    // obsolete
-    public static JsonArray carsAsDuration(List<ICar> cars) {
-        JsonArrayBuilder durationArray = Json.createArrayBuilder();
-        for (ICar c : cars) {
-            durationArray.add(Json.createValue(c.duration()));
-        }
-        return durationArray.build();
-    }
-
     public static JsonArray carsAsJsonArray(List<ICar> cars, Function<ICar,Object> func) {
         JsonArrayBuilder arr = Json.createArrayBuilder();
         for (ICar c : cars) {

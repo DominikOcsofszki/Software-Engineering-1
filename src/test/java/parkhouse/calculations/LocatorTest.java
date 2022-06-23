@@ -1,5 +1,6 @@
 package parkhouse.calculations;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
@@ -12,21 +13,26 @@ import parkhouse.util.Finder;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LocatorTest {
 
-    IParkingController controller = new ParkingController();
+    IParkingController controller;
     List<ICar> cars = Data.cars();
+
+    @BeforeEach
+    public void setup() {
+        controller = new ParkingController();
+    }
 
     @Test
     @DisplayName("Test if correct space is assigned to entering cars")
     public void locator_locate_test() {
+        Config.maxCars = 11;
         for (ICar c : cars) {
             if (!c.gone()) {
                 c.setSpace(Locator.locate(controller));
-                assertTrue(c.space() <= Config.maxCars);
+                assertTrue(c.space() > 0 && c.space() <= Config.maxCars);
                 assertThrows(
                         NoSuchElementException.class, () ->
                         Finder.findCar(controller.getCars(), ICar::space, c.space())
@@ -34,6 +40,13 @@ public class LocatorTest {
                 controller.addCar(c);
             }
         }
+    }
+
+    @Test
+    @DisplayName("Test if -1 is returned if park house is full")
+    public void locator_full_test() {
+        Config.maxCars = 0;
+        assertEquals(-1, Locator.locate(controller));
     }
 
 }

@@ -7,15 +7,15 @@ import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
 
     List<String[]> params = Data.params();
-    Random rand = new Random();
+    SecureRandom rand = new SecureRandom();
 
     @Test
     @DisplayName("Test if 'nr' is set correctly")
