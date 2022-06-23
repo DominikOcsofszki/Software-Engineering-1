@@ -74,7 +74,7 @@ public class ParkingModel implements IParkingModel {
     private long earningHelper(long timeWall) {
         long now = Time.simNow();
         return removedCars.stream()
-                .filter(car -> ((Time.diff(now, car.end()) < timeWall)))
+                .filter(car -> (Time.diff(now, car.end()) < timeWall))
                 .mapToLong(ICar::price)
                 .sum();
     }

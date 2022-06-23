@@ -11,10 +11,6 @@ public class CarTypes {
     private CarTypes() {
     }
 
-    private CarTypes(double factor) {
-        this.factor = factor;
-    }
-
     public static CarTypes getInstance(String key){
             CarTypes type = types.get(key);
             if (type == null){
@@ -27,4 +23,6 @@ public class CarTypes {
     public double getFactor() {
         return factor;
     }
+
+    public void setFactor(double factor) { this.factor = factor; }
 }

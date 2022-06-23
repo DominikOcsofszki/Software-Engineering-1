@@ -2,7 +2,6 @@ package parkhouse.controller;
 
 import parkhouse.car.ICar;
 import parkhouse.commands.Commander;
-import parkhouse.commands.ICommand;
 import parkhouse.views.*;
 
 import java.util.List;

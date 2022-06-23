@@ -1,8 +1,9 @@
 package parkhouse.servlets;
 
-import parkhouse.calculations.*;
+import parkhouse.calculations.Locator;
+import parkhouse.calculations.Price;
+import parkhouse.calculations.Stats;
 import parkhouse.car.Car;
-import parkhouse.car.CarDecorator;
 import parkhouse.car.ICar;
 import parkhouse.commands.CarEnterCommand;
 import parkhouse.commands.CarLeaveCommand;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public abstract class ParkhouseServlet extends HttpServlet {
@@ -48,9 +49,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(config());
                 if (Saver.init()) {
                     Saver.loadCars(parkingController(), NAME());
-                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                        Saver.saveCars(parkingController(), NAME());
-                    }));
+                    Runtime.getRuntime().addShutdownHook(new Thread(() ->
+                        Saver.saveCars(parkingController(), NAME())
+                    ));
                 }
                 break;
             case "Sum":
