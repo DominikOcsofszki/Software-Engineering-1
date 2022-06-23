@@ -3,7 +3,6 @@ package parkhouse.util;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
-import parkhouse.logging.Log;
 import parkhouse.security.SanitizedCar;
 
 import java.io.*;
@@ -13,9 +12,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Saver {
+
+    private final static Logger LOGGER = Logger.getLogger(Saver.class.getName());
 
     private Saver() {
     }
@@ -39,7 +41,7 @@ public class Saver {
             }
             bw.close();
         } catch (IOException e) {
-            Log.getLogger().log(Level.WARNING, "Save Cars Failed: " + e.getMessage());
+            LOGGER.warning("Save Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -60,7 +62,7 @@ public class Saver {
             }
             br.close();
         } catch (IOException e) {
-            Log.getLogger().log(Level.WARNING, "Load Cars Failed: " + e.getMessage());
+            LOGGER.warning("Load Cars Failed: " + e.getMessage());
             e.printStackTrace();
         }
     }

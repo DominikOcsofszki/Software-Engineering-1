@@ -54,7 +54,7 @@ public class StatsTest {
     }
 
     @Test
-    @DisplayName("tests if StatsAllCarsSum has the right sum")
+    @DisplayName("tests if sumCars has the right sum")
     void abstractStats_sum_test() {
         for(ICar car : carList) {
             parkingController.addCar(car);
@@ -64,8 +64,8 @@ public class StatsTest {
     }
 
     @Test
-    @DisplayName("tests if StatsAllCarsAvg has the right avg")
-    void statsAvgtest() {
+    @DisplayName("tests if avgCars has the right avg")
+    void stats_avgCars_test() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             parkingController.removeCar(car);
@@ -73,7 +73,12 @@ public class StatsTest {
         assertEquals(TEST_CAR_SUM / params.size(), Stats.avgCars(carList));
     }
 
-
+    @Test
+    @DisplayName("tests avgCars with no cars to prevent division by 0")
+    void stats_avgCarsNoCars_test() {
+        List<ICar> tmpList = new ArrayList<>();
+        assertEquals(0, Stats.avgCars(tmpList));
+    }
 
 
 }
