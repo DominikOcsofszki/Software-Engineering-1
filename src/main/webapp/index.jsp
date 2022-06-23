@@ -39,7 +39,10 @@
                          vehicle_types='["PKW","SUV","QUAD","TRIKE","PICKUP"]'
                          price_factor='{"SUV":2,"Family":0.5,"PICKUP":2}'
                          max="32"
-                         SALT="456">
+                         SALT="456"
+                         images.car="https://cdn.discordapp.com/attachments/580489934645755979/989291362543358032/unknown.png"
+                         images.parking_garage="https://cdn.discordapp.com/attachments/580489934645755979/989293152638758932/unknown.png">
+
     </ccm-parkhaus-11-0-0>
 </div>
 </body>
