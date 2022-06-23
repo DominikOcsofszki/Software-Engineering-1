@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Commander {
 
-    private final List<ICommand> cmd = new ArrayList<>();
+    private final List<ICommand> commandList = new ArrayList<>();
     private int cursor = 0;
 
     public void queue(ICommand cmd) {
-        this.cmd.add(cmd);
+        commandList.add(cmd);
     }
 
     public void activate() {
-        if (cursor < cmd.size()) {
-            cmd.get(cursor++).execute();
+        if (cursor < commandList.size()) {
+            commandList.get(cursor++).execute();
         }
     }
 
     public void undo() {
         if (cursor > 0) {
-            cmd.get(--cursor).undo();
-            cmd.remove(cursor);
+            commandList.get(--cursor).undo();
+            commandList.remove(cursor);
         }
     }
 
