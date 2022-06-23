@@ -1,12 +1,10 @@
 package parkhouse.models;
 
-import parkhouse.calculations.Price;
 import parkhouse.car.ICar;
 import parkhouse.util.Time;
 import parkhouse.views.IObserver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
