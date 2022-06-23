@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import parkhouse.Data;
 import parkhouse.calculations.Price;
 import parkhouse.config.Config;
+import parkhouse.security.SanitizedCar;
 import parkhouse.util.Time;
 
 import java.security.SecureRandom;
@@ -185,6 +186,34 @@ public class CarTest {
             int space = rand.nextInt();
             car.setSpace(space);
             assertEquals(space, car.space());
+        }
+    }
+
+    @Test
+    @DisplayName("Test the car decorator")
+    void car_decorator_test() {
+        ICar empty = new SanitizedCar(new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"}));
+        for (String[] p : params) {
+            ICar car = new SanitizedCar(new Car(p));
+
+            int space = rand.nextInt();
+            car.setSpace(space);
+            assertEquals(space, car.space());
+
+            car.updateParams(p);
+            assertEquals(
+                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                            p[0], p[1], p[2], p[3], p[4], p[5],
+                            p[6], p[7], p[8], p[9], p[10]
+                    ), car.toString()
+            );
+
+            assertEquals(
+                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                            p[0], p[1], p[2], p[3], p[4], p[5],
+                            p[6], p[7], p[8], p[9], p[10]
+                    ), car.toString()
+            );
         }
     }
 }
