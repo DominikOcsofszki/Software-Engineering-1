@@ -10,7 +10,7 @@ public class Config {
 
     public static final String[] CLIENT_CATEGORIES = new String[] {"Default", "Women", "Business", "Family", "Disability"};
     public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
-    public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Family:0.5", "PICKUP:2"};
+    public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Family:0.5", "Family.SUV:1.2"};
 
     public static int maxCars = 11;
     public static int openFrom = 0;

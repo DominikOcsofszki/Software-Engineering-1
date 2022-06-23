@@ -37,7 +37,7 @@
                          client_categories='["Default","Women","Business","Family","Disability"]'
                          space_color='{"1":"black"}'
                          vehicle_types='["PKW","SUV","QUAD","TRIKE","PICKUP"]'
-                         price_factor='{"SUV":2,"Family":0.5,"PICKUP":2}'
+                         price_factor='{"SUV":2,"Family":0.5,"Family.SUV:1.2"}'
                          max="32"
                          SALT="456"
                          images.car="https://cdn.discordapp.com/attachments/580489934645755979/989291362543358032/unknown.png"

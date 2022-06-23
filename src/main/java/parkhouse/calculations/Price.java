@@ -17,28 +17,30 @@ public class Price {
     }
 
     public static double priceFactor(ICar car) {
-        List<String> price_factors = new ArrayList<>(Arrays.asList(Config.PRICE_FACTOR));
-        for (String PF : price_factors) {
-            if (PF.matches("[A-Za-z]+\\.[A-Za-z]+:[0-9.]+")) {
+        List<String> priceFactors = new ArrayList<>(Arrays.asList(Config.PRICE_FACTOR));
+        for (String PF : priceFactors) {
+            if (PF.matches("^[A-Za-z]+\\.[A-Za-z]+:[0-9.]+")) {
                 String[] f = PF.split(":");
-                String[] types = f[0].split("\\.", 1);
+                String[] types = f[0].split("\\.");
                 if (types[0].equals(car.category()) && types[1].equals(car.type())) {
                     return Double.parseDouble(f[1]);
                 }
-                price_factors.remove(PF);
             }
         }
         for (String PF : Config.PRICE_FACTOR) {
-            String[] f = PF.split(":");
-            if ((f[0].equals(car.category()))) {
-                return Double.parseDouble(f[1]);
+            if (PF.matches("^[A-Za-z]+:[0-9.]+")) {
+                String[] f = PF.split(":");
+                if ((f[0].equals(car.category()))) {
+                    return Double.parseDouble(f[1]);
+                }
             }
-            price_factors.remove(PF);
         }
         for (String PF : Config.PRICE_FACTOR) {
-            String[] f = PF.split(":");
-            if ((f[0].equals(car.type()))) {
-                return Double.parseDouble(f[1]);
+            if (PF.matches("^[A-Za-z]+:[0-9.]+")) {
+                String[] f = PF.split(":");
+                if ((f[0].equals(car.type()))) {
+                    return Double.parseDouble(f[1]);
+                }
             }
         }
         return 1d;

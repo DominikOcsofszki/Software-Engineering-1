@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
 import parkhouse.car.ICar;
+import parkhouse.config.Config;
 
 import java.util.List;
 import java.util.Locale;
@@ -18,9 +19,10 @@ public class PriceTest {
     @DisplayName("Test if price string is formatted correctly")
     public void price_format_test() {
         for (ICar c : cars) {
+            long price = c.price();
             assertEquals(
-                    String.format(Locale.US, "%.2f€", c.price() / 100d),
-                    Price.format(c.price())
+                    String.format(Locale.US, "%.2f€", price / 100d),
+                    Price.format(price)
             );
         }
     }
@@ -28,7 +30,16 @@ public class PriceTest {
     @Test
     @DisplayName("Test if price factor is parsed correctly")
     public void price_priceFactor_test() {
-        // TODO Find effective and dynamic way of testing price factors
+        // {"SUV:2", "Family:0.5", "Family.SUV:1.2"}
+        for (ICar c : cars) {
+            if (c.category().equals("Family") && c.type().equals("SUV")) {
+                assertEquals(1.2, Price.priceFactor(c));
+            } else if (c.category().equals("Family")) {
+                assertEquals(0.5, Price.priceFactor(c));
+            } else if (c.type().equals("SUV")) {
+                assertEquals(2, Price.priceFactor(c));
+            }
+        }
     }
 
 }
