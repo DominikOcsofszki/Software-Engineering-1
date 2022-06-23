@@ -11,9 +11,11 @@ import parkhouse.config.Config;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,13 +37,19 @@ public class JsonifyTest {
     }
 
     @Test
-    @DisplayName("Test if car property is counted correctly")
+    @DisplayName("Test if car properties are counted correctly")
     void jsonify_carsCount_test() {
+        List<String> types = List.of("\"QUAD\"", "\"TRIKE\"", "\"SUV\"", "\"PICKUP\"", "\"PKW\"");
+        List<String> counts = List.of("4", "5", "2", "3", "1");
         JsonObject count = Jsonify.carsCount(cars, ICar::type);
-        JsonArray keys = Jsonify.getKeys(count);
-        JsonArray values = Jsonify.getValues(count);
-        for (String t : Config.VEHICLE_TYPES) {
+        List<String> keys = Jsonify.getKeys(count).stream().map(JsonValue::toString).collect(Collectors.toList());
+        List<String> values = Jsonify.getValues(count).stream().map(JsonValue::toString).collect(Collectors.toList());
+        System.out.println(keys);
+        for (String t : types) {
             assertTrue(keys.contains(t));
+        }
+        for (String c : counts) {
+            assertTrue(values.contains(c));
         }
     }
 
