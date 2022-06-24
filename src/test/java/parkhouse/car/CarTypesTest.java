@@ -23,12 +23,21 @@ public class CarTypesTest {
 
     @Test
     @DisplayName("getInstance: returns the instance back")
-    void getInstace_returnsSameInstance_instanceIsTheSame(){
+    void getInstance_returnsSameInstance_instanceIsTheSame(){
         Assertions.assertEquals(pkw, CarTypes.getInstance("pkw"));
         Assertions.assertEquals(quad, CarTypes.getInstance("quad"));
         Assertions.assertEquals(trike, CarTypes.getInstance("trike"));
         Assertions.assertEquals(pickup, CarTypes.getInstance("pickup"));
+
     }
+    @Test
+    @DisplayName("getInstance: not the same type")
+    void getInstance_returnsSameInstance_instanceNotTheSame() {
+        Assertions.assertNotEquals(pkw, CarTypes.getInstance("quad"));
+        Assertions.assertNotEquals(quad, CarTypes.getInstance("pkw"));
+        Assertions.assertNotEquals(trike, CarTypes.getInstance("pickup"));
+        Assertions.assertNotEquals(pickup, CarTypes.getInstance("trike"));
+       }
 
 
 }
