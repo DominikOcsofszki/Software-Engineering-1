@@ -43,6 +43,10 @@ public class CarTypesTest {
         Assertions.assertNotEquals(trike, CarTypes.getInstance("pkw"));
         Assertions.assertNotEquals(pickup, CarTypes.getInstance("quad"));
 
+        Assertions.assertNotEquals(pkw, CarTypes.getInstance("trike"));
+        Assertions.assertNotEquals(quad, CarTypes.getInstance("pickup"));
+        Assertions.assertNotEquals(trike, CarTypes.getInstance("quad"));
+        Assertions.assertNotEquals(pickup, CarTypes.getInstance("pkw"));
 
        }
 
