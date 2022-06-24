@@ -25,4 +25,5 @@ public class CarTypes {
     }
 
     public void setFactor(double factor) { this.factor = factor; }
+
 }
