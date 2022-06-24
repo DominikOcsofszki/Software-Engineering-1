@@ -54,6 +54,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     ));
                 }
                 break;
+            case "cars":
+                out.print(
+                        parkingController().getAllCars()
+                                .stream().map(c -> c.toString() + "/" + NAME())
+                                .collect(Collectors.joining(","))
+                );
+                break;
             case "Sum":
                 out.println(String.format(
                         "Total income: %s | (Live): %s",
@@ -68,7 +75,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.avgCars(parkingController().getAllCars()))
                 ));
                 break;
-
             case "Min":
                 out.println(String.format(
                         "Lowest income from a customer: %s | (Live): %s",
@@ -76,21 +82,12 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.minCars(parkingController().getAllCars()))
                 ));
                 break;
-
             case "Max":
                 out.println(String.format(
                         "Highest income from a customer: %s | (Live): %s",
                         Price.format(Stats.maxCars(parkingController().getRemovedCars())),
                         Price.format(Stats.maxCars(parkingController().getAllCars()))
                 ));
-                break;
-
-            case "cars":
-                out.print(
-                        parkingController().getAllCars()
-                                .stream().map(c -> c.toString() + "/" + NAME())
-                                .collect(Collectors.joining(","))
-                );
                 break;
             case "Types":
                 out.println(

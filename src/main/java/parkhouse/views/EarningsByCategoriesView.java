@@ -22,7 +22,7 @@ public class EarningsByCategoriesView implements IObserver {
 
     @Override
     public void update() {
-        this.cars = model.getAllCars();
+        this.cars = model.getRemovedCars();
     }
 
     @Override
