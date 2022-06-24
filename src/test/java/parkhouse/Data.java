@@ -2,6 +2,8 @@ package parkhouse;
 
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
+import parkhouse.controller.IParkingController;
+import parkhouse.controller.ParkingController;
 import parkhouse.util.Saver;
 
 import java.io.BufferedReader;
@@ -22,14 +24,14 @@ public class Data {
     private Data() {}
 
     public static List<String[]> params() {
-        return paramsHelper("cars.csv");
+        return loadParams("cars.csv");
     }
 
     public static List<String[]> paramsDuration() {
-        return paramsHelper("cars_with_duration.csv");
+        return loadParams("cars_with_duration.csv");
     }
 
-    private static List<String[]> paramsHelper(String p) {
+    private static List<String[]> loadParams(String p) {
         Path path = Paths.get(p);
         List<String[]> params = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
@@ -51,6 +53,19 @@ public class Data {
             cars.add(new Car(p));
         }
         return cars;
+    }
+
+    public static IParkingController controller() {
+        List<ICar> cars = cars();
+        IParkingController controller = new ParkingController();
+        for (ICar c : cars) {
+            if (c.gone()) {
+                controller.addRemovedCarRestartServer(c);
+            } else {
+                controller.addCar(c);
+            }
+        }
+        return controller;
     }
 
 }
