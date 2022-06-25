@@ -41,7 +41,7 @@ public class SaverTest {
         controller = new ParkingController();
         assertTrue(Saver.init());
         if (Saver.init()) {
-            assertFalse(true);
+            fail();
         }
         assertFalse(Saver.init());
     }
