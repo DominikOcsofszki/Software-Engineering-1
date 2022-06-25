@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class Data {
 
-    private final static Logger LOGGER = Logger.getLogger(Saver.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Data.class.getName());
 
     private Data() {}
 
