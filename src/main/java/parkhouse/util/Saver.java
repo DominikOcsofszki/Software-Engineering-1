@@ -11,13 +11,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Saver {
 
-    private final static Logger LOGGER = Logger.getLogger(Saver.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Saver.class.getName());
 
     private Saver() {
     }
