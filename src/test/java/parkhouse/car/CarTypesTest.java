@@ -50,5 +50,16 @@ public class CarTypesTest {
 
        }
 
-
+    @Test
+    @DisplayName("get/setFactor:sets and returns expectet value ")
+    void getFactor_returnsExpectetValue_isTheSame(){
+        pkw.setFactor(2.0);
+        Assertions.assertEquals(pkw.getFactor(),2.0);
+    }
+    @Test
+    @DisplayName("get/setFactor: check for illegalArgumentsException")
+    void getFactor_checkIfExpectetValue_isTheSame(){
+        Assertions.assertThrows(IllegalArgumentException.class,()->pkw.setFactor(0));
+        Assertions.assertThrows(IllegalArgumentException.class,()->pkw.setFactor(-1));
+    }
 }
