@@ -14,9 +14,14 @@ package parkhouse.views;
 
 public class CurrentCostsViewTest {
 
-    private final List<String[]> params = Data.paramsDuration();
     private IParkingModel parkingModel;
     private CurrentCostsView currentCostsView;
+    private final ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f","2","Women","SUV","SU-K 69",Time.now() - 10000+""});
+    private final ICar x1 = new Car(new String[]{"25", Time.now() - 10000+"","6010","70","a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f","2","Women","SUV","SU-K 70",Time.now() - 10000+""});
+    private final ICar x2 = new Car(new String[]{"25", Time.now() - 10000+"","6010","71","a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f","2","Women","SUV","SU-K 71",Time.now() - 10000+""});
 
     @BeforeEach
     void setUp() {
@@ -41,12 +46,7 @@ public class CurrentCostsViewTest {
 */
 
         parkingModel.registerObserver(currentCostsView);
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 69",Time.now() - 10000+""});
-        ICar x1 = new Car(new String[]{"25", Time.now() - 10000+"","6010","70","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 70",Time.now() - 10000+""});
-        ICar x2 = new Car(new String[]{"25", Time.now() - 10000+"","6010","71","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 71",Time.now() - 10000+""});
+
         parkingModel.addCar(x);
         parkingModel.addCar(x1);
         parkingModel.addCar(x2);
@@ -59,12 +59,6 @@ public class CurrentCostsViewTest {
     @DisplayName("test if the format is right")     //ToDo toString gibt immer nur eine Tabelle aus. korrekt getestet?
     void currentCostsView_toString_test() {
         parkingModel.registerObserver(currentCostsView);
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
-        ICar x1 = new Car(new String[]{"25", Time.now() - 10000+"","6010","70","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
-        ICar x2 = new Car(new String[]{"25", Time.now() - 10000+"","6010","71","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
         parkingModel.addCar(x);
         boolean contains = currentCostsView.toString().contains("0.69€");
         System.out.println(currentCostsView.toString());

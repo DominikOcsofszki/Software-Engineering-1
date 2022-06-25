@@ -11,13 +11,13 @@ public class CarTypes {
     private CarTypes() {
     }
 
-    public static CarTypes getInstance(String key){
-            CarTypes type = types.get(key);
-            if (type == null){
-                type = new CarTypes();
-                types.put(key, type);
-            }
-            return type;
+    public static CarTypes getInstance(String key) {
+        CarTypes type = types.get(key);
+        if (type == null) {
+            type = new CarTypes();
+            types.put(key, type);
+        }
+        return type;
     }
 
     public double getFactor() {
@@ -25,9 +25,10 @@ public class CarTypes {
     }
 
     public void setFactor(double factor) {
-        if(factor<=0){
+        if (factor <= 0) {
             throw new IllegalArgumentException();
         }
-        this.factor = factor; }
+        this.factor = factor;
+    }
 
 }

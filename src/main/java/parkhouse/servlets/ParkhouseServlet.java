@@ -46,7 +46,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String cmd = request.getParameter("cmd");
-        System.out.println(cmd + " requested: " + request.getQueryString());
+        LOGGER.info(cmd + "requested: " + request.getQueryString());
 
         switch (cmd) {
             case "config":
@@ -144,7 +144,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 out.println(RELOAD);
                 break;
             default:
-                System.out.println("Invalid Command: " + request.getQueryString());
+                LOGGER.warning("Invalid Command: " + request.getQueryString());
         }
     }
 
@@ -158,7 +158,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        System.out.println(body);
+        LOGGER.info(body);
         String[] params = body.split(",");
         String event = params[0];
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
@@ -194,7 +194,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "invalid":
             case "occupied":
-                System.out.println(body);
+                LOGGER.info("occdupied: " + body);
                 break;
             case "tomcat":
                 out.println(getServletConfig().getServletContext().getServerInfo()
@@ -203,7 +203,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
 
             default:
-                System.out.println(body);
+                LOGGER.info("Invalid Command: " + body);
         }
 
     }
@@ -236,7 +236,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             if (inputStream != null) {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 char[] charBuffer = new char[128];
-                int bytesRead = -1;
+                int bytesRead;
                 while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
                     stringBuilder.append(charBuffer, 0, bytesRead);
                 }
