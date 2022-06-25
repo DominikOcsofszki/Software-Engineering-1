@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Arrays;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public abstract class ParkhouseServlet extends HttpServlet {
@@ -33,6 +34,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
     abstract String config();
 
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
+
+
+    private final static Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
 
     /**
      * HTTP GET
@@ -249,6 +253,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        System.out.println("Servlet destroyed.");
+        LOGGER.info("Servlet destroyed");
+
     }
 }
