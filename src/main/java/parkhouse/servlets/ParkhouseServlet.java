@@ -36,7 +36,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
 
 
-    private final static Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
 
     /**
      * HTTP GET
