@@ -40,7 +40,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("test if the added Car is in the getCars list")
-    void parkingController_addCar_test() {
+    void parkingControllerAddCarTest() {
         for(int i = 0; i < carList.size(); i++) {
             parkingController.addCar(carList.get(i));
             assertEquals(i + 1, parkingController.getCars().size());
@@ -49,7 +49,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("test if the removed car is in the getRemovedCars list")
-    void parkingController_removeCar_test() {
+    void parkingControllerRemoveCarTest() {
         for (ICar iCar : carList) {
             parkingController.addCar(iCar);
         }
@@ -63,7 +63,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("tests if the deleted car is in now list")
-    void parkingController_deleteCar_test() {
+    void parkingControllerDeleteCarTest() {
         for(int i = 0; i < carList.size(); i++) {
             parkingController.addCar(carList.get(i));
             if(i % 2 == 0) parkingController.removeCar(carList.get(i));
@@ -77,7 +77,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("tests if the add car is in the list")
-    void parkingCOntroller_addCarRestartServer_test() {
+    void parkingCOntrollerAddCarRestartServerTest() {
         for(int i = 0; i < carList.size(); i++) {
             parkingController.addCarRestartServer(carList.get(i));
             assertEquals(i + 1, parkingController.getCars().size());
@@ -86,7 +86,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("tests if the removed car is in the list")
-    void ParkingController_removeCarRestartServer_test() {
+    void ParkingControllerRemoveCarRestartServerTest() {
         for(int i = 0; i < carList.size(); i++) {
             parkingController.addRemovedCarRestartServer(carList.get(i));
             assertEquals(i + 1, parkingController.getRemovedCars().size());
@@ -95,7 +95,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("")
-    void parkingController_dailyEarningsView_test() {
+    void parkingControllerDailyEarningsViewTest() {
         parkingController.addCar(carNow);
         parkingController.removeCar(carNow);
         assertEquals(69, parkingController.dailyEarningsView().getDailyEarnings());
@@ -106,7 +106,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("")
-    void parkingController_weeklyEarningsView_test() {
+    void parkingControllerWeeklyEarningsViewTest() {
         parkingController.addCar(carNow);
         parkingController.removeCar(carNow);
         assertEquals(69, parkingController.weeklyEarningsView().getWeeklyEarnings());
@@ -117,7 +117,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("")
-    void parkingController_currentCostView_test() {
+    void parkingControllerCurrentCostViewTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             assertEquals(car.price(), parkingController.currentCostView().getCurrentCosts().get(car.license()));
@@ -126,19 +126,7 @@ public class ParkingControllerTest {
 
     @Test
     @DisplayName("")
-    void parkingController_clientCategoriesView_test() {
-        //TODO
-    }
-
-    @Test
-    @DisplayName("")
-    void parkingController_vehicleTypesView_test() {
-        //TODO
-    }
-
-    @Test
-    @DisplayName("")
-    void parkingController_commander_test() {
+    void parkingControllerCommanderTest() {
         for(ICar car : carList) {
             parkingController.commander().queue(new CarEnterCommand(car, parkingController));
             parkingController.commander().activate();

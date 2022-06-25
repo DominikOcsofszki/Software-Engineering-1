@@ -23,7 +23,7 @@ public class CarTypesTest {
 
     @Test
     @DisplayName("getInstance: returns the instance back")
-    void getInstance_returnsSameInstance_instanceIsTheSame(){
+    void getInstanceReturnsSameInstanceInstanceIsTheSame(){
         Assertions.assertEquals(pkw, CarTypes.getInstance("pkw"));
         Assertions.assertEquals(quad, CarTypes.getInstance("quad"));
         Assertions.assertEquals(trike, CarTypes.getInstance("trike"));
@@ -32,7 +32,7 @@ public class CarTypesTest {
     }
     @Test
     @DisplayName("getInstance: not the same type")
-    void getInstance_returnsSameInstance_instanceNotTheSame() {
+    void getInstanceReturnsSameInstanceInstanceNotTheSame() {
         Assertions.assertNotEquals(pkw, CarTypes.getInstance("quad"));
         Assertions.assertNotEquals(quad, CarTypes.getInstance("pkw"));
         Assertions.assertNotEquals(trike, CarTypes.getInstance("pickup"));
@@ -52,13 +52,13 @@ public class CarTypesTest {
 
     @Test
     @DisplayName("get/setFactor:sets and returns expectet value ")
-    void getFactor_returnsExpectetValue_isTheSame(){
+    void getFactorReturnsExpectetValueIsTheSame(){
         pkw.setFactor(2.0);
         Assertions.assertEquals(pkw.getFactor(),2.0);
     }
     @Test
     @DisplayName("get/setFactor: check for illegalArgumentsException")
-    void getFactor_checkIfExpectetValue_isTheSame(){
+    void getFactorCheckIfExpectetValueIsTheSame(){
         Assertions.assertThrows(IllegalArgumentException.class,()->pkw.setFactor(0));
         Assertions.assertThrows(IllegalArgumentException.class,()->pkw.setFactor(-1));
     }

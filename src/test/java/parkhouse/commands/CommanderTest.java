@@ -31,7 +31,7 @@ public class CommanderTest {
 
     @Test
     @DisplayName("tests if queue change the carLists")
-    void commander_queue_test() {
+    void commanderQueueTest() {
         ICar car  = new Car(params.get(0));
         commander.queue(new CarEnterCommand(car, parkingController));
         assertEquals(0, parkingController.getCars().size());
@@ -39,7 +39,7 @@ public class CommanderTest {
 
     @Test
     @DisplayName("tests both activate conditions")
-    void commander_activate_test() {
+    void commanderActivateTest() {
         ICar car  = new Car(params.get(0));
         commander.queue(new CarEnterCommand(car, parkingController));
         commander.activate();
@@ -50,7 +50,7 @@ public class CommanderTest {
 
     @Test
     @DisplayName("tests both undo conditions")
-    void commander_undo_test() {
+    void commanderUndoTest() {
         ICar car  = new Car(params.get(0));
         commander.queue(new CarEnterCommand(car, parkingController));
         commander.activate();

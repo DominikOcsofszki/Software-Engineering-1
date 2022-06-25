@@ -17,7 +17,7 @@ public class PriceTest {
 
     @Test
     @DisplayName("Test if price string is formatted correctly")
-    public void price_format_test() {
+    public void priceFormatTest() {
         for (ICar c : cars) {
             long price = c.price();
             assertEquals(
@@ -29,8 +29,7 @@ public class PriceTest {
 
     @Test
     @DisplayName("Test if price factor is parsed correctly")
-    public void price_priceFactor_test() {
-        // {"SUV:2", "Family:0.5", "Family.SUV:1.2"}
+    public void pricePriceFactorTest() {
         for (ICar c : cars) {
             if (c.category().equals("Family") && c.type().equals("SUV")) {
                 assertEquals(1.2, Price.priceFactor(c));

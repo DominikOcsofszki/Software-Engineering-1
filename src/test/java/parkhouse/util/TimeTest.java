@@ -28,7 +28,7 @@ public class TimeTest {
     }
 
     @Test
-    void time_difference_test() {
+    void timeDifferenceTest() {
         assertEquals(0, Time.diff(50, 50));
         assertEquals(100, Time.diff(50, -50));
         assertEquals(200, Time.diff(50, -150));

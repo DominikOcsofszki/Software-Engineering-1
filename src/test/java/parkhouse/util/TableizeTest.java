@@ -23,7 +23,7 @@ public class TableizeTest {
 
     @Test
     @DisplayName("Test if html table is build correctly")
-    public void tableize_table_test() {
+    public void tableizeTableTest() {
         assertEquals(table, Tableize.table(headers, rows));
     }
 

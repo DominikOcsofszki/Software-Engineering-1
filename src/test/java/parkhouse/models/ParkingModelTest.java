@@ -38,7 +38,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test register and remove")
-    void parkingModel_observer_test() {
+    void parkingModelObserverTest() {
         DailyEarningsView dailyEarningsView = new DailyEarningsView(parkingModel);
         parkingModel.removeObserver(dailyEarningsView);
         parkingModel.registerObserver(dailyEarningsView);
@@ -57,7 +57,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test if the addCar method adds the right cars to the list")
-    void parkingModel_addCar_test() {
+    void parkingModelAddCarTest() {
         for(String[] s : params) {
             parkingModel.addCar(new Car(s));
         }
@@ -69,7 +69,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test if the removeCar method removes cars from the cars list")
-    void parkingModel_removeCar_test() {
+    void parkingModelRemoveCarTest() {
         for(String[] s : params) {
             ICar c = new Car(s);
             parkingModel.addCar(c);
@@ -81,7 +81,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("tests if the removedCar list has every car that has been removed")
-    void parkingModel_removedCarList_test() {
+    void parkingModelRemovedCarListTest() {
         for(String[] s : params) {
             ICar c = new Car(s);
             parkingModel.addCar(c);
@@ -95,7 +95,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("tests if the car is in no list after been deleted")
-    void parkingModel_deleteCar_test() {
+    void parkingModelDeleteCarTest() {
         for(String[] s : params) {
             ICar c = new Car(s);
             parkingModel.addCar(c);
@@ -107,14 +107,8 @@ public class ParkingModelTest {
     }
 
     @Test
-    @DisplayName("test if the deleteCar method throws a IllegalArgumentException if the car is not in the list")
-    void parkingModel_deleteCarThrow_test() {
-        assertThrows(IllegalArgumentException.class, () -> parkingModel.deleteCar(carsList.get(0)));
-    }
-
-    @Test
     @DisplayName("test if the addCarRestartServer method adds the right cars to the list")
-    void parkingModel_addCarRestartServer_test() {
+    void parkingModelAddCarRestartServerTest() {
         for(String[] s : params) {
             parkingModel.addCarRestartServer(new Car(s));
         }
@@ -126,7 +120,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("")
-    void parkingModel_removeCarRestartServer_test() {
+    void parkingModelRemoveCarRestartServerTest() {
         for(String[] s : params) {
             parkingModel.removeCarRestartServer(new Car(s));
         }
@@ -138,7 +132,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test if the dailyEarnings adds up the cars that left in the last 24h")
-    void parkingModel_dailyEarnings_test() {
+    void parkingModelDailyEarningsTest() {
         ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
                 "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
         parkingModel.addCar(x);
@@ -153,7 +147,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test if the weeklyEarnings adds up the cars that left in the last 7 days")
-    void parkingModel_weeklyEarnings_test() {
+    void parkingModelWeeklyEarningsTest() {
         ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
                 "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
         parkingModel.addCar(x);
@@ -168,7 +162,7 @@ public class ParkingModelTest {
 
     @RepeatedTest(10)
     @DisplayName("test if the dif between the price of the and the currentCost is less then 5 because of the delay")
-    void parkingModel_currentCost_test() {
+    void parkingModelCurrentCostTest() {
         for(ICar car : carsNoDurationList) {
             parkingModel.addCar(car);
             assertTrue(Math.abs(car.price() - parkingModel.currentCost().get(car.license())) <= 4);
@@ -178,7 +172,7 @@ public class ParkingModelTest {
 
     @Test
     @DisplayName("test if getAllCars returns a list with added and removed cars")
-    void parkingModel_getCars_test() {
+    void parkingModelGetCarsTest() {
         for(String[] s : params) {
             ICar c = new Car(s);
             parkingModel.addCar(c);

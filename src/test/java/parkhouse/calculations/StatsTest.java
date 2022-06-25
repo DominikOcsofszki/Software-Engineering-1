@@ -35,7 +35,7 @@ public class StatsTest {
 
     @Test
     @DisplayName("tests if the min price is right in a given list")
-    void stats_minCars_test() {
+    void statsMinCarsTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             parkingController.removeCar(car);
@@ -45,7 +45,7 @@ public class StatsTest {
 
     @Test
     @DisplayName("tests if the max price is right in a given list")
-    void stats_maxCars_test() {
+    void statsMaxCarsTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             parkingController.removeCar(car);
@@ -55,7 +55,7 @@ public class StatsTest {
 
     @Test
     @DisplayName("tests if sumCars has the right sum")
-    void abstractStats_sum_test() {
+    void statsSumCarsTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             parkingController.removeCar(car);
@@ -65,7 +65,7 @@ public class StatsTest {
 
     @Test
     @DisplayName("tests if avgCars has the right avg")
-    void stats_avgCars_test() {
+    void statsAvgCarsTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
             parkingController.removeCar(car);
@@ -75,7 +75,7 @@ public class StatsTest {
 
     @Test
     @DisplayName("tests avgCars with no cars to prevent division by 0")
-    void stats_avgCarsNoCars_test() {
+    void statsAvgCarsNoCarsTest() {
         List<ICar> tmpList = new ArrayList<>();
         assertEquals(0, Stats.avgCars(tmpList));
     }

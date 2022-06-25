@@ -31,7 +31,7 @@ public class WeeklyEarningsViewTest {
 
     @Test
     @DisplayName("test if the weeklyEarningsView gets updated")
-    void dailyEarningView_getDailyEarnings_test() {
+    void dailyEarningViewGetDailyEarningsTest() {
         parkingModel.addCar(car);
         parkingModel.removeCar(car);
         assertEquals(69, weeklyEarningsView.getWeeklyEarnings());
@@ -39,7 +39,7 @@ public class WeeklyEarningsViewTest {
 
     @Test
     @DisplayName("test if the format is right")
-    void dailyEarningsView_toString_test() {
+    void dailyEarningsViewToStringTest() {
         parkingModel.addCar(car);
         parkingModel.removeCar(car);
         assertEquals("0.69€", weeklyEarningsView.toString());

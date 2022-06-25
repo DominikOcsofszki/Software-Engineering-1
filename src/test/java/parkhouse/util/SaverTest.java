@@ -18,7 +18,7 @@ public class SaverTest {
 
     @Test
     @DisplayName("Test if cars are saved and loaded correctly")
-    public void saver_saveLoadCars_test() {
+    public void saverSaveLoadCarsTest() {
         Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         Saver.loadCars(controller, "MainServlet");
@@ -32,7 +32,7 @@ public class SaverTest {
 
     @Test
     @DisplayName("Test init")
-    public void saver_init_Test() {
+    public void saverInitTest() {
         Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         assertTrue(Saver.init());

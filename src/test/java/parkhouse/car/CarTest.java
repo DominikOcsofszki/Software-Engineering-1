@@ -20,7 +20,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'nr' is set correctly")
-    void car_nr_test() {
+    void carNrTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(Integer.parseInt(p[0]), car.nr());
@@ -29,7 +29,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'timer' is set correctly")
-    void car_timer_test() {
+    void carTimerTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(Long.parseLong(p[1]), car.timer());
@@ -38,7 +38,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'begin' is set correctly")
-    void car_begin_test() {
+    void carBeginTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(Long.parseLong(p[10]), car.begin());
@@ -47,7 +47,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'duration' is set correctly")
-    void car_duration_test() {
+    void carDurationTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (p[2].equals("_")) {
@@ -61,7 +61,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'price' is set correctly")
-    void car_price_test() {
+    void carPriceTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (p[3].equals("_")) {
@@ -75,7 +75,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'ticket' is set correctly")
-    void car_ticket_test() {
+    void carTicketTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(p[4], car.ticket());
@@ -84,7 +84,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'color' is set correctly")
-    void car_color_test() {
+    void carColorTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(p[5], car.color());
@@ -93,7 +93,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'space' is set correctly")
-    void car_space_test() {
+    void carSpaceTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(Integer.parseInt(p[6]), car.space());
@@ -102,7 +102,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'category' is set correctly")
-    void car_category_test() {
+    void carCategoryTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(p[7], car.category());
@@ -111,7 +111,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'type' is set correctly")
-    void car_type_test() {
+    void carTypeTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(p[8], car.type());
@@ -120,7 +120,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'license' is set correctly")
-    void car_license_test() {
+    void carLicenseTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(p[9], car.license());
@@ -129,7 +129,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if 'end' is calculated correctly")
-    void car_end_test() {
+    void carEndTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(car.begin() + car.duration(), car.end(), 500);
@@ -138,7 +138,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if parameters are updated correctly")
-    void car_toString_test() {
+    void carToStringTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(
@@ -152,7 +152,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if car is recognized as 'gone' correctly")
-    void car_gone_test() {
+    void carGoneTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             if (!p[2].equals("_")) {
@@ -169,7 +169,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if parameters are updated correctly")
-    void car_updateParams_test() {
+    void carUpdateParamsTest() {
         ICar car = new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"});
         for (String[] p : params) {
             car.updateParams(p);
@@ -184,7 +184,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test if space is set correctly")
-    void car_setSpace_test() {
+    void carSetSpaceTest() {
         for (String[] p : params) {
             ICar car = new Car(p);
             int space = rand.nextInt();
@@ -195,7 +195,7 @@ public class CarTest {
 
     @Test
     @DisplayName("Test the car decorator")
-    void car_decorator_test() {
+    void carDecoratorTest() {
         ICar empty = new SanitizedCar(new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"}));
         for (String[] p : params) {
             ICar car = new SanitizedCar(new Car(p));

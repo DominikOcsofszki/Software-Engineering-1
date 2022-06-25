@@ -21,7 +21,7 @@ public class DurationViewTest {
 
     @Test
     @DisplayName("Test if view generates correct graph")
-    public void durationView_toString_test() {
+    public void durationViewToStringTest() {
         JsonReader reader = Json.createReader(new StringReader(controller.durationView().toString()));
         JsonObject view = reader.readObject().getJsonArray("data").getJsonObject(0);
         reader.close();

@@ -17,7 +17,7 @@ public class FinderTest {
 
     @Test
     @DisplayName("Test if correct car is found by nr")
-    public void finder_findCarByNr_test() {
+    public void finderFindCarByNrTest() {
         for (ICar c : cars) {
             assertEquals(c, Finder.findCar(cars, ICar::nr, c.nr()));
         }
@@ -25,7 +25,7 @@ public class FinderTest {
 
     @Test
     @DisplayName("Test if correct car is found by license")
-    public void finder_findCarByLicense_test() {
+    public void finderFindCarByLicenseTest() {
         for (ICar c : cars) {
             assertEquals(c, Finder.findCar(cars, ICar::license, c.license()));
         }
@@ -33,7 +33,7 @@ public class FinderTest {
 
     @Test
     @DisplayName("Test if method throws the expected exception")
-    public void finder_findException_test() {
+    public void finderFindExceptionTest() {
         assertThrows(NoSuchElementException.class, () -> Finder.findCar(cars, ICar::nr, -1));
     }
 }

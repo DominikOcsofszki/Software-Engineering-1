@@ -30,7 +30,7 @@ public class DailyEarningsViewTest {
 
     @Test
     @DisplayName("test if the dailyEarningsView gets updated")
-    void dailyEarningView_getDailyEarnings_test() {
+    void dailyEarningViewGetDailyEarningsTest() {
         parkingModel.registerObserver(dailyEarningsView);
         parkingModel.addCar(car);
         parkingModel.removeCar(car);
@@ -39,7 +39,7 @@ public class DailyEarningsViewTest {
 
     @Test
     @DisplayName("test if the format is right")
-    void dailyEarningsView_toString_test() {
+    void dailyEarningsViewToStringTest() {
         parkingModel.registerObserver(dailyEarningsView);
         parkingModel.addCar(car);
         parkingModel.removeCar(car);

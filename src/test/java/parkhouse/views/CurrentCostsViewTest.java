@@ -37,13 +37,7 @@ public class CurrentCostsViewTest {
 
     @Test
     @DisplayName("test if the currentCostsView gets updated")       //ToDo check again
-    void currentCostsView_test() {
-        /*parkingModel.registerObserver(currentCostsView);
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
-        parkingModel.addCar(x);
-        assertEquals(69, currentCostsView.getCurrentCosts().get("SU-K 41"));
-*/
+    void currentCostsViewTest() {
 
         parkingModel.registerObserver(currentCostsView);
 
@@ -57,7 +51,7 @@ public class CurrentCostsViewTest {
 
     @Test
     @DisplayName("test if the format is right")     //ToDo toString gibt immer nur eine Tabelle aus. korrekt getestet?
-    void currentCostsView_toString_test() {
+    void currentCostsViewToStringTest() {
         parkingModel.registerObserver(currentCostsView);
         parkingModel.addCar(x);
         boolean contains = currentCostsView.toString().contains("0.69€");
@@ -75,15 +69,6 @@ public class CurrentCostsViewTest {
         boolean contains2 = currentCostsView.toString().contains("0.71€");
         System.out.println(currentCostsView.toString());
         assertTrue(contains2);
-
-
-//        boolean contains = currentCostsView.toString().contains("0.69€");
-//        boolean contains1 = currentCostsView.toString().contains("0.70€");
-//        boolean contains2 = currentCostsView.toString().contains("0.71€");
-//        System.out.println(currentCostsView.toString());
-
-//        assertEquals("0.69€", currentCostsView.toString());
-//        parkingModel.removeCar(x);
 
     }
 

@@ -37,7 +37,7 @@ public class CarEnterLeaveCommandTest {
 
     @Test
     @DisplayName("CarEnterCommand/Test if the car is in the list using activate()")
-    void carEnterCommand_executeCarIsInList_test() {
+    void carEnterCommandExecuteCarIsInListTest() {
         for(int i = 0; i < carsList.size(); i++) {
             commander.queue(new CarEnterCommand(carsList.get(i), controller));
             commander.activate();
@@ -47,7 +47,7 @@ public class CarEnterLeaveCommandTest {
 
     @Test
     @DisplayName("CarEnterCommand/Test if the car is not in the list using undo()")
-    void carEnterCommand_undoCarIsNotInList_test() {
+    void carEnterCommandUndoCarIsNotInListTest() {
         for(int i = 0; i < carsList.size(); i++) {
             commander.queue(new CarEnterCommand(carsList.get(i), controller));
             commander.activate();
@@ -61,7 +61,7 @@ public class CarEnterLeaveCommandTest {
 
     @Test
     @DisplayName("CarLeaveCommand/Test if the car is in the list using activate()")
-    void carLeaveCommand_executeCarIsInList_test() {
+    void carLeaveCommandExecuteCarIsInListTest() {
         for(ICar car : carsList) {
             controller.addCar(car);
         }
@@ -75,7 +75,7 @@ public class CarEnterLeaveCommandTest {
 
     @Test
     @DisplayName("CarLeaveCommand/Test if the car is not in the list using undo()")
-    void carLeaveCommand_undoCarIsNotInList_test() {
+    void carLeaveCommandUndoCarIsNotInListTest() {
         for(ICar car : carsList) {
             controller.addCar(car);
         }

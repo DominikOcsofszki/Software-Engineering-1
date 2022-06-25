@@ -15,7 +15,7 @@ public class EarningsByCategoriesViewTest {
 
     @Test
     @DisplayName("Test if view generates correct table")
-    public void earningsByCategoriesView_toString_test() {
+    public void earningsByCategoriesViewToStringTest() {
         String[] headers = new String[] {"Category", "Sum", "Average", "Minimum", "Maximum"};
         String[][] rows = new String[][] {
                 {"Default", Price.format(5819), Price.format(2909), Price.format(601), Price.format(5218)},

@@ -17,7 +17,7 @@ public class ClientCategoriesViewTest {
 
     @Test
     @DisplayName("Test if view generates correct graph")
-    public void clientCategoriesView_toString_test() {
+    public void clientCategoriesViewToStringTest() {
         JsonArray keys = Json.createArrayBuilder()
                 .add("Women")
                 .add("Family")

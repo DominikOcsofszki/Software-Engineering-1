@@ -27,7 +27,7 @@ public class LocatorTest {
 
     @Test
     @DisplayName("Test if correct space is assigned to entering cars")
-    public void locator_locate_test() {
+    public void locatorLocateTest() {
         Config.maxCars = 11;
         for (ICar c : cars) {
             if (!c.gone()) {
@@ -44,7 +44,7 @@ public class LocatorTest {
 
     @Test
     @DisplayName("Test if -1 is returned if park house is full")
-    public void locator_full_test() {
+    public void locatorFullTest() {
         Config.maxCars = 0;
         assertEquals(-1, Locator.locate(controller));
     }

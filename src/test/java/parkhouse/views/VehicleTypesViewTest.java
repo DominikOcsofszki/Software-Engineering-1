@@ -17,7 +17,7 @@ public class VehicleTypesViewTest {
 
     @Test
     @DisplayName("Test if view generates correct graph")
-    public void vehicleTypesView_toString_test() {
+    public void vehicleTypesViewToStringTest() {
         JsonArray keys = Json.createArrayBuilder()
                 .add("QUAD")
                 .add("TRIKE")
