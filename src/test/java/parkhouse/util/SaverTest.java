@@ -13,15 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SaverTest {
 
-    IParkingController controller = new ParkingController();
+    IParkingController controller = Data.controller();
     List<ICar> cars = Data.cars();
 
     @Test
     @DisplayName("Test if cars are saved and loaded correctly")
-    public void saver_saveLoadCars_test() {     //ToDo: test? Errors only possible by wrong Path
-        for (ICar c : cars) {
-            controller.addCar(c);
-        }
+    public void saver_saveLoadCars_test() {
         Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         Saver.loadCars(controller, "MainServlet");
@@ -30,13 +27,13 @@ public class SaverTest {
                     Finder.findCar(controller.getAllCars(), ICar::ticket, c.ticket()).toString()
             );
         }
+        Saver.saveCars(controller, "x");
+        Saver.loadCars(controller, "y");
     }
+
     @Test
     @DisplayName("Test init()")
     public void init_Test() {
-        for (ICar c : cars) {
-            controller.addCar(c);
-        }
         Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         assertTrue(Saver.init());
