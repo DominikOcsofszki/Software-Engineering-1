@@ -24,6 +24,10 @@ public class CarTypes {
         return factor;
     }
 
-    public void setFactor(double factor) { this.factor = factor; }
+    public void setFactor(double factor) {
+        if(factor<=0){
+            throw new IllegalArgumentException();
+        }
+        this.factor = factor; }
 
 }
