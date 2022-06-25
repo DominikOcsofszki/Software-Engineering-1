@@ -211,13 +211,6 @@ public class CarTest {
                             p[6], p[7], p[8], p[9], p[10]
                     ), empty.toString()
             );
-
-            assertEquals(
-                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
-                            p[0], p[1], p[2], p[3], p[4], p[5],
-                            p[6], p[7], p[8], p[9], p[10]
-                    ), car.toString()
-            );
         }
     }
 }

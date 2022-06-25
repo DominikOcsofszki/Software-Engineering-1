@@ -27,13 +27,12 @@ public class SaverTest {
                     Finder.findCar(controller.getAllCars(), ICar::ticket, c.ticket()).toString()
             );
         }
-        Saver.saveCars(controller, "x");
-        Saver.loadCars(controller, "y");
+        Saver.loadCars(controller, "x");
     }
 
     @Test
-    @DisplayName("Test init()")
-    public void init_Test() {
+    @DisplayName("Test init")
+    public void saver_init_Test() {
         Saver.saveCars(controller, "MainServlet");
         controller = new ParkingController();
         assertTrue(Saver.init());
