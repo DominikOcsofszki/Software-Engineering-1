@@ -166,17 +166,6 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("Test if car is recognized as 'gone' correctly")
-    void car_gone2_test() {
-        ICar car = new Car(params.get(0));
-        assertTrue(car.gone());
-        car = new Car(params.get(1));
-        assertTrue(car.gone());
-        car = new Car(params.get(2));
-        assertFalse(car.gone());
-    }
-
-    @Test
     @DisplayName("Test if parameters are updated correctly")
     void car_updateParams_test() {
         ICar car = new Car(new String[]{"_","_","_","_","_","_","_","_","_","_"});
