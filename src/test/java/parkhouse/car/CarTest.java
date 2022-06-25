@@ -163,6 +163,8 @@ public class CarTest {
                 assertFalse(car.gone());
             }
         }
+        assertTrue(new Car(new String[]{"_","_","0","_","_","_","_","_","_","_"}).gone());
+        assertTrue(new Car(new String[]{"_","_","_","0","_","_","_","_","_","_"}).gone());
     }
 
     @Test
