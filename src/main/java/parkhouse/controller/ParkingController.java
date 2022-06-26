@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ParkingController implements IParkingController {
 
-    private final IParkingModel model;
+    private final IParkingModel parkingModel;
     private final DailyEarningsView dailyEarningsView;
     private final WeeklyEarningsView weeklyEarningsView;
     private final CurrentCostsView currentCostsView;
@@ -22,53 +22,53 @@ public class ParkingController implements IParkingController {
 
 
     public ParkingController() {
-        model = new ParkingModel();
-        dailyEarningsView = new DailyEarningsView(model);
-        weeklyEarningsView = new WeeklyEarningsView(model);
-        currentCostsView = new CurrentCostsView(model);
-        clientCategoriesView = new ClientCategoriesView(model);
-        vehicleTypesView = new VehicleTypesView(model);
-        earningsByCategoriesView = new EarningsByCategoriesView(model);
-        durationView = new DurationView(model);
+        parkingModel = new ParkingModel();
+        dailyEarningsView = new DailyEarningsView(parkingModel);
+        weeklyEarningsView = new WeeklyEarningsView(parkingModel);
+        currentCostsView = new CurrentCostsView(parkingModel);
+        clientCategoriesView = new ClientCategoriesView(parkingModel);
+        vehicleTypesView = new VehicleTypesView(parkingModel);
+        earningsByCategoriesView = new EarningsByCategoriesView(parkingModel);
+        durationView = new DurationView(parkingModel);
         commander = new Commander();
     }
 
     public List<ICar> getCars() {
-        return model.getCars();
+        return parkingModel.getCarList();
     }
 
     public List<ICar> getRemovedCars() {
-        return model.getRemovedCars();
+        return parkingModel.getRemovedCarList();
     }
 
     public List<ICar> getAllCars() {
-        return model.getAllCars();
+        return parkingModel.getAllCars();
     }
 
     @Override
     public void addCar(ICar car) {
-        model.addCar(car);
+        parkingModel.addCar(car);
     }
 
     @Override
     public void removeCar(ICar car) {   // _do
-        model.removeCar(car);
+        parkingModel.removeCar(car);
     }
 
     @Override
     public void deleteCar(ICar car) {
-        model.deleteCar(car);
+        parkingModel.deleteCar(car);
     }
 
     //----------------
     @Override
     public void addCarRestartServer(ICar car) {
-        model.addCarRestartServer(car);
+        parkingModel.addCarRestartServer(car);
     }
 
     @Override
     public void addRemovedCarRestartServer(ICar car) {
-        model.removeCarRestartServer(car);
+        parkingModel.removeCarRestartServer(car);
     }
     //------------
 
@@ -84,7 +84,7 @@ public class ParkingController implements IParkingController {
 
     @Override
     public CurrentCostsView currentCostView() {
-        model.notifyObservers();
+        parkingModel.notifyObservers();
         return currentCostsView;
     }
 

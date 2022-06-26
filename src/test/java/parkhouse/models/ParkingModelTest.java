@@ -61,9 +61,9 @@ public class ParkingModelTest {
         for(String[] s : params) {
             parkingModel.addCar(new Car(s));
         }
-        assertEquals(params.size(), parkingModel.getCars().size());
+        assertEquals(params.size(), parkingModel.getCarList().size());
         for(int i = 0; i < carsList.size(); i++) {
-            assertEquals(carsList.get(i).license(), parkingModel.getCars().get(i).license());
+            assertEquals(carsList.get(i).license(), parkingModel.getCarList().get(i).license());
         }
     }
 
@@ -74,9 +74,9 @@ public class ParkingModelTest {
             ICar c = new Car(s);
             parkingModel.addCar(c);
             parkingModel.removeCar(c);
-            assertFalse(parkingModel.getCars().contains(c));
+            assertFalse(parkingModel.getCarList().contains(c));
         }
-        assertEquals(0, parkingModel.getCars().size());
+        assertEquals(0, parkingModel.getCarList().size());
     }
 
     @Test
@@ -87,9 +87,9 @@ public class ParkingModelTest {
             parkingModel.addCar(c);
             parkingModel.removeCar(c);
         }
-        assertEquals(params.size(), parkingModel.getRemovedCars().size());
+        assertEquals(params.size(), parkingModel.getRemovedCarList().size());
         for(int i = 0; i < carsList.size(); i++) {
-            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCars().get(i).license());
+            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCarList().get(i).license());
         }
     }
 
@@ -101,8 +101,8 @@ public class ParkingModelTest {
             parkingModel.addCar(c);
             parkingModel.deleteCar(c);
         }
-        assertEquals(0, parkingModel.getCars().size());
-        assertEquals(0, parkingModel.getRemovedCars().size());
+        assertEquals(0, parkingModel.getCarList().size());
+        assertEquals(0, parkingModel.getRemovedCarList().size());
         assertEquals(0, parkingModel.getAllCars().size());
     }
 
@@ -112,9 +112,9 @@ public class ParkingModelTest {
         for(String[] s : params) {
             parkingModel.addCarRestartServer(new Car(s));
         }
-        assertEquals(params.size(), parkingModel.getCars().size());
+        assertEquals(params.size(), parkingModel.getCarList().size());
         for(int i = 0; i < carsList.size(); i++) {
-            assertEquals(carsList.get(i).license(), parkingModel.getCars().get(i).license());
+            assertEquals(carsList.get(i).license(), parkingModel.getCarList().get(i).license());
         }
     }
 
@@ -124,9 +124,9 @@ public class ParkingModelTest {
         for(String[] s : params) {
             parkingModel.removeCarRestartServer(new Car(s));
         }
-        assertEquals(params.size(), parkingModel.getRemovedCars().size());
+        assertEquals(params.size(), parkingModel.getRemovedCarList().size());
         for(int i = 0; i < carsList.size(); i++) {
-            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCars().get(i).license());
+            assertEquals(carsList.get(i).license(), parkingModel.getRemovedCarList().get(i).license());
         }
     }
 
