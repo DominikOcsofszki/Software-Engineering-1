@@ -8,7 +8,17 @@ public class SanitizedCar extends CarDecorator {
     public SanitizedCar(ICar car) {
         super(car);
     }
-
+//--------------------ToDo
+//    @Override
+//    public boolean subscrition() {
+//        return false;
+//    }
+//
+//    @Override
+//    public void setSubscrition(long x) {
+//
+//    }
+//-----------------------
     @Override
     public String ticket() {
         return super.ticket().replaceAll("[^a-z0-9]+", "");
@@ -19,10 +29,10 @@ public class SanitizedCar extends CarDecorator {
         return super.color().replaceAll("[^a-z0-9#]+", "");
     }
 
-    @Override
-    public String category() {
-        return super.category().replaceAll("[^a-zA-Z]+", "");
-    }
+//    @Override       //ToDo subs
+//    public String category() {
+//        return super.category().replaceAll("[^a-zA-Z]+", "");
+//    }
 
     @Override
     public String type() {
