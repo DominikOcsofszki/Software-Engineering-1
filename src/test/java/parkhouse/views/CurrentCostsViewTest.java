@@ -1,27 +1,28 @@
 package parkhouse.views;
 
-        import parkhouse.Data;
-        import parkhouse.car.Car;
-        import parkhouse.car.ICar;
-        import parkhouse.models.IParkingModel;
 
-        import java.util.List;
+import parkhouse.car.Car;
+import parkhouse.car.ICar;
+import parkhouse.models.IParkingModel;
 
-        import org.junit.jupiter.api.*;
-        import static org.junit.jupiter.api.Assertions.*;
-        import parkhouse.models.ParkingModel;
-        import parkhouse.util.Time;
+
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import parkhouse.models.ParkingModel;
+import parkhouse.util.Time;
 
 public class CurrentCostsViewTest {
 
     private IParkingModel parkingModel;
     private CurrentCostsView currentCostsView;
-    private final ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f","2","Women","SUV","SU-K 69",Time.now() - 10000+""});
-    private final ICar x1 = new Car(new String[]{"25", Time.now() - 10000+"","6010","70","a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f","2","Women","SUV","SU-K 70",Time.now() - 10000+""});
-    private final ICar x2 = new Car(new String[]{"25", Time.now() - 10000+"","6010","71","a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f","2","Women","SUV","SU-K 71",Time.now() - 10000+""});
+    private final ICar x = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "69", "a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f", "2", "Women", "SUV", "SU-K 69", Time.now() - 10000 + ""});
+    private final ICar x1 = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "70", "a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f", "2", "Women", "SUV", "SU-K 70", Time.now() - 10000 + ""});
+    private final ICar x2 = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "71", "a7aa53882766f4bf361ca339fb843fa9",
+            "#42671f", "2", "Women", "SUV", "SU-K 71", Time.now() - 10000 + ""});
 
     @BeforeEach
     void setUp() {
@@ -36,7 +37,8 @@ public class CurrentCostsViewTest {
     }
 
     @Test
-    @DisplayName("test if the currentCostsView gets updated")       //ToDo check again
+    @DisplayName("test if the currentCostsView gets updated")
+        //ToDo check again
     void currentCostsViewTest() {
 
         parkingModel.registerObserver(currentCostsView);
@@ -50,7 +52,8 @@ public class CurrentCostsViewTest {
     }
 
     @Test
-    @DisplayName("test if the format is right")     //ToDo toString gibt immer nur eine Tabelle aus. korrekt getestet?
+    @DisplayName("test if the format is right")
+        //ToDo toString gibt immer nur eine Tabelle aus. korrekt getestet?
     void currentCostsViewToStringTest() {
         parkingModel.registerObserver(currentCostsView);
         parkingModel.addCar(x);

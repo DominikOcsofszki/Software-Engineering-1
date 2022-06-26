@@ -6,7 +6,6 @@ import parkhouse.car.ICar;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
