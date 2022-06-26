@@ -4,13 +4,11 @@ import parkhouse.calculations.Price;
 import parkhouse.config.Config;
 import parkhouse.util.Time;
 
-import java.util.Arrays;
-
 public class Car implements ICar {
 
     private String[] params;
 
-    public Car(String[] params) {
+    public Car(String[] params){
         this.params = params;
     }
 
@@ -49,7 +47,6 @@ public class Car implements ICar {
 
     @Override
     public long price() {
-        if(subscrition()) return 0;
         if (params[3].equals("_")) {
             return Math.round(Price.priceFactor(this) * this.duration() / Math.max(Config.SIMULATION_SPEED, 1));
         }
@@ -66,10 +63,10 @@ public class Car implements ICar {
         return params[5];
     }
 
-/*    @Override     //ToDo original
+    @Override
     public String category() {
         return params[7];
-    }*/
+    }
 
     @Override
     public String type() {
@@ -93,11 +90,11 @@ public class Car implements ICar {
 
     @Override
     public void setSpace(int s) { // add new spaceNr for car, after locator
-        params[6] = s + "";
+        params[6] = s+"";
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         if (gone()) {
             return String.format("%d/%d/%d/%d/%s/%s/%d/%s/%s/%s/%d",
                     nr(), timer(), duration(), price(), ticket(),
@@ -107,52 +104,4 @@ public class Car implements ICar {
                 nr(), timer(), "_", "_", ticket(), color(), space(),
                 category(), type(), license(), begin());
     }
-//ToDo subscription
-    @Override
-    public boolean subscrition() {
-        System.out.println((params[7]));
-
-        String[] category = params[7].split("-");
-        System.out.println(Arrays.toString(category));
-//        int MAX = 10;
-//        if (params[7].length() > MAX) {
-        if (category.length > 1) {
-            if (Long.parseLong(category[1]) < Time.now()) {
-                params[7] = category[0];
-                return false;
-                //ToDo get back the values saved before? setSubscribiton. Add the number.time, but also add as 2 arg the name of category
-            } else {
-                return true;        //ToDo can return the IF later.
-            }
-        } else {
-            return false;
-        }
-    }
-
-
-    @Override
-    public void setSubscrition(long x) {
-//        System.out.println(" setSubscrition(long x) happening???");
-//        params[7] = x + "";
-        params[7] = params[7] + "-" + x;
-//        System.out.println("setSub: " + params[7]);
-//        System.out.println("x in setsub: " + x);
-    }
-    @Override
-    public String category() {
-
-        if (subscrition()) {
-            return "Subscription";
-        } else {
-            String[] category = params[7].split("-");
-            return category[0];
-//            return params[7];
-        }
-    }
-
-/*
-    category() {
-        return params[7];
-    }
-*/
 }

@@ -58,32 +58,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     ));
                 }
                 break;
-
-                //-----  ToDo subscription
-            case "week" :
-                String carNr = request.getParameter("carNr");
-                System.out.println("cmd = "+cmd +"carNr: "+carNr);
-
-//                System.out.println(carNr);
-                long timeNowPlusWeek = Time.now() + Time.MILLISECONDS_PER_WEEK;
-//                ICar car = Finder.findCar(parkingController().getCars(), ICar::license, carNr);
-                ICar car = Finder.findCar(parkingController().getAllCars(), ICar::license, carNr);
-//                System.out.println("car:"+car+", timeNowPlusWeek:" +timeNowPlusWeek+" , time now" + Time.now() );
-                car.setSubscrition(timeNowPlusWeek);
-//                System.out.println("TESTEST");
-//                System.out.println(car);
-//                System.out.println(car.category());
-//                System.out.println(car.price());
-                break;
-            case "month" :
-                //ToDo copy and paste from week Time= month
-                System.out.println("TESTEST");
-                break;
-            case "year" :
-                //ToDo copy and paste from week Time= year
-                System.out.println("TESTEST");
-                break;
-            //-----
             case "cars":
                 out.print(
                         parkingController().getAllCars()

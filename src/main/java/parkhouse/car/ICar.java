@@ -1,8 +1,6 @@
 package parkhouse.car;
 
 public interface ICar {
-    boolean subscrition();
-    void setSubscrition(long x);
     int nr();
     int space();
     long timer();

@@ -87,15 +87,4 @@ public abstract class CarDecorator implements ICar {
     public String toString() {
         return car.toString();
     }
-
-    //ToDo Subs
-    @Override
-    public boolean subscrition() {
-        return car.subscrition();
-    }
-
-    @Override
-    public void setSubscrition(long x) {
-        car.setSubscrition(x);
-    }
 }
