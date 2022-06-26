@@ -20,35 +20,6 @@
     <h1>Park house Team 6</h1>
     <p>Tomcat Version : <%= application.getServerInfo() %></p>
 </div>
-
-<div class="box lightblue">
-    <h2><a href="kasse.jsp">Kasse</a></h2>
-</div>
-
-<h1><%= "Parkhaus Kasse" %></h1>
-<%--<form action="pay-servlet" method="get" id="payMe">--%>
-<form target="_blank" action="./main-servlet" method="get" >
-    <%--<form action="./index.jsp" method="get" >--%>
-
-
-    <p>Choose your Subscription:</p>
-
-    <form>
-
-        <input type="radio" id="week" name="cmd" value="week">
-        <label for="week">week</label><br>
-        <input type="radio" id="month" name="cmd" value="month">
-        <label for="month">month</label><br>
-        <input type="radio" id="year" name="cmd" value="year">
-        <label for="year">year</label>
-        <input type="text" name="carNr">
-
-
-    </form>
-
-</form>
-
-
 <div class="box grey">
     <h1>Park house</h1>
     <ccm-parkhaus-11-0-0 server_url="./main-servlet"
