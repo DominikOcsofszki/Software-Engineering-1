@@ -23,7 +23,7 @@ public class CurrentCostsView implements IObserver {
         this.currentCosts = model.currentCost();
     }
 
-    public HashMap<String, Long> getCurrentCosts() {
+    public Map<String, Long> getCurrentCosts() {
         return currentCosts;
     }
 

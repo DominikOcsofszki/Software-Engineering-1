@@ -19,7 +19,7 @@ public class VehicleTypesView implements IObserver {
 
     @Override
     public void update() {
-        this.cars = model.getCars();
+        this.cars = model.getCarList();
     }
 
     @Override

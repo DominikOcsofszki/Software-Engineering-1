@@ -6,12 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import parkhouse.Data;
 import parkhouse.car.ICar;
-import parkhouse.config.Config;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;

@@ -12,68 +12,68 @@ import java.util.stream.Stream;
 
 public class ParkingModel implements IParkingModel {
 
-    private final List<ICar> cars;
-    private final List<IObserver> observers;
-    private final List<ICar> removedCars;
+    private final List<ICar> carList;
+    private final List<IObserver> observerList;
+    private final List<ICar> removedCarList;
 
     public ParkingModel() {
-        cars = new ArrayList<>();
-        observers = new ArrayList<>();
-        removedCars = new ArrayList<>();
+        carList = new ArrayList<>();
+        observerList = new ArrayList<>();
+        removedCarList = new ArrayList<>();
     }
 
     @Override
     public void registerObserver(IObserver o) {
-        observers.add(o);
+        observerList.add(o);
     }
 
     @Override
     public void removeObserver(IObserver o) {
-        observers.remove(o);
+        observerList.remove(o);
     }
 
     @Override
     public void notifyObservers() {
-        for (IObserver o : observers) {
+        for (IObserver o : observerList) {
             o.update();
         }
     }
 
     @Override
     public void addCar(ICar car) {
-        cars.add(car);
+        carList.add(car);
         notifyObservers();
     }
 
     @Override
     public void removeCar(ICar car) {
-        removedCars.add(car);
-        cars.remove(car);
+        removedCarList.add(car);
+        carList.remove(car);
         notifyObservers();
     }
 
     @Override
     public void deleteCar(ICar car) {
-        cars.remove(car);
-        removedCars.remove(car);
+        carList.remove(car);
+        removedCarList.remove(car);
         notifyObservers();
     }
 
     @Override
     public void addCarRestartServer(ICar car) {
-        cars.add(car);
+        carList.add(car);
         notifyObservers();
     }
 
     @Override
     public void removeCarRestartServer(ICar car) {
-        removedCars.add(car);
+        removedCarList.add(car);
         notifyObservers();
     }
 
     private long earningHelper(long timeWall) {
         long now = Time.simNow();
-        return removedCars.stream()
+        return removedCarList.stream()
                 .filter(car -> (Time.diff(now, car.end()) < timeWall))
                 .mapToLong(ICar::price)
                 .sum();
@@ -92,8 +92,8 @@ public class ParkingModel implements IParkingModel {
     @Override
     public HashMap<String, Long> currentCost() {
         HashMap<String, Long> cost = new HashMap<>();
-        if (getCars().size() > 0) {
-            for (ICar c : getCars()) {
+        if (getCarList().size() > 0) {
+            for (ICar c : getCarList()) {
                 cost.put(c.license(), c.price());
             }
         }
@@ -101,16 +101,16 @@ public class ParkingModel implements IParkingModel {
 
     }
 
-    public List<ICar> getCars() {
-        return cars;
+    public List<ICar> getCarList() {
+        return carList;
     }
 
-    public List<ICar> getRemovedCars() {
-        return removedCars;
+    public List<ICar> getRemovedCarList() {
+        return removedCarList;
     }
 
     @Override
     public List<ICar> getAllCars() {
-        return Stream.concat(cars.stream(), removedCars.stream()).collect(Collectors.toList());
+        return Stream.concat(carList.stream(), removedCarList.stream()).collect(Collectors.toList());
     }
 }
