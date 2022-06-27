@@ -1,7 +1,6 @@
 
 ## Minimum Viable Product
 
----
 
 | Story | Value Points | Story Points | Quotient |
 | -------- | -------- | -------- |----------|

@@ -1,8 +1,6 @@
 
 # Sicherheit
 
----
-
 ## Analyse:
 
 Die durchgeführte Sicherheitsanalyse, für das Ermitteln von möglichen Angriffsvektoren, 
@@ -88,7 +86,7 @@ In der Applikation werden keine dynamischen Requests vom Server generiert.
 
 ## Gegemaßnahmen:
 
-Ein großer Teil der gefundenen Schwachstellen wurden als schwer oder nicht lösbar bestimmt.\
+Ein großer Teil der gefundenen Schwachstellen wurden als nur schwer oder nicht lösbar bestimmt.\
 Um die Fläche für potentielle Angriffe jedoch etwas zu reduzieren, wurden die folgende Sicherheitsmaßnamhen implementiert.
 
 - Die Parameter von Autos werden beim Betreten des Parkhauses bzw. beim laden aus Dateien, mit einer Whitelist desinfiziert.

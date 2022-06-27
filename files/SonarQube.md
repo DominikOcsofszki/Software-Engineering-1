@@ -1,7 +1,6 @@
 
 ## SonarQube
 
----
 
 [Dashboard](https://sepp-sonar.inf.h-brs.de/dashboard?id=Team_6)
 
