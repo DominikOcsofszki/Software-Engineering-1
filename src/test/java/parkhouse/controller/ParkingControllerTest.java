@@ -94,7 +94,7 @@ public class ParkingControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("tests if the daily earnings view is returned")
     void parkingControllerDailyEarningsViewTest() {
         parkingController.addCar(carNow);
         parkingController.removeCar(carNow);
@@ -105,7 +105,7 @@ public class ParkingControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("tests if the weekly earnings view is returned")
     void parkingControllerWeeklyEarningsViewTest() {
         parkingController.addCar(carNow);
         parkingController.removeCar(carNow);
@@ -116,7 +116,7 @@ public class ParkingControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("tests if the current cost view is returned")
     void parkingControllerCurrentCostViewTest() {
         for(ICar car : carList) {
             parkingController.addCar(car);
@@ -125,7 +125,7 @@ public class ParkingControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("tests if the commander is returned")
     void parkingControllerCommanderTest() {
         for(ICar car : carList) {
             parkingController.commander().queue(new CarEnterCommand(car, parkingController));

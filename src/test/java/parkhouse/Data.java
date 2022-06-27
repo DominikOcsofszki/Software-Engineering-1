@@ -28,7 +28,7 @@ public class Data {
     }
 
     public static List<String[]> paramsDuration() {
-        return loadParams("/src/test/resources/cars_with_duration.csv");
+        return loadParams("src/test/resources/cars_with_duration.csv");
     }
 
     private static List<String[]> loadParams(String p) {

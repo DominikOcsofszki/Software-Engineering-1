@@ -153,7 +153,7 @@ public class ParkingModelTest {
     void parkingModelCurrentCostTest() {
         for(ICar car : carsNoDurationList) {
             parkingModel.addCar(car);
-            assertTrue(Math.abs(car.price() - parkingModel.currentCost().get(car.license())) <= 4);
+            assertTrue(Math.abs(car.price() - parkingModel.currentCost().get(car.license())) <= 5);
         }
     }
 
