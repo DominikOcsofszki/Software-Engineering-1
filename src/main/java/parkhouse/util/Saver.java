@@ -5,7 +5,6 @@ import parkhouse.car.ICar;
 import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.security.SanitizedCar;
-import parkhouse.servlets.MainServlet;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -20,23 +19,29 @@ public class Saver {
 
     private static final Logger LOGGER = Logger.getLogger(Saver.class.getName());
 
+    private final String name;
+    private boolean init;
+    private boolean initConfig;
+
     /*
     Author: jstueh2s & docsof2s
      */
 
-    private Saver() {}
+    public Saver(String name) {
+        init = true;
+        initConfig = true;
+        this.name = name;
+    }
 
-    private static boolean init = true;
-    private static boolean initConfig = true;
-
-    public static boolean init() {
+    public boolean init() {
         if (init) {
             init = false;
             return true;
         }
         return false;
     }
-    public static boolean initConfig() {
+
+    public boolean initConfig() {
         if (initConfig) {
             initConfig = false;
             return true;
@@ -44,13 +49,8 @@ public class Saver {
         return false;
     }
 
-    public static void saveCars(IParkingController controller, String name) {
-        saveConfig(name);
+    public void saveCars(IParkingController controller) {
         Path path = Paths.get("src/main/resources/" + name + ".cars");
-//        //ToDo for Testing:
-//        if(name.equals("MainServletTest")) {
-//            path = Paths.get("src/test/resources/" + name + ".cars");
-//        }
         try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII)) {
             for (ICar c : controller.getAllCars()) {
                 bw.write(c.toString() + "\n");
@@ -60,15 +60,8 @@ public class Saver {
         }
     }
 
-
-    public static void loadCars(IParkingController controller, String name) {
-        loadConfig(name);
+    public void loadCars(IParkingController controller) {
         Path path = Paths.get("src/main/resources/" + name + ".cars");
-//        //ToDo for Testing: add lines here or need extra testing ressources in normal folder?
-//        System.out.println(name);
-//        if(name.equals("MainServletTest")) {
-//            path = Paths.get("src/test/resources/" + name + ".cars");
-//        }
         try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
             List<String> lines = new ArrayList<>();
             br.lines().collect(Collectors.toCollection(() -> lines));
@@ -84,43 +77,29 @@ public class Saver {
             LOGGER.warning("Load Cars Failed: " + e.getMessage());
         }
     }
-    //------
 
-    public static void saveConfig(String name) {
+    public void saveConfig(int[] config) {
         Path path = Paths.get("src/main/resources/" + name + ".conf");
-//        //ToDo for Testing:
-//        if(name.equals("MainServletTest")) {
-//            path = Paths.get("src/test/resources/" + name + ".conf");
-//        }
         try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII)) {
-            /*for (ICar c : controller.getAllCars()) {
-                bw.write(c.toString() + "\n");
-            }*/
-            bw.write(Config.maxCars + "\n");
-            bw.write(Config.openFrom + "\n");
-            bw.write(Config.openTo + "\n");
-
+            bw.write(String.format("%d,%d,%d", config[0], config[1], config[2]));
         } catch (IOException e) {
             LOGGER.warning("Save Config Failed: " + e.getMessage());
         }
     }
 
-    public static void loadConfig(String name) {
+    public int[] loadConfig() {
         Path path = Paths.get("src/main/resources/" + name + ".conf");
-//        //ToDo for Testing:
-//        if(name.equals("MainServletTest")) {
-//            path = Paths.get("src/test/resources/" + name + ".conf");
-//        }
         try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
-//            List<String> lines = new ArrayList<>();
-//            br.lines().collect(Collectors.toCollection(() -> lines));
-            Config.setMaxCars(Integer.parseInt(br.readLine()));
-            Config.setOpenFrom(Integer.parseInt(br.readLine()));
-            Config.setOpenTo(Integer.parseInt(br.readLine()));
-
+            return Arrays.stream(br.lines().findFirst().orElseThrow(IOException::new).split(","))
+                    .mapToInt(Integer::parseInt).toArray();
         } catch (IOException e) {
             LOGGER.warning("Load Config Failed: " + e.getMessage());
         }
+        return new int[]{
+                Config.DEFAULT_MAX_CARS,
+                Config.DEFAULT_OPEN_FROM,
+                Config.DEFAULT_OPEN_TO
+        };
     }
-    //---
+
 }

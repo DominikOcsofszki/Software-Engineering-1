@@ -16,18 +16,8 @@ public class Config {
     public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
     public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Family:0.5", "Family.SUV:1.2"};
 
-    public static int maxCars = 16;
-    public static int openFrom = 0;
-    public static int openTo = 0;
-
-    public static void setMaxCars(int maxCars) {
-        Config.maxCars = maxCars;
-    }
-    public static void setOpenFrom(int openFrom) {
-        Config.openFrom = openFrom;
-    }
-    public static void setOpenTo(int openTo) {
-        Config.openTo = openTo;
-    }
+    public static final int DEFAULT_MAX_CARS = 16;
+    public static final int DEFAULT_OPEN_FROM = 0;
+    public static final int DEFAULT_OPEN_TO = 0;
 
 }

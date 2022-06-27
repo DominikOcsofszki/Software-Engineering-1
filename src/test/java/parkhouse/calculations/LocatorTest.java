@@ -38,11 +38,10 @@ public class LocatorTest {
     @Test
     @DisplayName("Test if correct space is assigned to entering cars")
     public void locatorLocateTest() {
-        Config.maxCars = 11;
         for (ICar c : cars) {
             if (!c.gone()) {
-                c.setSpace(Locator.locate(controller));
-                assertTrue(c.space() > 0 && c.space() <= Config.maxCars);
+                c.setSpace(Locator.locate(controller, 16));
+                assertTrue(c.space() > 0 && c.space() <= Config.DEFAULT_MAX_CARS);
                 assertThrows(
                         NoSuchElementException.class, () ->
                         Finder.findCar(controller.getCars(), ICar::space, c.space())
@@ -55,8 +54,7 @@ public class LocatorTest {
     @Test
     @DisplayName("Test if -1 is returned if park house is full")
     public void locatorFullTest() {
-        Config.maxCars = 0;
-        assertEquals(-1, Locator.locate(controller));
+        assertEquals(-1, Locator.locate(controller, 0));
     }
 
 }

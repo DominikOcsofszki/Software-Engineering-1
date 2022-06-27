@@ -35,11 +35,11 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     abstract int max();
 
-    abstract String config();
-
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
 
     private static final Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
+
+    protected int[] config = new int[] {Config.DEFAULT_MAX_CARS, Config.DEFAULT_OPEN_FROM, Config.DEFAULT_OPEN_TO};
 
     /**
      * HTTP GET
@@ -54,13 +54,13 @@ public abstract class ParkhouseServlet extends HttpServlet {
         switch (cmd) {
             case "config":
                 out.println(config());
-                if (Saver.init()) {
-                    Saver.loadCars(parkingController(), name());
-                    Runtime.getRuntime().addShutdownHook(new Thread(() ->
-                        Saver.saveCars(parkingController(), name())
-                            //ToDo add Saver.config here out of car
-                    ));
-//                    out.println(RELOAD);
+                if (saver().init()) {
+                    saver().loadCars(parkingController());
+                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                        saver().saveConfig(config);
+                        saver().saveCars(parkingController());
+                    }));
+                    out.println(RELOAD);
                 }
                 break;
             case "cars":
@@ -170,16 +170,16 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
         switch (event) {
             case "change_max":
-                Config.setMaxCars(Integer.parseInt(restParams[0]));
+                config[0] = Integer.parseInt(restParams[0]);
                 break;
             case "change_open_from":
-                Config.setOpenFrom(Integer.parseInt(restParams[0]));
+                config[1] = Integer.parseInt(restParams[0]);
                 break;
             case "change_open_to":
-                Config.setOpenTo(Integer.parseInt(restParams[0]));
+                config[2] = Integer.parseInt(restParams[0]);
                 break;
             case "enter":
-                int space = Locator.locate(parkingController());
+                int space = Locator.locate(parkingController(), config[0]);
                 if (space != -1) {
                     ICar car = new SanitizedCar(new Car(restParams));
                     car.setSpace(space);
@@ -216,22 +216,44 @@ public abstract class ParkhouseServlet extends HttpServlet {
     /**
      * @return the servlet context
      */
-    ServletContext getContext() {
+    public ServletContext getContext() {
         return getServletConfig().getServletContext();
     }
 
-    IParkingController parkingController() {
+    public IParkingController parkingController() {
         if (getContext().getAttribute("parkingController" + name()) == null) {
             getContext().setAttribute("parkingController" + name(), new ParkingController());
         }
         return (IParkingController) getContext().getAttribute("parkingController" + name());
     }
 
+    public Saver saver() {
+        if (getContext().getAttribute("saver" + name()) == null) {
+            getContext().setAttribute("saver" + name(), new Saver(name()));
+        }
+        return (Saver) getContext().getAttribute("saver" + name());
+    }
+
+    public String config() {
+        if (saver().initConfig()) {
+            config = saver().loadConfig();
+        }
+        return String.format(
+                "%d,%d,%d,%d,%d,%d",
+                config[0],
+                config[1],
+                config[2],
+                Config.SIMULATION_SPEED,
+                Config.WAIT_REDLIGHT_SHIFT,
+                Config.TIME_SHIFT
+        );
+    }
+
     /**
      * @param request the HTTP POST request
      * @return the body of the request
      */
-    String getBody(HttpServletRequest request) throws IOException {
+    public String getBody(HttpServletRequest request) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
