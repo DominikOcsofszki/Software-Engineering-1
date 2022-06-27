@@ -20,6 +20,10 @@ public class ParkingController implements IParkingController {
     private final DurationView durationView;
     private final Commander commander;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public ParkingController() {
         parkingModel = new ParkingModel();
         dailyEarningsView = new DailyEarningsView(parkingModel);

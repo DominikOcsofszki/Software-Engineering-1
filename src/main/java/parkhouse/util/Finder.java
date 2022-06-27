@@ -7,6 +7,10 @@ import java.util.stream.StreamSupport;
 
 public class Finder {
 
+    /*
+    TODO: Author: jstueh2s & docsof2s
+     */
+
     private Finder() {}
 
     public static ICar findCar(Iterable<ICar> iter, Function<ICar, Object> loc, Object id) {

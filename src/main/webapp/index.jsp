@@ -31,7 +31,6 @@
                          open_to="23"
                          delay="100"
                          simulation_speed="1000"
-<%--                         time_shift = "360000"--%>
                          extra_buttons='["Undo","Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Earnings-Categories","Current-Cost"]'
                          extra_charts='["Types","Categories","Durations"]'
                          client_categories='["Default","Women","Business","Family","Disability"]'
@@ -42,7 +41,6 @@
                          SALT="456"
                          images.car="https://cdn.discordapp.com/attachments/580489934645755979/989291362543358032/unknown.png"
                          images.parking_garage="https://cdn.discordapp.com/attachments/580489934645755979/989293152638758932/unknown.png">
-
     </ccm-parkhaus-11-0-0>
 </div>
 </body>

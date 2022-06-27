@@ -8,6 +8,10 @@ import java.io.IOException;
 @WebFilter( urlPatterns = "/*" )
 public class SecurityCORSFilter implements Filter {
 
+  /*
+    TODO: Author: mkaul2s & jstueh2s
+     */
+
   @Override
   public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
     HttpServletResponse response = (HttpServletResponse) res;

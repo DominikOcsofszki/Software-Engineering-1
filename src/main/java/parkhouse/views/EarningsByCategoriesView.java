@@ -15,6 +15,10 @@ public class EarningsByCategoriesView implements IObserver {
     private final IParkingModel model;
     private List<ICar> cars;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public EarningsByCategoriesView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

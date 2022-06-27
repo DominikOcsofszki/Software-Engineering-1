@@ -8,6 +8,10 @@ public class CarLeaveCommand implements ICommand {
     private final ICar car;
     private final IParkingController controller;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public CarLeaveCommand(ICar car, IParkingController controller) {
         this.car = car;
         this.controller = controller;

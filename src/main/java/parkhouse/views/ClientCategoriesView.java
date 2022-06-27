@@ -12,6 +12,10 @@ public class ClientCategoriesView implements IObserver {
     private final IParkingModel model;
     private List<ICar> cars;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public ClientCategoriesView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

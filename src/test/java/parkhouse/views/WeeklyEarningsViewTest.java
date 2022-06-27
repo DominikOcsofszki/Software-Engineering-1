@@ -12,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeeklyEarningsViewTest {
 
+    /*
+    TODO: Author: tpapen2s
+     */
+
     private IParkingModel parkingModel;
     private WeeklyEarningsView weeklyEarningsView;
     private final ICar car = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",

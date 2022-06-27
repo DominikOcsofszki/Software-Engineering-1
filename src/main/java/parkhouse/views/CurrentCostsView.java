@@ -12,6 +12,10 @@ public class CurrentCostsView implements IObserver {
     private final IParkingModel model;
     private HashMap<String,Long> currentCosts;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public CurrentCostsView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

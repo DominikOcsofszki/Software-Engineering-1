@@ -15,6 +15,10 @@ import parkhouse.util.Time;
 
 public class CurrentCostsViewTest {
 
+    /*
+    TODO: Author: docsof2s
+     */
+
     private IParkingModel parkingModel;
     private CurrentCostsView currentCostsView;
     private final ICar x = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "69", "a7aa53882766f4bf361ca339fb843fa9",
@@ -57,11 +61,9 @@ public class CurrentCostsViewTest {
         boolean contains = currentCostsView.toString().contains("0.69€");
         assertTrue(contains);
 
-
         parkingModel.addCar(x1);
         boolean contains1 = currentCostsView.toString().contains("0.70€");
         assertTrue(contains1);
-
 
         parkingModel.addCar(x2);
         boolean contains2 = currentCostsView.toString().contains("0.71€");

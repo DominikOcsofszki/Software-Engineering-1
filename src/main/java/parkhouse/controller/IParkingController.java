@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface IParkingController {
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     void addCar(ICar car);
     void removeCar(ICar car);
     void deleteCar(ICar car);

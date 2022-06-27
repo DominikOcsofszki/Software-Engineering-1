@@ -4,6 +4,10 @@ public abstract class CarDecorator implements ICar {
 
     private final ICar car;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public CarDecorator(ICar car) {
         this.car = car;
     }

@@ -8,6 +8,10 @@ public class WeeklyEarningsView implements IObserver{
     private final IParkingModel model;
     private long weeklyEarnings;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public WeeklyEarningsView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

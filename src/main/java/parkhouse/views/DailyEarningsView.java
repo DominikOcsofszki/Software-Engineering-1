@@ -8,6 +8,10 @@ public class DailyEarningsView implements IObserver {
     private final IParkingModel model;
     private long dailyEarnings;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public DailyEarningsView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

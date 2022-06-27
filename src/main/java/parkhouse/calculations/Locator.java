@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class Locator {
 
+    /*
+    TODO: Author: jstueh2s & docsof2s
+     */
     private Locator() {}
 
     public static int locate(IParkingController controller) {

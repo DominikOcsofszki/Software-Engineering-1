@@ -13,7 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ClientCategoriesViewTest {
 
-    IParkingController controller = Data.controller();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private final IParkingController controller = Data.controller();
 
     @Test
     @DisplayName("Test if view generates correct graph")

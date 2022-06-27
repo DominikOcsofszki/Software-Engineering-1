@@ -2,6 +2,10 @@ package parkhouse.config;
 
 public class Config {
 
+    /*
+    TODO: Author: TEAM
+     */
+
     private Config() {}
 
     public static final int SIMULATION_SPEED = 100;
@@ -12,7 +16,7 @@ public class Config {
     public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
     public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Family:0.5", "Family.SUV:1.2"};
 
-    public static int maxCars = 11;
+    public static int maxCars = 16;
     public static int openFrom = 0;
     public static int openTo = 0;
 

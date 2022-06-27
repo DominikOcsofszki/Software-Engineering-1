@@ -8,10 +8,14 @@ import org.junit.jupiter.api.Test;
 
 public class CarTypesTest {
 
-    CarTypes pkw;
-    CarTypes quad;
-    CarTypes trike;
-    CarTypes pickup;
+    /*
+    TODO: Author: staher2s
+     */
+
+    private CarTypes pkw;
+    private CarTypes quad;
+    private CarTypes trike;
+    private CarTypes pickup;
 
     @BeforeEach
     void setup(){

@@ -12,6 +12,10 @@ public class VehicleTypesView implements IObserver {
     private final IParkingModel model;
     private List<ICar> cars;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public VehicleTypesView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

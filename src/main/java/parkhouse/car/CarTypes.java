@@ -8,6 +8,10 @@ public class CarTypes {
     private static final Map<String, CarTypes> types = new HashMap<>();
     private double factor;
 
+    /*
+    TODO: Author: staher2s
+     */
+
     private CarTypes() {}
 
     public static CarTypes getInstance(String key) {

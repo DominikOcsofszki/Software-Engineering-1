@@ -15,8 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
 
-    List<String[]> params = Data.params();
-    SecureRandom rand = new SecureRandom();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private final List<String[]> params = Data.params();
+    private final SecureRandom rand = new SecureRandom();
 
     @Test
     @DisplayName("Test if 'nr' is set correctly")

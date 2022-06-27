@@ -11,6 +11,10 @@ import parkhouse.util.Time;
 
 public class DailyEarningsViewTest {
 
+    /*
+    TODO: Author: tpapen2s
+     */
+
     private IParkingModel parkingModel;
     private DailyEarningsView dailyEarningsView;
     private final ICar car = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",

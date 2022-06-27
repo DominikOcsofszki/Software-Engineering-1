@@ -11,6 +11,10 @@ public class DurationView implements IObserver {
     private final IParkingModel model;
     private List<ICar> cars;
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     public DurationView(IParkingModel model) {
         this.model = model;
         model.registerObserver(this);

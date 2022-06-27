@@ -11,8 +11,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TimeTest {
-    IParkingController controller;
-    List<ICar> cars;
+
+    /*
+    TODO: Author: staher2s
+     */
+
+    private IParkingController controller;
+    private List<ICar> cars;
 
     @BeforeEach
     void setup(){

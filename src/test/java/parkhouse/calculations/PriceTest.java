@@ -13,7 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PriceTest {
 
-    List<ICar> cars = Data.cars();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private final List<ICar> cars = Data.cars();
 
     @Test
     @DisplayName("Test if price string is formatted correctly")

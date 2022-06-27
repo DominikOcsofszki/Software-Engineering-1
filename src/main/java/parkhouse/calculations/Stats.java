@@ -7,6 +7,9 @@ import java.util.List;
 
 public class Stats {
 
+    /*
+    TODO: Author: docsof2s
+     */
     private Stats() {}
 
     public static long minCars(List<ICar> cars) {

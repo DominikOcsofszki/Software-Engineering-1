@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface IParkingModel extends IObservable {
 
+    /*
+    TODO: Author: jstueh2s & docsof2s & tpapen2s
+     */
+
     void addCar(ICar car);
     void removeCar(ICar car);
     void deleteCar(ICar car);

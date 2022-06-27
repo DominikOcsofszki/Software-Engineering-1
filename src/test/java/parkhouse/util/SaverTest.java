@@ -13,8 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SaverTest {
 
-    IParkingController controller = Data.controller();
-    List<ICar> cars = Data.cars();
+    /*
+    TODO: Author: docsof2s
+     */
+
+    private IParkingController controller = Data.controller();
+    private final List<ICar> cars = Data.cars();
 
     @Test
     @DisplayName("Test if cars are saved and loaded correctly")

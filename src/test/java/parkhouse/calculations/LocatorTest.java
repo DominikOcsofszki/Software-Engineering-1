@@ -18,8 +18,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LocatorTest {
 
-    IParkingController controller;
-    List<ICar> cars = Data.cars();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private IParkingController controller;
+    private final List<ICar> cars = Data.cars();
 
     @BeforeEach
     public void setup() {

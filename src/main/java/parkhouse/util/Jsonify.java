@@ -8,6 +8,10 @@ import java.util.function.Function;
 
 public class Jsonify {
 
+    /*
+    TODO: Author: jstueh2s
+     */
+
     private Jsonify() {}
 
     public static JsonArray carsAsJsonArray(List<ICar> cars, Function<ICar,Object> func) {

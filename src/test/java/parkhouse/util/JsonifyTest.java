@@ -20,11 +20,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JsonifyTest {
 
-    List<ICar> cars = Data.cars();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private final List<ICar> cars = Data.cars();
 
     @Test
     @DisplayName("Test if json array contains the correct values")
-    void jsonifyCarsAsJsonArrayTest() {
+    public void jsonifyCarsAsJsonArrayTest() {
         List<Function<ICar,Object>> func = Arrays.asList(ICar::ticket, ICar::license, ICar::begin);
         for (Function<ICar,Object> f : func) {
             JsonArray arr = Jsonify.carsAsJsonArray(cars, f);
@@ -36,7 +40,7 @@ public class JsonifyTest {
 
     @Test
     @DisplayName("Test if car properties are counted correctly")
-    void jsonifyCarsCountTest() {
+    public void jsonifyCarsCountTest() {
         List<String> types = List.of("\"QUAD\"", "\"TRIKE\"", "\"SUV\"", "\"PICKUP\"", "\"PKW\"");
         List<String> counts = List.of("4", "5", "2", "3", "1");
         JsonObject count = Jsonify.carsCount(cars, ICar::type);
@@ -53,7 +57,7 @@ public class JsonifyTest {
     @ParameterizedTest
     @DisplayName("Test if correct plot object is build")
     @CsvSource({"bar,BarPlot","line,LinePlot","pie,PiePlot"})
-    void jsonifyPlotTest(String type, String name) {
+    public void jsonifyPlotTest(String type, String name) {
         JsonArray duration = Jsonify.carsAsJsonArray(cars, ICar::duration);
         JsonObject plot = Jsonify.plot(Jsonify.carsAsJsonArray(cars, ICar::nr), duration, type, name);
         JsonObject data = (JsonObject) plot.getJsonArray("data").get(0);

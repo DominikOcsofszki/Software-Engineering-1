@@ -13,7 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FinderTest {
 
-    List<ICar> cars = Data.cars();
+    /*
+    TODO: Author: jstueh2s
+     */
+
+    private final List<ICar> cars = Data.cars();
 
     @Test
     @DisplayName("Test if correct car is found by nr")
