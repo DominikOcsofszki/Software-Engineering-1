@@ -13,7 +13,7 @@ public class VehicleTypesView implements IObserver {
     private List<ICar> cars;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public VehicleTypesView(IParkingModel model) {

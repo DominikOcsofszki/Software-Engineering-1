@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class CarTypesTest {
 
     /*
-    TODO: Author: staher2s
+    Author: staher2s
      */
 
     private CarTypes pkw;

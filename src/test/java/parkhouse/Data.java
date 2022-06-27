@@ -22,7 +22,7 @@ public class Data {
     private static final Logger LOGGER = Logger.getLogger(Data.class.getName());
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private Data() {}

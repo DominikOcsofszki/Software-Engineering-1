@@ -16,7 +16,7 @@ public class EarningsByCategoriesView implements IObserver {
     private List<ICar> cars;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public EarningsByCategoriesView(IParkingModel model) {

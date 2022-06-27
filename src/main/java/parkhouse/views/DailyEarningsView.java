@@ -9,7 +9,7 @@ public class DailyEarningsView implements IObserver {
     private long dailyEarnings;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public DailyEarningsView(IParkingModel model) {

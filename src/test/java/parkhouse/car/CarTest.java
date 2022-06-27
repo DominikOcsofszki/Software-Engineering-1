@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private final List<String[]> params = Data.params();

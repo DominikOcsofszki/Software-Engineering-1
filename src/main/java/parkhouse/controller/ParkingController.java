@@ -21,7 +21,7 @@ public class ParkingController implements IParkingController {
     private final Commander commander;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public ParkingController() {

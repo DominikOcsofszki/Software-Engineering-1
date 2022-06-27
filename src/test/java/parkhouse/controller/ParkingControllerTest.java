@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkingControllerTest {
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     private IParkingController parkingController;

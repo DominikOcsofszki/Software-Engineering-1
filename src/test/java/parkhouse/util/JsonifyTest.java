@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class JsonifyTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private final List<ICar> cars = Data.cars();

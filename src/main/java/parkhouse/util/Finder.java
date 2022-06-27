@@ -8,7 +8,7 @@ import java.util.stream.StreamSupport;
 public class Finder {
 
     /*
-    TODO: Author: jstueh2s & docsof2s
+    Author: jstueh2s & docsof2s
      */
 
     private Finder() {}

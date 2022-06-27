@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WeeklyEarningsViewTest {
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     private IParkingModel parkingModel;

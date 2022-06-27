@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VehicleTypesViewTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private final IParkingController controller = Data.controller();

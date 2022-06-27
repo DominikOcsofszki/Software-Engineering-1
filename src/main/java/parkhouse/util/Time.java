@@ -11,28 +11,28 @@ public class Time {
     public static final long MILLISECONDS_PER_WEEK = MILLISECONDS_PER_DAY * 7;
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
     public static long diff(long a, long b) {
         return Math.abs(a - b);
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     public static long now() {
         return System.currentTimeMillis();
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     public static long simTime(long realTime) {
         return INSTANCE_START_DATE + (Config.SIMULATION_SPEED * (realTime - INSTANCE_START_DATE));
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     public static long simNow() {
         return simTime(System.currentTimeMillis());

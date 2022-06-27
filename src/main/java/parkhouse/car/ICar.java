@@ -3,7 +3,7 @@ package parkhouse.car;
 public interface ICar {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     int nr();

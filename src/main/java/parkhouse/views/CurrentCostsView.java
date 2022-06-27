@@ -13,7 +13,7 @@ public class CurrentCostsView implements IObserver {
     private HashMap<String,Long> currentCosts;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public CurrentCostsView(IParkingModel model) {

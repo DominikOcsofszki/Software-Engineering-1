@@ -9,7 +9,7 @@ public class Commander {
     private int cursor = 0;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public void queue(ICommand cmd) {

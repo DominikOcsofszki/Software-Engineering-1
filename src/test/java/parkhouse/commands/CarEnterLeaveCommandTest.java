@@ -15,7 +15,7 @@ import java.util.List;
 public class CarEnterLeaveCommandTest {
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     private final List<String[]> params = Data.paramsDuration();

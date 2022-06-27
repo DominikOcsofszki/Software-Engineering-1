@@ -9,7 +9,7 @@ public class CarEnterCommand implements ICommand {
     private final IParkingController controller;
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     public CarEnterCommand(ICar car, IParkingController controller) {

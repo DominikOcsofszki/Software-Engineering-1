@@ -9,7 +9,7 @@ public class CarTypes {
     private double factor;
 
     /*
-    TODO: Author: staher2s
+    Author: staher2s
      */
 
     private CarTypes() {}

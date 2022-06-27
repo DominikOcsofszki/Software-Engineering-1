@@ -12,7 +12,7 @@ public class DurationView implements IObserver {
     private List<ICar> cars;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public DurationView(IParkingModel model) {

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DurationViewTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private final IParkingController controller = Data.controller();

@@ -9,7 +9,7 @@ public class CarLeaveCommand implements ICommand {
     private final IParkingController controller;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public CarLeaveCommand(ICar car, IParkingController controller) {

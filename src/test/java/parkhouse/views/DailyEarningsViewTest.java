@@ -12,7 +12,7 @@ import parkhouse.util.Time;
 public class DailyEarningsViewTest {
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     private IParkingModel parkingModel;

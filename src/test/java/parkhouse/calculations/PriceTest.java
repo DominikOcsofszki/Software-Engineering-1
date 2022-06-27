@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PriceTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private final List<ICar> cars = Data.cars();

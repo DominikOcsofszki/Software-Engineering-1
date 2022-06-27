@@ -9,7 +9,7 @@ import java.util.List;
 public interface IParkingController {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     void addCar(ICar car);

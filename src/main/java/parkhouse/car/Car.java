@@ -9,7 +9,7 @@ public class Car implements ICar {
     private String[] params;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public Car(String[] params){

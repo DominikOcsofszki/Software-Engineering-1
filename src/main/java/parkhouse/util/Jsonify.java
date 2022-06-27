@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class Jsonify {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private Jsonify() {}

@@ -6,7 +6,7 @@ import parkhouse.car.ICar;
 public class SanitizedCar extends CarDecorator {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public SanitizedCar(ICar car) {

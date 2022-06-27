@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 public class MainServlet extends ParkhouseServlet {
 
     /*
-    TODO: Author: TEAM
+    Author: TEAM
      */
 
     @Override

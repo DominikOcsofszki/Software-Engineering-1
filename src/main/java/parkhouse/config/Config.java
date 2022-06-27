@@ -3,7 +3,7 @@ package parkhouse.config;
 public class Config {
 
     /*
-    TODO: Author: TEAM
+    Author: TEAM
      */
 
     private Config() {}

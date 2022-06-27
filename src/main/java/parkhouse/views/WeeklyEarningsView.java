@@ -9,7 +9,7 @@ public class WeeklyEarningsView implements IObserver{
     private long weeklyEarnings;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public WeeklyEarningsView(IParkingModel model) {

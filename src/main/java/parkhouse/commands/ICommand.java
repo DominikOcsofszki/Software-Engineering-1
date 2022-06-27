@@ -3,7 +3,7 @@ package parkhouse.commands;
 public interface ICommand {
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
 
     void execute();

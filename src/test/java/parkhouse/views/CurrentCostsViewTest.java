@@ -16,7 +16,7 @@ import parkhouse.util.Time;
 public class CurrentCostsViewTest {
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
 
     private IParkingModel parkingModel;

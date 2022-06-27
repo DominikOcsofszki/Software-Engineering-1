@@ -13,7 +13,7 @@ public class ClientCategoriesView implements IObserver {
     private List<ICar> cars;
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     public ClientCategoriesView(IParkingModel model) {

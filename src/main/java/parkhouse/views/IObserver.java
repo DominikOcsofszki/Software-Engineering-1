@@ -3,7 +3,7 @@ package parkhouse.views;
 public interface IObserver {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     void update();

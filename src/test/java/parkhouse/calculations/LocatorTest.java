@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LocatorTest {
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
 
     private IParkingController controller;

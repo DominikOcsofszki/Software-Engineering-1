@@ -23,7 +23,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public void registerObserver(IObserver o) {
@@ -31,7 +31,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public void removeObserver(IObserver o) {
@@ -39,7 +39,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public void notifyObservers() {
@@ -49,7 +49,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public void addCar(ICar car) {
@@ -58,7 +58,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public void removeCar(ICar car) {
@@ -68,7 +68,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
     @Override
     public void deleteCar(ICar car) {
@@ -78,7 +78,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
     @Override
     public void addRemovedCar(ICar car) {
@@ -87,7 +87,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
     private long earningHelper(long timeWall) {
         long now = Time.simNow();
@@ -98,7 +98,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
     @Override
     public long dailyEarnings() {
@@ -106,7 +106,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
     @Override
     public long weeklyEarnings() {
@@ -114,7 +114,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public HashMap<String, Long> currentCost() {
@@ -129,7 +129,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: docsof2s
+    Author: docsof2s
      */
     @Override
     public List<ICar> getCarList() {
@@ -137,7 +137,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: tpapen2s
+    Author: tpapen2s
      */
     @Override
     public List<ICar> getRemovedCarList() {
@@ -145,7 +145,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     /*
-    TODO: Author: jstueh2s
+    Author: jstueh2s
      */
     @Override
     public List<ICar> getAllCars() {
