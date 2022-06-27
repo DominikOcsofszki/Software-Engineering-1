@@ -1,6 +1,7 @@
 package parkhouse.servlets;
 
 import parkhouse.config.Config;
+import parkhouse.util.Saver;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -12,17 +13,18 @@ public class MainServlet extends ParkhouseServlet {
      */
 
     @Override
-    String name(){
+    String name() {
         return "MainServlet";
     }
 
     @Override
-    int max(){
+    int max() {
         return Config.maxCars;
     }
 
     @Override
-    String config(){
+    String config() {
+        if (Saver.initConfig()) Saver.loadConfig(name());
         return String.format(
                 "%d,%d,%d,%d,%d,%d",
                 Config.maxCars,

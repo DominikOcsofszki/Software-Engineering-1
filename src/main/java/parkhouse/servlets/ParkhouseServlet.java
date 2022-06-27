@@ -58,7 +58,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     Saver.loadCars(parkingController(), name());
                     Runtime.getRuntime().addShutdownHook(new Thread(() ->
                         Saver.saveCars(parkingController(), name())
+                            //ToDo add Saver.config here out of car
                     ));
+//                    out.println(RELOAD);
                 }
                 break;
             case "cars":
