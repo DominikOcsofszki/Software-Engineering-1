@@ -18,13 +18,13 @@ public class CommanderTest {
     private IParkingController parkingController;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         commander = new Commander();
         parkingController = new ParkingController();
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         commander = null;
         parkingController = null;
     }

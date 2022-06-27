@@ -17,13 +17,13 @@ public class DailyEarningsViewTest {
             "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingModel = new ParkingModel();
         dailyEarningsView = new DailyEarningsView(parkingModel);
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingModel = null;
         dailyEarningsView = null;
     }

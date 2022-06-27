@@ -25,7 +25,7 @@ public class ParkingControllerTest {
             "#42671f","2","Women","SUV","SU-K 41",Time.now() - Time.MILLISECONDS_PER_WEEK - 10000+""});
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingController = new ParkingController();
         for(String[] s : param) {
             carList.add(new Car(s));
@@ -33,7 +33,7 @@ public class ParkingControllerTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingController = null;
         carList = null;
     }

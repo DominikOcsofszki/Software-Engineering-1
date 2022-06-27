@@ -20,7 +20,7 @@ public class StatsTest {
     private static final int TEST_CAR_SUM = 10601;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingController = new ParkingController();
         for(String[] s : params) {
             carList.add(new Car(s));
@@ -28,7 +28,7 @@ public class StatsTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingController = null;
         carList = null;
     }

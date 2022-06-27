@@ -20,7 +20,7 @@ public class CarEnterLeaveCommandTest {
     private Commander commander;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         controller = new ParkingController();
         commander = new Commander();
         for(String[] s : params) {
@@ -29,7 +29,7 @@ public class CarEnterLeaveCommandTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         controller = null;
         carsList = null;
         commander = null;

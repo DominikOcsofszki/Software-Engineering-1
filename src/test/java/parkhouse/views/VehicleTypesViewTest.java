@@ -19,17 +19,13 @@ public class VehicleTypesViewTest {
     @DisplayName("Test if view generates correct graph")
     public void vehicleTypesViewToStringTest() {
         JsonArray keys = Json.createArrayBuilder()
-                .add("QUAD")
-                .add("TRIKE")
-                .add("SUV")
-                .add("PICKUP")
+                .add("QUAD").add("TRIKE")
+                .add("SUV").add("PICKUP")
                 .add("PKW")
                 .build();
         JsonArray values = Json.createArrayBuilder()
-                .add(2)
-                .add(3)
-                .add(2)
-                .add(1)
+                .add(2).add(3)
+                .add(2).add(1)
                 .add(1)
                 .build();
         assertEquals(

@@ -21,7 +21,7 @@ public class ParkingModelTest {
     private final List<ICar> carsNoDurationList = new ArrayList<>();
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingModel = new ParkingModel();
         for(String[] s : params) {
             carsList.add(new Car(s));
@@ -32,7 +32,7 @@ public class ParkingModelTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingModel = null;
     }
 

@@ -25,13 +25,13 @@ public class CurrentCostsViewTest {
             "#42671f", "2", "Women", "SUV", "SU-K 71", Time.now() - 10000 + ""});
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingModel = new ParkingModel();
         currentCostsView = new CurrentCostsView(parkingModel);
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingModel = null;
         currentCostsView = null;
     }

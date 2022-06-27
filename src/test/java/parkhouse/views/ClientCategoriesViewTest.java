@@ -19,16 +19,12 @@ public class ClientCategoriesViewTest {
     @DisplayName("Test if view generates correct graph")
     public void clientCategoriesViewToStringTest() {
         JsonArray keys = Json.createArrayBuilder()
-                .add("Women")
-                .add("Family")
-                .add("Default")
-                .add("Business")
+                .add("Women").add("Family")
+                .add("Default").add("Business")
                 .build();
         JsonArray values = Json.createArrayBuilder()
-                .add(2)
-                .add(4)
-                .add(1)
-                .add(2)
+                .add(2).add(4)
+                .add(1).add(2)
                 .build();
         assertEquals(
                 Jsonify.plot(keys, values, "bar", "Categories").toString(),

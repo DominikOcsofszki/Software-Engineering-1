@@ -1,5 +1,6 @@
 package parkhouse.calculations;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,11 @@ public class LocatorTest {
     @BeforeEach
     public void setup() {
         controller = new ParkingController();
+    }
+
+    @AfterEach
+    public void teardown() {
+        controller = null;
     }
 
     @Test

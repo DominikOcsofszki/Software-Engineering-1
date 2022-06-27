@@ -18,13 +18,13 @@ public class WeeklyEarningsViewTest {
             "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         parkingModel = new ParkingModel();
         weeklyEarningsView = new WeeklyEarningsView(parkingModel);
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         parkingModel = null;
         weeklyEarningsView = null;
     }

@@ -14,7 +14,7 @@ public class CarTypesTest {
     CarTypes pickup;
 
     @BeforeEach
-    void setUp(){
+    void setup(){
         pkw = CarTypes.getInstance("pkw");
         quad = CarTypes.getInstance("quad");
         trike = CarTypes.getInstance("trike");

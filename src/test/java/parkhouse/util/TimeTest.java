@@ -15,13 +15,13 @@ public class TimeTest {
     List<ICar> cars;
 
     @BeforeEach
-    void setUp(){
+    void setup(){
         controller = new ParkingController();
         cars = Data.cars();
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         controller = null;
         cars = null;
     }
