@@ -26,4 +26,10 @@ public class SecurityCORSFilter implements Filter {
     chain.doFilter(req, res);
   }
 
+  @Override
+  public void destroy() {}
+
+  @Override
+  public void init(FilterConfig arg0) throws ServletException {}
+
 }
