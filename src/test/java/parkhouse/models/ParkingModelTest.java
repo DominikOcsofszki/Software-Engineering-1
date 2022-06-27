@@ -111,7 +111,7 @@ public class ParkingModelTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("test if removed cars are added correctly after server restart")
     void parkingModelRemoveCarRestartServerTest() {
         for(String[] s : params) {
             parkingModel.addRemovedCar(new Car(s));
