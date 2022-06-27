@@ -12,7 +12,7 @@ public interface IParkingController {
     void removeCar(ICar car);
     void deleteCar(ICar car);
 
-    void addRemovedCarRestartServer(ICar car);
+    void addRemovedCar(ICar car);
 
     List<ICar> getCars();
     List<ICar> getRemovedCars();
@@ -26,4 +26,5 @@ public interface IParkingController {
     EarningsByCategoriesView earningsByCategoriesView();
     DurationView durationView();
     Commander commander();
+
 }

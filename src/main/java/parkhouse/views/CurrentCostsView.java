@@ -38,4 +38,5 @@ public class CurrentCostsView implements IObserver {
         }
         return Tableize.table(headers, data);
     }
+
 }

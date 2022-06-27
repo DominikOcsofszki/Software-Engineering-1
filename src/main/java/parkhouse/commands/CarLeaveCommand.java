@@ -31,4 +31,5 @@ public class CarLeaveCommand implements ICommand {
         });
         controller.addCar(car);
     }
+
 }

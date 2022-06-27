@@ -28,8 +28,6 @@ public class MainServlet extends ParkhouseServlet {
                 Config.WAIT_REDLIGHT_SHIFT,
                 Config.TIME_SHIFT
         );
-
     }
-
 
 }

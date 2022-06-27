@@ -8,8 +8,7 @@ public class CarTypes {
     private static final Map<String, CarTypes> types = new HashMap<>();
     private double factor;
 
-    private CarTypes() {
-    }
+    private CarTypes() {}
 
     public static CarTypes getInstance(String key) {
         CarTypes type = types.get(key);

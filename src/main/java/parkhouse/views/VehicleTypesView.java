@@ -30,4 +30,5 @@ public class VehicleTypesView implements IObserver {
                 Jsonify.getValues(types),
                 "bar", "Types").toString();
     }
+
 }

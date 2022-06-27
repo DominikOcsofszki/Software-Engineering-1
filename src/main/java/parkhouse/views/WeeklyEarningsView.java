@@ -26,4 +26,5 @@ public class WeeklyEarningsView implements IObserver{
     public String toString() {
         return Price.format(weeklyEarnings);
     }
+
 }

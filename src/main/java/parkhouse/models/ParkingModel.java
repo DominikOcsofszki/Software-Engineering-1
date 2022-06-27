@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 public class ParkingModel implements IParkingModel {
 
     private final List<ICar> carList;
-    private final List<IObserver> observerList;
     private final List<ICar> removedCarList;
+    private final List<IObserver> observerList;
 
     public ParkingModel() {
         carList = new ArrayList<>();
@@ -60,7 +60,7 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public void removeCarRestartServer(ICar car) {
+    public void addRemovedCar(ICar car) {
         removedCarList.add(car);
         notifyObservers();
     }
@@ -95,10 +95,12 @@ public class ParkingModel implements IParkingModel {
 
     }
 
+    @Override
     public List<ICar> getCarList() {
         return carList;
     }
 
+    @Override
     public List<ICar> getRemovedCarList() {
         return removedCarList;
     }
@@ -107,4 +109,5 @@ public class ParkingModel implements IParkingModel {
     public List<ICar> getAllCars() {
         return Stream.concat(carList.stream(), removedCarList.stream()).collect(Collectors.toList());
     }
+
 }

@@ -18,8 +18,7 @@ public class Saver {
 
     private static final Logger LOGGER = Logger.getLogger(Saver.class.getName());
 
-    private Saver() {
-    }
+    private Saver() {}
 
     private static boolean init = true;
 
@@ -52,7 +51,7 @@ public class Saver {
                 if (!car.gone()) {
                     controller.addCar(car);
                 } else {
-                    controller.addRemovedCarRestartServer(car);
+                    controller.addRemovedCar(car);
                 }
             }
         } catch (IOException e) {

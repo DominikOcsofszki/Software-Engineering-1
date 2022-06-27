@@ -30,4 +30,5 @@ public class ClientCategoriesView implements IObserver {
                 Jsonify.getValues(categories),
                 "bar", "Categories").toString();
     }
+
 }

@@ -20,7 +20,6 @@ public class ParkingController implements IParkingController {
     private final DurationView durationView;
     private final Commander commander;
 
-
     public ParkingController() {
         parkingModel = new ParkingModel();
         dailyEarningsView = new DailyEarningsView(parkingModel);
@@ -33,14 +32,17 @@ public class ParkingController implements IParkingController {
         commander = new Commander();
     }
 
+    @Override
     public List<ICar> getCars() {
         return parkingModel.getCarList();
     }
 
+    @Override
     public List<ICar> getRemovedCars() {
         return parkingModel.getRemovedCarList();
     }
 
+    @Override
     public List<ICar> getAllCars() {
         return parkingModel.getAllCars();
     }
@@ -61,8 +63,8 @@ public class ParkingController implements IParkingController {
     }
 
     @Override
-    public void addRemovedCarRestartServer(ICar car) {
-        parkingModel.removeCarRestartServer(car);
+    public void addRemovedCar(ICar car) {
+        parkingModel.addRemovedCar(car);
     }
 
     @Override
@@ -101,7 +103,9 @@ public class ParkingController implements IParkingController {
         return durationView;
     }
 
+    @Override
     public Commander commander() {
         return commander;
     }
+
 }

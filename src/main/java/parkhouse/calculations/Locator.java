@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 
 public class Locator {
 
-    private Locator() {
-    }
+    private Locator() {}
 
     public static int locate(IParkingController controller) {
         List<Integer> occupied = controller.getCars()

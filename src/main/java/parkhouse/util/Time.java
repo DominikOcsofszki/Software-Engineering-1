@@ -4,8 +4,7 @@ import parkhouse.config.Config;
 
 public class Time {
 
-    private Time() {
-    }
+    private Time() {}
 
     public static final long INSTANCE_START_DATE = System.currentTimeMillis();
 

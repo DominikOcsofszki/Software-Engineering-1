@@ -7,8 +7,7 @@ import java.util.stream.StreamSupport;
 
 public class Finder {
 
-    private Finder() {
-    }
+    private Finder() {}
 
     public static ICar findCar(Iterable<ICar> iter, Function<ICar, Object> loc, Object id) {
         return StreamSupport.stream(iter.spliterator(), false)

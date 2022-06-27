@@ -35,7 +35,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
 
-
     private static final Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
 
     /**
@@ -253,6 +252,5 @@ public abstract class ParkhouseServlet extends HttpServlet {
     @Override
     public void destroy() {
         LOGGER.info("Servlet destroyed");
-
     }
 }

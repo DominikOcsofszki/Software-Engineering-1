@@ -45,4 +45,5 @@ public class SanitizedCar extends CarDecorator {
                 super.nr(), super.timer(), "_", "_", ticket(), color(), super.space(),
                 category(), type(), license(), super.begin());
     }
+
 }

@@ -88,7 +88,7 @@ public class ParkingControllerTest {
     @DisplayName("tests if the removed car is in the list")
     void ParkingControllerRemoveCarRestartServerTest() {
         for(int i = 0; i < carList.size(); i++) {
-            parkingController.addRemovedCarRestartServer(carList.get(i));
+            parkingController.addRemovedCar(carList.get(i));
             assertEquals(i + 1, parkingController.getRemovedCars().size());
         }
     }

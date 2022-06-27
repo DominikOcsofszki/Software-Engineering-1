@@ -104,4 +104,5 @@ public class Car implements ICar {
                 nr(), timer(), "_", "_", ticket(), color(), space(),
                 category(), type(), license(), begin());
     }
+
 }

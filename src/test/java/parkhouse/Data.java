@@ -60,7 +60,7 @@ public class Data {
         IParkingController controller = new ParkingController();
         for (ICar c : cars) {
             if (c.gone()) {
-                controller.addRemovedCarRestartServer(c);
+                controller.addRemovedCar(c);
             } else {
                 controller.addCar(c);
             }

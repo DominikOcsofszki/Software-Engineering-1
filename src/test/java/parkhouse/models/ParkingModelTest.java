@@ -110,7 +110,7 @@ public class ParkingModelTest {
     @DisplayName("")
     void parkingModelRemoveCarRestartServerTest() {
         for(String[] s : params) {
-            parkingModel.removeCarRestartServer(new Car(s));
+            parkingModel.addRemovedCar(new Car(s));
         }
         assertEquals(params.size(), parkingModel.getRemovedCarList().size());
         for(int i = 0; i < carsList.size(); i++) {

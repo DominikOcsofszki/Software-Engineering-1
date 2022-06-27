@@ -45,4 +45,5 @@ public class Price {
         }
         return 1d;
     }
+
 }

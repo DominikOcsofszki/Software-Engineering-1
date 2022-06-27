@@ -10,6 +10,9 @@ public interface IParkingModel extends IObservable {
     void addCar(ICar car);
     void removeCar(ICar car);
     void deleteCar(ICar car);
+
+    void addRemovedCar(ICar car);
+
     List<ICar> getCarList();
     List<ICar> getRemovedCarList();
     List<ICar> getAllCars();
@@ -18,5 +21,4 @@ public interface IParkingModel extends IObservable {
     long weeklyEarnings();
     HashMap<String,Long> currentCost();
 
-    void removeCarRestartServer(ICar car);
 }

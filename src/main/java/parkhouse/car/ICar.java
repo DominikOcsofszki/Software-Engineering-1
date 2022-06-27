@@ -1,6 +1,7 @@
 package parkhouse.car;
 
 public interface ICar {
+
     int nr();
     int space();
     long timer();
@@ -16,4 +17,5 @@ public interface ICar {
     boolean gone();
     void setSpace(int s);
     void updateParams(String[] params);
+
 }
