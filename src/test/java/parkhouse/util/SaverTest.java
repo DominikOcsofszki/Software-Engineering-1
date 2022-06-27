@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import parkhouse.Data;
 import parkhouse.car.ICar;
+import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 import parkhouse.controller.ParkingController;
 
@@ -44,5 +45,55 @@ public class SaverTest {
             fail();
         }
         assertFalse(Saver.init());
+    }
+
+    @Test
+    @DisplayName("Test if config is saved and loaded correctly")
+    public void saverSaveConfig() {
+
+        /*assertEquals(16, Config.maxCars);
+        assertEquals(0, Config.openFrom);
+        assertEquals(0, Config.openTo);
+        Config.setMaxCars(22);
+        Config.setOpenFrom(2);
+        Config.setOpenTo(5);
+        assertEquals(22, Config.maxCars);
+        assertEquals(2, Config.openFrom);
+        assertEquals(5, Config.openTo);
+
+        Saver.loadCars(controller, "ServletTest");
+        assertEquals(16, Config.maxCars);
+        assertEquals(0, Config.openFrom);
+        assertEquals(0, Config.openTo);
+        Config.setMaxCars(22);
+        Config.setOpenFrom(2);
+        Config.setOpenTo(5);
+        assertEquals(22, Config.maxCars);
+        assertEquals(2, Config.openFrom);
+        assertEquals(5, Config.openTo);
+        Saver.saveCars(controller, "ServletTest");
+        Config.setMaxCars(11);
+        Config.setOpenFrom(11);
+        Config.setOpenTo(11);
+        assertEquals(11, Config.maxCars);
+        assertEquals(11, Config.openFrom);
+        assertEquals(11, Config.openTo);
+        Saver.loadCars(controller, "ServletTest");
+        assertEquals(22, Config.maxCars);
+        assertEquals(2, Config.openFrom);
+        assertEquals(5, Config.openTo);
+*/
+    }
+
+    @Test
+    @DisplayName("Test init SaverConfig")
+    public void saverInitConfigTest() {
+        Saver.saveCars(controller, "MainServlet");
+        controller = new ParkingController();
+        assertTrue(Saver.initConfig());
+        if (Saver.initConfig()) {
+            fail();
+        }
+        assertFalse(Saver.initConfig());
     }
 }
