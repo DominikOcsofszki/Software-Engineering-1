@@ -32,7 +32,7 @@ public class Saver {
     }
 
     public static void saveCars(IParkingController controller, String name) {
-        Path path = Paths.get(name + ".cars");
+        Path path = Paths.get("src/main/resources/" + name + ".cars");
         try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.US_ASCII)) {
             for (ICar c : controller.getAllCars()) {
                 bw.write(c.toString() + "\n");
@@ -43,7 +43,7 @@ public class Saver {
     }
 
     public static void loadCars(IParkingController controller, String name) {
-        Path path = Paths.get(name + ".cars");
+        Path path = Paths.get("src/main/resources/" + name + ".cars");
         try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
             List<String> lines = new ArrayList<>();
             br.lines().collect(Collectors.toCollection(() -> lines));

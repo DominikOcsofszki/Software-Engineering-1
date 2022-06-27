@@ -24,11 +24,11 @@ public class Data {
     private Data() {}
 
     public static List<String[]> params() {
-        return loadParams("cars.csv");
+        return loadParams("src/test/resources/cars.csv");
     }
 
     public static List<String[]> paramsDuration() {
-        return loadParams("cars_with_duration.csv");
+        return loadParams("/src/test/resources/cars_with_duration.csv");
     }
 
     private static List<String[]> loadParams(String p) {

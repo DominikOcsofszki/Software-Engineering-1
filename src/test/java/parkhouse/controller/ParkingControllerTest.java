@@ -79,7 +79,7 @@ public class ParkingControllerTest {
     @DisplayName("tests if the add car is in the list")
     void parkingCOntrollerAddCarRestartServerTest() {
         for(int i = 0; i < carList.size(); i++) {
-            parkingController.addCarRestartServer(carList.get(i));
+            parkingController.addCar(carList.get(i));
             assertEquals(i + 1, parkingController.getCars().size());
         }
     }
