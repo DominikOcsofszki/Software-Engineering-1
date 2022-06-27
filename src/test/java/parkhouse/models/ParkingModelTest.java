@@ -107,18 +107,6 @@ public class ParkingModelTest {
     }
 
     @Test
-    @DisplayName("test if the addCarRestartServer method adds the right cars to the list")
-    void parkingModelAddCarRestartServerTest() {
-        for(String[] s : params) {
-            parkingModel.addCarRestartServer(new Car(s));
-        }
-        assertEquals(params.size(), parkingModel.getCarList().size());
-        for(int i = 0; i < carsList.size(); i++) {
-            assertEquals(carsList.get(i).license(), parkingModel.getCarList().get(i).license());
-        }
-    }
-
-    @Test
     @DisplayName("")
     void parkingModelRemoveCarRestartServerTest() {
         for(String[] s : params) {
@@ -167,7 +155,6 @@ public class ParkingModelTest {
             parkingModel.addCar(car);
             assertTrue(Math.abs(car.price() - parkingModel.currentCost().get(car.license())) <= 4);
         }
-
     }
 
     @Test

@@ -8,12 +8,12 @@ import javax.servlet.annotation.WebServlet;
 public class MainServlet extends ParkhouseServlet {
 
     @Override
-    String NAME(){
+    String name(){
         return "MainServlet";
     }
 
     @Override
-    int MAX(){
+    int max(){
         return Config.maxCars;
     }
 

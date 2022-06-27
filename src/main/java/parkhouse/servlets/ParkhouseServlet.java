@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 public abstract class ParkhouseServlet extends HttpServlet {
 
-    abstract String NAME();
+    abstract String name();
 
-    abstract int MAX();
+    abstract int max();
 
     abstract String config();
 
@@ -52,16 +52,16 @@ public abstract class ParkhouseServlet extends HttpServlet {
             case "config":
                 out.println(config());
                 if (Saver.init()) {
-                    Saver.loadCars(parkingController(), NAME());
+                    Saver.loadCars(parkingController(), name());
                     Runtime.getRuntime().addShutdownHook(new Thread(() ->
-                        Saver.saveCars(parkingController(), NAME())
+                        Saver.saveCars(parkingController(), name())
                     ));
                 }
                 break;
             case "cars":
                 out.print(
                         parkingController().getAllCars()
-                                .stream().map(c -> c.toString() + "/" + NAME())
+                                .stream().map(c -> c.toString() + "/" + name())
                                 .collect(Collectors.joining(","))
                 );
                 break;
@@ -136,7 +136,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 );
                 break;
             case "Reset":
-                getServletContext().setAttribute("parkingController" + NAME(), null);
+                getServletContext().setAttribute("parkingController" + name(), null);
                 out.println(RELOAD);
                 break;
             case "Undo":
@@ -194,7 +194,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
             case "invalid":
             case "occupied":
-                LOGGER.info("occdupied: " + body);
+                LOGGER.info(() -> "occupied: " + body);
                 break;
             case "tomcat":
                 out.println(getServletConfig().getServletContext().getServerInfo()
@@ -203,7 +203,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 break;
 
             default:
-                LOGGER.info("Invalid Command: " + body);
+                LOGGER.info(() -> "Invalid Command: " + body);
         }
 
     }
@@ -216,10 +216,10 @@ public abstract class ParkhouseServlet extends HttpServlet {
     }
 
     IParkingController parkingController() {
-        if (getContext().getAttribute("parkingController" + NAME()) == null) {
-            getContext().setAttribute("parkingController" + NAME(), new ParkingController());
+        if (getContext().getAttribute("parkingController" + name()) == null) {
+            getContext().setAttribute("parkingController" + name(), new ParkingController());
         }
-        return (IParkingController) getContext().getAttribute("parkingController" + NAME());
+        return (IParkingController) getContext().getAttribute("parkingController" + name());
     }
 
     /**
@@ -231,8 +231,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
 
-        try {
-            InputStream inputStream = request.getInputStream();
+        try (InputStream inputStream = request.getInputStream()) {
             if (inputStream != null) {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 char[] charBuffer = new char[128];

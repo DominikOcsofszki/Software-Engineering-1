@@ -42,7 +42,6 @@ public class JsonifyTest {
         JsonObject count = Jsonify.carsCount(cars, ICar::type);
         List<String> keys = Jsonify.getKeys(count).stream().map(JsonValue::toString).collect(Collectors.toList());
         List<String> values = Jsonify.getValues(count).stream().map(JsonValue::toString).collect(Collectors.toList());
-        System.out.println(keys);
         for (String t : types) {
             assertTrue(keys.contains(t));
         }

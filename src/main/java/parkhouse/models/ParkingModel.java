@@ -60,12 +60,6 @@ public class ParkingModel implements IParkingModel {
     }
 
     @Override
-    public void addCarRestartServer(ICar car) {
-        carList.add(car);
-        notifyObservers();
-    }
-
-    @Override
     public void removeCarRestartServer(ICar car) {
         removedCarList.add(car);
         notifyObservers();

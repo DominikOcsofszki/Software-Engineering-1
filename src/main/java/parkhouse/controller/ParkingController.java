@@ -60,17 +60,10 @@ public class ParkingController implements IParkingController {
         parkingModel.deleteCar(car);
     }
 
-    //----------------
-    @Override
-    public void addCarRestartServer(ICar car) {
-        parkingModel.addCarRestartServer(car);
-    }
-
     @Override
     public void addRemovedCarRestartServer(ICar car) {
         parkingModel.removeCarRestartServer(car);
     }
-    //------------
 
     @Override
     public DailyEarningsView dailyEarningsView() {

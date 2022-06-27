@@ -38,9 +38,7 @@ public class CurrentCostsViewTest {
 
     @Test
     @DisplayName("test if the currentCostsView gets updated")
-        //ToDo check again
     void currentCostsViewTest() {
-
         parkingModel.registerObserver(currentCostsView);
 
         parkingModel.addCar(x);
@@ -53,24 +51,20 @@ public class CurrentCostsViewTest {
 
     @Test
     @DisplayName("test if the format is right")
-        //ToDo toString gibt immer nur eine Tabelle aus. korrekt getestet?
     void currentCostsViewToStringTest() {
         parkingModel.registerObserver(currentCostsView);
         parkingModel.addCar(x);
         boolean contains = currentCostsView.toString().contains("0.69€");
-        System.out.println(currentCostsView.toString());
         assertTrue(contains);
 
 
         parkingModel.addCar(x1);
         boolean contains1 = currentCostsView.toString().contains("0.70€");
-        System.out.println(currentCostsView.toString());
         assertTrue(contains1);
 
 
         parkingModel.addCar(x2);
         boolean contains2 = currentCostsView.toString().contains("0.71€");
-        System.out.println(currentCostsView.toString());
         assertTrue(contains2);
 
     }

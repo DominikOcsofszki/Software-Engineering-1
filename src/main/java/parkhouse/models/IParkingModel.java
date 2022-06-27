@@ -7,19 +7,16 @@ import java.util.List;
 
 public interface IParkingModel extends IObservable {
 
-    void addCar(ICar car); // _do
-    void removeCar(ICar car);// _do
+    void addCar(ICar car);
+    void removeCar(ICar car);
     void deleteCar(ICar car);
-    List<ICar> getCarList(); //_do
-    List<ICar> getRemovedCarList(); //_do
-    List<ICar> getAllCars(); //_do
+    List<ICar> getCarList();
+    List<ICar> getRemovedCarList();
+    List<ICar> getAllCars();
 
     long dailyEarnings();
     long weeklyEarnings();
     HashMap<String,Long> currentCost();
 
-    //-----
-    void addCarRestartServer(ICar car); // _do
-    void removeCarRestartServer(ICar car);// _do
-    //-----
+    void removeCarRestartServer(ICar car);
 }
