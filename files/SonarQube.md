@@ -9,6 +9,6 @@
 | Bugs             | 0     | A     |
 | Vulnerabilities  | 0     | A     |
 | Security Hotspots | 0     | A     |
-| Code Smells      | 29    | A     |
+| Code Smells      | 28    | A     |
 | Test Coverage    | 98.8% | A     |
 | Duplications     | 0.0%  | A     |
