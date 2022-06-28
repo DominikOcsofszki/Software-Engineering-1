@@ -35,6 +35,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
 
     abstract int max();
 
+    abstract String config();
+
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
 
     private static final Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
@@ -232,21 +234,6 @@ public abstract class ParkhouseServlet extends HttpServlet {
             getContext().setAttribute("saver" + name(), new Saver(name()));
         }
         return (Saver) getContext().getAttribute("saver" + name());
-    }
-
-    public String config() {
-        if (saver().initConfig()) {
-            config = saver().loadConfig();
-        }
-        return String.format(
-                "%d,%d,%d,%d,%d,%d",
-                config[0],
-                config[1],
-                config[2],
-                Config.SIMULATION_SPEED,
-                Config.WAIT_REDLIGHT_SHIFT,
-                Config.TIME_SHIFT
-        );
     }
 
     /**
