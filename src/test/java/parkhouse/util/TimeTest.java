@@ -16,21 +16,6 @@ public class TimeTest {
     Author: staher2s
      */
 
-    private IParkingController controller;
-    private List<ICar> cars;
-
-    @BeforeEach
-    void setup(){
-        controller = new ParkingController();
-        cars = Data.cars();
-    }
-
-    @AfterEach
-    void teardown() {
-        controller = null;
-        cars = null;
-    }
-
     @Test
     void timeDifferenceTest() {
         assertEquals(0, Time.diff(50, 50));

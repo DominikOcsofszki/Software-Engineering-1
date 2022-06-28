@@ -27,5 +27,5 @@
 ---
 
 Als zusätzliche Anforderungen an die Simulation wurden, die persistente Speicherung von Daten,\
-sowie die Möglichkeit Aktionen vor- und rückgängig zu machen, vorrausgesetzt.
-Außerdem sollte die Software über ein Sicherheitskonzept verfügen.
+sowie die Möglichkeit Aktionen vor- und rückgängig zu machen, vorrausgesetzt.\
+Die Software sollte außerdem über ein Sicherheitskonzept verfügen.

@@ -1,7 +1,6 @@
 package parkhouse.calculations;
 
 import parkhouse.car.ICar;
-import parkhouse.config.Config;
 import parkhouse.controller.IParkingController;
 
 import java.util.List;
