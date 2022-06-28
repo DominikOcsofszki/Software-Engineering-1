@@ -16,7 +16,7 @@
 | Robustheitsanalyse                | 0.5       |
 | Zustandsdiagramme                 | 0.5       |
 | Retrospektiven                    | 1         |
-| Scrum-Planung                     | 4         |
+| Scrum-Planung                     | 2         |
 | Basis Statistiken                 | 1 / 0.5   |
 | Graphen                           | 2 / 1     |
 | Commands                          | 2 / 1     |
@@ -35,4 +35,4 @@
 | Fahrzeug Typen                    | 1 / 0.5   |
 | Zentrale Testdaten                | 1         |
 | Videos                            | 1         |
-| Dokumentation                     | 1         |
+| Dokumentation                     | 3         |
