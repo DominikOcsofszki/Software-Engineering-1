@@ -14,7 +14,18 @@ public class Config {
 
     public static final String[] CLIENT_CATEGORIES = new String[] {"Default", "Women", "Business", "Family", "Disability"};
     public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
-    public static final String[] PRICE_FACTOR = new String[] {"SUV:2", "Family:0.5", "Family.SUV:1.2"};
+    public static final String[] PRICE_FACTOR = new String[] {
+            "PICKUP:2.1",
+            "SUV:2",
+            "QUAD:0.8",
+            "TRIKE:0.9",
+            "Family:0.5",
+            "Business:0.4",
+            "Family.SUV:1.2",
+            "Family.PICKUP:1.3",
+            "Business.SUV:1.1",
+            "Business.PICKUP:1.2"
+    };
 
     public static final int DEFAULT_MAX_CARS = 16;
     public static final int DEFAULT_OPEN_FROM = 0;

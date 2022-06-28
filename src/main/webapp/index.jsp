@@ -27,19 +27,18 @@
                          name="Park house"
                          license_min="1"
                          license_max="100"
-                         open_from="4"
-                         open_to="23"
+                         open_from="0"
+                         open_to="0"
                          delay="100"
                          simulation_speed="1000"
                          extra_buttons='["Undo","Reset","Sum","Avg","Min","Max","Time","Daily-Earnings","Weekly-Earnings","Earnings-Categories","Current-Cost"]'
                          extra_charts='["Types","Categories","Durations"]'
-                         client_categories='["Default","Women","Business","Family","Disability"]'
+                         client_categories='["Default", "Women", "Business", "Family", "Disability"]'
+                         vehicle_types='["PKW", "SUV", "QUAD", "TRIKE", "PICKUP"]'
+                         price_factor='{"PICKUP":2.1,"SUV":2,"QUAD":0.8,"TRIKE":0.9,"Family":0.5,"Business":0.4,"Family.SUV":1.2,"Family.PICKUP":1.3,"Business.SUV":1.1}'
                          space_color='{"1":"black"}'
-                         vehicle_types='["PKW","SUV","QUAD","TRIKE","PICKUP"]'
-                         price_factor='{"SUV":2,"Family":0.5,"Family.SUV:1.2"}'
                          max="32"
                          SALT="456">
-
     </ccm-parkhaus-11-0-0>
 </div>
 </body>

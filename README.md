@@ -20,7 +20,7 @@
 
 ### [UML Diagramme]()
 
-### [Patterns]()
+### [Patterns](/files/Patterns.md)
 
 ### [SonarQube](/files/SonarQube.md)
 

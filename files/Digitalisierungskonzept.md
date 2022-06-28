@@ -1,7 +1,9 @@
 
 ## Digitalisierungskonzept
 
-Einfacher Betrieb und Verwaltung. Intuitive und reibungslose Kundenerfahrung. Skalierbar und kostengünstig.
+Einfacher Betrieb und Verwaltung.\
+Intuitive und reibungslose Kundenerfahrung.\
+Skalierbar und kostengünstig.
 
 ---
 
