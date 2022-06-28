@@ -57,7 +57,7 @@ public class ParkingController implements IParkingController {
     }
 
     @Override
-    public void removeCar(ICar car) {   // _do
+    public void removeCar(ICar car) {
         parkingModel.removeCar(car);
     }
 

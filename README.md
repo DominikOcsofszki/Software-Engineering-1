@@ -10,24 +10,32 @@
 
 ### [Digitalisierungskonzept](/files/Digitalisierungskonzept.md)
 
-### [Minimum Viable Product](/files/MinimumViableProduct.md)
-
 ### [User Stories](/files/UserStories.md)
 
+### [Minimum Viable Product](/files/MinimumViableProduct.md)
+
+---
+
 ### [Kanban-Board]()
+
+### [Iterationsbericht]()
+
+### [Projektprotokoll](/files/Projektprotokoll.md)
+
+---
 
 ### [Use Case-Diagramm]()
 
 ### [UML Diagramme]()
 
+---
+
 ### [Patterns](/files/Patterns.md)
+
+### [Zielkonflikte](/files/Zielkonflikte.md)
 
 ### [SonarQube](/files/SonarQube.md)
 
 ### [Sicherheit](/files/Sicherheit.md)
-
-### [Iterationsbericht]()
-
-### [Projektprotokoll](/files/Projektprotokoll.md)
 
 ### [Retrospektive]()

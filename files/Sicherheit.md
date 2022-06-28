@@ -3,7 +3,7 @@
 
 ## Analyse:
 
-Die durchgeführte Sicherheitsanalyse, für das Ermitteln von möglichen Angriffsvektoren, 
+Die durchgeführte Sicherheitsanalyse, für die Ermittlung von möglichen Angriffsvektoren, 
 richtet sich nach der aktuellen [OWASP Top 10](https://owasp.org/Top10/).
 
 ---

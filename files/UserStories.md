@@ -23,3 +23,9 @@
 - US13: Als Betreiber benötige ich Statistiken über Parkplatzbelegung, um benötigte Parkplätze planen zu können.
 - US14: Als Betreiber möchte ich die Anzahl der verschiedenen Parkplatztypen einstellen können, um auf Veränderungen zu reagieren.
 - US15: Als Betreiber möchte ich Öffnungszeiten festlegen können, um die Einfahrt zu bestimmten Uhrzeiten zu verbieten.
+
+---
+
+Als zusätzliche Anforderungen an die Simulation wurden, die persistente Speicherung von Daten,\
+sowie die Möglichkeit Aktionen vor- und rückgängig zu machen, vorrausgesetzt.
+Außerdem sollte die Software über ein Sicherheitskonzept verfügen.
