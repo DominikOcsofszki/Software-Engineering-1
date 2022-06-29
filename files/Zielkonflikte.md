@@ -18,10 +18,10 @@ Während des Projekts kamen folgende, signifikate Probleme auf:
 **String Parameter des Autos können potentiell schädlichen Java Script Code enthalten**\
 *Lösung: Einsatz einer Filter Funktion für das desinfizieren von String Parametern vor der Ausgabe.*
 
-**Unsere Stats-Methoden in über das Template Methoden Pattern und das Multiton Pattern umgewandelt.\
-Am Ende wurde die Pattern zwar als Möglichkeit gesehen, aber es hatte keinen Mehrwert für die Evolvierbarkeit**\
-*Lösung: Pattern zurück in Stats-Klasse umgewandelt.*
+**Stats-Methoden in Template- und Multiton Pattern umwandeln**\
+Die Patterns wurden zwar als Möglichkeit gesehen, jedoch bestanden zu wenige algorithmische Parallelen.\
+*Lösung: Basis Statistiken als statische Hilfsklasse.*
 
-**Controller als Singleton Problem: Evolvierbarkeit wäre dadurch beschränkt worden, da mehrere Kontroller \
-verwendet werden müssten. Somit Singleton nicht anwendbar.**\
-*Lösung: Entfernen des Singletons.*
+**Controller als Singleton**\
+Zu starke Einschränkung von Evolvierbarkeit (mehrere Controller können nötig sein). \
+*Lösung: Entfernen des Patterns.*
