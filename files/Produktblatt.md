@@ -23,15 +23,6 @@ IObserver, VehicleTypesView, WeeklyEarningsView*
 **Liste aller Resources**
 *MainServlet.cars, MainServlet.conf*
 ----------
-***Tests:***\
-**Liste aller Testklassen??? Do we want to add the Testclasses???**\
-*Locator, Price, Stats, Car, CarDecorator, CarTypes, ICar, CarEnterCommand, CarLeaveCommand, Commander,
-ICommander, Config, IParkingController, ParkingController, IObservable, IParkingModel, ParkingModel, SanitizedCar,
-MainServlet, ParkhouseServlet, SecurityCORSFilter, Finder, Jsonify, Saver, Tableize, Time,
-ClientCategoriesView,CurrentCostView, DailyEarningsView, DurationsView, EarningsByCategoriesView,
-IObserver, VehicleTypesView, WeeklyEarningsView*
-**Liste aller Resources**
-*TestServlet.cars, TestServlet.conf*
 ----------
 **Liste aller webapp-elementen:**\
 *web.xml, favicon.ico, index.jsp, style.css*
