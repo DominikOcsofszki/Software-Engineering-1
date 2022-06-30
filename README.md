@@ -24,9 +24,9 @@
 
 ---
 
-### [Use Case-Diagramm](UML.md)
+### [Use Case-Diagramm](mk_se1_ss22_Team_6/UML.md)
 
-### [UML Diagramme](UML.md)
+### [UML Diagramme](mk_se1_ss22_Team_6/UML.md)
 
 ---
 
