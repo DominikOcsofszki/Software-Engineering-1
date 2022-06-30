@@ -24,7 +24,7 @@
 
 ---
 
-### [Use Case-Diagramm](/files/UML.md)
+### [Use Case-Diagramm](/files/UseCase.md)
 
 ### [UML Diagramme](/files/UML.md)
 

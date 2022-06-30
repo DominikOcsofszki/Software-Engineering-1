@@ -3,11 +3,7 @@
 
 Eine Zusammenstellung von wichtigen UML-Diagrammen.
 
-![UseCase](/files/UML/UseCase.png)
-
----
-
-![Servlet](/files/UML/servlet.png)
+![Servlet](/files/UML/servlet.PNG)
 
 ---
 
@@ -15,12 +11,12 @@ Eine Zusammenstellung von wichtigen UML-Diagrammen.
 
 ---
 
-![Observer2](/files/UML/observer2.png)
+![Observer2](/files/UML/observer2.PNG)
 
-![Observer](/files/UML/observer.png)
+![Observer](/files/UML/observer.PNG)
 
 ---
 
-![Commander2](/files/UML/commander2.png)
+![Commander2](/files/UML/commander2.PNG)
 
-![Commander](/files/UML/commander.png)
+![Commander](/files/UML/commander.PNG)
