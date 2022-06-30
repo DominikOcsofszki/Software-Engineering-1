@@ -125,7 +125,6 @@ public class ParkingModel implements IParkingModel {
             }
         }
         return cost;
-
     }
 
     /*
