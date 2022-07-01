@@ -18,7 +18,6 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Gegenseitige Code Reviews und Refactoring
 - Zentraler Testdatensatz für saubere und einheitliche Tests
 - Analyse der Parkhaus API für ein tieferes Verständnis der Simulation
-- feste Aufgabenverteilung
 
 
 **Was lief schlecht?**
