@@ -10,7 +10,7 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Effektive Arbeit mit Git, Jenkins und SonarCube
 - Gute und ausgiebige Tests
 - Angenehme Team Atmosphäre
-
+- Die wöchentlich mehrfachen treffen in der die Aufgaben besprochen wurden
 
 **Was hat sich bewährt?** 
 
@@ -25,9 +25,10 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Anfänglich langsame und inkonsistente Terminfindung
 - Teils unausgeglichene Mitarbeit
 - Aufgaben teilweise zu lange aufgeschoben
-
+- Treffen wurde oft in die länge gezogen was die Zeit in der man hätte Produktiv sein können verringert hat
 
 **Was würde man anders machen?**
 
 - Früher mit dem Einsatz von manchen Patterns beginnen
 - Noch klarere Aufgabenverteilung mit festen Deadlines
+- Die Trennung zwischen wöchentlichen Abgaben und Hausarbeit um fokussierter auf das Semesterprojekt hin zu arbeiten 
