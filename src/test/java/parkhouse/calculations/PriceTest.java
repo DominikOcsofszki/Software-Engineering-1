@@ -37,7 +37,11 @@ public class PriceTest {
         for (ICar c : cars) {
             if (c.category().equals("Family") && c.type().equals("SUV")) {
                 assertEquals(1.2, Price.priceFactor(c));
-            } else if (c.category().equals("Family")) {
+            } else if (c.category().equals("Family") && c.type().equals("PICKUP")) {
+                assertEquals(1.3, Price.priceFactor(c));
+            } else if (c.category().equals("Business") && c.type().equals("SUV")) {
+                assertEquals(1.1, Price.priceFactor(c));
+            }else if (c.category().equals("Family")) {
                 assertEquals(0.5, Price.priceFactor(c));
             } else if (c.type().equals("SUV")) {
                 assertEquals(2, Price.priceFactor(c));
