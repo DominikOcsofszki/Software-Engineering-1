@@ -18,6 +18,7 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Gegenseitige Code Reviews und Refactoring
 - Zentraler Testdatensatz für saubere und einheitliche Tests
 - Analyse der Parkhaus API für ein tieferes Verständnis der Simulation
+- feste Aufgabenverteilung
 
 
 **Was lief schlecht?**
@@ -32,3 +33,4 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Früher mit dem Einsatz von manchen Patterns beginnen
 - Noch klarere Aufgabenverteilung mit festen Deadlines
 - Die Trennung zwischen wöchentlichen Abgaben und Hausarbeit um fokussierter auf das Semesterprojekt hin zu arbeiten 
+- Besprechungen in Präsenz
