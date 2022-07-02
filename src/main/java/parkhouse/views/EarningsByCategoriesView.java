@@ -48,22 +48,4 @@ public class EarningsByCategoriesView implements IObserver {
         );
     }
 
-    public static String earningsByCategories(IParkingModel model) {
-        String[][] rows = new String[Config.CLIENT_CATEGORIES.length][5];
-        for (int i = 0; i < rows.length; i++) {
-            String category = Config.CLIENT_CATEGORIES[i];
-            List<ICar> cat = model.getRemovedCarList().stream()
-                    .filter(c -> c.category().equals(category))
-                    .collect(Collectors.toList());
-            rows[i][0] = category;
-            rows[i][1] = Price.format(Stats.sumCars(cat));
-            rows[i][2] = Price.format(Stats.avgCars(cat));
-            rows[i][3] = Price.format(Stats.minCars(cat));
-            rows[i][4] = Price.format(Stats.maxCars(cat));
-        }
-        return Tableize.table(
-                new String[]{"Category", "Sum", "Average", "Minimum", "Maximum"}, rows
-        );
-    }
-
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="author" content="Team89 (C) 2021">
+    <meta name="author" content="Team 6 (C) 2021">
     <meta name="description" content="Software Engineering 1 (SE1)">
     <meta name="license" content="The MIT License (MIT)">
     <meta name="theme-color" content="#239BD1"/>

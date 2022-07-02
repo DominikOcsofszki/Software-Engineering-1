@@ -27,10 +27,6 @@ import java.util.stream.Collectors;
 
 public abstract class ParkhouseServlet extends HttpServlet {
 
-    /*
-    Author: mkaul2s & TEAM
-     */
-
     abstract String name();
 
     abstract int max();
@@ -54,6 +50,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
         LOGGER.info(cmd + "requested: " + request.getQueryString());
 
         switch (cmd) {
+            /*
+            Author: docsof2s
+            */
             case "config":
                 out.println(config());
                 if (saver().init()) {
@@ -65,6 +64,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     out.println(RELOAD);
                 }
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "cars":
                 out.print(
                         parkingController().getAllCars()
@@ -72,6 +74,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                                 .collect(Collectors.joining(","))
                 );
                 break;
+            /*
+            Author: docsof2s
+            */
             case "Sum":
                 out.println(String.format(
                         "Total income: %s | (Live): %s",
@@ -79,6 +84,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.sumCars(parkingController().getAllCars()))
                 ));
                 break;
+            /*
+            Author: docsof2s
+            */
             case "Avg":
                 out.println(String.format(
                         "Average income per customer: %s | (Live): %s",
@@ -86,6 +94,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.avgCars(parkingController().getAllCars()))
                 ));
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Min":
                 out.println(String.format(
                         "Lowest income from a customer: %s | (Live): %s",
@@ -93,6 +104,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.minCars(parkingController().getAllCars()))
                 ));
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Max":
                 out.println(String.format(
                         "Highest income from a customer: %s | (Live): %s",
@@ -100,41 +114,65 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Price.format(Stats.maxCars(parkingController().getAllCars()))
                 ));
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Types":
                 out.println(
                         parkingController().vehicleTypeView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Categories":
                 out.println(
                         parkingController().clientCategoriesView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Durations":
                 out.println(
                         parkingController().durationView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Daily-Earnings":
                 out.println(
                         parkingController().dailyEarningsView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Weekly-Earnings":
                 out.println(
                         parkingController().weeklyEarningsView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Current-Cost":
                 out.println(
                         parkingController().currentCostView()
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Earnings-Categories":
                 out.println(
                         parkingController().earningsByCategoriesView()
                 );
                 break;
+            /*
+            Author: staher2s
+            */
             case "Time":
                 out.println(String.format(
                         "Real time: %d / Sim time: %d / Diff: %d",
@@ -142,14 +180,23 @@ public abstract class ParkhouseServlet extends HttpServlet {
                         Time.simNow() - Time.now())
                 );
                 break;
+            /*
+            Author: jstueh2s
+            */
             case "Reset":
                 getServletContext().setAttribute("parkingController" + name(), null);
                 out.println(RELOAD);
                 break;
+            /*
+            Author: tpapen2s
+            */
             case "Undo":
                 parkingController().commander().undo();
                 out.println(RELOAD);
                 break;
+            /*
+            Author: tpapen2s
+            */
             default:
                 LOGGER.warning("Invalid Command: " + request.getQueryString());
         }
@@ -171,15 +218,27 @@ public abstract class ParkhouseServlet extends HttpServlet {
         String[] restParams = Arrays.copyOfRange(params, 1, params.length);
 
         switch (event) {
+            /*
+            Author: jstueh2s & docsof2s
+            */
             case "change_max":
                 config[0] = Integer.parseInt(restParams[0]);
                 break;
+            /*
+            Author: jstueh2s & docsof2s
+            */
             case "change_open_from":
                 config[1] = Integer.parseInt(restParams[0]);
                 break;
+            /*
+            Author: jstueh2s & docsof2s
+            */
             case "change_open_to":
                 config[2] = Integer.parseInt(restParams[0]);
                 break;
+            /*
+            Author: jstueh2s & docsof2s
+            */
             case "enter":
                 int space = Locator.locate(parkingController(), config[0]);
                 if (space != -1) {
@@ -191,6 +250,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
                     out.println(space);
                 }
                 break;
+            /*
+            Author: jstueh2s & docsof2s
+            */
             case "leave":
                 ICar car = Finder.findCar(parkingController().getCars(), ICar::ticket, restParams[4]);
                 car.updateParams(restParams);
@@ -199,29 +261,40 @@ public abstract class ParkhouseServlet extends HttpServlet {
                 parkingController().commander().activate();
                 out.println(restParams[3]);
                 break;
+            /*
+            Author: tpapen2s
+            */
             case "invalid":
             case "occupied":
                 LOGGER.info(() -> "occupied: " + body);
                 break;
+            /*
+            Author: mkaul2s
+            */
             case "tomcat":
                 out.println(getServletConfig().getServletContext().getServerInfo()
                         + getServletConfig().getServletContext().getMajorVersion()
                         + getServletConfig().getServletContext().getMinorVersion());
                 break;
-
+            /*
+            Author: tpapen2s
+            */
             default:
                 LOGGER.info(() -> "Invalid Command: " + body);
         }
 
     }
 
-    /**
-     * @return the servlet context
-     */
+    /*
+    Author: mkaul2s
+    */
     public ServletContext getContext() {
         return getServletConfig().getServletContext();
     }
 
+    /*
+    Author: docsof2s
+    */
     public IParkingController parkingController() {
         if (getContext().getAttribute("parkingController" + name()) == null) {
             getContext().setAttribute("parkingController" + name(), new ParkingController());
@@ -229,6 +302,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
         return (IParkingController) getContext().getAttribute("parkingController" + name());
     }
 
+    /*
+    Author: jstueh2s
+    */
     public Saver saver() {
         if (getContext().getAttribute("saver" + name()) == null) {
             getContext().setAttribute("saver" + name(), new Saver(name()));
@@ -236,10 +312,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
         return (Saver) getContext().getAttribute("saver" + name());
     }
 
-    /**
-     * @param request the HTTP POST request
-     * @return the body of the request
-     */
+    /*
+    Author: mkaul2s
+    */
     public String getBody(HttpServletRequest request) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -264,6 +339,9 @@ public abstract class ParkhouseServlet extends HttpServlet {
         return stringBuilder.toString();
     }
 
+    /*
+    Author: tpapen2s
+    */
     @Override
     public void destroy() {
         LOGGER.info("Servlet destroyed");
