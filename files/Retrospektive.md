@@ -32,3 +32,4 @@ Rückblick und Reflektion über das gesamte Projekt.
 - Früher mit dem Einsatz von manchen Patterns beginnen
 - Noch klarere Aufgabenverteilung mit festen Deadlines
 - Die Trennung zwischen wöchentlichen Abgaben und Hausarbeit um fokussierter auf das Semesterprojekt hin zu arbeiten 
+- Besprechungen in Präsenz

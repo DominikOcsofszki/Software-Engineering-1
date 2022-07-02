@@ -20,8 +20,8 @@
 | Basis Statistiken                 | 1 / 0.5   |
 | Graphen                           | 2 / 1     |
 | Commands                          | 2 / 1     |
-| Model-View-Controller             | 4 / 2     |
-| Preisberechnung                   | 3 / 2     |
+| Model-View-Controller             | 3 / 2     |
+| Preisberechnung                   | 3 / 1.5   |
 | Parkplatz-Lokalisierer            | 1 / 0.5   |
 | Dekorator                         | 1 / 1     |
 | Auto                              | 2 / 3     |

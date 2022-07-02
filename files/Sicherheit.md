@@ -26,7 +26,7 @@ Es ist jedoch anzumerken, dass der Tomcat Server über kein gültiges TLS-Zertif
 An mehreren Stellen werden in der Applikation Daten verabeitet, die von außen beeinflusst werden können:
   - Autos fahren in das Parkhaus (Parameter werden ausgelesen und gespeichert)
   - Autos verlassen das Parkhaus (Zeit und Preis Informationen werden gespeichert)
-  - Der Tomcat Server startet und läd gespeicherte Autos
+  - Der Tomcat Server startet und lädt gespeicherte Autos
   - Der Nutzer verändert die Öffnungszeiten
   - Der Nuzer verändert die maximale Anzahl an Parkplätzen 
   
@@ -44,7 +44,7 @@ Es wurde als nicht von Grund auf mit dem Sicherheitsgedanken entwickelt.
 
 **Security Misconfiguration**
 
-Auf der Website werden Fehlermeldungen mit vollständigem Stacktrace ausgegeben.\
+Auf der Website werden im Debug-Modus, Fehlermeldungen mit vollständigem Stacktrace ausgegeben.\
 Sicherheitsheader werden über eine Filterklasse gesetzt.\
 *Konkrete Server Konfiguration nicht prüfbar.*
 
