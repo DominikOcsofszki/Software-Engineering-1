@@ -5,7 +5,6 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 ### Team
 
-- ParkhouseServlet
 - MainServlet
 - Config
 - index.jsp
@@ -22,6 +21,18 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 **Klassen:**
 
+- ParkhouseServlet:
+  - doGet
+    - config
+    - Sum
+    - Avg
+  - doPost
+    - change_max
+    - change_open_from
+    - change_open_to
+    - enter
+    - leave
+  - parkingController
 - Locator
 - ParkingModel
   - addRemovedCar
@@ -52,6 +63,26 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 **Klassen:**
 
+- ParkhouseServlet:
+  - doGet
+    - cars
+    - Min
+    - Max
+    - Types
+    - Categories
+    - Durations
+    - Daily-Earnings
+    - Weekly-Earnings
+    - Current-Cost
+    - Earnings-Categories
+    - Reset
+  - doPost
+    - change_max
+    - change_open_from
+    - change_open_to
+    - enter
+    - leave
+  - saver
 - Locator
 - Price
 - Car
@@ -106,6 +137,9 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 **Klassen:**
 
+- ParkhouseServlet:
+  - doGet
+    - Time
 - CarTypes
 
 **Tests:**
@@ -120,6 +154,13 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 **Interfaces:**
 
+- ParkhouseServlet:
+  - doGet
+    - Undo
+    - default
+  - doPost
+    - invalid/occupied
+    - default
 - ICommand
 - IParkingModel
 
@@ -149,6 +190,10 @@ Aufgrund von Bedenken wegen ungenauer Ergebnisse durch Cloc, wurde zusätzlich e
 Als Zeilenanzahl einer Klasse wurde die Ausgabe von SonarQube verwendet.
 
 |             | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
-|-------------|-------------------|-------------|------------|--------------|
-| **Cloc**    | 0                 | 0           | 0          | 0            |
-| **Manuell** | 0                 | 0           | 0          | 0            |
+|-------------|------------------|-------------|------------|--------------|
+| **Cloc**    | 238                 | 2655           | 157          | 678            |
+| **Manuell** | 0                | 0           | 0          | 0            |
+
+[Version](https://github.com/casperdcl/git-fame)
+
+*git-fame --incl="java|xml|jsp|css"*
