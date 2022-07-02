@@ -15,9 +15,6 @@ public class Locator {
     private Locator() {}
 
     public static int locate(IParkingController controller, int max) {
-
-        int x = max / 0;
-
         List<Integer> occupied = controller.getCars()
                 .stream().mapToInt(ICar::space)
                 .boxed().collect(Collectors.toList());
