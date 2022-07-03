@@ -1,50 +1,178 @@
 
 ## Produktblatt
-MAX: 5 Seiten
 
-Aufgabe: 
-- Alles was nicht im Video ist sollte hier rein.
-- Alles was schriftlich besser als ins video passt.
-- Liste aller Charst, Funktionen und Klassen.
+### Zielgruppen und Mehrwert
 
+**Kunde**
 
-Zielgruppe: Kunde, Betreiber, Finanzamt, Mitarbeiter
+Kunden erhalten eine vielzahl an hilfreichen Statusinformationen und müssen sich nicht mehr um Tickets kümmern.
 
-**Liste aller Funktionen**\
-*Lösung: ??*
+**Betreiber**
 
-*Interfaces entfernen?*
-**Liste aller Klassen**\
-*Car, CarDecorator, CarTypes, ICar, SanitizedCar,\
-CarEnterCommand, CarLeaveCommand, Commander, ICommander, \
-Config, \
-IParkingController, ParkingController, IObservable, IParkingModel, ParkingModel, \
-ClientCategoriesView, CurrentCostView, DailyEarningsView, DurationsView, EarningsByCategoriesView, 
-IObserver, VehicleTypesView, WeeklyEarningsView \
-MainServlet, ParkhouseServlet, SecurityCORSFilter, \
-Locator, Price, Stats, \
-Finder, \
-Jsonify, \
-Saver, \
-Tableize, \
-Time, 
-*
-**Liste aller Resources**
-*MainServlet.cars, MainServlet.conf*
-----------
-----------
-**Liste aller webapp-elementen:**\
-*web.xml, favicon.ico, index.jsp, style.css*
+Der Betreiber hat Zugriff auf Statistiken zu Einnahmen und Parkplatzbelegung.\
+Er kann Parameter wie Öffnungszeiten und verfügbare Parkplätze dynamisch verändern.\
+Außerdem benötigt er weniger Mitarbeiter, da viele Aufgaben vom System übernommen werden.
 
-**Liste aller verwendeten Charts**\
-*Lösung: vehicleTypeView(), clientCategoriesView(), currentCostView()*
+**Finanzamt**
 
-**Nicht ganz sicher welche Informationen hier rein sollten?**
-**Mehrwert für Kunde:**\
-*Der Kunde muss kein Ticket mehr ziehe, sondern dies geschieht automatisch.*\
-**Mehrwert für Betreiber:**\
-* Der Betreiber hat seine Einnahmen im Blick. Er muss weniger Mitarbeiter einstellen, da vieles automatisch geschieht?*\
-**Mehrwert für Finanzamt:**\
-*Es können für jeden Monat Einnahmen aufgestellt werden. Dies könnte für beliebige Zeiträume erweitert werden.*\
-**Mehrwert für Mitarbeiter:**
-*Durch die Digitalisierung können viele Schritte die zuvor händisch ausgeführt worden sind automatisiert werden.*
+Das Finanzamt kann gesammelte Informationen über Einnamhmen abrufen und spart so Zeit.
+
+---
+
+### Klassen
+
+**ParkhouseServlet**
+
+Servlet Superklasse.\
+Verarbeitet GET und POST Anfragen.\
+Speichert einen *ParkingController* und einen *Saver*, sowie ein Array für Konfiguration.
+
+**MainServlet**
+
+Erweiterung des *ParkhouseServlet*.\
+Stellt das primäre Parkaus da.
+
+**SecurityCORSFilter**
+
+Setzt eine Reihe von HTTP Headern für Sicherheit und Privacy.
+
+---
+
+**Config**
+
+Erlaubt es globale Parameter wie Simulationsgeschwindigkeit, Kundenkategorien oder Fahrzeugtypen festzulegen.
+
+---
+
+**Car**
+
+Enthält die Parameter der Autos und berechnet Parkdauer und Preis.
+
+**CarDecorator**
+
+Erlaubt es das Auto funktional zu erweitern.
+
+**SanitizedCar**
+
+Erweitert das Auto um Methoden, die die String Parameter des Autos mit Whitelist filtern.
+
+**CarTypes**
+
+Multiton für den Fahrzeugtyp.
+
+---
+
+**Locator**
+
+Sucht einfahrenden Autos einen freien Parkplatz.
+
+**Price**
+
+Formatiert Preise für Ausgaben und bestimmt Preisfaktoren abhängig von Kundenkategorie und Fahrzeugtyp.
+
+**Stats**
+
+Berechnet Summe, Durchschnitt, Minimum und Maximum von Einnahmen.
+
+---
+
+**Commander**
+
+Speichert Befehle und erlaubt es diese vor- und rückgängig zu machen.
+
+**CarEnterCommand**
+
+Befehl für das einfahren von Autos.
+
+**CarLeaveCommand**
+
+Befehl für das verlassen von Autos.
+
+---
+
+**ParkingController**
+
+Instanziiert das ParkingModel und die Views.\
+Erlaubt es Zustandsänderungen an das Model weiterzugeben.
+
+**ParkingModel**
+
+Hält alle Autos die das Parkhaus verwaltet (im Parkhaus und außerhalb).\
+Bietet Methoden für das hinzufügen und entfernen von Autos.
+
+---
+
+**ClientCategoriesView**
+
+Graph mit den aktuellen Kundenkategorien im Parkhaus.
+
+**VehicleTypesView**
+
+Graph mit den aktuellen Fahrzeugtypen im Parkhaus.
+
+**DurationView**
+
+Graph mit den aktuellen Parkzeiten der Autos im Parkhaus.
+
+**DailyEarningsView**
+
+Die aktuellen Tageseinnahmen.
+
+**WeeklyEarningsView**
+
+Die aktuellen Wocheneinnahmen.
+
+**CurrentCostsView**
+
+Tabelle mit den aktuellen Parkkosten von Autos im Parkhaus.
+
+**EarningsByCategoriesView**
+
+Tabelle mit den Einnahmen sortiert nach Kundenkategorie.
+
+---
+
+**Finder**
+
+Sucht nach Autos in Iterierbaren Objekten, anhand von beliebigen Paramtern.
+
+**Jsonify**
+
+Bietet Methoden für die Generierung von JSON Objekten.
+
+**Saver**
+
+Bietet Methoden für das persistente Speichern von Autos und Konfigurationen im Dateisystem.
+
+**Tableize**
+
+Bietet Methoden für die Generierung von HTML Tabellen.
+
+**Time**
+
+Bietet Methoden für die Transformation von Echtzeit zu Simulationszeit.
+
+---
+
+### Webapp
+
+**index.jsp**
+
+Primäre Seite der Applikation.\
+Enthält die Parameter für die Parkhaus Servlets.
+
+**style.css**
+
+Enhält das CSS Styling für die Seite.
+
+---
+
+### Resourcen
+
+**MainServlet.cars**
+
+Speichert die Autos des *MainServlet*.
+
+**MainServlet.conf**
+
+Speichert die Konfiguration des *MainServlet*.

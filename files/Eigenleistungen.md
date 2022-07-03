@@ -188,13 +188,9 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 ### Lines-Of-Code
 
-Aufgrund von Bedenken wegen ungenauer Ergebnisse durch Cloc, wurde zusätzlich eine manuelle Zählung durchgeführt.\
-Als Zeilenanzahl einer Klasse wurde die Ausgabe von SonarQube verwendet.
-
 |             | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
 |-------------|------------------|-------------|------------|--------------|
 | **Cloc**    | 238                 | 2655           | 157          | 678            |
-| **Manuell** | 0                | 0           | 0          | 0            |
 
 [Version](https://github.com/casperdcl/git-fame)
 
