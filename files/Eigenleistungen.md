@@ -40,6 +40,7 @@ Eigenleistungen der einzelnen Teammitglieder.
   - dailyEarnings
   - weeklyEarnings
   - getCarList
+- Stats
 - Finder
 - Saver
 
@@ -181,6 +182,7 @@ Eigenleistungen der einzelnen Teammitglieder.
 - CommanderTest
 - ParkingModelTest
 - DailyEarningsViewTest
+- CurrentCostViewTest
 
 ---
 
