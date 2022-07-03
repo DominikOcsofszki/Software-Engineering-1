@@ -7,7 +7,7 @@ import java.util.List;
 public class Stats {
 
      /*
-    Author: tpapen2s
+    Author: tpapen2s, docsof2s
      */
 
     private Stats() {}

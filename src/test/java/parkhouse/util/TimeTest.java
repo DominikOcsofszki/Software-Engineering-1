@@ -1,12 +1,6 @@
 package parkhouse.util;
 
 import org.junit.jupiter.api.*;
-import parkhouse.Data;
-import parkhouse.car.ICar;
-import parkhouse.controller.IParkingController;
-import parkhouse.controller.ParkingController;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
