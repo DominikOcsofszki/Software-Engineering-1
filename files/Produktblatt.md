@@ -3,176 +3,176 @@
 
 ### Zielgruppen und Mehrwert
 
-**Kunde**
+**Kunde:**
 
-Kunden erhalten eine vielzahl an hilfreichen Statusinformationen und müssen sich nicht mehr um Tickets kümmern.
+    Kunden erhalten eine vielzahl an hilfreichen Statusinformationen und müssen sich nicht mehr um Tickets kümmern.
 
-**Betreiber**
+**Betreiber:**
 
-Der Betreiber hat Zugriff auf Statistiken zu Einnahmen und Parkplatzbelegung.\
-Er kann Parameter wie Öffnungszeiten und verfügbare Parkplätze dynamisch verändern.\
-Außerdem benötigt er weniger Mitarbeiter, da viele Aufgaben vom System übernommen werden.
+    Der Betreiber hat Zugriff auf Statistiken zu Einnahmen und Parkplatzbelegung.
+    Er kann Parameter wie Öffnungszeiten und verfügbare Parkplätze dynamisch verändern.
+    Außerdem benötigt er weniger Mitarbeiter, da viele Aufgaben vom System übernommen werden.
 
-**Finanzamt**
+**Finanzamt:**
 
-Das Finanzamt kann gesammelte Informationen über Einnamhmen abrufen und spart so Zeit.
+    Das Finanzamt kann gesammelte Informationen über Einnamhmen abrufen und spart so Zeit.
 
 ---
 
 ### Klassen
 
-**ParkhouseServlet**
+**ParkhouseServlet:**
 
-Servlet Superklasse.\
-Verarbeitet GET und POST Anfragen.\
-Speichert einen *ParkingController* und einen *Saver*, sowie ein Array für Konfiguration.
+    Servlet Superklasse.
+    Verarbeitet GET und POST Anfragen.
+    Speichert einen *ParkingController* und einen *Saver*, sowie ein Array für Konfiguration.
 
-**MainServlet**
+**MainServlet:**
 
-Erweiterung des *ParkhouseServlet*.\
-Stellt das primäre Parkaus da.
+    Erweiterung des *ParkhouseServlet*.
+    Stellt das primäre Parkaus da.
 
-**SecurityCORSFilter**
+**SecurityCORSFilter:**
 
-Setzt eine Reihe von HTTP Headern für Sicherheit und Privacy.
-
----
-
-**Config**
-
-Erlaubt es globale Parameter wie Simulationsgeschwindigkeit, Kundenkategorien oder Fahrzeugtypen festzulegen.
+    Setzt eine Reihe von HTTP Headern für Sicherheit und Privacy.
 
 ---
 
-**Car**
+**Config:**
 
-Enthält die Parameter der Autos und berechnet Parkdauer und Preis.
-
-**CarDecorator**
-
-Erlaubt es das Auto funktional zu erweitern.
-
-**SanitizedCar**
-
-Erweitert das Auto um Methoden, die die String Parameter des Autos mit Whitelist filtern.
-
-**CarTypes**
-
-Multiton für den Fahrzeugtyp.
+    Erlaubt es globale Parameter wie Simulationsgeschwindigkeit, Kundenkategorien oder Fahrzeugtypen festzulegen.
 
 ---
 
-**Locator**
+**Car:**
 
-Sucht einfahrenden Autos einen freien Parkplatz.
+    Enthält die Parameter der Autos und berechnet Parkdauer und Preis.
 
-**Price**
+**CarDecorator:**
 
-Formatiert Preise für Ausgaben und bestimmt Preisfaktoren abhängig von Kundenkategorie und Fahrzeugtyp.
+    Erlaubt es das Auto funktional zu erweitern.
 
-**Stats**
+**SanitizedCar:**
 
-Berechnet Summe, Durchschnitt, Minimum und Maximum von Einnahmen.
+    Erweitert das Auto um Methoden, die die String Parameter des Autos mit Whitelist filtern.
 
----
+**CarTypes:**
 
-**Commander**
-
-Speichert Befehle und erlaubt es diese vor- und rückgängig zu machen.
-
-**CarEnterCommand**
-
-Befehl für das einfahren von Autos.
-
-**CarLeaveCommand**
-
-Befehl für das verlassen von Autos.
+    Multiton für den Fahrzeugtyp.
 
 ---
 
-**ParkingController**
+**Locator:**
 
-Instanziiert das ParkingModel und die Views.\
-Erlaubt es Zustandsänderungen an das Model weiterzugeben.
+    Sucht einfahrenden Autos einen freien Parkplatz.
 
-**ParkingModel**
+**Price:**
 
-Hält alle Autos die das Parkhaus verwaltet (im Parkhaus und außerhalb).\
-Bietet Methoden für das hinzufügen und entfernen von Autos.
+    Formatiert Preise für Ausgaben und bestimmt Preisfaktoren abhängig von Kundenkategorie und Fahrzeugtyp.
 
----
+**Stats:**
 
-**ClientCategoriesView**
-
-Graph mit den aktuellen Kundenkategorien im Parkhaus.
-
-**VehicleTypesView**
-
-Graph mit den aktuellen Fahrzeugtypen im Parkhaus.
-
-**DurationView**
-
-Graph mit den aktuellen Parkzeiten der Autos im Parkhaus.
-
-**DailyEarningsView**
-
-Die aktuellen Tageseinnahmen.
-
-**WeeklyEarningsView**
-
-Die aktuellen Wocheneinnahmen.
-
-**CurrentCostsView**
-
-Tabelle mit den aktuellen Parkkosten von Autos im Parkhaus.
-
-**EarningsByCategoriesView**
-
-Tabelle mit den Einnahmen sortiert nach Kundenkategorie.
+    Berechnet Summe, Durchschnitt, Minimum und Maximum von Einnahmen.
 
 ---
 
-**Finder**
+**Commander:**
 
-Sucht nach Autos in Iterierbaren Objekten, anhand von beliebigen Paramtern.
+    Speichert Befehle und erlaubt es diese vor- und rückgängig zu machen.
 
-**Jsonify**
+**CarEnterCommand:**
 
-Bietet Methoden für die Generierung von JSON Objekten.
+    Befehl für das einfahren von Autos.
 
-**Saver**
+**CarLeaveCommand:**
 
-Bietet Methoden für das persistente Speichern von Autos und Konfigurationen im Dateisystem.
+    Befehl für das verlassen von Autos.
 
-**Tableize**
+---
 
-Bietet Methoden für die Generierung von HTML Tabellen.
+**ParkingController:**
 
-**Time**
+    Instanziiert das ParkingModel und die Views.
+    Erlaubt es Zustandsänderungen an das Model weiterzugeben.
 
-Bietet Methoden für die Transformation von Echtzeit zu Simulationszeit.
+**ParkingModel:**
+
+    Hält alle Autos die das Parkhaus verwaltet (im Parkhaus und außerhalb).
+    Bietet Methoden für das hinzufügen und entfernen von Autos.
+
+---
+
+**ClientCategoriesView:**
+
+    Graph mit den aktuellen Kundenkategorien im Parkhaus.
+
+**VehicleTypesView:**
+
+    Graph mit den aktuellen Fahrzeugtypen im Parkhaus.
+
+**DurationView:**
+
+    Graph mit den aktuellen Parkzeiten der Autos im Parkhaus.
+
+**DailyEarningsView:**
+
+    Die aktuellen Tageseinnahmen.
+
+**WeeklyEarningsView:**
+
+    Die aktuellen Wocheneinnahmen.
+
+**CurrentCostsView:**
+
+    Tabelle mit den aktuellen Parkkosten von Autos im Parkhaus.
+
+**EarningsByCategoriesView:**
+
+    Tabelle mit den Einnahmen sortiert nach Kundenkategorie.
+
+---
+
+**Finder:**
+
+    Sucht nach Autos in Iterierbaren Objekten, anhand von beliebigen Paramtern.
+
+**Jsonify:**
+
+    Bietet Methoden für die Generierung von JSON Objekten.
+
+**Saver:**
+
+    Bietet Methoden für das persistente Speichern von Autos und Konfigurationen im Dateisystem.
+
+**Tableize:**
+
+    Bietet Methoden für die Generierung von HTML Tabellen.
+
+**Time:**
+
+    Bietet Methoden für die Transformation von Echtzeit zu Simulationszeit.
 
 ---
 
 ### Webapp
 
-**index.jsp**
+**index.jsp:**
 
-Primäre Seite der Applikation.\
-Enthält die Parameter für die Parkhaus Servlets.
+    Primäre Seite der Applikation.
+    Enthält die Parameter für die Parkhaus Servlets.
 
-**style.css**
+**style.css:**
 
-Enhält das CSS Styling für die Seite.
+    Enhält das CSS Styling für die Seite.
 
 ---
 
 ### Resourcen
 
-**MainServlet.cars**
+**MainServlet.cars:**
 
-Speichert die Autos des *MainServlet*.
+    Speichert die Autos des *MainServlet*.
 
-**MainServlet.conf**
+**MainServlet.conf:**
 
-Speichert die Konfiguration des *MainServlet*.
+    Speichert die Konfiguration des *MainServlet*.
