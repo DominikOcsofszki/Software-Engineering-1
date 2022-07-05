@@ -27,9 +27,13 @@ public class SecurityCORSFilter implements Filter {
   }
 
   @Override
-  public void destroy() {}
+  public void destroy() {
+    // Method is required to free resources
+  }
 
   @Override
-  public void init(FilterConfig arg0) throws ServletException {}
+  public void init(FilterConfig arg0) throws ServletException {
+    // Method is required to allocate and initialize resources
+  }
 
 }
