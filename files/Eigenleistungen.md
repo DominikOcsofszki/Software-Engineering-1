@@ -189,8 +189,8 @@ Eigenleistungen der einzelnen Teammitglieder.
 ### Lines-Of-Code
 
 |             | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
-|-------------|------------------|-------------|------------|--------------|
-| **Cloc**    | 238                 | 2655           | 157          | 678            |
+|-------------|-------------------|-------------|------------|--------------|
+| **Cloc**    | 218               | 2750        | 128        | 660          |
 
 [Version](https://github.com/casperdcl/git-fame)
 
