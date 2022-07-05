@@ -19,6 +19,16 @@ import java.util.stream.Collectors;
 
 public class Data {
 
+    public static final String NR = "25";
+    public static final String DURATION = "6010";
+    public static final String PRICE = "69";
+    public static final String TICKET = "a7aa53882766f4bf361ca339fb843fa9";
+    public static final String COLOR = "#42671f";
+    public static final String SPACE = "2";
+    public static final String CATEGORY = "Women";
+    public static final String TYPE = "SUV";
+    public static final String LICENSE = "SU-K 41";
+
     private static final Logger LOGGER = Logger.getLogger(Data.class.getName());
 
     /*

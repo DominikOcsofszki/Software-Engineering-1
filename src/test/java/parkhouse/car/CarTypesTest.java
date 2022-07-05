@@ -12,10 +12,10 @@ public class CarTypesTest {
     Author: staher2s
      */
 
-    private final String PKW = "pkw";
-    private final String QUAD = "quad";
-    private final String TRIKE = "trike";
-    private final String PICKUP = "pickup";
+    private static final String PKW = "pkw";
+    private static final String QUAD = "quad";
+    private static final String TRIKE = "trike";
+    private static final String PICKUP = "pickup";
 
     private CarTypes pkw;
     private CarTypes quad;

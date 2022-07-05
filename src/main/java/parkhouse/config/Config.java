@@ -36,11 +36,11 @@ public class Config {
     }
 
     public static String[] vehicleTypes() {
-        return CLIENT_CATEGORIES;
+        return VEHICLE_TYPES;
     }
 
     public static String[] priceFactor() {
-        return CLIENT_CATEGORIES;
+        return PRICE_FACTOR;
     }
 
 }

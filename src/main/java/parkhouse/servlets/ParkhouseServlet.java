@@ -186,7 +186,7 @@ public abstract class ParkhouseServlet extends HttpServlet {
             Author: jstueh2s
             */
             case "Reset":
-                getServletContext().setAttribute("parkingController" + name(), null);
+                getServletContext().setAttribute(PARKING_CONTROLLER + name(), null);
                 out.println(RELOAD);
                 break;
             /*

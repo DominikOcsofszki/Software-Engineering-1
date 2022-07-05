@@ -1,6 +1,7 @@
 package parkhouse.views;
 
 
+import parkhouse.Data;
 import parkhouse.car.Car;
 import parkhouse.car.ICar;
 import parkhouse.models.IParkingModel;
@@ -22,20 +23,14 @@ public class CurrentCostsViewTest {
     private IParkingModel parkingModel;
     private CurrentCostsView currentCostsView;
 
-    private final String NR = "25";
-    private final String DURATION = "6010";
-    private final String TICKET = "a7aa53882766f4bf361ca339fb843fa9";
-    private final String COLOR = "#42671f";
-    private final String SPACE = "2";
-    private final String CATEGORY = "Women";
-    private final String TYPE = "SUV";
+    private final ICar x = new Car(new String[]{Data.NR, Time.now() - 10000+"",Data.DURATION,"69",Data.TICKET,
+            Data.COLOR,Data.SPACE,Data.CATEGORY,Data.TYPE,"SU-K 69",Time.now() - 10000+""});
 
-    private final ICar x = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "69", TICKET,
-            COLOR, SPACE, CATEGORY, TYPE, "SU-K 69", Time.now() - 10000 + ""});
-    private final ICar x1 = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "70", TICKET,
-            COLOR, SPACE, CATEGORY, TYPE, "SU-K 70", Time.now() - 10000 + ""});
-    private final ICar x2 = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "71", TICKET,
-            COLOR, SPACE, CATEGORY, TYPE, "SU-K 71", Time.now() - 10000 + ""});
+    private final ICar x1 = new Car(new String[]{Data.NR, Time.now() - 10000+"",Data.DURATION,"70",Data.TICKET,
+            Data.COLOR,Data.SPACE,Data.CATEGORY,Data.TYPE,"SU-K 70",Time.now() - 10000+""});
+
+    private final ICar x2 = new Car(new String[]{Data.NR, Time.now() - 10000+"",Data.DURATION,"71",Data.TICKET,
+            Data.COLOR,Data.SPACE,Data.CATEGORY,Data.TYPE,"SU-K 71",Time.now() - 10000+""});
 
     @BeforeEach
     void setup() {

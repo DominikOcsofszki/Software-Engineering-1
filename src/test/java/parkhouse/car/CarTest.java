@@ -19,7 +19,7 @@ public class CarTest {
     Author: jstueh2s
      */
 
-    private final String FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s";
+    private static final String FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s";
 
     private final List<String[]> params = Data.params();
     private final SecureRandom rand = new SecureRandom();
