@@ -37,7 +37,7 @@ public class DurationViewTest {
             assertEquals(licenses[i], l);
             assertEquals(
                     Finder.findCar(controller.getAllCars(), ICar::license, l).duration(),
-                    Long.parseLong(y.getString(i)), 10000
+                    Long.parseLong(y.getString(i)), 20000
             );
         }
         assertEquals("bar", view.getString("type"));
