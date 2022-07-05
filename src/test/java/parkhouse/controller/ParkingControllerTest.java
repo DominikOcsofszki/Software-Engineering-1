@@ -20,16 +20,26 @@ public class ParkingControllerTest {
     private final List<String[]> param = Data.paramsDuration();
     private List<ICar> carList = new ArrayList<>();
 
-    private final ICar carNow = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "69",
-            "a7aa53882766f4bf361ca339fb843fa9", "#42671f", "2", "Women", "SUV", "SU-K 41",
+    private final String NR = "25";
+    private final String DURATION = "6010";
+    private final String PRICE = "69";
+    private final String TICKET = "a7aa53882766f4bf361ca339fb843fa9";
+    private final String COLOR = "#42671f";
+    private final String SPACE = "2";
+    private final String CATEGORY = "Women";
+    private final String TYPE = "SUV";
+    private final String LICENSE = "SU-K 41";
+
+    private final ICar carNow = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, PRICE,
+            TICKET, COLOR, SPACE, CATEGORY, TYPE, LICENSE,
             Time.now() - 10000 + ""});
 
-    private final ICar carYesterday = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_DAY - 10000 + "",
-            "6010", "69", "a7aa53882766f4bf361ca339fb843fa9", "#42671f", "2", "Women", "SUV", "SU-K 41",
+    private final ICar carYesterday = new Car(new String[]{NR, Time.now() - Time.MILLISECONDS_PER_DAY - 10000 + "",
+            DURATION, PRICE, TICKET, COLOR, SPACE, CATEGORY, TYPE, LICENSE,
             Time.now() - Time.MILLISECONDS_PER_DAY - 10000 + ""});
 
-    private final ICar carLastWeek = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_WEEK - 10000 + "",
-            "6010", "69", "a7aa53882766f4bf361ca339fb843fa9", "#42671f", "2", "Women", "SUV", "SU-K 41",
+    private final ICar carLastWeek = new Car(new String[]{NR, Time.now() - Time.MILLISECONDS_PER_WEEK - 10000 + "",
+            DURATION, PRICE, TICKET, COLOR, SPACE, CATEGORY, TYPE, LICENSE,
             Time.now() - Time.MILLISECONDS_PER_WEEK - 10000 + ""});
 
 

@@ -24,6 +24,16 @@ public class ParkingModelTest {
     private final List<ICar> carsList = new ArrayList<>();
     private final List<ICar> carsNoDurationList = new ArrayList<>();
 
+    private final String NR = "25";
+    private final String DURATION = "6010";
+    private final String PRICE = "69";
+    private final String TICKET = "a7aa53882766f4bf361ca339fb843fa9";
+    private final String COLOR = "#42671f";
+    private final String SPACE = "2";
+    private final String CATEGORY = "Women";
+    private final String TYPE = "SUV";
+    private final String LICENSE = "SU-K 41";
+
     @BeforeEach
     void setup() {
         parkingModel = new ParkingModel();
@@ -46,14 +56,14 @@ public class ParkingModelTest {
         DailyEarningsView dailyEarningsView = new DailyEarningsView(parkingModel);
         parkingModel.removeObserver(dailyEarningsView);
         parkingModel.registerObserver(dailyEarningsView);
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        ICar x = new Car(new String[]{NR, Time.now() - 10000+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - 10000+""});
         parkingModel.addCar(x);
         parkingModel.removeCar(x);
         assertEquals(69, dailyEarningsView.getDailyEarnings());
         parkingModel.removeObserver(dailyEarningsView);
-        ICar y = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        ICar y = new Car(new String[]{NR, Time.now() - 10000+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - 10000+""});
         parkingModel.addCar(y);
         parkingModel.removeCar(y);
         assertEquals(69, dailyEarningsView.getDailyEarnings());
@@ -125,13 +135,13 @@ public class ParkingModelTest {
     @Test
     @DisplayName("test if the dailyEarnings adds up the cars that left in the last 24h")
     void parkingModelDailyEarningsTest() {
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        ICar x = new Car(new String[]{NR, Time.now() - 10000+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - 10000+""});
         parkingModel.addCar(x);
         parkingModel.removeCar(x);
         assertEquals(69, parkingModel.dailyEarnings());
-        x = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_DAY - 6011+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - Time.MILLISECONDS_PER_DAY - 6011+""});
+        x = new Car(new String[]{NR, Time.now() - Time.MILLISECONDS_PER_DAY - 6011+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - Time.MILLISECONDS_PER_DAY - 6011+""});
         parkingModel.addCar(x);
         parkingModel.removeCar(x);
         assertEquals(69, parkingModel.dailyEarnings());
@@ -140,13 +150,13 @@ public class ParkingModelTest {
     @Test
     @DisplayName("test if the weeklyEarnings adds up the cars that left in the last 7 days")
     void parkingModelWeeklyEarningsTest() {
-        ICar x = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
+        ICar x = new Car(new String[]{NR, Time.now() - 10000+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - 10000+""});
         parkingModel.addCar(x);
         parkingModel.removeCar(x);
         assertEquals(69, parkingModel.weeklyEarnings());
-        x = new Car(new String[]{"25", Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
-                "#42671f","2","Women","SUV","SU-K 41",Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+""});
+        x = new Car(new String[]{NR, Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+"",DURATION,PRICE,TICKET,
+                COLOR,SPACE,CATEGORY,TYPE,LICENSE,Time.now() - Time.MILLISECONDS_PER_WEEK - 6011+""});
         parkingModel.addCar(x);
         parkingModel.removeCar(x);
         assertEquals(69, parkingModel.weeklyEarnings());

@@ -12,6 +12,11 @@ public class CarTypesTest {
     Author: staher2s
      */
 
+    private final String PKW = "pkw";
+    private final String QUAD = "quad";
+    private final String TRIKE = "trike";
+    private final String PICKUP = "pickup";
+
     private CarTypes pkw;
     private CarTypes quad;
     private CarTypes trike;
@@ -19,38 +24,38 @@ public class CarTypesTest {
 
     @BeforeEach
     void setup(){
-        pkw = CarTypes.getInstance("pkw");
-        quad = CarTypes.getInstance("quad");
-        trike = CarTypes.getInstance("trike");
-        pickup = CarTypes.getInstance("pickup");
+        pkw = CarTypes.getInstance(PKW);
+        quad = CarTypes.getInstance(QUAD);
+        trike = CarTypes.getInstance(TRIKE);
+        pickup = CarTypes.getInstance(PICKUP);
     }
 
     @Test
     @DisplayName("getInstance: returns the instance back")
     void getInstanceReturnsSameInstanceInstanceIsTheSame(){
-        Assertions.assertEquals(pkw, CarTypes.getInstance("pkw"));
-        Assertions.assertEquals(quad, CarTypes.getInstance("quad"));
-        Assertions.assertEquals(trike, CarTypes.getInstance("trike"));
-        Assertions.assertEquals(pickup, CarTypes.getInstance("pickup"));
+        Assertions.assertEquals(pkw, CarTypes.getInstance(PKW));
+        Assertions.assertEquals(quad, CarTypes.getInstance(QUAD));
+        Assertions.assertEquals(trike, CarTypes.getInstance(TRIKE));
+        Assertions.assertEquals(pickup, CarTypes.getInstance(PICKUP));
 
     }
     @Test
     @DisplayName("getInstance: not the same type")
     void getInstanceReturnsSameInstanceInstanceNotTheSame() {
-        Assertions.assertNotEquals(pkw, CarTypes.getInstance("quad"));
-        Assertions.assertNotEquals(quad, CarTypes.getInstance("pkw"));
-        Assertions.assertNotEquals(trike, CarTypes.getInstance("pickup"));
-        Assertions.assertNotEquals(pickup, CarTypes.getInstance("trike"));
+        Assertions.assertNotEquals(pkw, CarTypes.getInstance(QUAD));
+        Assertions.assertNotEquals(quad, CarTypes.getInstance(PKW));
+        Assertions.assertNotEquals(trike, CarTypes.getInstance(PICKUP));
+        Assertions.assertNotEquals(pickup, CarTypes.getInstance(TRIKE));
 
-        Assertions.assertNotEquals(pkw, CarTypes.getInstance("pickup"));
-        Assertions.assertNotEquals(quad, CarTypes.getInstance("trike"));
-        Assertions.assertNotEquals(trike, CarTypes.getInstance("pkw"));
-        Assertions.assertNotEquals(pickup, CarTypes.getInstance("quad"));
+        Assertions.assertNotEquals(pkw, CarTypes.getInstance(PICKUP));
+        Assertions.assertNotEquals(quad, CarTypes.getInstance(TRIKE));
+        Assertions.assertNotEquals(trike, CarTypes.getInstance(PKW));
+        Assertions.assertNotEquals(pickup, CarTypes.getInstance(QUAD));
 
-        Assertions.assertNotEquals(pkw, CarTypes.getInstance("trike"));
-        Assertions.assertNotEquals(quad, CarTypes.getInstance("pickup"));
-        Assertions.assertNotEquals(trike, CarTypes.getInstance("quad"));
-        Assertions.assertNotEquals(pickup, CarTypes.getInstance("pkw"));
+        Assertions.assertNotEquals(pkw, CarTypes.getInstance(TRIKE));
+        Assertions.assertNotEquals(quad, CarTypes.getInstance(PICKUP));
+        Assertions.assertNotEquals(trike, CarTypes.getInstance(QUAD));
+        Assertions.assertNotEquals(pickup, CarTypes.getInstance(PKW));
 
        }
 

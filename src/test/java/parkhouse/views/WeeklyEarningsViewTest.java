@@ -18,6 +18,7 @@ public class WeeklyEarningsViewTest {
 
     private IParkingModel parkingModel;
     private WeeklyEarningsView weeklyEarningsView;
+
     private final ICar car = new Car(new String[]{"25", Time.now() - 10000+"","6010","69","a7aa53882766f4bf361ca339fb843fa9",
             "#42671f","2","Women","SUV","SU-K 41",Time.now() - 10000+""});
 

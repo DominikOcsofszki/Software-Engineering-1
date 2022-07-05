@@ -15,12 +15,7 @@ public class CarTypes {
     private CarTypes() {}
 
     public static CarTypes getInstance(String key) {
-        CarTypes type = types.get(key);
-        if (type == null) {
-            type = new CarTypes();
-            types.put(key, type);
-        }
-        return type;
+        return types.computeIfAbsent(key, k -> new CarTypes());
     }
 
     public double getFactor() {

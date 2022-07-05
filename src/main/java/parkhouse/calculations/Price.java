@@ -18,7 +18,7 @@ public class Price {
     }
 
     public static double priceFactor(ICar car) {
-        List<String> priceFactors = new ArrayList<>(Arrays.asList(Config.PRICE_FACTOR));
+        List<String> priceFactors = new ArrayList<>(Arrays.asList(Config.priceFactor()));
 
         OptionalDouble categoryType = priceFactors.stream()
                 .filter(p -> p.matches("^[A-Za-z]+\\.[A-Za-z]+:[0-9.]+"))

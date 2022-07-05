@@ -17,6 +17,9 @@ public class PriceTest {
     Author: jstueh2s
      */
 
+    private static final String FAMILY = "Family";
+    private static final String SUV = "SUV";
+
     private final List<ICar> cars = Data.cars();
 
     @Test
@@ -35,15 +38,15 @@ public class PriceTest {
     @DisplayName("Test if price factor is parsed correctly")
     public void pricePriceFactorTest() {
         for (ICar c : cars) {
-            if (c.category().equals("Family") && c.type().equals("SUV")) {
+            if (c.category().equals(FAMILY) && c.type().equals(SUV)) {
                 assertEquals(1.2, Price.priceFactor(c));
-            } else if (c.category().equals("Family") && c.type().equals("PICKUP")) {
+            } else if (c.category().equals(FAMILY) && c.type().equals("PICKUP")) {
                 assertEquals(1.3, Price.priceFactor(c));
-            } else if (c.category().equals("Business") && c.type().equals("SUV")) {
+            } else if (c.category().equals("Business") && c.type().equals(SUV)) {
                 assertEquals(1.1, Price.priceFactor(c));
-            }else if (c.category().equals("Family")) {
+            }else if (c.category().equals(FAMILY)) {
                 assertEquals(0.5, Price.priceFactor(c));
-            } else if (c.type().equals("SUV")) {
+            } else if (c.type().equals(SUV)) {
                 assertEquals(2, Price.priceFactor(c));
             }
         }

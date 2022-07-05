@@ -21,12 +21,21 @@ public class CurrentCostsViewTest {
 
     private IParkingModel parkingModel;
     private CurrentCostsView currentCostsView;
-    private final ICar x = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "69", "a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f", "2", "Women", "SUV", "SU-K 69", Time.now() - 10000 + ""});
-    private final ICar x1 = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "70", "a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f", "2", "Women", "SUV", "SU-K 70", Time.now() - 10000 + ""});
-    private final ICar x2 = new Car(new String[]{"25", Time.now() - 10000 + "", "6010", "71", "a7aa53882766f4bf361ca339fb843fa9",
-            "#42671f", "2", "Women", "SUV", "SU-K 71", Time.now() - 10000 + ""});
+
+    private final String NR = "25";
+    private final String DURATION = "6010";
+    private final String TICKET = "a7aa53882766f4bf361ca339fb843fa9";
+    private final String COLOR = "#42671f";
+    private final String SPACE = "2";
+    private final String CATEGORY = "Women";
+    private final String TYPE = "SUV";
+
+    private final ICar x = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "69", TICKET,
+            COLOR, SPACE, CATEGORY, TYPE, "SU-K 69", Time.now() - 10000 + ""});
+    private final ICar x1 = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "70", TICKET,
+            COLOR, SPACE, CATEGORY, TYPE, "SU-K 70", Time.now() - 10000 + ""});
+    private final ICar x2 = new Car(new String[]{NR, Time.now() - 10000 + "", DURATION, "71", TICKET,
+            COLOR, SPACE, CATEGORY, TYPE, "SU-K 71", Time.now() - 10000 + ""});
 
     @BeforeEach
     void setup() {

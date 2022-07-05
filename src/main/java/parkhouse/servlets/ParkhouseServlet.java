@@ -34,6 +34,8 @@ public abstract class ParkhouseServlet extends HttpServlet {
     abstract String config();
 
     private static final String RELOAD = "<img src='x' onerror=location.reload();>";
+    private static final String PARKING_CONTROLLER = "parkingController";
+    private static final String SAVER = "saver";
 
     private static final Logger LOGGER = Logger.getLogger(ParkhouseServlet.class.getName());
 
@@ -296,20 +298,20 @@ public abstract class ParkhouseServlet extends HttpServlet {
     Author: docsof2s
     */
     public IParkingController parkingController() {
-        if (getContext().getAttribute("parkingController" + name()) == null) {
-            getContext().setAttribute("parkingController" + name(), new ParkingController());
+        if (getContext().getAttribute(PARKING_CONTROLLER + name()) == null) {
+            getContext().setAttribute(PARKING_CONTROLLER + name(), new ParkingController());
         }
-        return (IParkingController) getContext().getAttribute("parkingController" + name());
+        return (IParkingController) getContext().getAttribute(PARKING_CONTROLLER + name());
     }
 
     /*
     Author: jstueh2s
     */
     public Saver saver() {
-        if (getContext().getAttribute("saver" + name()) == null) {
-            getContext().setAttribute("saver" + name(), new Saver(name()));
+        if (getContext().getAttribute(SAVER + name()) == null) {
+            getContext().setAttribute(SAVER + name(), new Saver(name()));
         }
-        return (Saver) getContext().getAttribute("saver" + name());
+        return (Saver) getContext().getAttribute(SAVER + name());
     }
 
     /*

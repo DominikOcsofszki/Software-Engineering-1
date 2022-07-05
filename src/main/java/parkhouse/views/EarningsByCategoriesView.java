@@ -31,9 +31,9 @@ public class EarningsByCategoriesView implements IObserver {
 
     @Override
     public String toString() {
-        String[][] rows = new String[Config.CLIENT_CATEGORIES.length][5];
+        String[][] rows = new String[Config.clientCategories().length][5];
         for (int i = 0; i < rows.length; i++) {
-            String category = Config.CLIENT_CATEGORIES[i];
+            String category = Config.clientCategories()[i];
             List<ICar> cat = cars.stream()
                     .filter(c -> c.category().equals(category))
                     .collect(Collectors.toList());

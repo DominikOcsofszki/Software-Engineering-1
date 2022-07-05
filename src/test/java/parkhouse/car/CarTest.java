@@ -19,6 +19,8 @@ public class CarTest {
     Author: jstueh2s
      */
 
+    private final String FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s";
+
     private final List<String[]> params = Data.params();
     private final SecureRandom rand = new SecureRandom();
 
@@ -146,7 +148,7 @@ public class CarTest {
         for (String[] p : params) {
             ICar car = new Car(p);
             assertEquals(
-                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                    String.format(FORMAT,
                             p[0], p[1], p[2], p[3], p[4], p[5],
                             p[6], p[7], p[8], p[9], p[10]
                             ), car.toString()
@@ -178,7 +180,7 @@ public class CarTest {
         for (String[] p : params) {
             car.updateParams(p);
             assertEquals(
-                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                    String.format(FORMAT,
                             p[0], p[1], p[2], p[3], p[4], p[5],
                             p[6], p[7], p[8], p[9], p[10]
                     ), car.toString()
@@ -210,7 +212,7 @@ public class CarTest {
 
             empty.updateParams(p);
             assertEquals(
-                    String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s",
+                    String.format(FORMAT,
                             p[0], p[1], p[2], p[3], p[4], p[5],
                             p[6], p[7], p[8], p[9], p[10]
                     ), empty.toString()

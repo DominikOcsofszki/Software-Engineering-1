@@ -12,9 +12,9 @@ public class Config {
     public static final int TIME_SHIFT = 0;
     public static final int WAIT_REDLIGHT_SHIFT = 10;
 
-    public static final String[] CLIENT_CATEGORIES = new String[] {"Default", "Women", "Business", "Family", "Disability"};
-    public static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
-    public static final String[] PRICE_FACTOR = new String[] {
+    protected static final String[] CLIENT_CATEGORIES = new String[] {"Default", "Women", "Business", "Family", "Disability"};
+    protected static final String[] VEHICLE_TYPES = new String[] {"PKW", "SUV", "QUAD", "TRIKE", "PICKUP"};
+    protected static final String[] PRICE_FACTOR = new String[] {
             "PICKUP:2.1",
             "SUV:2",
             "QUAD:0.8",
@@ -30,5 +30,17 @@ public class Config {
     public static final int DEFAULT_MAX_CARS = 16;
     public static final int DEFAULT_OPEN_FROM = 0;
     public static final int DEFAULT_OPEN_TO = 0;
+
+    public static String[] clientCategories() {
+        return CLIENT_CATEGORIES;
+    }
+
+    public static String[] vehicleTypes() {
+        return CLIENT_CATEGORIES;
+    }
+
+    public static String[] priceFactor() {
+        return CLIENT_CATEGORIES;
+    }
 
 }
