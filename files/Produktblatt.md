@@ -25,7 +25,7 @@
 
     Servlet Superklasse.
     Verarbeitet GET und POST Anfragen.
-    Speichert einen ParkingController und einen *Saver*, sowie ein Array für Konfiguration.
+    Speichert einen ParkingController und einen Saver, sowie ein Array für Konfiguration.
 
 **MainServlet:**
 

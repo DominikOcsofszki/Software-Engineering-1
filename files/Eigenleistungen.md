@@ -197,3 +197,11 @@ Eigenleistungen der einzelnen Teammitglieder.
 [Version](https://github.com/casperdcl/git-fame)
 
 *git-fame --incl="java|xml|jsp|css"*
+
+### Commits
+
+|             | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
+|-------------|-------------------|-------------|------------|--------------|
+| **Commits** | 74                | 177         | 45         | 50           |
+
+*git shortlog -s -n*
