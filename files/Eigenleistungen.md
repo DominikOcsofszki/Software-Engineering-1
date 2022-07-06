@@ -47,6 +47,7 @@ Eigenleistungen der einzelnen Teammitglieder.
 **Tests:**
 
 - ParkingControllerTest
+- ParkingModelTest
 - SaverTest
 - CurrentCostsViewTest
 
@@ -157,6 +158,11 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 **Interfaces:**
 
+- ICommand
+- IParkingModel
+
+**Klassen:**
+
 - ParkhouseServlet:
   - doGet
     - Undo
@@ -164,11 +170,6 @@ Eigenleistungen der einzelnen Teammitglieder.
   - doPost
     - invalid/occupied
     - default
-- ICommand
-- IParkingModel
-
-**Klassen:**
-
 - Stats
 - CarEnterCommand
 - ParkingModel
