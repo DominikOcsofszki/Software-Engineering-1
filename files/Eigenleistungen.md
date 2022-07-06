@@ -54,6 +54,8 @@ Eigenleistungen der einzelnen Teammitglieder.
 
 ### Jakob Stühn
 
+- Sicherheitsanalyse
+
 **Interfaces:**
 
 - ICar
