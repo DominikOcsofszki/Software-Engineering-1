@@ -25,11 +25,11 @@
 
     Servlet Superklasse.
     Verarbeitet GET und POST Anfragen.
-    Speichert einen *ParkingController* und einen *Saver*, sowie ein Array für Konfiguration.
+    Speichert einen ParkingController und einen *Saver*, sowie ein Array für Konfiguration.
 
 **MainServlet:**
 
-    Erweiterung des *ParkhouseServlet*.
+    Erweiterung des ParkhouseServlet.
     Stellt das primäre Parkhaus da.
 
 **SecurityCORSFilter:**
@@ -171,8 +171,8 @@
 
 **MainServlet.cars:**
 
-    Speichert die Autos des *MainServlet*.
+    Speichert die Autos des MainServlet.
 
 **MainServlet.conf:**
 
-    Speichert die Konfiguration des *MainServlet*.
+    Speichert die Konfiguration des MainServlet.
