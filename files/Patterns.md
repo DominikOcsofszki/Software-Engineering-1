@@ -27,7 +27,7 @@ Er bietet die Möglichkeit die gespeicherten Befehle vor- und rückgängig zu ma
 
 **Klassen**: CarDecorator, SanitizedCar
 
-Über den Dekorator können die Funktionen des Autos erweitert werden, ohne die ursprüngliche Klasse zu verändern.\
+Über den Dekorierer können die Funktionen des Autos erweitert werden, ohne die ursprüngliche Klasse zu verändern.\
 Das *SanitizedCar* filtert die String Parameter des Autos mit einer Whitelist.
 
 ---

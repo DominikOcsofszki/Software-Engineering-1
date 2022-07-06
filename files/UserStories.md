@@ -4,10 +4,10 @@
 
 ## Kunde
 
-- US00: Als Autofahrer wird mein Kennzeichen automatisch gelesen, um meine Einfahrtszeit festzuhalten.
+- US00: Als Autofahrer wird mein Kennzeichen automatisch gelesen, um meine Einfahrzeit festzuhalten.
 - US01: Als Autofahrer gebe ich bei der Zahlung mein Kennzeichen an, um automatisch aus dem Parkhaus gelassen zu werden.
-- US02: Als Autofahrer wird mir automatisch, abghängig von Parkzeit und Tarif, ein Saldo berechnet, um Zeit zu sparen.
-- US03: Als Abonnent kaufe ich Online ein Abo, um über einen Bestimmten Zeitraum, ohne individuelle Zahlungen, das Parkhaus verlassen zu können.
+- US02: Als Autofahrer wird mir automatisch, abgängig von Parkzeit und Tarif, ein Saldo berechnet, um Zeit zu sparen.
+- US03: Als Abonnent kaufe ich Online ein Abo, um über einen bestimmten Zeitraum, ohne individuelle Zahlungen, das Parkhaus verlassen zu können.
 - US04: Als Abonnent ist mein Kennzeichen hinterlegt, um komfortabel auszufahren.
 - US05: Als behinderte Person benötige ich gesonderte Parkplätze, für besseren Ein- / und Ausstieg.
 - US06: Als Frau benötige ich gesonderte Parkplätze, für einen sicheren Weg von und zum Fahrzeug.
@@ -27,5 +27,5 @@
 ---
 
 Als zusätzliche Anforderungen an die Simulation wurden, die persistente Speicherung von Daten,\
-sowie die Möglichkeit Aktionen vor- und rückgängig zu machen, vorrausgesetzt.\
+sowie die Möglichkeit Aktionen vor- und rückgängig zu machen, vorausgesetzt.\
 Die Software sollte außerdem über ein Sicherheitskonzept verfügen.

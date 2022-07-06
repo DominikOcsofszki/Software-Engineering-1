@@ -16,19 +16,19 @@ Die Applikation implementiert keine Logins oder andere Zugriffskontrollen.
 
 **Cryptographic Failures**
 
-Es werden keine kryptographischen Funktionen z.B. für das signieren von Cookies verwendet. \
+Es werden keine kryptografischen Funktionen z.B. für das signieren von Cookies verwendet. \
 Es ist jedoch anzumerken, dass der Tomcat Server über kein gültiges TLS-Zertifikat verfügt.
 
 ---
 
 **Injection**
 
-An mehreren Stellen werden in der Applikation Daten verabeitet, die von außen beeinflusst werden können:
+An mehreren Stellen werden in der Applikation Daten verarbeitet, die von außen beeinflusst werden können:
   - Autos fahren in das Parkhaus (Parameter werden ausgelesen und gespeichert)
   - Autos verlassen das Parkhaus (Zeit und Preis Informationen werden gespeichert)
   - Der Tomcat Server startet und lädt gespeicherte Autos
   - Der Nutzer verändert die Öffnungszeiten
-  - Der Nuzer verändert die maximale Anzahl an Parkplätzen 
+  - Der Nutzer verändert die maximale Anzahl an Parkplätzen 
   
 Die Applikation verwendet kein Datenbanksystem. \
 Es werden eine große Menge an inline-JavaScript aus externen Quellen geladen. 
@@ -87,9 +87,9 @@ In der Applikation werden keine dynamischen Requests vom Server generiert.
 ## Gegemaßnahmen:
 
 Ein großer Teil der gefundenen Schwachstellen wurden als nur schwer oder nicht lösbar bestimmt.\
-Um die Fläche für potentielle Angriffe jedoch etwas zu reduzieren, wurden die folgende Sicherheitsmaßnamhen implementiert.
+Um die Fläche für potenzielle Angriffe jedoch etwas zu reduzieren, wurden die folgenden Sicherheitsmaßnahmen implementiert.
 
-- Die Parameter von Autos werden beim Betreten des Parkhauses bzw. beim laden aus Dateien, mit einer Whitelist desinfiziert.
+- Die Parameter von Autos werden beim Betreten des Parkhauses bzw. beim Laden aus Dateien, mit einer Whitelist desinfiziert.
 - Die bestehenden Sicherheitsheader wurden erweitert um: 
   - *X-Frame-Options*
   - *X-Content-Type-Options*

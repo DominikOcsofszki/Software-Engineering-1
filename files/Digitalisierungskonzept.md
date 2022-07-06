@@ -21,9 +21,9 @@ Skalierbar und kostengünstig.
 
 ### Lösung:
 
-- Automatische Protokollierung von Kundenativitäten
+- Automatische Protokollierung von Kundenaktivitäten
 - Ausgabe von Statusinformationen (z.B. freie Plätze)
-- Managmentfunktionen (z.B. Öffnungszeiten)
+- Managementfunktionen (z.B. Öffnungszeiten)
 
 ### Mehrwert:
 
