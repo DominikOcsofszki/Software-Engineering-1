@@ -15,7 +15,7 @@
 
 **Finanzamt:**
 
-    Das Finanzamt kann gesammelte Informationen über Einnamhmen abrufen und spart so Zeit.
+    Das Finanzamt kann gesammelte Informationen über Einnahmen abrufen und spart so Zeit.
 
 ---
 
@@ -30,7 +30,7 @@
 **MainServlet:**
 
     Erweiterung des *ParkhouseServlet*.
-    Stellt das primäre Parkaus da.
+    Stellt das primäre Parkhaus da.
 
 **SecurityCORSFilter:**
 
@@ -64,7 +64,7 @@
 
 **Locator:**
 
-    Sucht einfahrenden Autos einen freien Parkplatz.
+    Sucht einfahrenden Autos, einen freien Parkplatz.
 
 **Price:**
 
@@ -82,11 +82,11 @@
 
 **CarEnterCommand:**
 
-    Befehl für das einfahren von Autos.
+    Befehl für das Einfahren von Autos.
 
 **CarLeaveCommand:**
 
-    Befehl für das verlassen von Autos.
+    Befehl für das Verlassen von Autos.
 
 ---
 
@@ -134,7 +134,7 @@
 
 **Finder:**
 
-    Sucht nach Autos in Iterierbaren Objekten, anhand von beliebigen Paramtern.
+    Sucht nach Autos in Iterierbaren Objekten, anhand von beliebigen Parametern.
 
 **Jsonify:**
 
