@@ -206,3 +206,19 @@ Eigenleistungen der einzelnen Teammitglieder.
 | **Commits** | 74                | 177         | 45         | 50           |
 
 *git shortlog -s -n*
+
+### Insertions
+
+|                | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
+|----------------|-------------------|-------------|------------|--------------|
+| **Insertions** | 2843              | 7269         | 1544         | 1729         |
+
+*git-fame --incl="java|xml|jsp|css" --loc="ins"*
+
+### Deletions
+
+|               | Dominik Ocsofszki | Jakob Stühn | Sam Taheri | Tobias Papen |
+|---------------|-------------------|-------------|------------|--------------|
+| **Deletions** | 1007              | 5928         | 178         | 879          |
+
+*git-fame --incl="java|xml|jsp|css" --loc="del"*
