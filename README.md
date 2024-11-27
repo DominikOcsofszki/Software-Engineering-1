@@ -2,9 +2,9 @@
 # Parkhaus Team 6
 
 - **Dominik Ocsofszki**
-- **Jakob Stühn**
-- **Sam Taheri**
-- **Tobias Papen**
+- **J S**
+- **S T**
+- **T P**
 
 ---
 
@@ -48,4 +48,3 @@
 
 ---
 
-### [Eigenleistungen](/files/Eigenleistungen.md)
